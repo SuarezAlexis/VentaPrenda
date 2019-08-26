@@ -16,6 +16,6 @@ namespace VentaPrenda.View.Abstract
         /*************************** MÉTODOS *******************************/
         LoginDto RequestCredentials();
         void WrongCredentials();
-
+        void BlockedUser();
     }
 }

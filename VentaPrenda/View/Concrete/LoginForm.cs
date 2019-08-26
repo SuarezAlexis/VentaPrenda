@@ -57,6 +57,17 @@ namespace VentaPrenda.View.Concrete
             this.usuarioTextBox.Focus();
         }
 
+        public void BlockedUser()
+        {
+            this.contraTextBox.Text = "";
+            MessageBox.Show(
+                "El usuario solicitado se encuentra bloqueado.",
+                "Usuario bloqueado.",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            this.usuarioTextBox.Focus();
+        }
+
         private void LoginButton_Click(object sender, EventArgs e)
         {
             loginButton.Enabled = false;

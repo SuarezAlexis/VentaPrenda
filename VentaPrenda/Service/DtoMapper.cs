@@ -19,6 +19,7 @@ namespace VentaPrenda.Service
                 Nombre = dto.Nombre,
                 Contraseña = dto.Contraseña,
                 Logged = dto.Logged,
+                Bloqueado = dto.Bloqueado,
                 UltimoIngreso = dto.UltimoIngreso,
                 IntentosFallidos = dto.IntentosFallidos,
                 Permisos = dto.Permisos

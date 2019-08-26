@@ -20,7 +20,7 @@ namespace VentaPrenda
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+            
             AccountController accountController = new AccountController(new LoginForm());
             if ( accountController.Authenticate() )
             {

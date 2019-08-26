@@ -15,32 +15,37 @@ namespace VentaPrenda.DAO.Concrete
 {
     class UsuarioDaoMySQL : IUsuarioDao
     {
-        private static readonly string SELECT_LIST_SQL = "SELECT U.ID, U.Username, U.Nombre, U.Bloqueado, U.IntentosFallidos, U.UltimoIngreso, BIT_OR(P.Permisos) Permisos FROM Usuario U JOIN Perfil_Usuario PU ON(PU.Usuario = U.ID) JOIN Perfil P ON(P.ID = PU.Perfil)";
-        private static readonly string SELECT_PERFILES_SQL = "SELECT U.*, P.ID AS PerfilID, P.Nombre AS Perfil, P.Permisos, PU.Perfil IS NOT NULL AND PU.Usuario IS NOT NULL Habilitado FROM Usuario U, Perfil P LEFT JOIN Perfil_Usuario PU ON(PU.Perfil = P.ID)";
-        private static readonly string INSERT_SQL = "INSERT INTO Usuario(Username,Nombre,Password) VALUES(@Username,@Nombre,@Password)";
+        private static readonly string SELECT_LIST_SQL = "SELECT U.ID, U.Username, U.Nombre, U.Bloqueado, U.IntentosFallidos, U.UltimoIngreso, BIT_OR(P.Permisos) Permisos FROM Usuario U LEFT JOIN Perfil_Usuario PU ON(PU.Usuario = U.ID) LEFT JOIN Perfil P ON(P.ID = PU.Perfil) GROUP BY ID";
+        private static readonly string SELECT_PERFILES_SQL = "SELECT U.*, P.ID AS PerfilID, P.Nombre AS Perfil, P.Permisos, EXISTS(SELECT * FROM Perfil_Usuario WHERE Perfil = P.ID AND Usuario = U.ID) Habilitado FROM Usuario U, Perfil P";
+        private static readonly string INSERT_SQL = "INSERT INTO Usuario(Username,Nombre,Password) VALUES(@Username,@Nombre,@Password); SELECT LAST_INSERT_ID();";
         private static readonly string UPDATE_SQL = "UPDATE Usuario SET Username = @Username, Nombre = @Nombre, Password = @Password WHERE ID = @ID";
         private static readonly string UPDATE_PERFILES_SQL = "sp_UpdatePerfiles";
         private static readonly string DELETE_SQL = "sp_DeleteUsuario";
 
-
+        /// <summary>
+        /// Obtiene un objeto UsuarioDto a partir del primer registro de una DataTable. 
+        /// Devuelve nulo si la tabla no contiene filas.
+        /// </summary>
+        /// <param name="dt">Debe contener las columnas respectivas o se lanzará una exepción en tiempo de ejecución.</param>
+        /// <returns></returns>
         private static UsuarioDto Map(DataTable dt)
         {
             UsuarioDto u = null;
             if(dt != null && dt.Rows.Count > 0)
             {
-
                 u = new UsuarioDto
                 {
-                    ID = Convert.ToInt64(dt.Rows[0]["ID"]),
-                    Nombre = dt.Rows[0]["Nombre"].ToString(),
-                    Username = dt.Rows[0]["Username"].ToString(),
-                    Contraseña = dt.Rows[0]["Password"].ToString(),
+                    ID = dt.Rows[0].Field<long>("ID"),
+                    Nombre = dt.Rows[0].Field<string>("Nombre"),
+                    Username = dt.Rows[0].Field<string>("Username"),
+                    Contraseña = dt.Rows[0].Field<string>("Password"),
                     Bloqueado = Convert.ToBoolean(dt.Rows[0]["Bloqueado"]),
                     IntentosFallidos = Convert.ToInt32(dt.Rows[0]["IntentosFallidos"]),
-                    UltimoIngreso = Convert.ToDateTime(dt.Rows[0]["UltimoIngreso"]),
-                    Logged = true,
+                    UltimoIngreso = dt.Rows[0]["UltimoIngreso"].GetType() != typeof(DBNull)? Convert.ToDateTime(dt.Rows[0]["UltimoIngreso"]): new DateTime(),
                     Permisos = new Permisos(Convert.ToInt32(dt.Rows[0]["Permisos"]))
                 };
+                u.Logged = dt.Columns.Contains("Logged") && Convert.ToBoolean(dt.Rows[0]["Logged"]);
+
             }
             return u;
             
@@ -48,11 +53,27 @@ namespace VentaPrenda.DAO.Concrete
         public UsuarioDto EliminarUsuario(UsuarioDto u)
         {
             Dictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("p_Usuario", u.ID.ToString());
+            param.Add("p_ID", u.ID.ToString());
             DataTable dt = MySqlDbContext.Call(DELETE_SQL, param);
-            return dt.Rows.Count > 0 ? Map(dt) : null;
+            /*
+            Dictionary<PerfilDto, bool> perfiles = new Dictionary<PerfilDto, bool>();
+            foreach(KeyValuePair<PerfilDto,bool> kvp in u.Perfiles)
+            { perfiles.Add(kvp.Key, false); }
+            u = dt.Rows.Count > 0 ? Map(dt) : new UsuarioDto();
+            u.Perfiles = perfiles;
+            u = dt.Rows.Count > 0 ? Map(dt) : new UsuarioDto();
+            u.ID = -1;
+            */
+            return dt.Rows.Count > 0 ? Map(dt) : new UsuarioDto();
         }
 
+        /// <summary>
+        /// Ejecuta procedimiento de inicio de sesión en base de datos y obtiene registro del usuario solicitado.
+        /// Devuelve nulo si el usuario no se encontró.
+        /// La bandera Logged del objeto UsuarioDto indica si la autenticación fue correcta.
+        /// </summary>
+        /// <param name="loginDto"></param>
+        /// <returns></returns>
         public UsuarioDto GetUsuario(LoginDto loginDto)
         {
             Dictionary<string, string> param = new Dictionary<string, string>();
@@ -101,8 +122,21 @@ namespace VentaPrenda.DAO.Concrete
             else
             {
                 param.Add("@Password", u.Contraseña);
-                DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
-                u.ID = (short)(dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0][0]) : -1);
+                try
+                {
+                    DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
+                    u.ID = (short)(dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0][0]) : -1);
+                } catch(MySqlException e)
+                {
+                    if(e.Number == 1062)
+                    {
+                        int firstIdx = e.Message.IndexOf("'");
+                        int secondIdx = e.Message.IndexOf("'", firstIdx + 1);
+                        string duplicateId = e.Message.Substring(firstIdx, secondIdx - firstIdx + 1);
+                        throw new DuplicateKeyException(duplicateId, e);
+                    }
+                }
+                
             }
 
             param = new Dictionary<string, string>();

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VentaPrenda.DAO;
 using VentaPrenda.DTO;
+using VentaPrenda.Exceptions;
 using VentaPrenda.Model;
 using VentaPrenda.Service;
 using VentaPrenda.View.Abstract;
@@ -139,24 +140,33 @@ namespace VentaPrenda.Controller
             _mainView.UpdateModo();
         }
 
-        public void Guardar(object dto)
+        public bool Guardar(object dto)
         {
-            switch (dto.GetType().Name)
+            bool success = false;
+            try
             {
-                case "PerfilDto":
-                    _mainView.Dto = DaoManager.PerfilDao.GuardarPerfil((PerfilDto)dto);
-                    _mainView.DataSource = DaoManager.PerfilDao.GetPerfiles();
-                    break;
-                case "UsuarioDto":
-                    UsuarioDto usuarioDto = (UsuarioDto)dto;
-                    usuarioDto.Contraseña = Cipher.Encrypt(usuarioDto.Contraseña);
-                    _mainView.Dto = DaoManager.UsuarioDao.GuardarUsuario(usuarioDto);
-                    _mainView.DataSource = DaoManager.UsuarioDao.GetUsuarios();
-                    break;
+                switch (Funcion)
+                {
+                    case Funcion.PERFILES:
+                        _mainView.Dto = DaoManager.PerfilDao.GuardarPerfil((PerfilDto)dto);
+                        _mainView.DataSource = DaoManager.PerfilDao.GetPerfiles();
+                        break;
+                    case Funcion.USUARIOS:
+                        UsuarioDto usuarioDto = (UsuarioDto)dto;
+                        usuarioDto.Contraseña = Cipher.Encrypt(usuarioDto.Contraseña);
+                        _mainView.Dto = DaoManager.UsuarioDao.GuardarUsuario(usuarioDto);
+                        _mainView.DataSource = DaoManager.UsuarioDao.GetUsuarios();
+                        break;
+                }
+                Modo = Modo.SOLO_LECTURA;
+                _mainView.UpdateModo();
+                success = true;
+            } catch(DuplicateKeyException dke)
+            {
+                _mainView.DuplicateKeyAlert(dke.DuplicatedKey);
+                success = false;
             }
-            Modo = Modo.SOLO_LECTURA;
-            _mainView.UpdateModo();
-            
+            return success;
         }
         public void Editar()
         {
@@ -166,11 +176,16 @@ namespace VentaPrenda.Controller
 
         public void Eliminar(object dto)
         {
-            switch(dto.GetType().Name)
+            switch(Funcion)
             {
-                case "PerfilDto":
+                case Funcion.PERFILES:
                     _mainView.Dto = DaoManager.PerfilDao.EliminarPerfil((PerfilDto)dto);
                     _mainView.DataSource = DaoManager.PerfilDao.GetPerfiles();
+                    break;
+                case Funcion.USUARIOS:
+                    _mainView.Dto = DaoManager.UsuarioDao.EliminarUsuario((UsuarioDto)dto);
+                    _mainView.DataSource = DaoManager.UsuarioDao.GetUsuarios();
+                    _mainView.Dto = DtoProvider.UsuarioDto();
                     break;
             }
             Modo = Modo.SELECCION;

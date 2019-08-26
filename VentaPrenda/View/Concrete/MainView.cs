@@ -137,6 +137,14 @@ namespace VentaPrenda.View.Concrete
             ArreglosButton.Visible = p.Catalogos;
         }
 
+        public void DuplicateKeyAlert(string duplicateKey)
+        {
+            MessageBox.Show(
+                "Ya existe un registro con el identificador " + duplicateKey + ". No fue posible guardar los datos.",
+                "Identificador duplicado",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
         /************************ MÉTODOS: Privados ************************/
         private void ModoNinguno()
         {
@@ -259,9 +267,8 @@ namespace VentaPrenda.View.Concrete
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            if (Detalle.ValidateChildren())
+            if (Detalle.ValidateChildren() && Controller.Guardar(Detalle.Dto))
             {
-                Controller.Guardar(Detalle.Dto);
                 infoLabel.Text = "Se guardó correctamente: " + Dto.ToString();
             }
         }
@@ -270,10 +277,14 @@ namespace VentaPrenda.View.Concrete
         {
             if(MessageBox.Show("Se eliminará " + Detalle.Dto.ToString() + "\n¿Estas seguro?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                string dtoString = Dto.ToString();
                 Controller.Eliminar(Detalle.Dto);
-                Detalle = newDetalle(errorProvider);                
-                infoLabel.Text = "Se eliminó correctamente: " + Dto.ToString();
+                Detalle.ReadOnly = false;
+                //Detalle.Fill(Dto);
+                infoLabel.Text = "Se eliminó correctamente: " + dtoString;
             }
         }
+
+        
     }
 }

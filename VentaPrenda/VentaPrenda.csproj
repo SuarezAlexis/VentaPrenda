@@ -76,6 +76,7 @@
     <Compile Include="DTO\PerfilDto.cs" />
     <Compile Include="Exceptions\CouldNotConnectException.cs" />
     <Compile Include="Exceptions\DatabaseException.cs" />
+    <Compile Include="Exceptions\DuplicateKeyException.cs" />
     <Compile Include="Exceptions\ViewClosedException.cs" />
     <Compile Include="Model\Arreglo.cs" />
     <Compile Include="Model\Catalogo.cs" />

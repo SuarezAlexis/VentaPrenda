@@ -34,8 +34,24 @@ namespace VentaPrenda.Controller
         {
             try
             {
-                while (! (Usuario = DtoMapper.Usuario(_usuarioDao.GetUsuario(_loginView.RequestCredentials() ))).Logged )
+                do
+                {
+                    LoginDto dto = _loginView.RequestCredentials();
+                    Usuario = DtoMapper.Usuario(_usuarioDao.GetUsuario(dto));
+                    if (Usuario == null || !Usuario.Logged)
+                    {
+                        if(Usuario != null && Usuario.Bloqueado)
+                            _loginView.BlockedUser();
+                        else
+                            _loginView.WrongCredentials();
+                    }                        
+                } while (Usuario == null || !Usuario.Logged);
+                
+
+                /*
+                while (! (Usuario = DtoMapper.Usvuario(_usuarioDao.GetUsuario(_loginView.RequestCredentials() ))).Logged )
                 { _loginView.WrongCredentials(); }
+                */
             }
             catch(ViewClosedException vce)
             {
@@ -50,7 +66,7 @@ namespace VentaPrenda.Controller
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            return Usuario != null;
+            return Usuario != null && Usuario.Logged;
         }
     }
 }

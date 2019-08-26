@@ -22,5 +22,6 @@ namespace VentaPrenda.View.Abstract
         void UpdateModo();
         void UpdateFuncion();
         void SetProfile(Permisos permisos);
+        void DuplicateKeyAlert(string duplicateKey);
     }
 }
