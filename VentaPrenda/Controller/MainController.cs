@@ -79,6 +79,33 @@ namespace VentaPrenda.Controller
                 case Funcion.USUARIOS:
                     dto = DaoManager.UsuarioDao.GetUsuario(id);
                     break;
+                case Funcion.COLORES:
+                    dto = DaoManager.CatalogoDao.GetColor((short)id);
+                    break;
+                case Funcion.PRENDAS:
+                    dto = DaoManager.CatalogoDao.GetPrenda((short)id);
+                    break;
+                case Funcion.TIPOS_PRENDA:
+                    dto = DaoManager.CatalogoDao.GetTipoPrenda((short)id);
+                    break;
+                case Funcion.ARREGLOS:
+                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    break;
+                case Funcion.NOTA:
+                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    break;
+                case Funcion.CLIENTES:
+                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    break;
+                case Funcion.GASTOS:
+                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    break;
+                case Funcion.REPORTES:
+                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    break;
+                case Funcion.HISTORIAL:
+                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    break;
             }
             _mainView.Dto = dto;
             _mainView.UpdateModo();
@@ -108,6 +135,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.COLORES;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.CatalogoDao.GetColores();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -116,6 +144,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.PRENDAS;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.CatalogoDao.GetPrendas();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -124,6 +153,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.TIPOS_PRENDA;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.CatalogoDao.GetTiposPrenda();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -240,6 +270,44 @@ namespace VentaPrenda.Controller
                         _mainView.Dto = DaoManager.UsuarioDao.GuardarUsuario(usuarioDto);
                         _mainView.DataSource = DaoManager.UsuarioDao.GetUsuarios();
                         break;
+                    case Funcion.COLORES:
+                        _mainView.Dto = DaoManager.CatalogoDao.GuardarColor((CatalogoDto)dto);
+                        _mainView.DataSource = DaoManager.CatalogoDao.GetColores();
+                        break;
+                    case Funcion.PRENDAS:
+                        _mainView.Dto = DaoManager.CatalogoDao.GuardarPrenda((CatalogoDto)dto);
+                        _mainView.DataSource = DaoManager.CatalogoDao.GetPrendas();
+                        break;
+                    case Funcion.TIPOS_PRENDA:
+                        _mainView.Dto = DaoManager.CatalogoDao.GuardarTipoPrenda((CatalogoDto)dto);
+                        _mainView.DataSource = DaoManager.CatalogoDao.GetTiposPrenda();
+                        break;
+                    case Funcion.ARREGLOS:
+                        //_mainView.Dto = DaoManager.ArregloDao.GuardarArreglo((ArregloDto)dto);
+                        //_mainView.DataSource = DaoManager.ArregloDao.GetColores();
+                        break;
+                    case Funcion.DESCUENTOS:
+                        //_mainView.Dto = DaoManager.DescuentoDao.GuardarDescuento((DescuentoDto)dto);
+                        //_mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
+                        break;
+                    case Funcion.NOTA:
+                        //_mainView.Dto = DaoManager.NotaDao.GuardarNota((NotaDto)dto);
+                        //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
+                        break;
+                    case Funcion.CLIENTES:
+                        //_mainView.Dto = DaoManager.ClienteDao.GuardarCliente((ClienteDto)dto);
+                        //_mainView.DataSource = DaoManager.ClienteDao.GetClientes();
+                        break;
+                    case Funcion.GASTOS:
+                        //_mainView.Dto = DaoManager.GastoDao.GuardarGasto((GastoDto)dto);
+                        //_mainView.DataSource = DaoManager.GastoDao.GetGastos();
+                        break;
+                    case Funcion.REPORTES:
+                        
+                        break;
+                    case Funcion.HISTORIAL:
+                        
+                        break;
                 }
                 Modo = Modo.SOLO_LECTURA;
                 _mainView.UpdateModo();
@@ -269,6 +337,44 @@ namespace VentaPrenda.Controller
                     _mainView.Dto = DaoManager.UsuarioDao.EliminarUsuario((UsuarioDto)dto);
                     _mainView.DataSource = DaoManager.UsuarioDao.GetUsuarios();
                     _mainView.Dto = DtoProvider.UsuarioDto();
+                    break;
+                case Funcion.COLORES:
+                    _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);
+                    _mainView.DataSource = DaoManager.CatalogoDao.GetColores();
+                    break;
+                case Funcion.PRENDAS:
+                    _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);
+                    _mainView.DataSource = DaoManager.CatalogoDao.GetPrendas();
+                    break;
+                case Funcion.TIPOS_PRENDA:
+                    _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);
+                    _mainView.DataSource = DaoManager.CatalogoDao.GetTiposPrenda();
+                    break;
+                case Funcion.ARREGLOS:
+                    //_mainView.Dto = DaoManager.ArregloDao.EliminarArreglo((ArregloDto)dto);
+                    //_mainView.DataSource = DaoManager.ArregloDao.GetArreglos();
+                    break;
+                case Funcion.DESCUENTOS:
+                    //_mainView.Dto = DaoManager.DescuentoDao.EliminarDescuento((DescuentoDto)dto);
+                    //_mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
+                    break;
+                case Funcion.NOTA:
+                    //_mainView.Dto = DaoManager.NotaDao.EliminarNota((NotaDto)dto);
+                    //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
+                    break;
+                case Funcion.CLIENTES:
+                    //_mainView.Dto = DaoManager.ClienteDao.EliminarCliente((ClienteDto)dto);
+                    //_mainView.DataSource = DaoManager.ClienteDao.GetClientes();
+                    break;
+                case Funcion.GASTOS:
+                    //_mainView.Dto = DaoManager.GastoDao.EliminarGasto((GastoDto)dto);
+                    //_mainView.DataSource = DaoManager.GastoDao.GetGastos();
+                    break;
+                case Funcion.REPORTES:
+                    
+                    break;
+                case Funcion.HISTORIAL:
+                    
                     break;
             }
             Modo = Modo.SELECCION;

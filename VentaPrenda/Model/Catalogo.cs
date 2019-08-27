@@ -6,11 +6,33 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    abstract class Catalogo
+    public interface Catalogo
     {
-        public int ID { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
+        short ID { get; set; }
+        string Nombre { get; set; }
 
+        bool Habilitado { get; set; }
+
+    }
+
+    public class Color : Catalogo
+    {
+        public short ID { get; set; }
+        public string Nombre { get; set; }
+        public bool Habilitado { get; set; }
+    }
+
+    public class Prenda : Catalogo
+    {
+        public short ID { get; set; }
+        public string Nombre { get; set; }
+        public bool Habilitado { get; set; }
+    }
+
+    public class TipoPrenda : Catalogo
+    {
+        public short ID { get; set; }
+        public string Nombre { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

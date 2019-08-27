@@ -125,19 +125,19 @@ namespace VentaPrenda.View.Concrete.Detalles
 
         /************************ EventListenners **************************/
         private void nombreTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        { ValidatingTextBox(nombreTextBox, 128, e); }
+        { ValidatingTextBox(nombreTextBox, 128, e, _errorProvider); }
         private void nombreTextBox_Validated(object sender, EventArgs e)
         { ValidatedTextBox(nombreTextBox); }
 
         private void usernameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        { ValidatingTextBox(usernameTextBox, 32, e); }
+        { ValidatingTextBox(usernameTextBox, 32, e, _errorProvider); }
         private void usernameTextBox_Validated(object sender, EventArgs e)
         { ValidatedTextBox(usernameTextBox); }
 
         private void passwordTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (String.IsNullOrEmpty(idDataLabel.Text))
-                ValidatingTextBox(passwordTextBox, 64, e);
+                ValidatingTextBox(passwordTextBox, 64, e, _errorProvider);
             else
                 e.Cancel = false;
         }
@@ -164,28 +164,6 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             ValidatedTextBox(confirmaTextBox);
             ValidatedTextBox(passwordTextBox);
-        }
-
-
-        private void ValidatingTextBox(TextBox textBox, int maxLength, System.ComponentModel.CancelEventArgs e)
-        {
-            if (textBox.Text.Length > maxLength || textBox.Text.Length == 0)
-            {
-                e.Cancel = true;
-                textBox.Select(0, textBox.Text.Length);
-                textBox.BackColor = System.Drawing.Color.Pink;
-                _errorProvider.SetError(textBox, "Campo obligatorio. Debe contener menos de " + maxLength + " caracteres.");
-            }
-            else
-            {
-                e.Cancel = false;
-                _errorProvider.SetError(textBox, "");
-            }
-        }
-
-        private void ValidatedTextBox(TextBox textBox)
-        {
-            textBox.BackColor = SystemColors.Window;
         }
 
     }

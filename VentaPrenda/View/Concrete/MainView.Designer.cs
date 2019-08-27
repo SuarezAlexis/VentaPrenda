@@ -195,7 +195,7 @@
             this.ArreglosButton.Location = new System.Drawing.Point(3, 3);
             this.ArreglosButton.Name = "ArreglosButton";
             this.ArreglosButton.Size = new System.Drawing.Size(109, 23);
-            this.ArreglosButton.TabIndex = 6;
+            this.ArreglosButton.TabIndex = 0;
             this.ArreglosButton.Text = "Arreglos";
             this.ArreglosButton.UseVisualStyleBackColor = true;
             this.ArreglosButton.Click += new System.EventHandler(this.ArreglosButton_Click);
@@ -207,7 +207,7 @@
             this.DescuentosButton.Location = new System.Drawing.Point(3, 32);
             this.DescuentosButton.Name = "DescuentosButton";
             this.DescuentosButton.Size = new System.Drawing.Size(109, 23);
-            this.DescuentosButton.TabIndex = 7;
+            this.DescuentosButton.TabIndex = 1;
             this.DescuentosButton.Text = "Descruentos";
             this.DescuentosButton.UseVisualStyleBackColor = true;
             this.DescuentosButton.Click += new System.EventHandler(this.DescuentosButton_Click);
@@ -219,7 +219,7 @@
             this.UsuariosButton.Location = new System.Drawing.Point(3, 3);
             this.UsuariosButton.Name = "UsuariosButton";
             this.UsuariosButton.Size = new System.Drawing.Size(82, 23);
-            this.UsuariosButton.TabIndex = 8;
+            this.UsuariosButton.TabIndex = 0;
             this.UsuariosButton.Text = "Usuarios";
             this.UsuariosButton.UseVisualStyleBackColor = true;
             this.UsuariosButton.Click += new System.EventHandler(this.UsuariosButton_Click);
@@ -231,7 +231,7 @@
             this.PerfilesButton.Location = new System.Drawing.Point(3, 32);
             this.PerfilesButton.Name = "PerfilesButton";
             this.PerfilesButton.Size = new System.Drawing.Size(82, 23);
-            this.PerfilesButton.TabIndex = 9;
+            this.PerfilesButton.TabIndex = 1;
             this.PerfilesButton.Text = "Perfiles";
             this.PerfilesButton.UseVisualStyleBackColor = true;
             this.PerfilesButton.Click += new System.EventHandler(this.PerfilesButton_Click);
@@ -284,7 +284,7 @@
             this.BusquedaTextBox.Location = new System.Drawing.Point(64, 19);
             this.BusquedaTextBox.Name = "BusquedaTextBox";
             this.BusquedaTextBox.Size = new System.Drawing.Size(213, 20);
-            this.BusquedaTextBox.TabIndex = 0;
+            this.BusquedaTextBox.TabIndex = 13;
             // 
             // BusquedaButton
             // 
@@ -292,7 +292,7 @@
             this.BusquedaButton.Location = new System.Drawing.Point(395, 18);
             this.BusquedaButton.Name = "BusquedaButton";
             this.BusquedaButton.Size = new System.Drawing.Size(75, 23);
-            this.BusquedaButton.TabIndex = 1;
+            this.BusquedaButton.TabIndex = 14;
             this.BusquedaButton.Text = "Buscar";
             this.BusquedaButton.UseVisualStyleBackColor = true;
             // 
@@ -339,7 +339,7 @@
             this.NuevoButton.Location = new System.Drawing.Point(90, 3);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(81, 53);
-            this.NuevoButton.TabIndex = 1;
+            this.NuevoButton.TabIndex = 4;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.UseVisualStyleBackColor = true;
             this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
@@ -351,7 +351,7 @@
             this.RegresarButton.Location = new System.Drawing.Point(3, 3);
             this.RegresarButton.Name = "RegresarButton";
             this.RegresarButton.Size = new System.Drawing.Size(81, 53);
-            this.RegresarButton.TabIndex = 0;
+            this.RegresarButton.TabIndex = 3;
             this.RegresarButton.Text = "Regresar";
             this.RegresarButton.UseVisualStyleBackColor = true;
             this.RegresarButton.Click += new System.EventHandler(this.RegresarButton_Click);
@@ -363,7 +363,7 @@
             this.EditarButton.Location = new System.Drawing.Point(177, 3);
             this.EditarButton.Name = "EditarButton";
             this.EditarButton.Size = new System.Drawing.Size(81, 53);
-            this.EditarButton.TabIndex = 2;
+            this.EditarButton.TabIndex = 5;
             this.EditarButton.Text = "Editar";
             this.EditarButton.UseVisualStyleBackColor = true;
             this.EditarButton.Click += new System.EventHandler(this.EditarButton_Click);
@@ -374,7 +374,7 @@
             this.GuardarButton.Location = new System.Drawing.Point(264, 3);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(81, 53);
-            this.GuardarButton.TabIndex = 3;
+            this.GuardarButton.TabIndex = 0;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
@@ -385,7 +385,7 @@
             this.EliminarButton.Location = new System.Drawing.Point(351, 3);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(81, 53);
-            this.EliminarButton.TabIndex = 4;
+            this.EliminarButton.TabIndex = 1;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = true;
             this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
@@ -397,7 +397,7 @@
             this.LimpiarButton.Location = new System.Drawing.Point(438, 3);
             this.LimpiarButton.Name = "LimpiarButton";
             this.LimpiarButton.Size = new System.Drawing.Size(84, 53);
-            this.LimpiarButton.TabIndex = 5;
+            this.LimpiarButton.TabIndex = 2;
             this.LimpiarButton.Text = "Limpiar";
             this.LimpiarButton.UseVisualStyleBackColor = true;
             this.LimpiarButton.Click += new System.EventHandler(this.LimpiarButton_Click);
@@ -462,7 +462,7 @@
             this.detalleBox.Location = new System.Drawing.Point(0, 0);
             this.detalleBox.Name = "detalleBox";
             this.detalleBox.Size = new System.Drawing.Size(534, 485);
-            this.detalleBox.TabIndex = 0;
+            this.detalleBox.TabIndex = 15;
             this.detalleBox.TabStop = false;
             this.detalleBox.Text = "Detalle";
             // 
@@ -602,7 +602,7 @@
             this.ColoresButton.Location = new System.Drawing.Point(118, 32);
             this.ColoresButton.Name = "ColoresButton";
             this.ColoresButton.Size = new System.Drawing.Size(109, 23);
-            this.ColoresButton.TabIndex = 8;
+            this.ColoresButton.TabIndex = 3;
             this.ColoresButton.Text = "Colores";
             this.ColoresButton.UseVisualStyleBackColor = true;
             this.ColoresButton.Click += new System.EventHandler(this.ColoresButton_Click);
@@ -613,7 +613,7 @@
             this.PrendasButton.Location = new System.Drawing.Point(118, 3);
             this.PrendasButton.Name = "PrendasButton";
             this.PrendasButton.Size = new System.Drawing.Size(109, 23);
-            this.PrendasButton.TabIndex = 9;
+            this.PrendasButton.TabIndex = 2;
             this.PrendasButton.Text = "Prendas";
             this.PrendasButton.UseVisualStyleBackColor = true;
             this.PrendasButton.Click += new System.EventHandler(this.PrendasButton_Click);
@@ -624,7 +624,7 @@
             this.TiposButton.Location = new System.Drawing.Point(233, 3);
             this.TiposButton.Name = "TiposButton";
             this.TiposButton.Size = new System.Drawing.Size(112, 23);
-            this.TiposButton.TabIndex = 10;
+            this.TiposButton.TabIndex = 4;
             this.TiposButton.Text = "Tipos de prenda";
             this.TiposButton.UseVisualStyleBackColor = true;
             this.TiposButton.Click += new System.EventHandler(this.TiposButton_Click);

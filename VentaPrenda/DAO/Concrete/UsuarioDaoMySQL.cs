@@ -52,7 +52,7 @@ namespace VentaPrenda.DAO.Concrete
         }
         public UsuarioDto EliminarUsuario(UsuarioDto u)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("p_ID", u.ID.ToString());
             DataTable dt = MySqlDbContext.Call(DELETE_SQL, param);
             /*
@@ -76,7 +76,7 @@ namespace VentaPrenda.DAO.Concrete
         /// <returns></returns>
         public UsuarioDto GetUsuario(LoginDto loginDto)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("p_Username", loginDto.Usuario);
             param.Add("p_Password", loginDto.Contraseña);
             return Map(MySqlDbContext.Call("sp_Login", param));            
@@ -105,7 +105,7 @@ namespace VentaPrenda.DAO.Concrete
 
         public UsuarioDto GuardarUsuario(UsuarioDto u)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("@Nombre", u.Nombre);
             param.Add("@Username", u.Username);
             
@@ -139,7 +139,7 @@ namespace VentaPrenda.DAO.Concrete
                 
             }
 
-            param = new Dictionary<string, string>();
+            param = new Dictionary<string, object>();
             param.Add("@p_Usuario", u.ID.ToString());
             string perfiles = "";
             foreach (KeyValuePair<PerfilDto, bool> kvp in u.Perfiles)

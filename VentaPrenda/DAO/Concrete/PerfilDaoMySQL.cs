@@ -34,7 +34,7 @@ namespace VentaPrenda.DAO.Concrete
         }
         public PerfilDto EliminarPerfil(PerfilDto p)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("p_Perfil", p.ID.ToString());
             DataTable dt = MySqlDbContext.Call(DELETE_SQL, param);
             return dt.Rows.Count > 0 ? Map(dt.Rows[0]) : null;
@@ -53,7 +53,7 @@ namespace VentaPrenda.DAO.Concrete
 
         public PerfilDto GuardarPerfil(PerfilDto dto)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("@Nombre", dto.Nombre);
             param.Add("@Permisos", dto.Permisos.Numeric.ToString());
 

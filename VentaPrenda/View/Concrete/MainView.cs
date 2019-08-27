@@ -172,7 +172,7 @@ namespace VentaPrenda.View.Concrete
         public void DuplicateKeyAlert(string duplicateKey)
         {
             MessageBox.Show(
-                "Ya existe un registro con el identificador " + duplicateKey + ". No fue posible guardar los datos.",
+                "Ya existe un registro con el identificador " + duplicateKey + ".\nNo fue posible guardar los datos.",
                 "Identificador duplicado",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
@@ -257,14 +257,9 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.USUARIOS:
                     return new DetalleUsuario(errorProvider);
                 case Funcion.COLORES:
-                    
-                    break;
                 case Funcion.PRENDAS:
-
-                    break;
                 case Funcion.TIPOS_PRENDA:
-
-                    break;
+                    return new DetalleCatalogo(errorProvider);
                 case Funcion.ARREGLOS:
 
                     break;
@@ -378,6 +373,7 @@ namespace VentaPrenda.View.Concrete
         {
             Detalle = newDetalle(errorProvider);
             Controller.Nuevo();
+            Detalle.Focus();
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
@@ -385,6 +381,7 @@ namespace VentaPrenda.View.Concrete
             if (Detalle.ValidateChildren() && Controller.Guardar(Detalle.Dto))
             {
                 infoLabel.Text = "Se guardó correctamente: " + Dto.ToString();
+                NuevoButton.Focus();
             }
         }
 
@@ -393,8 +390,8 @@ namespace VentaPrenda.View.Concrete
             if(MessageBox.Show("Se eliminará " + Detalle.Dto.ToString() + "\n¿Estas seguro?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string dtoString = Dto.ToString();
-                Detalle.Clear();
                 Controller.Eliminar(Detalle.Dto);
+                Detalle.Clear();
                 Detalle.ReadOnly = false;
                 infoLabel.Text = "Se eliminó correctamente: " + dtoString;
             }

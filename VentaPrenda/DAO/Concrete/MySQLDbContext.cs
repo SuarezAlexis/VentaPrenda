@@ -40,14 +40,14 @@ namespace VentaPrenda.DAO.Concrete
             }
         }
 
-        public static DataTable Query(string query, Dictionary<string,string> param)
+        public static DataTable Query(string query, Dictionary<string,object> param)
         {
             using (conn = GetConnection())
             {
                 DataTable table = new DataTable();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
 
-                foreach (KeyValuePair<string, string> p in param)
+                foreach (KeyValuePair<string, object> p in param)
                 { cmd.Parameters.AddWithValue(p.Key, p.Value); }
 
                 try
@@ -81,13 +81,13 @@ namespace VentaPrenda.DAO.Concrete
             }
         }
 
-        public static int Update(string query, Dictionary<string,string> param)
+        public static int Update(string query, Dictionary<string,object> param)
         {
             int rows = -1;
             using (conn = GetConnection())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                foreach(KeyValuePair<string,string> p in param)
+                foreach(KeyValuePair<string,object> p in param)
                 { cmd.Parameters.AddWithValue(p.Key,p.Value); }
                 try
                 {
@@ -102,13 +102,13 @@ namespace VentaPrenda.DAO.Concrete
             }
         }
 
-        public static DataTable Call(string proc, Dictionary<string, string> param)
+        public static DataTable Call(string proc, Dictionary<string, object> param)
         {
             conn = GetConnection();
             DataTable table = new DataTable();
             MySqlCommand cmd = new MySqlCommand(proc, conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            foreach (KeyValuePair<string, string> p in param)
+            foreach (KeyValuePair<string, object> p in param)
             {
                 cmd.Parameters.AddWithValue(p.Key, p.Value);
             }

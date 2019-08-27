@@ -65,12 +65,15 @@
   <ItemGroup>
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="DAO\Abstract\ICatalogoDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
     <Compile Include="DAO\Abstract\IUsuarioDao.cs" />
+    <Compile Include="DAO\Concrete\CatalogoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MySQLDbContext.cs" />
     <Compile Include="DAO\Concrete\PerfilDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\UsuarioDaoMySQL.cs" />
     <Compile Include="DAO\DaoManager.cs" />
+    <Compile Include="DTO\CatalogoDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
     <Compile Include="DTO\LoginDto.cs" />
     <Compile Include="DTO\PerfilDto.cs" />
@@ -98,6 +101,12 @@
     </Compile>
     <Compile Include="View\Abstract\ILoginView.cs" />
     <Compile Include="View\Abstract\IMainView.cs" />
+    <Compile Include="View\Concrete\Detalles\DetalleCatalogo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleCatalogo.Designer.cs">
+      <DependentUpon>DetalleCatalogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Concrete\Detalles\DetallePerfil.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -126,6 +135,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleCatalogo.resx">
+      <DependentUpon>DetalleCatalogo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetallePerfil.resx">
       <DependentUpon>DetallePerfil.cs</DependentUpon>
     </EmbeddedResource>
