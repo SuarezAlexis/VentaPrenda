@@ -237,6 +237,11 @@ namespace VentaPrenda.View.Concrete
             Controller.Usuarios();
         }
 
+        private void CatalogosButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void ListGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Controller.FillDetalle(Convert.ToInt64(listGridView.SelectedRows[0].Cells[0].Value));
@@ -278,6 +283,7 @@ namespace VentaPrenda.View.Concrete
             if(MessageBox.Show("Se eliminará " + Detalle.Dto.ToString() + "\n¿Estas seguro?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string dtoString = Dto.ToString();
+                Detalle.Clear();
                 Controller.Eliminar(Detalle.Dto);
                 Detalle.ReadOnly = false;
                 //Detalle.Fill(Dto);
