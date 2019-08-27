@@ -20,13 +20,16 @@ namespace VentaPrenda.Controller
         NOTA,
         CLIENTES,
         SELECCION_CATALOGOS,
-        CATALOGOS,
+        COLORES,
+        PRENDAS,
+        TIPOS_PRENDA,
         USUARIOS,
         PERFILES,
         GASTOS,
         REPORTES,
         DESCUENTOS,
-        ARREGLOS
+        ARREGLOS,
+        HISTORIAL
     };
 
     public enum Modo {
@@ -99,6 +102,86 @@ namespace VentaPrenda.Controller
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
             _mainView.Dto = DtoProvider.UsuarioDto();
+        }
+
+        public void Colores()
+        {
+            Funcion = Funcion.COLORES;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Prendas()
+        {
+            Funcion = Funcion.PRENDAS;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void TiposPrenda()
+        {
+            Funcion = Funcion.TIPOS_PRENDA;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Arreglos()
+        {
+            Funcion = Funcion.ARREGLOS;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Descuentos()
+        {
+            Funcion = Funcion.DESCUENTOS;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Notas()
+        {
+            Funcion = Funcion.NOTA;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Clientes()
+        {
+            Funcion = Funcion.CLIENTES;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Gastos()
+        {
+            Funcion = Funcion.GASTOS;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Reportes()
+        {
+            Funcion = Funcion.REPORTES;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void Historial()
+        {
+            Funcion = Funcion.HISTORIAL;
+            Modo = Modo.SELECCION;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
         }
 
         /***************** MÉTODOS: Botones de Edición *******************/

@@ -120,6 +120,36 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.USUARIOS:
                     UsuariosButton.BackColor = ActiveColor;
                     break;
+                case Funcion.COLORES:
+                    ColoresButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.PRENDAS:
+                    PrendasButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.TIPOS_PRENDA:
+                    TiposButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.ARREGLOS:
+                    ArreglosButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.DESCUENTOS:
+                    DescuentosButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.NOTA:
+                    NotasButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.CLIENTES:
+                    ClientesButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.GASTOS:
+                    GastosButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.REPORTES:
+                    ReportesButton.BackColor = ActiveColor;
+                    break;
+                case Funcion.HISTORIAL:
+                    HistorialButton.BackColor = ActiveColor;
+                    break;
             }
         }
 
@@ -133,7 +163,9 @@ namespace VentaPrenda.View.Concrete
             GastosButton.Visible = p.Gastos || p.AdmonGastos || p.GeneraGastos;
             HistorialButton.Visible = p.Historial;
             DescuentosButton.Visible = p.Descuentos;
-            CatalogosButton.Visible = p.Catalogos;
+            ColoresButton.Visible = p.Catalogos;
+            PrendasButton.Visible = p.Catalogos;
+            TiposButton.Visible = p.Catalogos;
             ArreglosButton.Visible = p.Catalogos;
         }
 
@@ -207,7 +239,9 @@ namespace VentaPrenda.View.Concrete
             GastosButton.BackColor = ClearColor;
             ReportesButton.BackColor = ClearColor;
             HistorialButton.BackColor = ClearColor;
-            CatalogosButton.BackColor = ClearColor;
+            ColoresButton.BackColor = ClearColor;
+            PrendasButton.BackColor = ClearColor;
+            TiposButton.BackColor = ClearColor;
             ArreglosButton.BackColor = ClearColor;
             DescuentosButton.BackColor = ClearColor;
             UsuariosButton.BackColor = ClearColor;
@@ -222,6 +256,36 @@ namespace VentaPrenda.View.Concrete
                     return new DetallePerfil(errorProvider);
                 case Funcion.USUARIOS:
                     return new DetalleUsuario(errorProvider);
+                case Funcion.COLORES:
+                    
+                    break;
+                case Funcion.PRENDAS:
+
+                    break;
+                case Funcion.TIPOS_PRENDA:
+
+                    break;
+                case Funcion.ARREGLOS:
+
+                    break;
+                case Funcion.DESCUENTOS:
+
+                    break;
+                case Funcion.NOTA:
+
+                    break;
+                case Funcion.CLIENTES:
+
+                    break;
+                case Funcion.GASTOS:
+
+                    break;
+                case Funcion.REPORTES:
+
+                    break;
+                case Funcion.HISTORIAL:
+
+                    break;
             }
             return null;
         }
@@ -237,9 +301,54 @@ namespace VentaPrenda.View.Concrete
             Controller.Usuarios();
         }
 
-        private void CatalogosButton_Click(object sender, EventArgs e)
+        public void ColoresButton_Click(object sender, EventArgs e)
         {
-            
+            Controller.Colores();
+        }
+
+        public void PrendasButton_Click(object sender, EventArgs e)
+        {
+            Controller.Prendas();
+        }
+
+        public void TiposButton_Click(object sender, EventArgs e)
+        {
+            Controller.TiposPrenda();
+        }
+
+        public void ArreglosButton_Click(object sender, EventArgs e)
+        {
+            Controller.Arreglos();
+        }
+
+        public void DescuentosButton_Click(object sender, EventArgs e)
+        {
+            Controller.Descuentos();
+        }
+
+        public void NotasButton_Click(object sender, EventArgs e)
+        {
+            Controller.Notas();
+        }
+
+        public void ClientesButton_Click(object sender, EventArgs e)
+        {
+            Controller.Clientes();
+        }
+
+        public void GastosButton_Click(object sender, EventArgs e)
+        {
+            Controller.Gastos();
+        }
+
+        public void ReportesButton_Click(object sender, EventArgs e)
+        {
+            Controller.Reportes();
+        }
+
+        public void HistorialButton_Click(object sender, EventArgs e)
+        {
+            Controller.Historial();
         }
 
         private void ListGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -248,6 +357,7 @@ namespace VentaPrenda.View.Concrete
             objetoLabel.Text = Detalle.Dto.ToString();
         }
 
+        /******************** MÉTODOS: EventHandlers *******************/
         private void RegresarButton_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
@@ -286,7 +396,6 @@ namespace VentaPrenda.View.Concrete
                 Detalle.Clear();
                 Controller.Eliminar(Detalle.Dto);
                 Detalle.ReadOnly = false;
-                //Detalle.Fill(Dto);
                 infoLabel.Text = "Se eliminó correctamente: " + dtoString;
             }
         }

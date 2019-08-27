@@ -36,7 +36,6 @@
             this.GastosButton = new System.Windows.Forms.Button();
             this.ReportesButton = new System.Windows.Forms.Button();
             this.HistorialButton = new System.Windows.Forms.Button();
-            this.CatalogosButton = new System.Windows.Forms.Button();
             this.ArreglosButton = new System.Windows.Forms.Button();
             this.DescuentosButton = new System.Windows.Forms.Button();
             this.UsuariosButton = new System.Windows.Forms.Button();
@@ -65,6 +64,12 @@
             this.objetoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.infoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.operationButtonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.configLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.adminLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ColoresButton = new System.Windows.Forms.Button();
+            this.PrendasButton = new System.Windows.Forms.Button();
+            this.TiposButton = new System.Windows.Forms.Button();
             this.MainLayoutPanel.SuspendLayout();
             this.functionsLayoutPanel.SuspendLayout();
             this.secondaryLayoutPanel.SuspendLayout();
@@ -80,6 +85,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.listGridView)).BeginInit();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.operationButtonsLayoutPanel.SuspendLayout();
+            this.configLayoutPanel.SuspendLayout();
+            this.adminLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainLayoutPanel
@@ -95,7 +103,7 @@
             this.MainLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.MainLayoutPanel.Name = "MainLayoutPanel";
             this.MainLayoutPanel.RowCount = 4;
-            this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -105,33 +113,19 @@
             // functionsLayoutPanel
             // 
             this.functionsLayoutPanel.CausesValidation = false;
-            this.functionsLayoutPanel.ColumnCount = 10;
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.functionsLayoutPanel.Controls.Add(this.NotasButton, 0, 0);
-            this.functionsLayoutPanel.Controls.Add(this.ClientesButton, 1, 0);
-            this.functionsLayoutPanel.Controls.Add(this.GastosButton, 2, 0);
-            this.functionsLayoutPanel.Controls.Add(this.ReportesButton, 3, 0);
-            this.functionsLayoutPanel.Controls.Add(this.HistorialButton, 4, 0);
-            this.functionsLayoutPanel.Controls.Add(this.CatalogosButton, 5, 0);
-            this.functionsLayoutPanel.Controls.Add(this.ArreglosButton, 6, 0);
-            this.functionsLayoutPanel.Controls.Add(this.DescuentosButton, 7, 0);
-            this.functionsLayoutPanel.Controls.Add(this.UsuariosButton, 8, 0);
-            this.functionsLayoutPanel.Controls.Add(this.PerfilesButton, 9, 0);
+            this.functionsLayoutPanel.ColumnCount = 3;
+            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00013F));
+            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.99992F));
+            this.functionsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.99996F));
+            this.functionsLayoutPanel.Controls.Add(this.adminLayoutPanel, 2, 0);
+            this.functionsLayoutPanel.Controls.Add(this.operationButtonsLayoutPanel, 0, 0);
+            this.functionsLayoutPanel.Controls.Add(this.configLayoutPanel, 1, 0);
             this.functionsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.functionsLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.functionsLayoutPanel.Name = "functionsLayoutPanel";
             this.functionsLayoutPanel.RowCount = 1;
             this.functionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.functionsLayoutPanel.Size = new System.Drawing.Size(1074, 44);
+            this.functionsLayoutPanel.Size = new System.Drawing.Size(1074, 64);
             this.functionsLayoutPanel.TabIndex = 0;
             // 
             // NotasButton
@@ -140,95 +134,91 @@
             this.NotasButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NotasButton.Location = new System.Drawing.Point(3, 3);
             this.NotasButton.Name = "NotasButton";
-            this.NotasButton.Size = new System.Drawing.Size(101, 38);
+            this.NotasButton.Size = new System.Drawing.Size(100, 52);
             this.NotasButton.TabIndex = 0;
             this.NotasButton.Text = "Notas";
             this.NotasButton.UseVisualStyleBackColor = true;
+            this.NotasButton.Click += new System.EventHandler(this.NotasButton_Click);
             // 
             // ClientesButton
             // 
             this.ClientesButton.CausesValidation = false;
             this.ClientesButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ClientesButton.Location = new System.Drawing.Point(110, 3);
+            this.ClientesButton.Location = new System.Drawing.Point(109, 3);
             this.ClientesButton.Name = "ClientesButton";
-            this.ClientesButton.Size = new System.Drawing.Size(101, 38);
+            this.ClientesButton.Size = new System.Drawing.Size(100, 52);
             this.ClientesButton.TabIndex = 1;
             this.ClientesButton.Text = "Clientes";
             this.ClientesButton.UseVisualStyleBackColor = true;
+            this.ClientesButton.Click += new System.EventHandler(this.ClientesButton_Click);
             // 
             // GastosButton
             // 
             this.GastosButton.CausesValidation = false;
             this.GastosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GastosButton.Location = new System.Drawing.Point(217, 3);
+            this.GastosButton.Location = new System.Drawing.Point(215, 3);
             this.GastosButton.Name = "GastosButton";
-            this.GastosButton.Size = new System.Drawing.Size(101, 38);
+            this.GastosButton.Size = new System.Drawing.Size(100, 52);
             this.GastosButton.TabIndex = 2;
             this.GastosButton.Text = "Gastos";
             this.GastosButton.UseVisualStyleBackColor = true;
+            this.GastosButton.Click += new System.EventHandler(this.GastosButton_Click);
             // 
             // ReportesButton
             // 
             this.ReportesButton.CausesValidation = false;
             this.ReportesButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ReportesButton.Location = new System.Drawing.Point(324, 3);
+            this.ReportesButton.Location = new System.Drawing.Point(321, 3);
             this.ReportesButton.Name = "ReportesButton";
-            this.ReportesButton.Size = new System.Drawing.Size(101, 38);
+            this.ReportesButton.Size = new System.Drawing.Size(100, 52);
             this.ReportesButton.TabIndex = 3;
             this.ReportesButton.Text = "Reportes";
             this.ReportesButton.UseVisualStyleBackColor = true;
+            this.ReportesButton.Click += new System.EventHandler(this.ReportesButton_Click);
             // 
             // HistorialButton
             // 
             this.HistorialButton.CausesValidation = false;
             this.HistorialButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HistorialButton.Location = new System.Drawing.Point(431, 3);
+            this.HistorialButton.Location = new System.Drawing.Point(427, 3);
             this.HistorialButton.Name = "HistorialButton";
-            this.HistorialButton.Size = new System.Drawing.Size(101, 38);
+            this.HistorialButton.Size = new System.Drawing.Size(101, 52);
             this.HistorialButton.TabIndex = 4;
             this.HistorialButton.Text = "Historial";
             this.HistorialButton.UseVisualStyleBackColor = true;
-            // 
-            // CatalogosButton
-            // 
-            this.CatalogosButton.CausesValidation = false;
-            this.CatalogosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CatalogosButton.Location = new System.Drawing.Point(538, 3);
-            this.CatalogosButton.Name = "CatalogosButton";
-            this.CatalogosButton.Size = new System.Drawing.Size(101, 38);
-            this.CatalogosButton.TabIndex = 5;
-            this.CatalogosButton.Text = "Catálogos";
-            this.CatalogosButton.UseVisualStyleBackColor = true;
+            this.HistorialButton.Click += new System.EventHandler(this.HistorialButton_Click);
             // 
             // ArreglosButton
             // 
             this.ArreglosButton.CausesValidation = false;
             this.ArreglosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ArreglosButton.Location = new System.Drawing.Point(645, 3);
+            this.ArreglosButton.Location = new System.Drawing.Point(3, 3);
             this.ArreglosButton.Name = "ArreglosButton";
-            this.ArreglosButton.Size = new System.Drawing.Size(101, 38);
+            this.ArreglosButton.Size = new System.Drawing.Size(109, 23);
             this.ArreglosButton.TabIndex = 6;
             this.ArreglosButton.Text = "Arreglos";
             this.ArreglosButton.UseVisualStyleBackColor = true;
+            this.ArreglosButton.Click += new System.EventHandler(this.ArreglosButton_Click);
             // 
             // DescuentosButton
             // 
             this.DescuentosButton.CausesValidation = false;
             this.DescuentosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DescuentosButton.Location = new System.Drawing.Point(752, 3);
+            this.DescuentosButton.Location = new System.Drawing.Point(3, 32);
             this.DescuentosButton.Name = "DescuentosButton";
-            this.DescuentosButton.Size = new System.Drawing.Size(101, 38);
+            this.DescuentosButton.Size = new System.Drawing.Size(109, 23);
             this.DescuentosButton.TabIndex = 7;
             this.DescuentosButton.Text = "Descruentos";
             this.DescuentosButton.UseVisualStyleBackColor = true;
+            this.DescuentosButton.Click += new System.EventHandler(this.DescuentosButton_Click);
             // 
             // UsuariosButton
             // 
             this.UsuariosButton.CausesValidation = false;
             this.UsuariosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UsuariosButton.Location = new System.Drawing.Point(859, 3);
+            this.UsuariosButton.Location = new System.Drawing.Point(3, 3);
             this.UsuariosButton.Name = "UsuariosButton";
-            this.UsuariosButton.Size = new System.Drawing.Size(101, 38);
+            this.UsuariosButton.Size = new System.Drawing.Size(82, 23);
             this.UsuariosButton.TabIndex = 8;
             this.UsuariosButton.Text = "Usuarios";
             this.UsuariosButton.UseVisualStyleBackColor = true;
@@ -238,9 +228,9 @@
             // 
             this.PerfilesButton.CausesValidation = false;
             this.PerfilesButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PerfilesButton.Location = new System.Drawing.Point(966, 3);
+            this.PerfilesButton.Location = new System.Drawing.Point(3, 32);
             this.PerfilesButton.Name = "PerfilesButton";
-            this.PerfilesButton.Size = new System.Drawing.Size(105, 38);
+            this.PerfilesButton.Size = new System.Drawing.Size(82, 23);
             this.PerfilesButton.TabIndex = 9;
             this.PerfilesButton.Text = "Perfiles";
             this.PerfilesButton.UseVisualStyleBackColor = true;
@@ -255,7 +245,7 @@
             this.secondaryLayoutPanel.Controls.Add(this.busquedaBox, 0, 0);
             this.secondaryLayoutPanel.Controls.Add(this.edicionBox, 1, 0);
             this.secondaryLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.secondaryLayoutPanel.Location = new System.Drawing.Point(3, 53);
+            this.secondaryLayoutPanel.Location = new System.Drawing.Point(3, 73);
             this.secondaryLayoutPanel.Name = "secondaryLayoutPanel";
             this.secondaryLayoutPanel.RowCount = 1;
             this.secondaryLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -417,7 +407,7 @@
             this.splitContainer.CausesValidation = false;
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.IsSplitterFixed = true;
-            this.splitContainer.Location = new System.Drawing.Point(3, 143);
+            this.splitContainer.Location = new System.Drawing.Point(3, 163);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
@@ -429,7 +419,7 @@
             // 
             this.splitContainer.Panel2.CausesValidation = false;
             this.splitContainer.Panel2.Controls.Add(this.detalleBox);
-            this.splitContainer.Size = new System.Drawing.Size(1074, 505);
+            this.splitContainer.Size = new System.Drawing.Size(1074, 485);
             this.splitContainer.SplitterDistance = 536;
             this.splitContainer.TabIndex = 2;
             // 
@@ -440,7 +430,7 @@
             this.listaBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaBox.Location = new System.Drawing.Point(0, 0);
             this.listaBox.Name = "listaBox";
-            this.listaBox.Size = new System.Drawing.Size(536, 505);
+            this.listaBox.Size = new System.Drawing.Size(536, 485);
             this.listaBox.TabIndex = 0;
             this.listaBox.TabStop = false;
             this.listaBox.Text = "Lista";
@@ -450,18 +440,19 @@
             this.listGridView.AllowUserToAddRows = false;
             this.listGridView.AllowUserToDeleteRows = false;
             this.listGridView.AllowUserToOrderColumns = true;
-            this.listGridView.AllowUserToResizeColumns = false;
             this.listGridView.AllowUserToResizeRows = false;
             this.listGridView.CausesValidation = false;
             this.listGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listGridView.Location = new System.Drawing.Point(3, 16);
+            this.listGridView.MultiSelect = false;
             this.listGridView.Name = "listGridView";
             this.listGridView.ReadOnly = true;
+            this.listGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.listGridView.RowTemplate.ReadOnly = true;
             this.listGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listGridView.ShowEditingIcon = false;
-            this.listGridView.Size = new System.Drawing.Size(530, 486);
+            this.listGridView.Size = new System.Drawing.Size(530, 466);
             this.listGridView.TabIndex = 0;
             this.listGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListGridView_CellDoubleClick);
             // 
@@ -470,7 +461,7 @@
             this.detalleBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleBox.Location = new System.Drawing.Point(0, 0);
             this.detalleBox.Name = "detalleBox";
-            this.detalleBox.Size = new System.Drawing.Size(534, 505);
+            this.detalleBox.Size = new System.Drawing.Size(534, 485);
             this.detalleBox.TabIndex = 0;
             this.detalleBox.TabStop = false;
             this.detalleBox.Text = "Detalle";
@@ -547,6 +538,97 @@
             this.errorProvider.BlinkRate = 200;
             this.errorProvider.ContainerControl = this;
             // 
+            // operationButtonsLayoutPanel
+            // 
+            this.operationButtonsLayoutPanel.ColumnCount = 5;
+            this.operationButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.operationButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.operationButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.operationButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.operationButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.operationButtonsLayoutPanel.Controls.Add(this.HistorialButton, 4, 0);
+            this.operationButtonsLayoutPanel.Controls.Add(this.ReportesButton, 3, 0);
+            this.operationButtonsLayoutPanel.Controls.Add(this.GastosButton, 2, 0);
+            this.operationButtonsLayoutPanel.Controls.Add(this.ClientesButton, 1, 0);
+            this.operationButtonsLayoutPanel.Controls.Add(this.NotasButton, 0, 0);
+            this.operationButtonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.operationButtonsLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.operationButtonsLayoutPanel.Name = "operationButtonsLayoutPanel";
+            this.operationButtonsLayoutPanel.RowCount = 1;
+            this.operationButtonsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.operationButtonsLayoutPanel.Size = new System.Drawing.Size(531, 58);
+            this.operationButtonsLayoutPanel.TabIndex = 0;
+            // 
+            // configLayoutPanel
+            // 
+            this.configLayoutPanel.ColumnCount = 3;
+            this.configLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.configLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.configLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.configLayoutPanel.Controls.Add(this.ArreglosButton, 0, 0);
+            this.configLayoutPanel.Controls.Add(this.DescuentosButton, 0, 1);
+            this.configLayoutPanel.Controls.Add(this.PrendasButton, 1, 0);
+            this.configLayoutPanel.Controls.Add(this.ColoresButton, 1, 1);
+            this.configLayoutPanel.Controls.Add(this.TiposButton, 2, 0);
+            this.configLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.configLayoutPanel.Location = new System.Drawing.Point(540, 3);
+            this.configLayoutPanel.Name = "configLayoutPanel";
+            this.configLayoutPanel.RowCount = 2;
+            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.configLayoutPanel.Size = new System.Drawing.Size(348, 58);
+            this.configLayoutPanel.TabIndex = 1;
+            // 
+            // adminLayoutPanel
+            // 
+            this.adminLayoutPanel.ColumnCount = 2;
+            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33533F));
+            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33233F));
+            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33233F));
+            this.adminLayoutPanel.Controls.Add(this.UsuariosButton, 0, 0);
+            this.adminLayoutPanel.Controls.Add(this.PerfilesButton, 0, 1);
+            this.adminLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.adminLayoutPanel.Location = new System.Drawing.Point(894, 3);
+            this.adminLayoutPanel.Name = "adminLayoutPanel";
+            this.adminLayoutPanel.RowCount = 2;
+            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.adminLayoutPanel.Size = new System.Drawing.Size(177, 58);
+            this.adminLayoutPanel.TabIndex = 2;
+            // 
+            // ColoresButton
+            // 
+            this.ColoresButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ColoresButton.Location = new System.Drawing.Point(118, 32);
+            this.ColoresButton.Name = "ColoresButton";
+            this.ColoresButton.Size = new System.Drawing.Size(109, 23);
+            this.ColoresButton.TabIndex = 8;
+            this.ColoresButton.Text = "Colores";
+            this.ColoresButton.UseVisualStyleBackColor = true;
+            this.ColoresButton.Click += new System.EventHandler(this.ColoresButton_Click);
+            // 
+            // PrendasButton
+            // 
+            this.PrendasButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PrendasButton.Location = new System.Drawing.Point(118, 3);
+            this.PrendasButton.Name = "PrendasButton";
+            this.PrendasButton.Size = new System.Drawing.Size(109, 23);
+            this.PrendasButton.TabIndex = 9;
+            this.PrendasButton.Text = "Prendas";
+            this.PrendasButton.UseVisualStyleBackColor = true;
+            this.PrendasButton.Click += new System.EventHandler(this.PrendasButton_Click);
+            // 
+            // TiposButton
+            // 
+            this.TiposButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TiposButton.Location = new System.Drawing.Point(233, 3);
+            this.TiposButton.Name = "TiposButton";
+            this.TiposButton.Size = new System.Drawing.Size(112, 23);
+            this.TiposButton.TabIndex = 10;
+            this.TiposButton.Text = "Tipos de prenda";
+            this.TiposButton.UseVisualStyleBackColor = true;
+            this.TiposButton.Click += new System.EventHandler(this.TiposButton_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,6 +657,9 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.operationButtonsLayoutPanel.ResumeLayout(false);
+            this.configLayoutPanel.ResumeLayout(false);
+            this.adminLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -598,7 +683,6 @@
         private System.Windows.Forms.Button GastosButton;
         private System.Windows.Forms.Button ReportesButton;
         private System.Windows.Forms.Button HistorialButton;
-        private System.Windows.Forms.Button CatalogosButton;
         private System.Windows.Forms.Button ArreglosButton;
         private System.Windows.Forms.Button DescuentosButton;
         private System.Windows.Forms.Button UsuariosButton;
@@ -617,5 +701,11 @@
         private System.Windows.Forms.ToolStripStatusLabel infoLabel;
         private System.Windows.Forms.ToolStripStatusLabel objetoLabel;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TableLayoutPanel configLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel operationButtonsLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel adminLayoutPanel;
+        private System.Windows.Forms.Button PrendasButton;
+        private System.Windows.Forms.Button ColoresButton;
+        private System.Windows.Forms.Button TiposButton;
     }
 }
