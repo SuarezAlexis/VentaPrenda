@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VentaPrenda.Model
+namespace VentaPrenda.DTO
 {
-    public class Cliente
+    public class ClienteDto
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
@@ -15,6 +15,11 @@ namespace VentaPrenda.Model
         public string CP { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
+        public bool Habilitado { get; set; }
 
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

@@ -262,7 +262,6 @@ namespace VentaPrenda.View.Concrete
                     return new DetalleCatalogo(errorProvider);
                 case Funcion.SERVICIOS:
                     return new DetalleServicio(errorProvider);
-                    break;
                 case Funcion.DESCUENTOS:
 
                     break;
@@ -270,8 +269,7 @@ namespace VentaPrenda.View.Concrete
 
                     break;
                 case Funcion.CLIENTES:
-
-                    break;
+                    return new DetalleCliente(errorProvider);
                 case Funcion.GASTOS:
 
                     break;

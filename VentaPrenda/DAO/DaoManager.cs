@@ -14,5 +14,6 @@ namespace VentaPrenda.DAO
         public static readonly IPerfilDao PerfilDao = new PerfilDaoMySQL();
         public static readonly ICatalogoDao CatalogoDao = new CatalogoDaoMySQL();
         public static readonly IServicioDao ServicioDao = new ServicioDaoMySQL();
+        public static readonly IClienteDao ClienteDao = new ClienteDaoMySQL();
     }
 }

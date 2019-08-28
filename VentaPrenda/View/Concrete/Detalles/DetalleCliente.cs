@@ -12,13 +12,13 @@ using VentaPrenda.DTO;
 
 namespace VentaPrenda.View.Concrete.Detalles
 {
-    public partial class DetalleServicio : DetalleModelo
+    public partial class DetalleCliente : DetalleModelo
     {
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
         private bool _readOnly;
-        private ServicioDto _dto;
+        private ClienteDto _dto;
         private ErrorProvider _errorProvider;
 
         public override bool ReadOnly
@@ -28,8 +28,11 @@ namespace VentaPrenda.View.Concrete.Detalles
             {
                 _readOnly = value;
                 nombreTextBox.ReadOnly = value;
-                descripcionTextBox.ReadOnly = value;
-                costoNumUpDown.ReadOnly = value;
+                domicilioTextBox.ReadOnly = value;
+                coloniaTextBox.ReadOnly = value;
+                cpTextBox.ReadOnly = value;
+                telefonoTextBox.ReadOnly = value;
+                emailTextBox.ReadOnly = value;
                 habilitadoCheckBox.Enabled = !value;
             }
         }
@@ -40,30 +43,33 @@ namespace VentaPrenda.View.Concrete.Detalles
             {
                 _dto.ID = idDataLabel.Text != null && idDataLabel.Text.Length > 0 ? Convert.ToInt16(idDataLabel.Text) : (short)-1;
                 _dto.Nombre = nombreTextBox.Text;
-                _dto.Costo = costoNumUpDown.Value;
-                _dto.Descripcion = descripcionTextBox.Text;
+                _dto.Domicilio = domicilioTextBox.Text;
+                _dto.Colonia = coloniaTextBox.Text;
+                _dto.CP = cpTextBox.Text;
+                _dto.Telefono = telefonoTextBox.Text;
+                _dto.Email = emailTextBox.Text;
                 _dto.Habilitado = habilitadoCheckBox.Checked;
                 return _dto;
             }
             set
             {
-                if (value != null && (value is ServicioDto))
-                    _dto = (ServicioDto)value;
+                if (value != null && (value is ClienteDto))
+                    _dto = (ClienteDto)value;
                 else
-                    throw new Exception("No fue posible asignar el Dto a la instancia de DetalleServicio porque no es del tipo correcto.");
+                    throw new Exception("No fue posible asignar el Dto a la instancia de DetalleCliente porque no es del tipo correcto.");
             }
         }
 
         /*******************************************************************/
         /* CONSTRUCTORES                                                   */
         /*******************************************************************/
-        public DetalleServicio()
+        public DetalleCliente()
         {
             InitializeComponent();
-            _dto = new ServicioDto();
+            _dto = new ClienteDto();
         }
 
-        public DetalleServicio(ErrorProvider e) : this()
+        public DetalleCliente(ErrorProvider e) : this()
         {
             _errorProvider = e;
         }
@@ -75,15 +81,18 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             idDataLabel.Text = "";
             nombreTextBox.Text = "";
-            descripcionTextBox.Text = "";
-            costoNumUpDown.Value = 0;
+            domicilioTextBox.Text = "";
+            coloniaTextBox.Text = "";
+            cpTextBox.Text = "";
+            telefonoTextBox.Text = "";
+            emailTextBox.Text = "";
             habilitadoCheckBox.Checked = true;
         }
 
         public override void Fill(object model)
         {
             Dto = model;
-            if (model == null || model.GetType() != typeof(ServicioDto))
+            if (model == null || model.GetType() != typeof(ClienteDto))
             {
                 //Registrar el Log
                 MessageBox.Show(
@@ -94,20 +103,22 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
             else
             {
-                ServicioDto s = (ServicioDto)model;
-                idDataLabel.Text = s.ID > 0 ? s.ID.ToString() : "";
-                nombreTextBox.Text = s.Nombre;
-                costoNumUpDown.Value = s.Costo;
-                descripcionTextBox.Text = s.Descripcion;
-                habilitadoCheckBox.Checked = s.Habilitado;
+                ClienteDto c = (ClienteDto)model;
+                idDataLabel.Text = c.ID > 0 ? c.ID.ToString() : "";
+                nombreTextBox.Text = c.Nombre;
+                domicilioTextBox.Text = c.Domicilio;
+                coloniaTextBox.Text = c.Colonia;
+                cpTextBox.Text = c.CP;
+                telefonoTextBox.Text = c.Telefono;
+                emailTextBox.Text = c.Email;
+                habilitadoCheckBox.Checked = c.Habilitado;
             }
         }
 
         /************************ EventListenners **************************/
         private void nombreTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        { ValidatingTextBox(nombreTextBox, 64, e, _errorProvider); }
+        { ValidatingTextBox(nombreTextBox, 128, e, _errorProvider); }
         private void nombreTextBox_Validated(object sender, EventArgs e)
         { ValidatedTextBox(nombreTextBox); }
-
     }
 }

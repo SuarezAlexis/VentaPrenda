@@ -95,7 +95,7 @@ namespace VentaPrenda.Controller
                     //dto = DaoManager.ArregloDao.GetColor((short)id);
                     break;
                 case Funcion.CLIENTES:
-                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    dto = DaoManager.ClienteDao.GetCliente((int)id);
                     break;
                 case Funcion.GASTOS:
                     //dto = DaoManager.ArregloDao.GetColor((short)id);
@@ -187,6 +187,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.CLIENTES;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.ClienteDao.GetClientes();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -296,8 +297,8 @@ namespace VentaPrenda.Controller
                         //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
                         break;
                     case Funcion.CLIENTES:
-                        //_mainView.Dto = DaoManager.ClienteDao.GuardarCliente((ClienteDto)dto);
-                        //_mainView.DataSource = DaoManager.ClienteDao.GetClientes();
+                        _mainView.Dto = DaoManager.ClienteDao.GuardarCliente((ClienteDto)dto);
+                        _mainView.DataSource = DaoManager.ClienteDao.GetClientes();
                         break;
                     case Funcion.GASTOS:
                         //_mainView.Dto = DaoManager.GastoDao.GuardarGasto((GastoDto)dto);
@@ -364,8 +365,8 @@ namespace VentaPrenda.Controller
                     //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
                     break;
                 case Funcion.CLIENTES:
-                    //_mainView.Dto = DaoManager.ClienteDao.EliminarCliente((ClienteDto)dto);
-                    //_mainView.DataSource = DaoManager.ClienteDao.GetClientes();
+                    _mainView.Dto = DaoManager.ClienteDao.EliminarCliente((ClienteDto)dto);
+                    _mainView.DataSource = DaoManager.ClienteDao.GetClientes();
                     break;
                 case Funcion.GASTOS:
                     //_mainView.Dto = DaoManager.GastoDao.EliminarGasto((GastoDto)dto);
