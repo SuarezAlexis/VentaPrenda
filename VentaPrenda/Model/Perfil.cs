@@ -20,7 +20,7 @@ namespace VentaPrenda.Model
         private const int CatalogosMask = 4;
         private const int UsuariosMask = 8;
         private const int PerfilesMask = 16;
-        private const int GastosMask = 32;
+        private const int BalanceMask = 32;
         private const int ReportesMask = 64;
         private const int DescuentosMask = 128;
         private const int HistorialMask = 256;
@@ -31,8 +31,8 @@ namespace VentaPrenda.Model
         private const int EliminaNotaMask = 8192;
         private const int AdmonClientesMask = 16384;
         private const int AdmonCatalogosMask = 32768;
-        private const int GeneraGastosMask = 65536;
-        private const int AdmonGastosMask = 131072;
+        private const int GeneraMovimientosMask = 65536;
+        private const int AdmonMovimientosMask = 131072;
 
         private int _numeric;
 
@@ -97,13 +97,13 @@ namespace VentaPrenda.Model
             }
         }
 
-        public Boolean Gastos
+        public Boolean Balance
         {
-            get { return (Numeric & GastosMask) == GastosMask; }
+            get { return (Numeric & BalanceMask) == BalanceMask; }
             set
             {
-                if (Gastos != value)
-                    Numeric = (value ? Numeric | GastosMask : Numeric ^ GastosMask);
+                if (Balance != value)
+                    Numeric = (value ? Numeric | BalanceMask : Numeric ^ BalanceMask);
             }
         }
 
@@ -205,23 +205,23 @@ namespace VentaPrenda.Model
                     Numeric = (value ? Numeric | AdmonCatalogosMask : Numeric ^ AdmonCatalogosMask);
             }
         }
-        public Boolean GeneraGastos
+        public Boolean GeneraMovimientos
         {
-            get { return (Numeric & GeneraGastosMask) == GeneraGastosMask; }
+            get { return (Numeric & GeneraMovimientosMask) == GeneraMovimientosMask; }
             set
             {
-                if (GeneraGastos != value)
-                    Numeric = (value ? Numeric | GeneraGastosMask : Numeric ^ GeneraGastosMask);
+                if (GeneraMovimientos != value)
+                    Numeric = (value ? Numeric | GeneraMovimientosMask : Numeric ^ GeneraMovimientosMask);
             }
         }
 
-        public Boolean AdmonGastos
+        public Boolean AdmonMovimientos
         {
-            get { return (Numeric & AdmonGastosMask) == AdmonGastosMask; }
+            get { return (Numeric & AdmonMovimientosMask) == AdmonMovimientosMask; }
             set
             {
-                if (AdmonGastos != value)
-                    Numeric = (value ? Numeric | AdmonGastosMask : Numeric ^ AdmonGastosMask);
+                if (AdmonMovimientos != value)
+                    Numeric = (value ? Numeric | AdmonMovimientosMask : Numeric ^ AdmonMovimientosMask);
             }
         }
     }    

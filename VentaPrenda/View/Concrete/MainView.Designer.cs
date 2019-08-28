@@ -37,7 +37,7 @@
             this.operationButtonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.HistorialButton = new System.Windows.Forms.Button();
             this.ReportesButton = new System.Windows.Forms.Button();
-            this.GastosButton = new System.Windows.Forms.Button();
+            this.BalanceButton = new System.Windows.Forms.Button();
             this.ClientesButton = new System.Windows.Forms.Button();
             this.NotasButton = new System.Windows.Forms.Button();
             this.configLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -179,7 +179,7 @@
             this.operationButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.operationButtonsLayoutPanel.Controls.Add(this.HistorialButton, 4, 0);
             this.operationButtonsLayoutPanel.Controls.Add(this.ReportesButton, 3, 0);
-            this.operationButtonsLayoutPanel.Controls.Add(this.GastosButton, 2, 0);
+            this.operationButtonsLayoutPanel.Controls.Add(this.BalanceButton, 2, 0);
             this.operationButtonsLayoutPanel.Controls.Add(this.ClientesButton, 1, 0);
             this.operationButtonsLayoutPanel.Controls.Add(this.NotasButton, 0, 0);
             this.operationButtonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -214,17 +214,17 @@
             this.ReportesButton.UseVisualStyleBackColor = true;
             this.ReportesButton.Click += new System.EventHandler(this.ReportesButton_Click);
             // 
-            // GastosButton
+            // BalanceButton
             // 
-            this.GastosButton.CausesValidation = false;
-            this.GastosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GastosButton.Location = new System.Drawing.Point(215, 3);
-            this.GastosButton.Name = "GastosButton";
-            this.GastosButton.Size = new System.Drawing.Size(100, 52);
-            this.GastosButton.TabIndex = 2;
-            this.GastosButton.Text = "Gastos";
-            this.GastosButton.UseVisualStyleBackColor = true;
-            this.GastosButton.Click += new System.EventHandler(this.GastosButton_Click);
+            this.BalanceButton.CausesValidation = false;
+            this.BalanceButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BalanceButton.Location = new System.Drawing.Point(215, 3);
+            this.BalanceButton.Name = "BalanceButton";
+            this.BalanceButton.Size = new System.Drawing.Size(100, 52);
+            this.BalanceButton.TabIndex = 2;
+            this.BalanceButton.Text = "Balance";
+            this.BalanceButton.UseVisualStyleBackColor = true;
+            this.BalanceButton.Click += new System.EventHandler(this.BalanceButton_Click);
             // 
             // ClientesButton
             // 
@@ -680,7 +680,7 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Button NotasButton;
         private System.Windows.Forms.Button ClientesButton;
-        private System.Windows.Forms.Button GastosButton;
+        private System.Windows.Forms.Button BalanceButton;
         private System.Windows.Forms.Button ReportesButton;
         private System.Windows.Forms.Button HistorialButton;
         private System.Windows.Forms.Button ServiciosButton;

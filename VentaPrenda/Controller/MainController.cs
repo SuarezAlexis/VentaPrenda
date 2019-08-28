@@ -25,7 +25,7 @@ namespace VentaPrenda.Controller
         TIPOS_PRENDA,
         USUARIOS,
         PERFILES,
-        GASTOS,
+        BALANCE,
         REPORTES,
         DESCUENTOS,
         SERVICIOS,
@@ -97,8 +97,8 @@ namespace VentaPrenda.Controller
                 case Funcion.CLIENTES:
                     dto = DaoManager.ClienteDao.GetCliente((int)id);
                     break;
-                case Funcion.GASTOS:
-                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                case Funcion.BALANCE:
+                    dto = DaoManager.MovimientoDao.GetMovimiento(id);
                     break;
                 case Funcion.REPORTES:
                     //dto = DaoManager.ArregloDao.GetColor((short)id);
@@ -192,10 +192,11 @@ namespace VentaPrenda.Controller
             _mainView.UpdateFuncion();
         }
 
-        public void Gastos()
+        public void Balance()
         {
-            Funcion = Funcion.GASTOS;
+            Funcion = Funcion.BALANCE;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.MovimientoDao.GetMovimientos();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -300,9 +301,9 @@ namespace VentaPrenda.Controller
                         _mainView.Dto = DaoManager.ClienteDao.GuardarCliente((ClienteDto)dto);
                         _mainView.DataSource = DaoManager.ClienteDao.GetClientes();
                         break;
-                    case Funcion.GASTOS:
-                        //_mainView.Dto = DaoManager.GastoDao.GuardarGasto((GastoDto)dto);
-                        //_mainView.DataSource = DaoManager.GastoDao.GetGastos();
+                    case Funcion.BALANCE:
+                        _mainView.Dto = DaoManager.MovimientoDao.GuardarMovimiento((MovimientoDto)dto);
+                        _mainView.DataSource = DaoManager.MovimientoDao.GetMovimientos();
                         break;
                     case Funcion.REPORTES:
                         
@@ -368,9 +369,9 @@ namespace VentaPrenda.Controller
                     _mainView.Dto = DaoManager.ClienteDao.EliminarCliente((ClienteDto)dto);
                     _mainView.DataSource = DaoManager.ClienteDao.GetClientes();
                     break;
-                case Funcion.GASTOS:
-                    //_mainView.Dto = DaoManager.GastoDao.EliminarGasto((GastoDto)dto);
-                    //_mainView.DataSource = DaoManager.GastoDao.GetGastos();
+                case Funcion.BALANCE:
+                    _mainView.Dto = DaoManager.MovimientoDao.EliminarMovimiento((MovimientoDto)dto);
+                    _mainView.DataSource = DaoManager.MovimientoDao.GetMovimientos();
                     break;
                 case Funcion.REPORTES:
                     

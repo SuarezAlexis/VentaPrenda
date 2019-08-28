@@ -67,11 +67,13 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="DAO\Abstract\ICatalogoDao.cs" />
     <Compile Include="DAO\Abstract\IClienteDao.cs" />
+    <Compile Include="DAO\Abstract\IMovimientoDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
     <Compile Include="DAO\Abstract\IServicioDao.cs" />
     <Compile Include="DAO\Abstract\IUsuarioDao.cs" />
     <Compile Include="DAO\Concrete\CatalogoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ClienteDaoMySQL.cs" />
+    <Compile Include="DAO\Concrete\MovimientoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MySQLDbContext.cs" />
     <Compile Include="DAO\Concrete\PerfilDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ServicioDaoMySQL.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="DAO\DaoManager.cs" />
     <Compile Include="DTO\CatalogoDto.cs" />
     <Compile Include="DTO\ClienteDto.cs" />
+    <Compile Include="DTO\MovimientoDto.cs" />
     <Compile Include="DTO\ServicioDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
     <Compile Include="DTO\LoginDto.cs" />
@@ -91,7 +94,7 @@
     <Compile Include="Model\Catalogo.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Descuento.cs" />
-    <Compile Include="Model\Gasto.cs" />
+    <Compile Include="Model\Movimiento.cs" />
     <Compile Include="Model\Nota.cs" />
     <Compile Include="Model\Pago.cs" />
     <Compile Include="Model\Perfil.cs" />
@@ -118,6 +121,12 @@
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleCliente.Designer.cs">
       <DependentUpon>DetalleCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleMovimiento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleMovimiento.Designer.cs">
+      <DependentUpon>DetalleMovimiento.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetallePerfil.cs">
       <SubType>UserControl</SubType>
@@ -158,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleCliente.resx">
       <DependentUpon>DetalleCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleMovimiento.resx">
+      <DependentUpon>DetalleMovimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetallePerfil.resx">
       <DependentUpon>DetallePerfil.cs</DependentUpon>

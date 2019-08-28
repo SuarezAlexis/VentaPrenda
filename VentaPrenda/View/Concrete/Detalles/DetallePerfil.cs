@@ -57,7 +57,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 {
                     Notas = funcionesChecklistBox.GetItemChecked(i++),
                     Clientes = funcionesChecklistBox.GetItemChecked(i++),
-                    Gastos = funcionesChecklistBox.GetItemChecked(i++),
+                    Balance = funcionesChecklistBox.GetItemChecked(i++),
                     Reportes = funcionesChecklistBox.GetItemChecked(i++),
                     Catalogos = funcionesChecklistBox.GetItemChecked(i++),
                     Descuentos = funcionesChecklistBox.GetItemChecked(i++),
@@ -67,8 +67,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                     GenerarNota = permisosChecklistBox.GetItemChecked(i = 0),
                     EditarNota = permisosChecklistBox.GetItemChecked(++i),
                     EliminarNota = permisosChecklistBox.GetItemChecked(++i),
-                    GeneraGastos = permisosChecklistBox.GetItemChecked(++i),
-                    AdmonGastos = permisosChecklistBox.GetItemChecked(++i),
+                    GeneraMovimientos = permisosChecklistBox.GetItemChecked(++i),
+                    AdmonMovimientos = permisosChecklistBox.GetItemChecked(++i),
                     AdmonClientes = permisosChecklistBox.GetItemChecked(++i),
                     AdmonCatalogos = permisosChecklistBox.GetItemChecked(++i),
                     AdmonUsuarios = permisosChecklistBox.GetItemChecked(++i),
@@ -132,7 +132,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 int i = 0;
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Notas);
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Clientes);
-                funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Gastos);
+                funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Balance);
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Reportes);
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Catalogos);
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Descuentos);
@@ -143,8 +143,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.GenerarNota);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.EditarNota);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.EliminarNota);
-                permisosChecklistBox.SetItemChecked(i++, p.Permisos.GeneraGastos);
-                permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonGastos);
+                permisosChecklistBox.SetItemChecked(i++, p.Permisos.GeneraMovimientos);
+                permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonMovimientos);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonClientes);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonCatalogos);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonUsuarios);

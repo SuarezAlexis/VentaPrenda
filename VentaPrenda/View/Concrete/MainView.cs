@@ -141,8 +141,8 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.CLIENTES:
                     ClientesButton.BackColor = ActiveColor;
                     break;
-                case Funcion.GASTOS:
-                    GastosButton.BackColor = ActiveColor;
+                case Funcion.BALANCE:
+                    BalanceButton.BackColor = ActiveColor;
                     break;
                 case Funcion.REPORTES:
                     ReportesButton.BackColor = ActiveColor;
@@ -160,7 +160,7 @@ namespace VentaPrenda.View.Concrete
             UsuariosButton.Visible = p.Usuarios || p.AdmonUsuarios;
             PerfilesButton.Visible = p.Perfiles || p.AdmonPerfiles;
             ReportesButton.Visible = p.Reportes;
-            GastosButton.Visible = p.Gastos || p.AdmonGastos || p.GeneraGastos;
+            BalanceButton.Visible = p.Balance || p.AdmonMovimientos || p.GeneraMovimientos;
             HistorialButton.Visible = p.Historial;
             DescuentosButton.Visible = p.Descuentos;
             ColoresButton.Visible = p.Catalogos;
@@ -236,7 +236,7 @@ namespace VentaPrenda.View.Concrete
         {
             NotasButton.BackColor = ClearColor;
             ClientesButton.BackColor = ClearColor;
-            GastosButton.BackColor = ClearColor;
+            BalanceButton.BackColor = ClearColor;
             ReportesButton.BackColor = ClearColor;
             HistorialButton.BackColor = ClearColor;
             ColoresButton.BackColor = ClearColor;
@@ -270,9 +270,8 @@ namespace VentaPrenda.View.Concrete
                     break;
                 case Funcion.CLIENTES:
                     return new DetalleCliente(errorProvider);
-                case Funcion.GASTOS:
-
-                    break;
+                case Funcion.BALANCE:
+                    return new DetalleMovimiento(errorProvider);
                 case Funcion.REPORTES:
 
                     break;
@@ -329,9 +328,9 @@ namespace VentaPrenda.View.Concrete
             Controller.Clientes();
         }
 
-        public void GastosButton_Click(object sender, EventArgs e)
+        public void BalanceButton_Click(object sender, EventArgs e)
         {
-            Controller.Gastos();
+            Controller.Balance();
         }
 
         public void ReportesButton_Click(object sender, EventArgs e)
