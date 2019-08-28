@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VentaPrenda.DAO.Abstract;
 using VentaPrenda.DTO;
+using VentaPrenda.Exceptions;
 using VentaPrenda.Model;
 
 namespace VentaPrenda.DAO.Concrete
@@ -63,8 +64,17 @@ namespace VentaPrenda.DAO.Concrete
                 MySqlDbContext.Update(UPDATE_SQL, param);
             } else
             {
-                DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
-                dto.ID = (short)(dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0][0]) : -1);
+                try
+                {
+                    DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
+                    dto.ID = (short)(dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0][0]) : -1);
+                }
+                catch (MySqlException e)
+                {
+                    if (e.Number == 1062)
+                    { throw new DuplicateKeyException(e); }
+                }
+
             }
             return dto;
         }

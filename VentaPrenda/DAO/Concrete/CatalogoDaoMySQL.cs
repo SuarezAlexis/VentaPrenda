@@ -77,10 +77,7 @@ namespace VentaPrenda.DAO.Concrete
                 {
                     if (e.Number == 1062)
                     {
-                        int firstIdx = e.Message.IndexOf("'");
-                        int secondIdx = e.Message.IndexOf("'", firstIdx + 1);
-                        string duplicateId = e.Message.Substring(firstIdx, secondIdx - firstIdx + 1);
-                        throw new DuplicateKeyException(duplicateId, e);
+                        throw new DuplicateKeyException(e);
                     }
                 }
             }

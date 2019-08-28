@@ -67,13 +67,16 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="DAO\Abstract\ICatalogoDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
+    <Compile Include="DAO\Abstract\IServicioDao.cs" />
     <Compile Include="DAO\Abstract\IUsuarioDao.cs" />
     <Compile Include="DAO\Concrete\CatalogoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MySQLDbContext.cs" />
     <Compile Include="DAO\Concrete\PerfilDaoMySQL.cs" />
+    <Compile Include="DAO\Concrete\ServicioDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\UsuarioDaoMySQL.cs" />
     <Compile Include="DAO\DaoManager.cs" />
     <Compile Include="DTO\CatalogoDto.cs" />
+    <Compile Include="DTO\ServicioDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
     <Compile Include="DTO\LoginDto.cs" />
     <Compile Include="DTO\PerfilDto.cs" />
@@ -81,7 +84,7 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\DuplicateKeyException.cs" />
     <Compile Include="Exceptions\ViewClosedException.cs" />
-    <Compile Include="Model\Arreglo.cs" />
+    <Compile Include="Model\Servicio.cs" />
     <Compile Include="Model\Catalogo.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Descuento.cs" />
@@ -109,6 +112,12 @@
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetallePerfil.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleServicio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleServicio.Designer.cs">
+      <DependentUpon>DetalleServicio.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleUsuario.cs">
       <SubType>UserControl</SubType>
@@ -140,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetallePerfil.resx">
       <DependentUpon>DetallePerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleServicio.resx">
+      <DependentUpon>DetalleServicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleUsuario.resx">
       <DependentUpon>DetalleUsuario.cs</DependentUpon>

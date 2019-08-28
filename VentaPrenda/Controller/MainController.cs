@@ -21,14 +21,14 @@ namespace VentaPrenda.Controller
         CLIENTES,
         SELECCION_CATALOGOS,
         COLORES,
-        PRENDAS,
+        PRENDAS,    
         TIPOS_PRENDA,
         USUARIOS,
         PERFILES,
         GASTOS,
         REPORTES,
         DESCUENTOS,
-        ARREGLOS,
+        SERVICIOS,
         HISTORIAL
     };
 
@@ -88,8 +88,8 @@ namespace VentaPrenda.Controller
                 case Funcion.TIPOS_PRENDA:
                     dto = DaoManager.CatalogoDao.GetTipoPrenda((short)id);
                     break;
-                case Funcion.ARREGLOS:
-                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                case Funcion.SERVICIOS:
+                    dto = DaoManager.ServicioDao.GetServicio((int)id);
                     break;
                 case Funcion.NOTA:
                     //dto = DaoManager.ArregloDao.GetColor((short)id);
@@ -158,10 +158,11 @@ namespace VentaPrenda.Controller
             _mainView.UpdateFuncion();
         }
 
-        public void Arreglos()
+        public void Servicios()
         {
-            Funcion = Funcion.ARREGLOS;
+            Funcion = Funcion.SERVICIOS;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.ServicioDao.GetServicios();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -282,9 +283,9 @@ namespace VentaPrenda.Controller
                         _mainView.Dto = DaoManager.CatalogoDao.GuardarTipoPrenda((CatalogoDto)dto);
                         _mainView.DataSource = DaoManager.CatalogoDao.GetTiposPrenda();
                         break;
-                    case Funcion.ARREGLOS:
-                        //_mainView.Dto = DaoManager.ArregloDao.GuardarArreglo((ArregloDto)dto);
-                        //_mainView.DataSource = DaoManager.ArregloDao.GetColores();
+                    case Funcion.SERVICIOS:
+                        _mainView.Dto = DaoManager.ServicioDao.GuardarServicio((ServicioDto)dto);
+                        _mainView.DataSource = DaoManager.ServicioDao.GetServicios();
                         break;
                     case Funcion.DESCUENTOS:
                         //_mainView.Dto = DaoManager.DescuentoDao.GuardarDescuento((DescuentoDto)dto);
@@ -350,9 +351,9 @@ namespace VentaPrenda.Controller
                     _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);
                     _mainView.DataSource = DaoManager.CatalogoDao.GetTiposPrenda();
                     break;
-                case Funcion.ARREGLOS:
-                    //_mainView.Dto = DaoManager.ArregloDao.EliminarArreglo((ArregloDto)dto);
-                    //_mainView.DataSource = DaoManager.ArregloDao.GetArreglos();
+                case Funcion.SERVICIOS:
+                    _mainView.Dto = DaoManager.ServicioDao.EliminarServicio((ServicioDto)dto);
+                    _mainView.DataSource = DaoManager.ServicioDao.GetServicios();
                     break;
                 case Funcion.DESCUENTOS:
                     //_mainView.Dto = DaoManager.DescuentoDao.EliminarDescuento((DescuentoDto)dto);

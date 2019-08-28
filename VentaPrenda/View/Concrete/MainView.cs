@@ -129,8 +129,8 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.TIPOS_PRENDA:
                     TiposButton.BackColor = ActiveColor;
                     break;
-                case Funcion.ARREGLOS:
-                    ArreglosButton.BackColor = ActiveColor;
+                case Funcion.SERVICIOS:
+                    ServiciosButton.BackColor = ActiveColor;
                     break;
                 case Funcion.DESCUENTOS:
                     DescuentosButton.BackColor = ActiveColor;
@@ -166,7 +166,7 @@ namespace VentaPrenda.View.Concrete
             ColoresButton.Visible = p.Catalogos;
             PrendasButton.Visible = p.Catalogos;
             TiposButton.Visible = p.Catalogos;
-            ArreglosButton.Visible = p.Catalogos;
+            ServiciosButton.Visible = p.Catalogos;
         }
 
         public void DuplicateKeyAlert(string duplicateKey)
@@ -242,7 +242,7 @@ namespace VentaPrenda.View.Concrete
             ColoresButton.BackColor = ClearColor;
             PrendasButton.BackColor = ClearColor;
             TiposButton.BackColor = ClearColor;
-            ArreglosButton.BackColor = ClearColor;
+            ServiciosButton.BackColor = ClearColor;
             DescuentosButton.BackColor = ClearColor;
             UsuariosButton.BackColor = ClearColor;
             PerfilesButton.BackColor = ClearColor;
@@ -260,8 +260,8 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.PRENDAS:
                 case Funcion.TIPOS_PRENDA:
                     return new DetalleCatalogo(errorProvider);
-                case Funcion.ARREGLOS:
-
+                case Funcion.SERVICIOS:
+                    return new DetalleServicio(errorProvider);
                     break;
                 case Funcion.DESCUENTOS:
 
@@ -311,9 +311,9 @@ namespace VentaPrenda.View.Concrete
             Controller.TiposPrenda();
         }
 
-        public void ArreglosButton_Click(object sender, EventArgs e)
+        public void ServiciosButton_Click(object sender, EventArgs e)
         {
-            Controller.Arreglos();
+            Controller.Servicios();
         }
 
         public void DescuentosButton_Click(object sender, EventArgs e)
