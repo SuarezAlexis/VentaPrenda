@@ -263,8 +263,7 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.SERVICIOS:
                     return new DetalleServicio(errorProvider);
                 case Funcion.DESCUENTOS:
-
-                    break;
+                    return new DetalleDescuento(errorProvider);
                 case Funcion.NOTA:
 
                     break;

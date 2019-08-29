@@ -91,6 +91,9 @@ namespace VentaPrenda.Controller
                 case Funcion.SERVICIOS:
                     dto = DaoManager.ServicioDao.GetServicio((int)id);
                     break;
+                case Funcion.DESCUENTOS:
+                    dto = DaoManager.DescuentoDao.GetDescuento((int)id);
+                    break;
                 case Funcion.NOTA:
                     //dto = DaoManager.ArregloDao.GetColor((short)id);
                     break;
@@ -171,6 +174,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.DESCUENTOS;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -290,8 +294,8 @@ namespace VentaPrenda.Controller
                         _mainView.DataSource = DaoManager.ServicioDao.GetServicios();
                         break;
                     case Funcion.DESCUENTOS:
-                        //_mainView.Dto = DaoManager.DescuentoDao.GuardarDescuento((DescuentoDto)dto);
-                        //_mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
+                        _mainView.Dto = DaoManager.DescuentoDao.GuardarDescuento((DescuentoDto)dto);
+                        _mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
                         break;
                     case Funcion.NOTA:
                         //_mainView.Dto = DaoManager.NotaDao.GuardarNota((NotaDto)dto);
@@ -358,8 +362,8 @@ namespace VentaPrenda.Controller
                     _mainView.DataSource = DaoManager.ServicioDao.GetServicios();
                     break;
                 case Funcion.DESCUENTOS:
-                    //_mainView.Dto = DaoManager.DescuentoDao.EliminarDescuento((DescuentoDto)dto);
-                    //_mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
+                    _mainView.Dto = DaoManager.DescuentoDao.EliminarDescuento((DescuentoDto)dto);
+                    _mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
                     break;
                 case Funcion.NOTA:
                     //_mainView.Dto = DaoManager.NotaDao.EliminarNota((NotaDto)dto);

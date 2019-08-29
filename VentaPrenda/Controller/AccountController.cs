@@ -47,11 +47,6 @@ namespace VentaPrenda.Controller
                     }                        
                 } while (Usuario == null || !Usuario.Logged);
                 
-
-                /*
-                while (! (Usuario = DtoMapper.Usvuario(_usuarioDao.GetUsuario(_loginView.RequestCredentials() ))).Logged )
-                { _loginView.WrongCredentials(); }
-                */
             }
             catch(ViewClosedException vce)
             {

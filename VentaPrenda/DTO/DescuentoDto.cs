@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VentaPrenda.Model
+namespace VentaPrenda.DTO
 {
-    public class Descuento
+    public class DescuentoDto
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
@@ -16,5 +16,10 @@ namespace VentaPrenda.Model
         public decimal CantMinima { get; set; }
         public decimal Porcentaje { get; set; }
         public decimal Unidades { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

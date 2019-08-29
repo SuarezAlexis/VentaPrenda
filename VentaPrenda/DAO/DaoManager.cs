@@ -16,5 +16,6 @@ namespace VentaPrenda.DAO
         public static readonly IServicioDao ServicioDao = new ServicioDaoMySQL();
         public static readonly IClienteDao ClienteDao = new ClienteDaoMySQL();
         public static readonly IMovimientoDao MovimientoDao = new MovimientoDaoMySQL();
+        public static readonly IDescuentoDao DescuentoDao = new DescuentoDaoMySQL();
     }
 }

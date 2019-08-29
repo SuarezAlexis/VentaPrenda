@@ -67,12 +67,14 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="DAO\Abstract\ICatalogoDao.cs" />
     <Compile Include="DAO\Abstract\IClienteDao.cs" />
+    <Compile Include="DAO\Abstract\IDescuentoDao.cs" />
     <Compile Include="DAO\Abstract\IMovimientoDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
     <Compile Include="DAO\Abstract\IServicioDao.cs" />
     <Compile Include="DAO\Abstract\IUsuarioDao.cs" />
     <Compile Include="DAO\Concrete\CatalogoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ClienteDaoMySQL.cs" />
+    <Compile Include="DAO\Concrete\DescuentoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MovimientoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MySQLDbContext.cs" />
     <Compile Include="DAO\Concrete\PerfilDaoMySQL.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="DAO\DaoManager.cs" />
     <Compile Include="DTO\CatalogoDto.cs" />
     <Compile Include="DTO\ClienteDto.cs" />
+    <Compile Include="DTO\DescuentoDto.cs" />
     <Compile Include="DTO\MovimientoDto.cs" />
     <Compile Include="DTO\ServicioDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
@@ -121,6 +124,12 @@
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleCliente.Designer.cs">
       <DependentUpon>DetalleCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleDescuento.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleDescuento.Designer.cs">
+      <DependentUpon>DetalleDescuento.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleMovimiento.cs">
       <SubType>UserControl</SubType>
@@ -167,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleCliente.resx">
       <DependentUpon>DetalleCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleDescuento.resx">
+      <DependentUpon>DetalleDescuento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleMovimiento.resx">
       <DependentUpon>DetalleMovimiento.cs</DependentUpon>
