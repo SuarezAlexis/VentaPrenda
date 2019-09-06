@@ -13,11 +13,23 @@ namespace VentaPrenda.View.Concrete
 {
     public partial class PrendaItemDisplay : UserControl
     {
+        private bool _readOnly = false;
         public decimal Total;
         public int Servicios;
         public event EventHandler Delete;
         public event EventHandler Edit;
         public PrendaItemDto Dto;
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set
+            {
+                _readOnly = value;
+                editButton.Enabled = !value;
+                deleteButton.Enabled = !value;
+            }
+        }
+
         public PrendaItemDisplay()
         { InitializeComponent(); }
         
@@ -36,6 +48,7 @@ namespace VentaPrenda.View.Concrete
             servicioDescuentoLabel.Text = "";
             servicioSubtotalLabel.Text = "";
             servicioTotalLabel.Text = "";
+            Height = 40;
             foreach (ServicioItemDto s in Dto.Servicios)
             {
                 decimal subtotal = s.Monto / s.Cantidad;
@@ -48,6 +61,7 @@ namespace VentaPrenda.View.Concrete
                 prendaUnitario += s.Servicio.Costo*s.Cantidad;
                 prendaDescuento += descuento * s.Cantidad;
                 Servicios += s.Cantidad;
+                Height += serviciosLabel.Font.Height;
             }
             decimal prendaSubtotal = prendaUnitario + prendaDescuento;
             prendaUnitarioLabel.Text = string.Format("{0:0.00}", prendaUnitario);

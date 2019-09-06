@@ -12,15 +12,28 @@ using VentaPrenda.View.Abstract;
 
 namespace VentaPrenda.View.Concrete
 {
+    public class DescuentoEventArgs : EventArgs
+    {
+        public int ServiciosNota;
+        public decimal MontoNota;
+        public DescuentoDto DescuentoDto;
+        public int DescuentosNota;
+        public int ClienteID;
+
+        public DescuentoEventArgs() { }
+        public DescuentoEventArgs(DescuentoDto Descuento)
+        { DescuentoDto = Descuento; }
+    }
+
+    public delegate void DescuentoEventHandler(object sender, DescuentoEventArgs e);
+
     public partial class NuevoPrendaItem : Form
     {
         private PrendaItemDto _dto;
 
-        public event EventHandler ServiciosRequested;
-        public event EventHandler MontoRequested;
-        public int ServiciosNota;
-        public decimal MontoNota;
-        public int ClienteID;
+        public event DescuentoEventHandler ServiciosRequested;
+        public event DescuentoEventHandler MontoRequested;
+
         public PrendaItemDto Prenda
         {
             get
@@ -81,6 +94,8 @@ namespace VentaPrenda.View.Concrete
         {
             serviciosFlowLayoutPanel.Controls.Clear();
             this.Prenda = Prenda;
+            EnableAceptarButton();
+            agregarServicioButton.Enabled = true;
         }
 
         private void AgregarServicio()
@@ -135,16 +150,19 @@ namespace VentaPrenda.View.Concrete
         {
             IMainView mainView = (IMainView)Owner;
             DescuentoDto d = ((ServicioUserControl)sender).Descuento;
+            DescuentoEventArgs eventArgs = new DescuentoEventArgs(d);
+            int aplicados = 0;
 
             if (d.CantMinima > 0)
             {
                 int servicios = 0;
-                ServiciosRequested?.Invoke(this, EventArgs.Empty);
-                servicios = ServiciosNota;
+                ServiciosRequested?.Invoke(this, eventArgs);
+                servicios = eventArgs.ServiciosNota;
+                aplicados = eventArgs.DescuentosNota;
                 if (!d.SoloNota)
                 {
-                    if(ClienteID >= 0)
-                        servicios += mainView.Controller.ServiciosAcumulados(ClienteID, d.VigenciaInicio);
+                    if(eventArgs.ClienteID >= 0)
+                        servicios += mainView.Controller.ServiciosAcumulados(eventArgs.ClienteID, d.VigenciaInicio);
                     else
                     {
                         MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
@@ -156,13 +174,22 @@ namespace VentaPrenda.View.Concrete
                     }
                 }
                 foreach (ServicioUserControl s in serviciosFlowLayoutPanel.Controls)
-                { servicios += s.Servicios * (int)cantNumUpDown.Value; }
-                if (servicios >= d.CantMinima)
-                    AplicarDescuento(d, (ServicioUserControl)sender);
+                {
+                    servicios += s.Servicios * (int)cantNumUpDown.Value;
+                    aplicados += d.Equals(s.Descuento) ? 1 : 0;
+                }
+
+                int comprometidos = aplicados * (int)d.CantMinima;
+                if (servicios >= comprometidos)
+                {
+                    ((ServicioUserControl)sender).AplicarDescuento();
+                    ((ServicioUserControl)sender).DescuentoInvalido = false;
+                }    
                 else
                 {
+                    comprometidos = --aplicados * (int)d.CantMinima;
                     ((ServicioUserControl)sender).DescuentoInvalido = true;
-                    MessageBox.Show("No es posible aplicar el descuento.\nSe requiere un consumo mínimo de " + d.CantMinima + " servicios y sólo se encontraron " + servicios + ".",
+                    MessageBox.Show("No es posible aplicar el descuento.\nSe requiere un consumo mínimo de " + d.CantMinima + " servicios y sólo se encontraron " + (servicios - comprometidos) + ".",
                             "Servicios insuficientes",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
@@ -171,10 +198,13 @@ namespace VentaPrenda.View.Concrete
             if (d.MontoMinimo > 0)
             {
                 decimal monto = 0;
+                MontoRequested?.Invoke(this, eventArgs);
+                monto = eventArgs.MontoNota;
+                aplicados = eventArgs.DescuentosNota;
                 if (!d.SoloNota)
                 {
-                    if (ClienteID >= 0)
-                        monto += mainView.Controller.MontoAcumulado(ClienteID, d.VigenciaInicio);
+                    if (eventArgs.ClienteID >= 0)
+                        monto += mainView.Controller.MontoAcumulado(eventArgs.ClienteID, d.VigenciaInicio);
                     else
                     {
                         MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
@@ -184,26 +214,28 @@ namespace VentaPrenda.View.Concrete
                         ((ServicioUserControl)sender).DescuentoInvalido = true;
                     }
                 }
-                MontoRequested?.Invoke(this,EventArgs.Empty);
-                monto = MontoNota;
                 foreach (ServicioUserControl s in serviciosFlowLayoutPanel.Controls)
-                { monto += s.Monto; }
-                if (monto >= d.MontoMinimo)
-                    AplicarDescuento(d, (ServicioUserControl)sender);
+                {
+                    monto += s.Monto;
+                    aplicados += s.Descuento.Equals(d) ? 1 : 0;
+                }
+
+                decimal comprometidos = aplicados * d.MontoMinimo;
+                if (monto >= comprometidos)
+                {
+                    ((ServicioUserControl)sender).AplicarDescuento();
+                    ((ServicioUserControl)sender).DescuentoInvalido = false;
+                }
                 else
                 {
+                    comprometidos = --aplicados * d.MontoMinimo;
                     ((ServicioUserControl)sender).DescuentoInvalido = true;
-                    MessageBox.Show("No es posible aplicar el descuento.\nSe requiere un consumo mínimo de $ " + d.MontoMinimo + " y sólo se encontraron pagos por $ " + monto + ".",
+                    MessageBox.Show("No es posible aplicar el descuento.\nSe requiere un consumo mínimo de $ " + d.MontoMinimo + " y sólo se encontraron pagos por $ " + (monto - comprometidos) + ".",
                             "Monto insuficiente",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
                 }
             }
-        }
-
-        private void AplicarDescuento(DescuentoDto d, ServicioUserControl s)
-        {
-            throw new NotImplementedException();
         }
 
         private void ServiciosFlowLayoutPanel_Resize(object sender, EventArgs e)

@@ -72,8 +72,8 @@
             this.prendaItemLayoutPanel.Name = "prendaItemLayoutPanel";
             this.prendaItemLayoutPanel.RowCount = 2;
             this.prendaItemLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.prendaItemLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.prendaItemLayoutPanel.Size = new System.Drawing.Size(500, 83);
+            this.prendaItemLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.prendaItemLayoutPanel.Size = new System.Drawing.Size(500, 40);
             this.prendaItemLayoutPanel.TabIndex = 0;
             // 
             // editButtonsLayoutPanel
@@ -144,7 +144,7 @@
             this.serviciosLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.serviciosLabel.Location = new System.Drawing.Point(93, 30);
             this.serviciosLabel.Name = "serviciosLabel";
-            this.serviciosLabel.Size = new System.Drawing.Size(124, 53);
+            this.serviciosLabel.Size = new System.Drawing.Size(124, 30);
             this.serviciosLabel.TabIndex = 4;
             this.serviciosLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -154,7 +154,7 @@
             this.servicioUnitarioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.servicioUnitarioLabel.Location = new System.Drawing.Point(223, 30);
             this.servicioUnitarioLabel.Name = "servicioUnitarioLabel";
-            this.servicioUnitarioLabel.Size = new System.Drawing.Size(64, 53);
+            this.servicioUnitarioLabel.Size = new System.Drawing.Size(64, 30);
             this.servicioUnitarioLabel.TabIndex = 5;
             this.servicioUnitarioLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -197,7 +197,7 @@
             this.servicioDescuentoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.servicioDescuentoLabel.Location = new System.Drawing.Point(293, 30);
             this.servicioDescuentoLabel.Name = "servicioDescuentoLabel";
-            this.servicioDescuentoLabel.Size = new System.Drawing.Size(64, 53);
+            this.servicioDescuentoLabel.Size = new System.Drawing.Size(64, 30);
             this.servicioDescuentoLabel.TabIndex = 9;
             this.servicioDescuentoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -207,7 +207,7 @@
             this.servicioSubtotalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.servicioSubtotalLabel.Location = new System.Drawing.Point(363, 30);
             this.servicioSubtotalLabel.Name = "servicioSubtotalLabel";
-            this.servicioSubtotalLabel.Size = new System.Drawing.Size(64, 53);
+            this.servicioSubtotalLabel.Size = new System.Drawing.Size(64, 30);
             this.servicioSubtotalLabel.TabIndex = 6;
             this.servicioSubtotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -217,7 +217,7 @@
             this.servicioTotalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.servicioTotalLabel.Location = new System.Drawing.Point(433, 30);
             this.servicioTotalLabel.Name = "servicioTotalLabel";
-            this.servicioTotalLabel.Size = new System.Drawing.Size(64, 53);
+            this.servicioTotalLabel.Size = new System.Drawing.Size(64, 30);
             this.servicioTotalLabel.TabIndex = 10;
             this.servicioTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -228,7 +228,7 @@
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.prendaItemLayoutPanel);
             this.Name = "PrendaItemDisplay";
-            this.Size = new System.Drawing.Size(500, 83);
+            this.Size = new System.Drawing.Size(500, 40);
             this.prendaItemLayoutPanel.ResumeLayout(false);
             this.prendaItemLayoutPanel.PerformLayout();
             this.editButtonsLayoutPanel.ResumeLayout(false);

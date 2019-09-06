@@ -13,7 +13,17 @@ namespace VentaPrenda.View.Concrete
 {
     public partial class PagoDisplay : UserControl
     {
+        private bool _readOnly;
         public PagoDto Dto;
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set
+            {
+                editButton.Enabled = !value;
+                deleteButton.Enabled = !value;
+            }
+        }
 
         public event EventHandler Edit;
         public event EventHandler Delete;

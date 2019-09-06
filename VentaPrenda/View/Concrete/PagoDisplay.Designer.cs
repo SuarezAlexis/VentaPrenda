@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.pagoDisplayLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.editButonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.editButtonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.fechaLabel = new System.Windows.Forms.Label();
             this.metodoLabel = new System.Windows.Forms.Label();
             this.montoLabel = new System.Windows.Forms.Label();
             this.pagoDisplayLayoutPanel.SuspendLayout();
-            this.editButonsLayoutPanel.SuspendLayout();
+            this.editButtonsLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pagoDisplayLayoutPanel
@@ -46,7 +46,7 @@
             this.pagoDisplayLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.pagoDisplayLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.pagoDisplayLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pagoDisplayLayoutPanel.Controls.Add(this.editButonsLayoutPanel, 0, 0);
+            this.pagoDisplayLayoutPanel.Controls.Add(this.editButtonsLayoutPanel, 0, 0);
             this.pagoDisplayLayoutPanel.Controls.Add(this.fechaLabel, 1, 0);
             this.pagoDisplayLayoutPanel.Controls.Add(this.metodoLabel, 2, 0);
             this.pagoDisplayLayoutPanel.Controls.Add(this.montoLabel, 3, 0);
@@ -58,20 +58,20 @@
             this.pagoDisplayLayoutPanel.Size = new System.Drawing.Size(496, 35);
             this.pagoDisplayLayoutPanel.TabIndex = 0;
             // 
-            // editButonsLayoutPanel
+            // editButtonsLayoutPanel
             // 
-            this.editButonsLayoutPanel.ColumnCount = 2;
-            this.editButonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.editButonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.editButonsLayoutPanel.Controls.Add(this.editButton, 0, 0);
-            this.editButonsLayoutPanel.Controls.Add(this.deleteButton, 1, 0);
-            this.editButonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.editButonsLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.editButonsLayoutPanel.Name = "editButonsLayoutPanel";
-            this.editButonsLayoutPanel.RowCount = 1;
-            this.editButonsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.editButonsLayoutPanel.Size = new System.Drawing.Size(59, 29);
-            this.editButonsLayoutPanel.TabIndex = 0;
+            this.editButtonsLayoutPanel.ColumnCount = 2;
+            this.editButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editButtonsLayoutPanel.Controls.Add(this.editButton, 0, 0);
+            this.editButtonsLayoutPanel.Controls.Add(this.deleteButton, 1, 0);
+            this.editButtonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editButtonsLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.editButtonsLayoutPanel.Name = "editButtonsLayoutPanel";
+            this.editButtonsLayoutPanel.RowCount = 1;
+            this.editButtonsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.editButtonsLayoutPanel.Size = new System.Drawing.Size(59, 29);
+            this.editButtonsLayoutPanel.TabIndex = 0;
             // 
             // editButton
             // 
@@ -137,7 +137,7 @@
             this.Size = new System.Drawing.Size(496, 35);
             this.pagoDisplayLayoutPanel.ResumeLayout(false);
             this.pagoDisplayLayoutPanel.PerformLayout();
-            this.editButonsLayoutPanel.ResumeLayout(false);
+            this.editButtonsLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -145,7 +145,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel pagoDisplayLayoutPanel;
-        private System.Windows.Forms.TableLayoutPanel editButonsLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel editButtonsLayoutPanel;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Label fechaLabel;

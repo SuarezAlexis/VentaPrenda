@@ -28,6 +28,16 @@ namespace VentaPrenda.View.Concrete.Detalles
             set
             {
                 _readOnly = value;
+                clienteComboBox.Enabled = false;
+                foreach(PrendaItemDisplay p in resumenFlowLayoutPanel.Controls)
+                { p.ReadOnly = value; }
+                agregarPagoButton.Enabled = !value;
+                descuentoComboBox.Enabled = !value;
+                foreach(PagoDisplay p in pagosFlowLayoutPanel.Controls)
+                { p.ReadOnly = value; }
+                agregarPagoButton.Enabled = !value;
+                entregadoDateTimePicker.Enabled = !value;
+                estatusListBox.Enabled = !value && !string.IsNullOrEmpty(idDataLabel.Text);
             }
         }
 
@@ -35,6 +45,12 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             get
             {
+                _dto.ID = string.IsNullOrEmpty(idDataLabel.Text) ? -1 : Convert.ToInt64(idDataLabel.Text);
+                _dto.Cliente = (ClienteDto)clienteComboBox.SelectedItem;
+                _dto.Descuento = (DescuentoDto)descuentoComboBox.SelectedItem;
+                _dto.Recibido = string.IsNullOrEmpty(idDataLabel.Text) ? DateTime.Now : Convert.ToDateTime(recibidoDataLabel.Text);
+                _dto.Entregado = entregadoDateTimePicker.Value;
+                _dto.Estatus = (Estatus)estatusListBox.SelectedItem;
                 return _dto;
             }
             set
@@ -96,7 +112,19 @@ namespace VentaPrenda.View.Concrete.Detalles
         /*******************************************************************/
         public override void Clear()
         {
-            
+            _dto.ID = -1;
+            idDataLabel.Text = "";
+            clienteComboBox.SelectedIndex = -1;
+            clienteDataLabel.Text = "";
+            _dto.Prendas.Clear();
+            resumenFlowLayoutPanel.Controls.Clear();
+            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height = 110;
+            descuentoComboBox.SelectedIndex = -1;
+            _dto.Pagos.Clear();
+            pagosFlowLayoutPanel.Controls.Clear();
+            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(pagosLayoutPanel)].Height = 130;
+            entregadoDateTimePicker.Value = DateTime.Now;
+            estatusListBox.SelectedIndex = 0;
         }
 
         public override void Fill(object model)
@@ -118,14 +146,26 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
         }
 
+        /************************ EventListenners **************************/
+        private void DetalleNota_Resize(object sender, EventArgs e)
+        {
+            foreach (Control c in resumenFlowLayoutPanel.Controls)
+            { c.Width = resumenFlowLayoutPanel.Width - 25; }
+            foreach (Control c in pagosFlowLayoutPanel.Controls)
+            { c.Width = pagosFlowLayoutPanel.Width - 25; }
+        }
+
         private void ClienteComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClienteDto c = (ClienteDto)clienteComboBox.SelectedItem;
             clienteDataLabel.Text = c.Nombre + "\n" + c.Telefono + "\n"
                 + c.Domicilio + " " + c.Colonia + (String.IsNullOrEmpty(c.CP) ? "" : (" C.P. " + c.CP));
         }
-
-        /************************ EventListenners **************************/
+        private void ClienteComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
         private void ClienteComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(clienteComboBox.SelectedItem == null)
@@ -167,7 +207,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         private void AgregarPrendaButton_Click(object sender, EventArgs e)
         {
             NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem();
-            nuevoPrendaItem.Owner = this.ParentForm;
+            nuevoPrendaItem.Owner = ParentForm;
             nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
             nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
             if(nuevoPrendaItem.ShowDialog() == DialogResult.OK)
@@ -178,23 +218,43 @@ namespace VentaPrenda.View.Concrete.Detalles
                 nuevaPrenda.Width = resumenFlowLayoutPanel.Width - 25;
                 nuevaPrenda.Edit += Prenda_Edit;
                 nuevaPrenda.Delete += Prenda_Delete;
-                resumenFlowLayoutPanel.Controls.Add(nuevaPrenda);                
+                resumenFlowLayoutPanel.Controls.Add(nuevaPrenda);
+                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height += nuevaPrenda.Height + 5;
                 ActualizarTotalLabel();
                 ActualizarDescuentoLabels();
                 ActualizarPagosLabels();
             }
         }
-
-        private void NuevoPrendaItem_ServiciosRequested(object sender, EventArgs e)
+        private void Prenda_Edit(object sender, EventArgs e)
         {
-            ((NuevoPrendaItem)sender).ServiciosNota = Servicios;
-            ((NuevoPrendaItem)sender).ClienteID = clienteComboBox.SelectedItem != null? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+            PrendaItemDisplay display = (PrendaItemDisplay)sender;
+            PrendaItemDto prenda = display.Dto;
+            NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem(prenda);
+            nuevoPrendaItem.Owner = ParentForm;
+            nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
+            nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
+            if (nuevoPrendaItem.ShowDialog() == DialogResult.OK)
+            {
+                _dto.Prendas.Remove(prenda);
+                prenda = nuevoPrendaItem.Prenda;
+                _dto.Prendas.Add(prenda);
+                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height -= display.Height;
+                display.Update(prenda);
+                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height += display.Height;
+            }
+            ActualizarTotalLabel();
+            ActualizarDescuentoLabels();
+            ActualizarPagosLabels();
         }
-
-        private void NuevoPrendaItem_MontoRequested(object sender, EventArgs e)
+        private void Prenda_Delete(object sender, EventArgs e)
         {
-            ((NuevoPrendaItem)sender).MontoNota = Total;
-            ((NuevoPrendaItem)sender).ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+            PrendaItemDisplay display = (PrendaItemDisplay)sender;
+            _dto.Prendas.Remove(display.Dto);
+            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height -= display.Height + 5;
+            resumenFlowLayoutPanel.Controls.Remove(display);
+            ActualizarTotalLabel();
+            ActualizarDescuentoLabels();
+            ActualizarPagosLabels();
         }
 
         private void AgregarPagoButton_Click(object sender, EventArgs e)
@@ -209,18 +269,68 @@ namespace VentaPrenda.View.Concrete.Detalles
                 pagoDisplay.Edit += Pago_Edit;
                 pagoDisplay.Delete += Pago_Delete;
                 pagosFlowLayoutPanel.Controls.Add(pagoDisplay);
+                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(pagosLayoutPanel)].Height += pagoDisplay.Height + 5;
                 ActualizarPagosLabels();
             }
         }
+        private void Pago_Edit(object sender, EventArgs e)
+        {
+            PagoDisplay display = (PagoDisplay)sender;
+            PagoDto pago = display.Dto;
+            NuevoPago nuevoPago = new NuevoPago(pago);
+            if (nuevoPago.ShowDialog() == DialogResult.OK)
+            {
+                _dto.Pagos.Remove(pago);
+                pago = nuevoPago.Dto;
+                _dto.Pagos.Add(pago);
+                display.Update(pago);
+            }
+            ActualizarPagosLabels();
+        }
+        private void Pago_Delete(object sender, EventArgs e)
+        {
+            PagoDisplay display = (PagoDisplay)sender;
+            _dto.Pagos.Remove(display.Dto);
+            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(pagosLayoutPanel)].Height -= display.Height + 5;
+            pagosFlowLayoutPanel.Controls.Remove(display);
+            ActualizarPagosLabels();
+        }
 
+        private void DescuentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarDescuentoLabels();
+            ActualizarPagosLabels();
+        }
+
+        private void NuevoPrendaItem_ServiciosRequested(object sender, DescuentoEventArgs e)
+        {
+            e.ServiciosNota = Servicios;
+            e.DescuentosNota = Descuentos(e.DescuentoDto);
+            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+        }
+
+        private void NuevoPrendaItem_MontoRequested(object sender, DescuentoEventArgs e)
+        {
+            e.MontoNota = Total;
+            e.DescuentosNota = Descuentos(e.DescuentoDto);
+            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+        }
+
+        /**************************** Auxiliares ****************************/
         private void ActualizarTotalLabel()
         {
             decimal total = 0;
+            int servicios = 0;
+            int prendas = 0;
             foreach(PrendaItemDisplay p in resumenFlowLayoutPanel.Controls)
             {
+                prendas += p.Dto.Cantidad;
+                servicios += p.Servicios;
                 total += p.Total;
             }
             totalDataLabel.Text = "$ " + string.Format("{0:0.00}", total);
+            prendasDataLabel.Text = prendas.ToString();
+            serviciosDataLabel.Text = servicios.ToString();
         }
 
         private void ActualizarDescuentoLabels()
@@ -242,6 +352,17 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
             totalPagadoDataLabel.Text = "$ " + string.Format("{0:0.00}",totalPagado);
             restanteDataLabel.Text = "$ " + string.Format("{0:0.00}", Convert.ToDecimal(totalDescuentoDataLabel.Text.Substring(2)) - totalPagado);
+        }
+
+        private int Descuentos(DescuentoDto d)
+        {
+            int i = 0;
+            foreach(PrendaItemDto p in _dto.Prendas)
+            {
+                foreach(ServicioItemDto s in p.Servicios)
+                { if (d.Equals(s.Descuento)) { i++; } }
+            }
+            return i;
         }
 
         private decimal CalcularMontoDescuento()
@@ -316,77 +437,6 @@ namespace VentaPrenda.View.Concrete.Detalles
 
             }
             return montoDescuento;
-        }
-
-        private void Prenda_Edit(object sender, EventArgs e)
-        {
-            PrendaItemDisplay display = (PrendaItemDisplay)sender;
-            PrendaItemDto prenda = display.Dto;
-            NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem(prenda);
-            if(nuevoPrendaItem.ShowDialog() == DialogResult.OK)
-            {
-                _dto.Prendas.Remove(prenda);
-                prenda = nuevoPrendaItem.Prenda;
-                _dto.Prendas.Add(prenda);
-                display.Update(prenda);
-            }
-            ActualizarTotalLabel();
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
-        }
-
-        private void Prenda_Delete(object sender, EventArgs e)
-        {
-            PrendaItemDisplay p = (PrendaItemDisplay)sender;
-            _dto.Prendas.Remove(p.Dto);
-            resumenFlowLayoutPanel.Controls.Remove(p);
-            ActualizarTotalLabel();
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
-        }
-
-        private void Pago_Delete(object sender, EventArgs e)
-        {
-            PagoDisplay p = (PagoDisplay)sender;
-            _dto.Pagos.Remove(p.Dto);
-            pagosFlowLayoutPanel.Controls.Remove(p);
-            ActualizarPagosLabels();
-        }
-
-
-        private void Pago_Edit(object sender, EventArgs e)
-        {
-            PagoDisplay display = (PagoDisplay)sender;
-            PagoDto pago = display.Dto;
-            NuevoPago nuevoPago = new NuevoPago(pago);
-            if(nuevoPago.ShowDialog() == DialogResult.OK)
-            {
-                _dto.Pagos.Remove(pago);
-                pago = nuevoPago.Dto;
-                _dto.Pagos.Add(pago);
-                display.Update(pago);
-            }
-            ActualizarPagosLabels();
-        }
-
-        private void ResumenFlowLayoutPanel_Resize(object sender, EventArgs e)
-        {
-            foreach(Control c in resumenFlowLayoutPanel.Controls)
-            {
-                c.Width = resumenFlowLayoutPanel.Width - 25;
-            }
-        }
-
-        private void ClienteComboBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-                this.SelectNextControl((Control)sender, true, true, true, true);
-        }
-
-        private void DescuentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
         }
     }
 }

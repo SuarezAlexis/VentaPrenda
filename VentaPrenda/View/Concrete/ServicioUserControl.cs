@@ -19,7 +19,11 @@ namespace VentaPrenda.View.Concrete
         {
             get { return (DescuentoDto)descuentoComboBox.SelectedItem; }
         }
-        public bool DescuentoInvalido;
+        public bool DescuentoInvalido
+        {
+            get { return descuentoComboBox.SelectedItem == null; }
+            set { descuentoComboBox.SelectedIndex = value? -1 : descuentoComboBox.SelectedIndex; }
+        }
 
         public event EventHandler DeleteClicked;
         public event EventHandler DataChanged;
@@ -93,11 +97,11 @@ namespace VentaPrenda.View.Concrete
             }
         }
 
-        public void AplicarDescuento(int cantidad, decimal descuento)
+        public void AplicarDescuento()
         {
-            cantNumUpDown.Value = cantidad > 0 ? cantidad : cantNumUpDown.Value;
+            DescuentoDto d = (DescuentoDto)descuentoComboBox.SelectedItem;
             PorcentajeRadioButton_Click(this, EventArgs.Empty);
-            montoNumUpDown.Value = descuento;
+            montoNumUpDown.Value = cantNumUpDown.Value > d.Unidades ? -100 * d.Unidades / cantNumUpDown.Value : -100;
             ActualizarSubtotal();
         }
 
@@ -132,7 +136,10 @@ namespace VentaPrenda.View.Concrete
         { ActualizarSubtotal(); }
 
         private void CantNumUpDown_ValueChanged(object sender, EventArgs e)
-        { ActualizarSubtotal(); }
+        {
+            DescuentoComboBox_Validating(sender, new CancelEventArgs());
+            ActualizarSubtotal();
+        }
 
         private void EditButton_Click(object sender, EventArgs e)
         { OnEditClicked(); }
@@ -143,10 +150,7 @@ namespace VentaPrenda.View.Concrete
             {
                 DescuentoRequested?.Invoke(this, EventArgs.Empty);
                 if (DescuentoInvalido)
-                {
-                    e.Cancel = true;
-                    descuentoComboBox.SelectedIndex = -1;
-                }
+                { e.Cancel = true; }
                 else
                 { e.Cancel = false; }
             }
@@ -155,8 +159,6 @@ namespace VentaPrenda.View.Concrete
         }
 
         private void DescuentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DescuentoComboBox_Validating(sender, new CancelEventArgs());
-        }
+        { DescuentoComboBox_Validating(sender, new CancelEventArgs()); }
     }
 }
