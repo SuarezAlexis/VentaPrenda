@@ -19,8 +19,8 @@ namespace VentaPrenda.View.Concrete
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
-        private readonly Color ClearColor = SystemColors.ControlLight;
-        private readonly Color ActiveColor = SystemColors.ControlDark;
+        private readonly System.Drawing.Color ClearColor = SystemColors.ControlLight;
+        private readonly System.Drawing.Color ActiveColor = SystemColors.ControlDark;
         public MainController Controller { get; set; }
 
         private object _dto;
@@ -265,8 +265,7 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.DESCUENTOS:
                     return new DetalleDescuento(errorProvider);
                 case Funcion.NOTA:
-
-                    break;
+                    return new DetalleNota(errorProvider);
                 case Funcion.CLIENTES:
                     return new DetalleCliente(errorProvider);
                 case Funcion.BALANCE:

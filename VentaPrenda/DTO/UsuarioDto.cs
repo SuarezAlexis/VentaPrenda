@@ -45,7 +45,7 @@ namespace VentaPrenda.DTO
 
         public override string ToString()
         {
-            return "Usuario: " + Username;
+            return Username;
         }
     }
 }

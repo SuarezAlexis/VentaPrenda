@@ -114,6 +114,16 @@ namespace VentaPrenda.Controller
             _mainView.UpdateModo();
         }
         
+        public decimal MontoAcumulado(int clienteID, DateTime desde)
+        {
+            return 0;
+        }
+
+        public int ServiciosAcumulados(int clienteID, DateTime desde)
+        {
+            return 0;
+        }
+
         /************************ MÉTODOS: Funciones ***********************/
         public void Perfiles()
         {
@@ -183,6 +193,17 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.NOTA;
             Modo = Modo.SELECCION;
+            //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
+            NotaDto.Clientes = DtoProvider.ClientesAsList();
+            NotaDto.Descuentos = DtoProvider.DescuentosAsList();
+            PrendaItemDto.Prendas = DtoProvider.PrendasAsList();
+            PrendaItemDto.Tipos = DtoProvider.TiposPrendaAsList();
+            PrendaItemDto.Colores = DtoProvider.ColoresAsList();
+            ServicioItemDto.Descuentos = new List<DescuentoDto>(NotaDto.Descuentos);
+            ServicioItemDto.Servicios = DtoProvider.ServiciosAsList();
+            ServicioItemDto.Usuarios = DtoProvider.UsuariosAsList();
+            ServicioItemDto.Descuentos.RemoveAll((d) => d.Unidades < 0);
+            NotaDto.Descuentos.RemoveAll((d) => d.Porcentaje < 0);
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }

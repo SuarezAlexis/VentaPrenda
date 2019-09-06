@@ -26,10 +26,12 @@ CREATE TABLE `Descuento` (
   `MontoMinimo` decimal(8,2) DEFAULT NULL,
   `CantMinima` decimal(2,0) DEFAULT NULL,
   `Porcentaje` decimal(3,0) DEFAULT NULL,
-  `Unidades` decimal(2,0) DEFAULT NULL,
+  `Unidades` decimal(4,2) DEFAULT NULL,
+  `SoloNota` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Nombre_UNIQUE` (`Nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `Movimiento` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -91,3 +93,68 @@ CREATE TABLE `Perfil_Usuario` (
   CONSTRAINT `PerfilUsuario_Ref_Perfil` FOREIGN KEY (`Perfil`) REFERENCES `perfil` (`ID`),
   CONSTRAINT `PerfilUsuario_Ref_Usuario` FOREIGN KEY (`Usuario`) REFERENCES `usuario` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Nota` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Estatus` tinyint(4) NOT NULL DEFAULT '0',
+  `Cliente` int(11) DEFAULT NULL,
+  `Recibido` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Entregado` datetime NOT NULL,
+  `Observaciones` varchar(256) DEFAULT NULL,
+  `Descuento` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Nota_Ref_Cliente_idx` (`Cliente`),
+  CONSTRAINT `Nota_Ref_Cliente` FOREIGN KEY (`Cliente`) REFERENCES `cliente` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `Pago` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Nota` bigint(20) NOT NULL,
+  `Metodo` varchar(32) NOT NULL DEFAULT 'Efectivo',
+  `Monto` decimal(8,2) NOT NULL DEFAULT '0.00',
+  `Fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  KEY `Pago_Ref_Nota_idx` (`Nota`),
+  CONSTRAINT `Pago_Ref_Nota` FOREIGN KEY (`Nota`) REFERENCES `nota` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+CREATE TABLE `PrendaItem` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Nota` bigint(20) NOT NULL,
+  `Cantidad` tinyint(4) NOT NULL DEFAULT '1',
+  `Prenda` smallint(6) NOT NULL,
+  `Tipo` smallint(6) DEFAULT NULL,
+  `Color` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `PrendaItem_Ref_Nota_idx` (`Nota`),
+  KEY `PrendaItem_Ref_Prenda_idx` (`Prenda`),
+  KEY `PrendaItem_Ref_Tipo_idx` (`Tipo`),
+  KEY `PrendaItem_Ref_Color_idx` (`Color`),
+  CONSTRAINT `PrendaItem_Ref_Color` FOREIGN KEY (`Color`) REFERENCES `color` (`ID`),
+  CONSTRAINT `PrendaItem_Ref_Nota` FOREIGN KEY (`Nota`) REFERENCES `nota` (`ID`),
+  CONSTRAINT `PrendaItem_Ref_Prenda` FOREIGN KEY (`Prenda`) REFERENCES `prenda` (`ID`),
+  CONSTRAINT `PrendaItem_Ref_Tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipoprenda` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `ServicioItem` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PrendaItem` bigint(20) DEFAULT NULL,
+  `Cantidad` tinyint(4) DEFAULT NULL,
+  `Servicio` int(11) DEFAULT NULL,
+  `Monto` decimal(8,2) DEFAULT NULL,
+  `Descuento` int(11) DEFAULT NULL,
+  `Encargado` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ServicioItem_Ref_PrendaItem_idx` (`PrendaItem`),
+  KEY `ServicioItem_Ref_Servicio_idx` (`Servicio`),
+  KEY `ServicioItem_Ref_Descuento_idx` (`Descuento`),
+  KEY `ServicioItem_Ref_Usuario_idx` (`Encargado`),
+  CONSTRAINT `ServicioItem_Ref_Descuento` FOREIGN KEY (`Descuento`) REFERENCES `descuento` (`ID`),
+  CONSTRAINT `ServicioItem_Ref_PrendaItem` FOREIGN KEY (`PrendaItem`) REFERENCES `prendaitem` (`ID`),
+  CONSTRAINT `ServicioItem_Ref_Servicio` FOREIGN KEY (`Servicio`) REFERENCES `servicio` (`ID`),
+  CONSTRAINT `ServicioItem_Ref_Usuario` FOREIGN KEY (`Encargado`) REFERENCES `usuario` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+

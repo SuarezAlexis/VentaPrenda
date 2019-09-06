@@ -13,9 +13,16 @@ namespace VentaPrenda.DTO
         public DateTime VigenciaInicio { get; set; }
         public DateTime VigenciaFin { get; set; }
         public decimal MontoMinimo { get; set; }
+        public bool SoloNota { get; set; }
         public decimal CantMinima { get; set; }
         public decimal Porcentaje { get; set; }
         public decimal Unidades { get; set; }
+
+        public DescuentoDto()
+        {
+            ID = -1;
+            Nombre = "";
+        }
 
         public override string ToString()
         {

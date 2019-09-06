@@ -20,7 +20,7 @@ namespace VentaPrenda.View.Abstract
             {
                 e.Cancel = true;
                 textBox.Select(0, textBox.Text.Length);
-                textBox.BackColor = System.Drawing.Color.Pink;
+                textBox.BackColor = Color.Pink;
                 errorProvider.SetError(textBox, "Campo obligatorio. Debe contener menos de " + maxLength + " caracteres.");
             }
             else

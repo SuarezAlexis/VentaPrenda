@@ -69,6 +69,7 @@
     <Compile Include="DAO\Abstract\IClienteDao.cs" />
     <Compile Include="DAO\Abstract\IDescuentoDao.cs" />
     <Compile Include="DAO\Abstract\IMovimientoDao.cs" />
+    <Compile Include="DAO\Abstract\INotaDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
     <Compile Include="DAO\Abstract\IServicioDao.cs" />
     <Compile Include="DAO\Abstract\IUsuarioDao.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="DAO\Concrete\DescuentoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MovimientoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MySQLDbContext.cs" />
+    <Compile Include="DAO\Concrete\NotaDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\PerfilDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ServicioDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\UsuarioDaoMySQL.cs" />
@@ -85,7 +87,11 @@
     <Compile Include="DTO\ClienteDto.cs" />
     <Compile Include="DTO\DescuentoDto.cs" />
     <Compile Include="DTO\MovimientoDto.cs" />
+    <Compile Include="DTO\NotaDto.cs" />
+    <Compile Include="DTO\PagoDto.cs" />
+    <Compile Include="DTO\PrendaItemDto.cs" />
     <Compile Include="DTO\ServicioDto.cs" />
+    <Compile Include="DTO\ServicioItemDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
     <Compile Include="DTO\LoginDto.cs" />
     <Compile Include="DTO\PerfilDto.cs" />
@@ -93,6 +99,7 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\DuplicateKeyException.cs" />
     <Compile Include="Exceptions\ViewClosedException.cs" />
+    <Compile Include="Model\PrendaItem.cs" />
     <Compile Include="Model\Servicio.cs" />
     <Compile Include="Model\Catalogo.cs" />
     <Compile Include="Model\Cliente.cs" />
@@ -101,7 +108,6 @@
     <Compile Include="Model\Nota.cs" />
     <Compile Include="Model\Pago.cs" />
     <Compile Include="Model\Perfil.cs" />
-    <Compile Include="Model\Prenda.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +119,24 @@
     </Compile>
     <Compile Include="View\Abstract\ILoginView.cs" />
     <Compile Include="View\Abstract\IMainView.cs" />
+    <Compile Include="View\Concrete\NuevoPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\NuevoPago.Designer.cs">
+      <DependentUpon>NuevoPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\PagoDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\PagoDisplay.Designer.cs">
+      <DependentUpon>PagoDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\ServicioUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\ServicioUserControl.Designer.cs">
+      <DependentUpon>ServicioUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleCatalogo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +160,12 @@
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleMovimiento.Designer.cs">
       <DependentUpon>DetalleMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleNota.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleNota.Designer.cs">
+      <DependentUpon>DetalleNota.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetallePerfil.cs">
       <SubType>UserControl</SubType>
@@ -162,6 +192,18 @@
     <Compile Include="View\Concrete\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Concrete\NuevoPrendaItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\NuevoPrendaItem.Designer.cs">
+      <DependentUpon>NuevoPrendaItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\PrendaItemDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\PrendaItemDisplay.Designer.cs">
+      <DependentUpon>PrendaItemDisplay.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -171,6 +213,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Concrete\NuevoPago.resx">
+      <DependentUpon>NuevoPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\PagoDisplay.resx">
+      <DependentUpon>PagoDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\ServicioUserControl.resx">
+      <DependentUpon>ServicioUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleCatalogo.resx">
       <DependentUpon>DetalleCatalogo.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleMovimiento.resx">
       <DependentUpon>DetalleMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleNota.resx">
+      <DependentUpon>DetalleNota.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetallePerfil.resx">
       <DependentUpon>DetallePerfil.cs</DependentUpon>
@@ -195,6 +249,12 @@
     <EmbeddedResource Include="View\Concrete\LoginForm.resx" />
     <EmbeddedResource Include="View\Concrete\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\NuevoPrendaItem.resx">
+      <DependentUpon>NuevoPrendaItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\PrendaItemDisplay.resx">
+      <DependentUpon>PrendaItemDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

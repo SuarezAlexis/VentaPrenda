@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace VentaPrenda.Model
 {
-    class Nota
+    public enum Estatus
     {
+        Pendiente,
+        Terminado,
+        Entregado,
+        Caducado
+    }
+    public class Nota
+    {
+        public long ID { get; set; }
+        public Estatus Estatus { get; set; }
+        public Cliente Cliente { get; set; }
+        public DateTime Recibido { get; set; }
+        public DateTime Entregado { get; set; }
+        public List<Pago> Pagos { get; set; }
+        public List<PrendaItem> Prendas { get; set; }
+        public string Observaciones { get; set; }
+        public Descuento Descuento { get; set; }
     }
 }

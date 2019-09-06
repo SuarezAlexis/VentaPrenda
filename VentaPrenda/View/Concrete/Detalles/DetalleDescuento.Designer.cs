@@ -45,6 +45,8 @@
             this.consMinLabel = new System.Windows.Forms.Label();
             this.consMinNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.consMinDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.soloNotaRadioButton = new System.Windows.Forms.RadioButton();
+            this.vigenciaRadioButton = new System.Windows.Forms.RadioButton();
             this.descuentoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.descuentoLabel = new System.Windows.Forms.Label();
             this.descuentoNumUpDown = new System.Windows.Forms.NumericUpDown();
@@ -82,7 +84,7 @@
             this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.detalleDescuentoLayoutPanel.Size = new System.Drawing.Size(374, 410);
+            this.detalleDescuentoLayoutPanel.Size = new System.Drawing.Size(600, 410);
             this.detalleDescuentoLayoutPanel.TabIndex = 0;
             // 
             // idLayoutPanel
@@ -97,7 +99,7 @@
             this.idLayoutPanel.Name = "idLayoutPanel";
             this.idLayoutPanel.RowCount = 1;
             this.idLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.idLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.idLayoutPanel.Size = new System.Drawing.Size(590, 34);
             this.idLayoutPanel.TabIndex = 0;
             // 
             // idLabel
@@ -117,7 +119,7 @@
             this.idDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.idDataLabel.Location = new System.Drawing.Point(112, 0);
             this.idDataLabel.Name = "idDataLabel";
-            this.idDataLabel.Size = new System.Drawing.Size(249, 34);
+            this.idDataLabel.Size = new System.Drawing.Size(475, 34);
             this.idDataLabel.TabIndex = 1;
             this.idDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -133,7 +135,7 @@
             this.nombreLayoutPanel.Name = "nombreLayoutPanel";
             this.nombreLayoutPanel.RowCount = 1;
             this.nombreLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.nombreLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.nombreLayoutPanel.Size = new System.Drawing.Size(590, 34);
             this.nombreLayoutPanel.TabIndex = 1;
             // 
             // nombreLabel
@@ -152,7 +154,7 @@
             this.nombreTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.nombreTextBox.Location = new System.Drawing.Point(112, 7);
             this.nombreTextBox.Name = "nombreTextBox";
-            this.nombreTextBox.Size = new System.Drawing.Size(170, 20);
+            this.nombreTextBox.Size = new System.Drawing.Size(200, 20);
             this.nombreTextBox.TabIndex = 1;
             // 
             // inicioVigenciaLayoutPanel
@@ -167,7 +169,7 @@
             this.inicioVigenciaLayoutPanel.Name = "inicioVigenciaLayoutPanel";
             this.inicioVigenciaLayoutPanel.RowCount = 1;
             this.inicioVigenciaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inicioVigenciaLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.inicioVigenciaLayoutPanel.Size = new System.Drawing.Size(590, 34);
             this.inicioVigenciaLayoutPanel.TabIndex = 2;
             // 
             // inicioVigenciaLabel
@@ -206,7 +208,7 @@
             this.finVigenciaLayoutPanel.Name = "finVigenciaLayoutPanel";
             this.finVigenciaLayoutPanel.RowCount = 1;
             this.finVigenciaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.finVigenciaLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.finVigenciaLayoutPanel.Size = new System.Drawing.Size(590, 34);
             this.finVigenciaLayoutPanel.TabIndex = 3;
             // 
             // finVigenciaLabel
@@ -234,20 +236,24 @@
             // 
             // consumoMinimoLayoutPanel
             // 
-            this.consumoMinimoLayoutPanel.ColumnCount = 4;
+            this.consumoMinimoLayoutPanel.ColumnCount = 6;
             this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
             this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.consumoMinimoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.consumoMinimoLayoutPanel.Controls.Add(this.consMinLabel, 0, 0);
             this.consumoMinimoLayoutPanel.Controls.Add(this.consMinNumUpDown, 1, 0);
             this.consumoMinimoLayoutPanel.Controls.Add(this.consMinDomainUpDown, 2, 0);
+            this.consumoMinimoLayoutPanel.Controls.Add(this.soloNotaRadioButton, 4, 0);
+            this.consumoMinimoLayoutPanel.Controls.Add(this.vigenciaRadioButton, 3, 0);
             this.consumoMinimoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.consumoMinimoLayoutPanel.Location = new System.Drawing.Point(5, 173);
             this.consumoMinimoLayoutPanel.Name = "consumoMinimoLayoutPanel";
             this.consumoMinimoLayoutPanel.RowCount = 1;
             this.consumoMinimoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.consumoMinimoLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.consumoMinimoLayoutPanel.Size = new System.Drawing.Size(590, 34);
             this.consumoMinimoLayoutPanel.TabIndex = 4;
             // 
             // consMinLabel
@@ -282,12 +288,38 @@
             this.consMinDomainUpDown.Text = "Servicios";
             this.consMinDomainUpDown.SelectedItemChanged += new System.EventHandler(this.ConsMinDomainUpDown_SelectedItemChanged);
             // 
+            // soloNotaRadioButton
+            // 
+            this.soloNotaRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.soloNotaRadioButton.AutoSize = true;
+            this.soloNotaRadioButton.Location = new System.Drawing.Point(492, 8);
+            this.soloNotaRadioButton.Name = "soloNotaRadioButton";
+            this.soloNotaRadioButton.Size = new System.Drawing.Size(70, 17);
+            this.soloNotaRadioButton.TabIndex = 3;
+            this.soloNotaRadioButton.Text = "Sólo nota";
+            this.soloNotaRadioButton.UseVisualStyleBackColor = true;
+            this.soloNotaRadioButton.Click += new System.EventHandler(this.SoloNotaRadioButton_Click);
+            // 
+            // vigenciaRadioButton
+            // 
+            this.vigenciaRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.vigenciaRadioButton.AutoSize = true;
+            this.vigenciaRadioButton.Checked = true;
+            this.vigenciaRadioButton.Location = new System.Drawing.Point(362, 8);
+            this.vigenciaRadioButton.Name = "vigenciaRadioButton";
+            this.vigenciaRadioButton.Size = new System.Drawing.Size(119, 17);
+            this.vigenciaRadioButton.TabIndex = 4;
+            this.vigenciaRadioButton.TabStop = true;
+            this.vigenciaRadioButton.Text = "Periodo de vigencia";
+            this.vigenciaRadioButton.UseVisualStyleBackColor = true;
+            this.vigenciaRadioButton.Click += new System.EventHandler(this.VigenciaRadioButton_Click);
+            // 
             // descuentoLayoutPanel
             // 
             this.descuentoLayoutPanel.ColumnCount = 4;
             this.descuentoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
             this.descuentoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.descuentoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.descuentoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.descuentoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.descuentoLayoutPanel.Controls.Add(this.descuentoLabel, 0, 0);
             this.descuentoLayoutPanel.Controls.Add(this.descuentoNumUpDown, 1, 0);
@@ -297,7 +329,7 @@
             this.descuentoLayoutPanel.Name = "descuentoLayoutPanel";
             this.descuentoLayoutPanel.RowCount = 1;
             this.descuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.descuentoLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.descuentoLayoutPanel.Size = new System.Drawing.Size(590, 34);
             this.descuentoLayoutPanel.TabIndex = 5;
             // 
             // descuentoLabel
@@ -315,10 +347,20 @@
             // 
             this.descuentoNumUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.descuentoNumUpDown.Location = new System.Drawing.Point(112, 7);
+            this.descuentoNumUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.descuentoNumUpDown.Name = "descuentoNumUpDown";
             this.descuentoNumUpDown.Size = new System.Drawing.Size(85, 20);
             this.descuentoNumUpDown.TabIndex = 1;
             this.descuentoNumUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.descuentoNumUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // descuentoDomainUpDown
             // 
@@ -339,7 +381,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.detalleDescuentoLayoutPanel);
             this.Name = "DetalleDescuento";
-            this.Size = new System.Drawing.Size(374, 410);
+            this.Size = new System.Drawing.Size(600, 410);
             this.detalleDescuentoLayoutPanel.ResumeLayout(false);
             this.idLayoutPanel.ResumeLayout(false);
             this.idLayoutPanel.PerformLayout();
@@ -382,5 +424,7 @@
         private System.Windows.Forms.DomainUpDown consMinDomainUpDown;
         private System.Windows.Forms.NumericUpDown descuentoNumUpDown;
         private System.Windows.Forms.DomainUpDown descuentoDomainUpDown;
+        private System.Windows.Forms.RadioButton soloNotaRadioButton;
+        private System.Windows.Forms.RadioButton vigenciaRadioButton;
     }
 }

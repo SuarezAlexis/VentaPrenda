@@ -101,14 +101,14 @@ namespace VentaPrenda.DAO.Concrete
         { return GetRecord(Catalogo.TipoPrenda, TipoPrendaID); }
 
         public DataTable GetColores()
-        { return MySqlDbContext.Query(SELECT_SQL + "Color"); }       
+        { return MySqlDbContext.Query(SELECT_SQL + "Color ORDER BY Nombre ASC"); }       
 
         public DataTable GetPrendas()
-        { return MySqlDbContext.Query(SELECT_SQL + "Prenda"); }
+        { return MySqlDbContext.Query(SELECT_SQL + "Prenda ORDER BY Nombre ASC"); }
 
 
         public DataTable GetTiposPrenda()
-        { return MySqlDbContext.Query(SELECT_SQL + "TipoPrenda"); }
+        { return MySqlDbContext.Query(SELECT_SQL + "TipoPrenda  ORDER BY Nombre ASC"); }
 
         public CatalogoDto GuardarColor(CatalogoDto dto)
         { return Guardar(dto, Catalogo.Color); }

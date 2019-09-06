@@ -51,7 +51,7 @@ namespace VentaPrenda.DAO.Concrete
 
         public DataTable GetServicios()
         {
-            return MySqlDbContext.Query(SELECT_SQL);
+            return MySqlDbContext.Query(SELECT_SQL + " ORDER BY Nombre ASC");
         }
 
         public ServicioDto GuardarServicio(ServicioDto dto)

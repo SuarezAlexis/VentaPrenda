@@ -43,6 +43,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                 finVigenciaDateTimePicker.Enabled = !value;
                 consMinNumUpDown.ReadOnly = value;
                 consMinDomainUpDown.ReadOnly = value;
+                vigenciaRadioButton.Enabled = !value;
+                soloNotaRadioButton.Enabled = !value;
                 descuentoNumUpDown.ReadOnly = value;
                 descuentoDomainUpDown.ReadOnly = value;
             }
@@ -65,6 +67,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     _dto.MontoMinimo = consMinNumUpDown.Value;
                     _dto.CantMinima = -1;
                 }
+                _dto.SoloNota = soloNotaRadioButton.Checked;
                 if(descuentoDomainUpDown.Text.Equals("% de nota"))
                 {
                     _dto.Porcentaje = descuentoNumUpDown.Value;
@@ -110,6 +113,8 @@ namespace VentaPrenda.View.Concrete.Detalles
             finVigenciaDateTimePicker.Value = DateTime.Now;
             consMinNumUpDown.Value = 0;
             consMinDomainUpDown.ResetText();
+            soloNotaRadioButton.Checked = false;
+            vigenciaRadioButton.Checked = true;
             descuentoNumUpDown.Value = 0;
             descuentoNumUpDown.ResetText();
             
@@ -145,6 +150,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                     //ConsMinDomainUpDown_SelectedItemChanged(null, null);
                     consMinNumUpDown.Value = d.MontoMinimo;
                 }
+                vigenciaRadioButton.Checked = !d.SoloNota;
+                soloNotaRadioButton.Checked = d.SoloNota;
                 if(d.Porcentaje < 0)
                 {
                     descuentoDomainUpDown.Text = "Servicios";
@@ -185,10 +192,14 @@ namespace VentaPrenda.View.Concrete.Detalles
             switch (descuentoDomainUpDown.Text)
             {
                 case "Servicios":
-                    descuentoNumUpDown.Maximum = 99;
+                    descuentoNumUpDown.Maximum = 99.99M;
+                    descuentoNumUpDown.DecimalPlaces = 2;
+                    descuentoNumUpDown.Increment = 0.5M;
                     break;
                 case "% de nota":
                     descuentoNumUpDown.Maximum = 100;
+                    descuentoNumUpDown.DecimalPlaces = 0;
+                    descuentoNumUpDown.Increment = 1;
                     break;
             }
         }
@@ -227,5 +238,17 @@ namespace VentaPrenda.View.Concrete.Detalles
 
         private void FinVigenciaDateTimePicker_Validated(object sender, EventArgs e)
         { finVigenciaDateTimePicker.BackColor = SystemColors.Window; }
+
+        private void VigenciaRadioButton_Click(object sender, EventArgs e)
+        {
+            vigenciaRadioButton.Checked = !vigenciaRadioButton.Checked;
+            soloNotaRadioButton.Checked = !soloNotaRadioButton.Checked;
+        }
+
+        private void SoloNotaRadioButton_Click(object sender, EventArgs e)
+        {
+            vigenciaRadioButton.Checked = !vigenciaRadioButton.Checked;
+            soloNotaRadioButton.Checked = !soloNotaRadioButton.Checked;
+        }
     }
 }
