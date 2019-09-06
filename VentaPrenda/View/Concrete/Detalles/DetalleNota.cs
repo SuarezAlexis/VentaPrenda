@@ -38,6 +38,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 agregarPagoButton.Enabled = !value;
                 entregadoDateTimePicker.Enabled = !value;
                 estatusListBox.Enabled = !value && !string.IsNullOrEmpty(idDataLabel.Text);
+                observacionesTextBox.ReadOnly = value;
             }
         }
 
@@ -51,6 +52,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 _dto.Recibido = string.IsNullOrEmpty(idDataLabel.Text) ? DateTime.Now : Convert.ToDateTime(recibidoDataLabel.Text);
                 _dto.Entregado = entregadoDateTimePicker.Value;
                 _dto.Estatus = (Estatus)estatusListBox.SelectedItem;
+                _dto.Observaciones = observacionesTextBox.Text;
                 return _dto;
             }
             set
@@ -90,6 +92,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         public DetalleNota()
         {
             InitializeComponent();
+            entregadoDateTimePicker.MinDate = DateTime.Now;
             _dto = new NotaDto();
             foreach (ClienteDto c in NotaDto.Clientes)
             { clienteComboBox.Items.Add(c); }
@@ -143,6 +146,12 @@ namespace VentaPrenda.View.Concrete.Detalles
             {
                 NotaDto n = (NotaDto)model;
                 idDataLabel.Text = n.ID > 0 ? n.ID.ToString() : "";
+                clienteComboBox.SelectedItem = n.Cliente;
+
+                recibidoDataLabel.Text = n.Recibido.ToShortDateString() + " " + n.Recibido.ToShortTimeString();
+                entregadoDateTimePicker.Value = n.Entregado;
+                estatusListBox.SelectedItem = n.Estatus;
+                observacionesTextBox.Text = n.Observaciones;
             }
         }
 

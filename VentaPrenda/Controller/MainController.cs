@@ -319,7 +319,7 @@ namespace VentaPrenda.Controller
                         _mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
                         break;
                     case Funcion.NOTA:
-                        //_mainView.Dto = DaoManager.NotaDao.GuardarNota((NotaDto)dto);
+                        _mainView.Dto = DaoManager.NotaDao.GuardarNota((NotaDto)dto);
                         //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
                         break;
                     case Funcion.CLIENTES:
