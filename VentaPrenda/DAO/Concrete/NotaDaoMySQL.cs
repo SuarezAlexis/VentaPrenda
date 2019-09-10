@@ -3,11 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VentaPrenda.DAO.Abstract;
 using VentaPrenda.DTO;
-using VentaPrenda.Exceptions;
 using VentaPrenda.Model;
 
 namespace VentaPrenda.DAO.Concrete
@@ -19,13 +16,11 @@ namespace VentaPrenda.DAO.Concrete
         private static readonly string PRENDA_SELECT_SQL = "SELECT * FROM PrendaItem";
         private static readonly string SERVICIO_SELECT_SQL = "SELECT * FROM ServicioItem";
         private static readonly string PAGO_SELECT_SQL = "SELECT * FROM Pago";
-        private static readonly string SERVICIO_ID_JOIN_SQL = "SELECT S.ID FROM Nota N JOIN PrendaItem P ON(P.Nota = N.ID) JOIN ServicioItem S ON(S.PrendaItem = P.ID)";
 
         private static readonly string INSERT_SQL = "INSERT INTO Nota (Estatus,Cliente,Recibido,Entregado,Observaciones,Descuento) VALUES (@Estatus,@Cliente,CURRENT_TIMESTAMP,@Entregado,@Observaciones,@Descuento); SELECT last_insert_id();";
         private static readonly string PRENDA_INSERT_SQL = "INSERT INTO PrendaItem(Nota,Cantidad,Prenda,Tipo,Color) VALUES";
         private static readonly string SERVICIO_INSERT_SQL = "INSERT INTO ServicioItem(PrendaItem,Cantidad,Servicio,Monto,Descuento,Encargado) VALUES";
         private static readonly string PAGO_INSERT_SQL = "INSERT INTO Pago(Nota,Metodo,Monto,Fecha) VALUES";
-        private static readonly string PRENDA_DUPLICATE_UPDATE_SQL = " ON DUPLICATE KEY UPDATE Cantidad = VALUES(Cantidad), Prenda = VALUES(Prenda), Tipo = VALUES(Tipo), Color = VALUES(Color)";
 
         private static readonly string UPDATE_SQL = "UPDATE Nota SET Estatus = @Estatus, Cliente = @Cliente, Entregado = @Entregado, Observaciones = @Observaciones, Descuento = @Descuento WHERE ID = @ID";
         private static readonly string PRENDA_DELETE_SQL = "DELETE FROM PrendaItem";

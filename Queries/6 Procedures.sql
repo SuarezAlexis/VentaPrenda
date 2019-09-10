@@ -115,3 +115,14 @@ BEGIN
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteNota`(p_ID BIGINT)
+BEGIN
+	START TRANSACTION;
+		DELETE FROM ServicioItem WHERE PrendaItem IN( SELECT ID FROM PrendaItem  WHERE Nota = p_ID );
+		DELETE FROM PrendaItem WHERE Nota = p_ID;
+        DELETE FROM Pago WHERE Nota = p_ID;
+        DELETE FROM Nota WHERE ID = p_ID;
+	COMMIT;
+END$$
+DELIMITER ;
