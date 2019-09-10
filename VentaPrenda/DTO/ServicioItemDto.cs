@@ -16,6 +16,9 @@ namespace VentaPrenda.DTO
         public DescuentoDto Descuento { get; set; }
         public UsuarioDto Encargado { get; set; }
 
+        public ServicioItemDto()
+        { ID = -1; }
+
         public override string ToString()
         {
             return Cantidad + " " + Servicio;

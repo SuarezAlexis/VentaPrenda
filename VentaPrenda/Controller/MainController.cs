@@ -95,7 +95,7 @@ namespace VentaPrenda.Controller
                     dto = DaoManager.DescuentoDao.GetDescuento((int)id);
                     break;
                 case Funcion.NOTA:
-                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    dto = DaoManager.NotaDao.GetNota(id);
                     break;
                 case Funcion.CLIENTES:
                     dto = DaoManager.ClienteDao.GetCliente((int)id);
@@ -193,7 +193,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.NOTA;
             Modo = Modo.SELECCION;
-            //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
+            _mainView.DataSource = DaoManager.NotaDao.GetNotas();
             NotaDto.Clientes = DtoProvider.ClientesAsList();
             NotaDto.Descuentos = DtoProvider.DescuentosAsList();
             PrendaItemDto.Prendas = DtoProvider.PrendasAsList();
@@ -320,7 +320,7 @@ namespace VentaPrenda.Controller
                         break;
                     case Funcion.NOTA:
                         _mainView.Dto = DaoManager.NotaDao.GuardarNota((NotaDto)dto);
-                        //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
+                        _mainView.DataSource = DaoManager.NotaDao.GetNotas();
                         break;
                     case Funcion.CLIENTES:
                         _mainView.Dto = DaoManager.ClienteDao.GuardarCliente((ClienteDto)dto);
@@ -387,8 +387,8 @@ namespace VentaPrenda.Controller
                     _mainView.DataSource = DaoManager.DescuentoDao.GetDescuentos();
                     break;
                 case Funcion.NOTA:
-                    //_mainView.Dto = DaoManager.NotaDao.EliminarNota((NotaDto)dto);
-                    //_mainView.DataSource = DaoManager.NotaDao.GetNotas();
+                    _mainView.Dto = DaoManager.NotaDao.EliminarNota((NotaDto)dto);
+                    _mainView.DataSource = DaoManager.NotaDao.GetNotas();
                     break;
                 case Funcion.CLIENTES:
                     _mainView.Dto = DaoManager.ClienteDao.EliminarCliente((ClienteDto)dto);

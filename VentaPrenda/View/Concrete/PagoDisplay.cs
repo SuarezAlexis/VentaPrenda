@@ -20,6 +20,7 @@ namespace VentaPrenda.View.Concrete
             get { return _readOnly; }
             set
             {
+                _readOnly = value;
                 editButton.Enabled = !value;
                 deleteButton.Enabled = !value;
             }

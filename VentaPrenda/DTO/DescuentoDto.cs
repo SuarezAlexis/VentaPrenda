@@ -28,5 +28,16 @@ namespace VentaPrenda.DTO
         {
             return Nombre;
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) return false;
+            else
+            {
+                if (this == obj) return true;
+                DescuentoDto d = (DescuentoDto)obj;
+                return ID == d.ID;
+            }
+        }
     }
 }

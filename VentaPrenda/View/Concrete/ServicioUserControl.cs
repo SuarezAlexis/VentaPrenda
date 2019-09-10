@@ -28,23 +28,20 @@ namespace VentaPrenda.View.Concrete
         public event EventHandler DeleteClicked;
         public event EventHandler DataChanged;
         public event EventHandler DescuentoRequested;
+
         public int Servicios { get { return servicioComboBox.SelectedItem != null? Convert.ToInt32(cantNumUpDown.Value) : 0; } }
 
-        public PrendaItemDto Prenda;
         public ServicioItemDto Dto
         {
             get
             {
-                return new ServicioItemDto
-                {
-                    Cantidad = Convert.ToInt32(cantNumUpDown.Value),
-                    Descuento = (DescuentoDto)descuentoComboBox.SelectedItem,
-                    Encargado = (UsuarioDto)encargadoComboBox.SelectedItem,
-                    ID = _dto != null && _dto.ID >= 0 ? _dto.ID : -1,
-                    Monto = Monto,
-                    PrendaItem = Prenda,
-                    Servicio = (ServicioDto)servicioComboBox.SelectedItem
-                };
+                _dto.Cantidad = Convert.ToInt32(cantNumUpDown.Value);
+                _dto.Descuento = (DescuentoDto)descuentoComboBox.SelectedItem;
+                _dto.Encargado = (UsuarioDto)encargadoComboBox.SelectedItem;
+                _dto.ID = _dto != null && _dto.ID >= 0 ? _dto.ID : -1;
+                _dto.Monto = Monto;
+                _dto.Servicio = (ServicioDto)servicioComboBox.SelectedItem;
+                return _dto;
             }
             set
             {
@@ -61,6 +58,7 @@ namespace VentaPrenda.View.Concrete
         public ServicioUserControl()
         {
             InitializeComponent();
+            _dto = new ServicioItemDto();
             foreach(ServicioDto s in ServicioItemDto.Servicios)
             { servicioComboBox.Items.Add(s); }
             foreach(DescuentoDto d in ServicioItemDto.Descuentos)
@@ -70,10 +68,10 @@ namespace VentaPrenda.View.Concrete
         }
 
         public ServicioUserControl(PrendaItemDto Prenda) : this()
-        { this.Prenda = Prenda; }
+        { _dto.PrendaItem = Prenda; }
 
         public ServicioUserControl(ServicioItemDto Servicio) : this(Servicio.PrendaItem)
-        { this.Dto = Servicio; }
+        { Dto = Servicio; }
 
         public void OnEditClicked()
         { DeleteClicked?.Invoke(this, EventArgs.Empty); }

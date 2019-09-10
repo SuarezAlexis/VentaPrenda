@@ -20,7 +20,7 @@ namespace VentaPrenda.View.Concrete
             get
             {
                 _dto.ID = string.IsNullOrEmpty(idDataLabel.Text) ? -1 : Convert.ToInt32(idDataLabel.Text);
-                _dto.Nota = _dto.Nota != null ? _dto.Nota : new NotaDto();
+                _dto.Nota = _dto.Nota;
                 _dto.Fecha = string.IsNullOrEmpty(fechaDataLabel.Text)? DateTime.Now : Convert.ToDateTime(fechaDataLabel.Text);
                 _dto.Metodo = (MetodoPago)metodoDomUpDown.SelectedItem;
                 _dto.Monto = montoNumUpDown.Value;

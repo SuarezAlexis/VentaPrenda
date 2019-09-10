@@ -23,9 +23,23 @@ namespace VentaPrenda.DTO
             Servicios = new List<ServicioItemDto>();
         }
 
+        public PrendaItemDto(long ID) :this()
+        { this.ID = ID; }
+
         public override string ToString()
         {
             return Cantidad + " " + Prenda + " " + TipoPrenda + " " + Color;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) return false;
+            else
+            {
+                if (this == obj) return true;
+                PrendaItemDto p = (PrendaItemDto)obj;
+                return this.ID == p.ID;
+            }
         }
     }
 }
