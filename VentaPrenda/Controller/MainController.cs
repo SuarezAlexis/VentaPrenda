@@ -124,6 +124,9 @@ namespace VentaPrenda.Controller
             return 0;
         }
 
+        public void ImprimirNota(NotaDto nota)
+        { TicketPrinter.PrintTicket(nota); }
+
         /************************ MÉTODOS: Funciones ***********************/
         public void Perfiles()
         {

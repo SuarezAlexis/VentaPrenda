@@ -166,7 +166,7 @@ namespace VentaPrenda.DAO.Concrete
 
         public DataTable GetNotas()
         {
-            return MySqlDbContext.Query(LIST_SELECT_SQL);
+            return MySqlDbContext.Query(LIST_SELECT_SQL + " ORDER BY ID DESC");
         }
 
         public NotaDto GuardarNota(NotaDto dto)
@@ -223,13 +223,12 @@ namespace VentaPrenda.DAO.Concrete
                     DataTable dt = MySqlDbContext.Query(PRENDA_INSERT_SQL + insert_values + PRENDA_SELECT_SQL + " WHERE Nota = " + Prendas[0].Nota.ID + (id_list.Length > "()".Length? " AND ID NOT IN" + id_list : ""));
                     int i = 0;
                     foreach(PrendaItemDto p in Prendas)
-                    {
-                        p.ID = p.ID < 0 ? Convert.ToInt64(dt.Rows[i++]["ID"]) : p.ID;
-                        GuardarServicios(p.Servicios);
-                    }
+                    { p.ID = p.ID < 0 ? Convert.ToInt64(dt.Rows[i++]["ID"]) : p.ID; }
                 }
                 if (!String.IsNullOrEmpty(update_query))
                 { MySqlDbContext.Update(update_query); }
+                foreach (PrendaItemDto p in Prendas)
+                { GuardarServicios(p.Servicios); }
             } catch (MySqlException e)
             {
                 //Registrar en log

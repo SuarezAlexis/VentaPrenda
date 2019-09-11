@@ -114,6 +114,7 @@
     <Compile Include="Service\Cipher.cs" />
     <Compile Include="Service\DtoMapper.cs" />
     <Compile Include="Service\DtoProvider.cs" />
+    <Compile Include="Service\TicketPrinter.cs" />
     <Compile Include="View\Abstract\DetalleModelo.cs">
       <SubType>UserControl</SubType>
     </Compile>

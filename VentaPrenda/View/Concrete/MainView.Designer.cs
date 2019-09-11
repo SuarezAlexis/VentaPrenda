@@ -49,7 +49,7 @@
             this.secondaryLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.busquedaBox = new System.Windows.Forms.GroupBox();
             this.busquedaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.BusquedaTextBox = new System.Windows.Forms.TextBox();
+            this.busquedaTextBox = new System.Windows.Forms.TextBox();
             this.BusquedaButton = new System.Windows.Forms.Button();
             this.edicionBox = new System.Windows.Forms.GroupBox();
             this.edicionLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -359,7 +359,7 @@
             this.busquedaLayoutPanel.ColumnCount = 2;
             this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.busquedaLayoutPanel.Controls.Add(this.BusquedaTextBox, 0, 0);
+            this.busquedaLayoutPanel.Controls.Add(this.busquedaTextBox, 0, 0);
             this.busquedaLayoutPanel.Controls.Add(this.BusquedaButton, 1, 0);
             this.busquedaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.busquedaLayoutPanel.Location = new System.Drawing.Point(3, 16);
@@ -369,13 +369,14 @@
             this.busquedaLayoutPanel.Size = new System.Drawing.Size(617, 59);
             this.busquedaLayoutPanel.TabIndex = 0;
             // 
-            // BusquedaTextBox
+            // busquedaTextBox
             // 
-            this.BusquedaTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BusquedaTextBox.Location = new System.Drawing.Point(94, 19);
-            this.BusquedaTextBox.Name = "BusquedaTextBox";
-            this.BusquedaTextBox.Size = new System.Drawing.Size(213, 20);
-            this.BusquedaTextBox.TabIndex = 13;
+            this.busquedaTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.busquedaTextBox.Location = new System.Drawing.Point(94, 19);
+            this.busquedaTextBox.Name = "busquedaTextBox";
+            this.busquedaTextBox.Size = new System.Drawing.Size(213, 20);
+            this.busquedaTextBox.TabIndex = 13;
+            this.busquedaTextBox.TextChanged += new System.EventHandler(this.BusquedaTextBox_TextChanged);
             // 
             // BusquedaButton
             // 
@@ -687,7 +688,7 @@
         private System.Windows.Forms.Button DescuentosButton;
         private System.Windows.Forms.Button UsuariosButton;
         private System.Windows.Forms.Button PerfilesButton;
-        private System.Windows.Forms.TextBox BusquedaTextBox;
+        private System.Windows.Forms.TextBox busquedaTextBox;
         private System.Windows.Forms.Button BusquedaButton;
         private System.Windows.Forms.Button NuevoButton;
         private System.Windows.Forms.Button RegresarButton;

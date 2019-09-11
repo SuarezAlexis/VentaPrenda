@@ -50,7 +50,7 @@ namespace VentaPrenda.View.Concrete
                 descuentoComboBox.SelectedItem = value.Descuento;
                 encargadoComboBox.SelectedItem = value.Encargado;
                 servicioComboBox.SelectedItem = value.Servicio;
-                subtotalLabel.Text = "$ " + string.Format("{0:0.00}", value.Monto);
+                subtotalLabel.Text = "$ " + string.Format("{0:0.00}", value.Monto / value.Cantidad);
                 montoNumUpDown.Value = value.Monto/value.Cantidad - value.Servicio.Costo;
             }
         }

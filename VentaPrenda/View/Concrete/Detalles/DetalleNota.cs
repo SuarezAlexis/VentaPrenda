@@ -39,6 +39,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 entregadoDateTimePicker.Enabled = !value;
                 estatusComboBox.Enabled = !value && !string.IsNullOrEmpty(idDataLabel.Text);
                 observacionesTextBox.ReadOnly = value;
+                imprimirButton.Enabled = value;
             }
         }
 
@@ -131,6 +132,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             ActualizarTotalLabel();
             ActualizarDescuentoLabels();
             ActualizarPagosLabels();
+            imprimirButton.Enabled = false;
         }
 
         public override void Fill(object model)
@@ -167,178 +169,11 @@ namespace VentaPrenda.View.Concrete.Detalles
                 entregadoDateTimePicker.Value = n.Entregado;
                 estatusComboBox.SelectedItem = n.Estatus;
                 observacionesTextBox.Text = n.Observaciones;
+                imprimirButton.Enabled = !String.IsNullOrEmpty(idDataLabel.Text);
             }
         }
 
-        /************************ EventListenners **************************/
-        private void DetalleNota_Resize(object sender, EventArgs e)
-        {
-            foreach (Control c in resumenFlowLayoutPanel.Controls)
-            { c.Width = resumenFlowLayoutPanel.Width - 25; }
-            foreach (Control c in pagosFlowLayoutPanel.Controls)
-            { c.Width = pagosFlowLayoutPanel.Width - 25; }
-        }
-
-        private void ClienteComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(clienteComboBox.SelectedItem != null)
-            {
-                ClienteDto c = (ClienteDto)clienteComboBox.SelectedItem;
-                clienteDataLabel.Text = c.Nombre + "\n" + c.Telefono + "\n"
-                    + c.Domicilio + " " + c.Colonia + (String.IsNullOrEmpty(c.CP) ? "" : (" C.P. " + c.CP));
-            }
-            else
-            { clienteDataLabel.Text = ""; }
-            
-        }
-        private void ClienteComboBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-                this.SelectNextControl((Control)sender, true, true, true, true);
-        }
-        private void ClienteComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if(clienteComboBox.SelectedItem == null)
-            {
-                foreach (ClienteDto c in clienteComboBox.Items)
-                {
-                    clienteComboBox.Text = clienteComboBox.Text.Replace(" ", "");
-                    if ( !string.IsNullOrEmpty(clienteComboBox.Text) 
-                        && (c.Nombre.ToLower().IndexOf(clienteComboBox.Text.ToLower()) >= 0 
-                            || c.Telefono.IndexOf(clienteComboBox.Text) >= 0)
-                        )
-                    {
-                        clienteComboBox.SelectedItem = c;
-                        e.Cancel = false;
-                        ClienteComboBox_Validated(sender, EventArgs.Empty);
-                        break;
-                    }
-                }
-                if(clienteComboBox.SelectedItem == null)
-                {
-                    e.Cancel = true;
-                    clienteComboBox.BackColor = System.Drawing.Color.Pink;
-                    _errorProvider.SetError(clienteComboBox,"No fue posible encontrar un cliente que coincida con el criterio de búsqueda. Para continuar selecciona un cliente válido o crea uno nuevo en el apartado de clientes.");
-                    clienteDataLabel.Text = "";
-                }
-            } else
-            {
-                e.Cancel = false;
-                ClienteComboBox_Validated(sender, EventArgs.Empty);
-            }
-        }
-
-        private void ClienteComboBox_Validated(object sender, EventArgs e)
-        {
-            clienteComboBox.BackColor = SystemColors.Window;
-            _errorProvider.SetError(clienteComboBox, "");
-        }
-
-        private void AgregarPrendaButton_Click(object sender, EventArgs e)
-        {
-            NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem();
-            nuevoPrendaItem.Owner = ParentForm;
-            nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
-            nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
-            if(nuevoPrendaItem.ShowDialog() == DialogResult.OK)
-            {
-                PrendaItemDto prendaDto = nuevoPrendaItem.Dto;
-                prendaDto.Nota = _dto;
-                _dto.Prendas.Add(prendaDto);
-                AgregarPrenda(prendaDto);
-                ActualizarTotalLabel();
-                ActualizarDescuentoLabels();
-                ActualizarPagosLabels();
-            }
-        }
-        private void Prenda_Edit(object sender, EventArgs e)
-        {
-            PrendaItemDisplay display = (PrendaItemDisplay)sender;
-            PrendaItemDto prenda = display.Dto;
-            NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem(prenda);
-            nuevoPrendaItem.Owner = ParentForm;
-            nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
-            nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
-            if (nuevoPrendaItem.ShowDialog() == DialogResult.OK)
-            {
-                _dto.Prendas.Remove(prenda);
-                prenda = nuevoPrendaItem.Dto;
-                _dto.Prendas.Add(prenda);
-                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height -= display.Height;
-                display.Update(prenda);
-                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height += display.Height;
-            }
-            ActualizarTotalLabel();
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
-        }
-        private void Prenda_Delete(object sender, EventArgs e)
-        {
-            PrendaItemDisplay display = (PrendaItemDisplay)sender;
-            _dto.Prendas.Remove(display.Dto);
-            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height -= display.Height + 5;
-            resumenFlowLayoutPanel.Controls.Remove(display);
-            ActualizarTotalLabel();
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
-        }
-
-        private void AgregarPagoButton_Click(object sender, EventArgs e)
-        {
-            NuevoPago nuevoPago = new NuevoPago(new PagoDto(_dto));
-            if (nuevoPago.ShowDialog() == DialogResult.OK)
-            {
-                PagoDto pagoDto = nuevoPago.Dto;
-                pagoDto.Nota = _dto;
-                _dto.Pagos.Add(pagoDto);
-                AgregarPago(pagoDto);
-                ActualizarPagosLabels();
-            }
-        }
-        private void Pago_Edit(object sender, EventArgs e)
-        {
-            PagoDisplay display = (PagoDisplay)sender;
-            PagoDto pago = display.Dto;
-            NuevoPago nuevoPago = new NuevoPago(pago);
-            if (nuevoPago.ShowDialog() == DialogResult.OK)
-            {
-                _dto.Pagos.Remove(pago);
-                pago = nuevoPago.Dto;
-                _dto.Pagos.Add(pago);
-                display.Update(pago);
-            }
-            ActualizarPagosLabels();
-        }
-        private void Pago_Delete(object sender, EventArgs e)
-        {
-            PagoDisplay display = (PagoDisplay)sender;
-            _dto.Pagos.Remove(display.Dto);
-            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(pagosLayoutPanel)].Height -= display.Height + 5;
-            pagosFlowLayoutPanel.Controls.Remove(display);
-            ActualizarPagosLabels();
-        }
-
-        private void DescuentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
-        }
-
-        private void NuevoPrendaItem_ServiciosRequested(object sender, DescuentoEventArgs e)
-        {
-            e.ServiciosNota = Servicios;
-            e.DescuentosNota = Descuentos(e.DescuentoDto);
-            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
-        }
-
-        private void NuevoPrendaItem_MontoRequested(object sender, DescuentoEventArgs e)
-        {
-            e.MontoNota = Total;
-            e.DescuentosNota = Descuentos(e.DescuentoDto);
-            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
-        }
-
-        /**************************** Auxiliares ****************************/
+        /**************************** Métodos: Auxiliares ****************************/
         private void ActualizarTotalLabel()
         {
             decimal total = 0;
@@ -479,6 +314,182 @@ namespace VentaPrenda.View.Concrete.Detalles
 
             }
             return montoDescuento;
+        }
+
+
+        /************************ Métodos: EventListenners **************************/
+        private void DetalleNota_Resize(object sender, EventArgs e)
+        {
+            foreach (Control c in resumenFlowLayoutPanel.Controls)
+            { c.Width = resumenFlowLayoutPanel.Width - 25; }
+            foreach (Control c in pagosFlowLayoutPanel.Controls)
+            { c.Width = pagosFlowLayoutPanel.Width - 25; }
+        }
+
+        private void ClienteComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (clienteComboBox.SelectedItem != null)
+            {
+                ClienteDto c = (ClienteDto)clienteComboBox.SelectedItem;
+                clienteDataLabel.Text = c.Nombre + "\n" + c.Telefono + "\n"
+                    + c.Domicilio + " " + c.Colonia + (String.IsNullOrEmpty(c.CP) ? "" : (" C.P. " + c.CP));
+            }
+            else
+            { clienteDataLabel.Text = ""; }
+
+        }
+        private void ClienteComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+        private void ClienteComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (clienteComboBox.SelectedItem == null)
+            {
+                foreach (ClienteDto c in clienteComboBox.Items)
+                {
+                    clienteComboBox.Text = clienteComboBox.Text.Replace(" ", "");
+                    if (!string.IsNullOrEmpty(clienteComboBox.Text)
+                        && (c.Nombre.ToLower().IndexOf(clienteComboBox.Text.ToLower()) >= 0
+                            || c.Telefono.IndexOf(clienteComboBox.Text) >= 0)
+                        )
+                    {
+                        clienteComboBox.SelectedItem = c;
+                        e.Cancel = false;
+                        ClienteComboBox_Validated(sender, EventArgs.Empty);
+                        break;
+                    }
+                }
+                if (clienteComboBox.SelectedItem == null)
+                {
+                    e.Cancel = true;
+                    clienteComboBox.BackColor = System.Drawing.Color.Pink;
+                    _errorProvider.SetError(clienteComboBox, "No fue posible encontrar un cliente que coincida con el criterio de búsqueda. Para continuar selecciona un cliente válido o crea uno nuevo en el apartado de clientes.");
+                    clienteDataLabel.Text = "";
+                }
+            }
+            else
+            {
+                e.Cancel = false;
+                ClienteComboBox_Validated(sender, EventArgs.Empty);
+            }
+        }
+
+        private void ClienteComboBox_Validated(object sender, EventArgs e)
+        {
+            clienteComboBox.BackColor = SystemColors.Window;
+            _errorProvider.SetError(clienteComboBox, "");
+        }
+
+        private void AgregarPrendaButton_Click(object sender, EventArgs e)
+        {
+            NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem();
+            nuevoPrendaItem.Owner = ParentForm;
+            nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
+            nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
+            if (nuevoPrendaItem.ShowDialog() == DialogResult.OK)
+            {
+                PrendaItemDto prendaDto = nuevoPrendaItem.Dto;
+                prendaDto.Nota = _dto;
+                _dto.Prendas.Add(prendaDto);
+                AgregarPrenda(prendaDto);
+                ActualizarTotalLabel();
+                ActualizarDescuentoLabels();
+                ActualizarPagosLabels();
+            }
+        }
+        private void Prenda_Edit(object sender, EventArgs e)
+        {
+            PrendaItemDisplay display = (PrendaItemDisplay)sender;
+            PrendaItemDto prenda = display.Dto;
+            NuevoPrendaItem nuevoPrendaItem = new NuevoPrendaItem(prenda);
+            nuevoPrendaItem.Owner = ParentForm;
+            nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
+            nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
+            if (nuevoPrendaItem.ShowDialog() == DialogResult.OK)
+            {
+                _dto.Prendas.Remove(prenda);
+                prenda = nuevoPrendaItem.Dto;
+                _dto.Prendas.Add(prenda);
+                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height -= display.Height;
+                display.Update(prenda);
+                detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height += display.Height;
+            }
+            ActualizarTotalLabel();
+            ActualizarDescuentoLabels();
+            ActualizarPagosLabels();
+        }
+        private void Prenda_Delete(object sender, EventArgs e)
+        {
+            PrendaItemDisplay display = (PrendaItemDisplay)sender;
+            _dto.Prendas.Remove(display.Dto);
+            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height -= display.Height + 5;
+            resumenFlowLayoutPanel.Controls.Remove(display);
+            ActualizarTotalLabel();
+            ActualizarDescuentoLabels();
+            ActualizarPagosLabels();
+        }
+
+        private void AgregarPagoButton_Click(object sender, EventArgs e)
+        {
+            NuevoPago nuevoPago = new NuevoPago(new PagoDto(_dto));
+            if (nuevoPago.ShowDialog() == DialogResult.OK)
+            {
+                PagoDto pagoDto = nuevoPago.Dto;
+                pagoDto.Nota = _dto;
+                _dto.Pagos.Add(pagoDto);
+                AgregarPago(pagoDto);
+                ActualizarPagosLabels();
+            }
+        }
+        private void Pago_Edit(object sender, EventArgs e)
+        {
+            PagoDisplay display = (PagoDisplay)sender;
+            PagoDto pago = display.Dto;
+            NuevoPago nuevoPago = new NuevoPago(pago);
+            if (nuevoPago.ShowDialog() == DialogResult.OK)
+            {
+                _dto.Pagos.Remove(pago);
+                pago = nuevoPago.Dto;
+                _dto.Pagos.Add(pago);
+                display.Update(pago);
+            }
+            ActualizarPagosLabels();
+        }
+        private void Pago_Delete(object sender, EventArgs e)
+        {
+            PagoDisplay display = (PagoDisplay)sender;
+            _dto.Pagos.Remove(display.Dto);
+            detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(pagosLayoutPanel)].Height -= display.Height + 5;
+            pagosFlowLayoutPanel.Controls.Remove(display);
+            ActualizarPagosLabels();
+        }
+
+        private void DescuentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarDescuentoLabels();
+            ActualizarPagosLabels();
+        }
+
+        private void NuevoPrendaItem_ServiciosRequested(object sender, DescuentoEventArgs e)
+        {
+            e.ServiciosNota = Servicios;
+            e.DescuentosNota = Descuentos(e.DescuentoDto);
+            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+        }
+
+        private void NuevoPrendaItem_MontoRequested(object sender, DescuentoEventArgs e)
+        {
+            e.MontoNota = Total;
+            e.DescuentosNota = Descuentos(e.DescuentoDto);
+            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+        }
+
+        private void ImprimirButton_Click(object sender, EventArgs e)
+        {
+            IMainView mainView = (IMainView)ParentForm;
+            mainView.Controller.ImprimirNota((NotaDto)Dto);
         }
     }
 }

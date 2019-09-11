@@ -392,6 +392,24 @@ namespace VentaPrenda.View.Concrete
             }
         }
 
-        
+        private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int height = 22;
+            foreach (DataGridViewRow row in listGridView.Rows)
+            {
+                if (String.IsNullOrEmpty(busquedaTextBox.Text))
+                {  listGridView.Rows[row.Index].Height = height;  }
+                else
+                {
+                    foreach (DataGridViewTextBoxCell cell in row.Cells)
+                    {
+                        if (cell.Value.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
+                        { listGridView.Rows[row.Index].Height = height; break; }
+                        else
+                        { listGridView.Rows[row.Index].Height = 0; }
+                    }
+                }
+            }
+        }
     }
 }

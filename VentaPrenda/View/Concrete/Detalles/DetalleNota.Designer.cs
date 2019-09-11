@@ -65,6 +65,7 @@
             this.entregadoLabel = new System.Windows.Forms.Label();
             this.entregadoDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.estatusLabel = new System.Windows.Forms.Label();
+            this.estatusComboBox = new System.Windows.Forms.ComboBox();
             this.pagosLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.pagosHeaderLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.pagoFechaLabel = new System.Windows.Forms.Label();
@@ -81,7 +82,6 @@
             this.observacionesLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.observacionesLabel = new System.Windows.Forms.Label();
             this.observacionesTextBox = new System.Windows.Forms.TextBox();
-            this.estatusComboBox = new System.Windows.Forms.ComboBox();
             this.detalleNotaLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.clienteLayoutPanel.SuspendLayout();
@@ -123,7 +123,7 @@
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.detalleNotaLayoutPanel.Size = new System.Drawing.Size(445, 683);
+            this.detalleNotaLayoutPanel.Size = new System.Drawing.Size(428, 683);
             this.detalleNotaLayoutPanel.TabIndex = 0;
             // 
             // idLayoutPanel
@@ -138,7 +138,7 @@
             this.idLayoutPanel.Name = "idLayoutPanel";
             this.idLayoutPanel.RowCount = 1;
             this.idLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.idLayoutPanel.Size = new System.Drawing.Size(435, 34);
+            this.idLayoutPanel.Size = new System.Drawing.Size(418, 34);
             this.idLayoutPanel.TabIndex = 0;
             // 
             // idLabel
@@ -158,7 +158,7 @@
             this.idDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.idDataLabel.Location = new System.Drawing.Point(112, 0);
             this.idDataLabel.Name = "idDataLabel";
-            this.idDataLabel.Size = new System.Drawing.Size(320, 34);
+            this.idDataLabel.Size = new System.Drawing.Size(303, 34);
             this.idDataLabel.TabIndex = 1;
             this.idDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -177,7 +177,7 @@
             this.clienteLayoutPanel.RowCount = 1;
             this.clienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.clienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.clienteLayoutPanel.Size = new System.Drawing.Size(435, 51);
+            this.clienteLayoutPanel.Size = new System.Drawing.Size(418, 51);
             this.clienteLayoutPanel.TabIndex = 1;
             // 
             // clienteLabel
@@ -199,7 +199,7 @@
             this.clienteComboBox.FormattingEnabled = true;
             this.clienteComboBox.Location = new System.Drawing.Point(112, 15);
             this.clienteComboBox.Name = "clienteComboBox";
-            this.clienteComboBox.Size = new System.Drawing.Size(157, 21);
+            this.clienteComboBox.Size = new System.Drawing.Size(148, 21);
             this.clienteComboBox.TabIndex = 2;
             this.clienteComboBox.SelectedIndexChanged += new System.EventHandler(this.ClienteComboBox_SelectedIndexChanged);
             this.clienteComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClienteComboBox_KeyDown);
@@ -209,9 +209,9 @@
             // 
             this.clienteDataLabel.AutoSize = true;
             this.clienteDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clienteDataLabel.Location = new System.Drawing.Point(275, 0);
+            this.clienteDataLabel.Location = new System.Drawing.Point(266, 0);
             this.clienteDataLabel.Name = "clienteDataLabel";
-            this.clienteDataLabel.Size = new System.Drawing.Size(157, 51);
+            this.clienteDataLabel.Size = new System.Drawing.Size(149, 51);
             this.clienteDataLabel.TabIndex = 1;
             this.clienteDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -232,7 +232,7 @@
             this.resumenLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.resumenLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.resumenLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.resumenLayoutPanel.Size = new System.Drawing.Size(435, 104);
+            this.resumenLayoutPanel.Size = new System.Drawing.Size(418, 104);
             this.resumenLayoutPanel.TabIndex = 2;
             // 
             // resumenHeadersLayoutPanel
@@ -255,7 +255,7 @@
             this.resumenHeadersLayoutPanel.Name = "resumenHeadersLayoutPanel";
             this.resumenHeadersLayoutPanel.RowCount = 1;
             this.resumenHeadersLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.resumenHeadersLayoutPanel.Size = new System.Drawing.Size(429, 19);
+            this.resumenHeadersLayoutPanel.Size = new System.Drawing.Size(412, 19);
             this.resumenHeadersLayoutPanel.TabIndex = 0;
             // 
             // conceptoLabel
@@ -265,7 +265,7 @@
             this.conceptoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.conceptoLabel.Location = new System.Drawing.Point(68, 0);
             this.conceptoLabel.Name = "conceptoLabel";
-            this.conceptoLabel.Size = new System.Drawing.Size(48, 19);
+            this.conceptoLabel.Size = new System.Drawing.Size(31, 19);
             this.conceptoLabel.TabIndex = 0;
             this.conceptoLabel.Text = "Concepto";
             this.conceptoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -275,7 +275,7 @@
             this.subtotalLabel.AutoSize = true;
             this.subtotalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.subtotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtotalLabel.Location = new System.Drawing.Point(272, 0);
+            this.subtotalLabel.Location = new System.Drawing.Point(255, 0);
             this.subtotalLabel.Name = "subtotalLabel";
             this.subtotalLabel.Size = new System.Drawing.Size(64, 19);
             this.subtotalLabel.TabIndex = 2;
@@ -287,7 +287,7 @@
             this.precioUnitarioLabel.AutoSize = true;
             this.precioUnitarioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.precioUnitarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.precioUnitarioLabel.Location = new System.Drawing.Point(122, 0);
+            this.precioUnitarioLabel.Location = new System.Drawing.Point(105, 0);
             this.precioUnitarioLabel.Name = "precioUnitarioLabel";
             this.precioUnitarioLabel.Size = new System.Drawing.Size(74, 19);
             this.precioUnitarioLabel.TabIndex = 1;
@@ -299,7 +299,7 @@
             this.descuentoHeaderLabel.AutoSize = true;
             this.descuentoHeaderLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descuentoHeaderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descuentoHeaderLabel.Location = new System.Drawing.Point(202, 0);
+            this.descuentoHeaderLabel.Location = new System.Drawing.Point(185, 0);
             this.descuentoHeaderLabel.Name = "descuentoHeaderLabel";
             this.descuentoHeaderLabel.Size = new System.Drawing.Size(64, 19);
             this.descuentoHeaderLabel.TabIndex = 3;
@@ -310,7 +310,7 @@
             // 
             this.totalHeaderLabel.AutoSize = true;
             this.totalHeaderLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalHeaderLabel.Location = new System.Drawing.Point(342, 0);
+            this.totalHeaderLabel.Location = new System.Drawing.Point(325, 0);
             this.totalHeaderLabel.Name = "totalHeaderLabel";
             this.totalHeaderLabel.Size = new System.Drawing.Size(64, 19);
             this.totalHeaderLabel.TabIndex = 4;
@@ -320,7 +320,7 @@
             // agregarPrendaButton
             // 
             this.agregarPrendaButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.agregarPrendaButton.Location = new System.Drawing.Point(142, 77);
+            this.agregarPrendaButton.Location = new System.Drawing.Point(134, 77);
             this.agregarPrendaButton.Name = "agregarPrendaButton";
             this.agregarPrendaButton.Size = new System.Drawing.Size(150, 23);
             this.agregarPrendaButton.TabIndex = 1;
@@ -335,7 +335,7 @@
             this.resumenFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.resumenFlowLayoutPanel.Location = new System.Drawing.Point(3, 28);
             this.resumenFlowLayoutPanel.Name = "resumenFlowLayoutPanel";
-            this.resumenFlowLayoutPanel.Size = new System.Drawing.Size(429, 13);
+            this.resumenFlowLayoutPanel.Size = new System.Drawing.Size(412, 13);
             this.resumenFlowLayoutPanel.TabIndex = 2;
             this.resumenFlowLayoutPanel.WrapContents = false;
             // 
@@ -350,7 +350,7 @@
             this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
-            this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.resumenTotalLayoutPanel.Controls.Add(this.totalLabel, 6, 0);
             this.resumenTotalLayoutPanel.Controls.Add(this.totalDataLabel, 7, 0);
             this.resumenTotalLayoutPanel.Controls.Add(this.prendasLabel, 0, 0);
@@ -362,7 +362,7 @@
             this.resumenTotalLayoutPanel.Name = "resumenTotalLayoutPanel";
             this.resumenTotalLayoutPanel.RowCount = 1;
             this.resumenTotalLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.resumenTotalLayoutPanel.Size = new System.Drawing.Size(429, 24);
+            this.resumenTotalLayoutPanel.Size = new System.Drawing.Size(412, 24);
             this.resumenTotalLayoutPanel.TabIndex = 3;
             // 
             // totalLabel
@@ -370,7 +370,7 @@
             this.totalLabel.AutoSize = true;
             this.totalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLabel.Location = new System.Drawing.Point(254, 0);
+            this.totalLabel.Location = new System.Drawing.Point(234, 0);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(64, 24);
             this.totalLabel.TabIndex = 0;
@@ -382,7 +382,7 @@
             this.totalDataLabel.AutoSize = true;
             this.totalDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalDataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalDataLabel.Location = new System.Drawing.Point(324, 0);
+            this.totalDataLabel.Location = new System.Drawing.Point(304, 0);
             this.totalDataLabel.Name = "totalDataLabel";
             this.totalDataLabel.Size = new System.Drawing.Size(73, 24);
             this.totalDataLabel.TabIndex = 1;
@@ -406,7 +406,7 @@
             this.prendasDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.prendasDataLabel.Location = new System.Drawing.Point(68, 0);
             this.prendasDataLabel.Name = "prendasDataLabel";
-            this.prendasDataLabel.Size = new System.Drawing.Size(17, 24);
+            this.prendasDataLabel.Size = new System.Drawing.Size(13, 24);
             this.prendasDataLabel.TabIndex = 3;
             this.prendasDataLabel.Text = "0";
             this.prendasDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -415,9 +415,9 @@
             // 
             this.serviciosLabel.AutoSize = true;
             this.serviciosLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.serviciosLabel.Location = new System.Drawing.Point(91, 0);
+            this.serviciosLabel.Location = new System.Drawing.Point(87, 0);
             this.serviciosLabel.Name = "serviciosLabel";
-            this.serviciosLabel.Size = new System.Drawing.Size(29, 24);
+            this.serviciosLabel.Size = new System.Drawing.Size(23, 24);
             this.serviciosLabel.TabIndex = 4;
             this.serviciosLabel.Text = "Servicios:";
             this.serviciosLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -426,9 +426,9 @@
             // 
             this.serviciosDataLabel.AutoSize = true;
             this.serviciosDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.serviciosDataLabel.Location = new System.Drawing.Point(126, 0);
+            this.serviciosDataLabel.Location = new System.Drawing.Point(116, 0);
             this.serviciosDataLabel.Name = "serviciosDataLabel";
-            this.serviciosDataLabel.Size = new System.Drawing.Size(17, 24);
+            this.serviciosDataLabel.Size = new System.Drawing.Size(13, 24);
             this.serviciosDataLabel.TabIndex = 5;
             this.serviciosDataLabel.Text = "0";
             this.serviciosDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -451,7 +451,7 @@
             this.descuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.descuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.descuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.descuentoLayoutPanel.Size = new System.Drawing.Size(435, 102);
+            this.descuentoLayoutPanel.Size = new System.Drawing.Size(418, 102);
             this.descuentoLayoutPanel.TabIndex = 5;
             // 
             // descuentoLabel
@@ -482,7 +482,7 @@
             this.montoDescuentoDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.montoDescuentoDataLabel.Location = new System.Drawing.Point(112, 34);
             this.montoDescuentoDataLabel.Name = "montoDescuentoDataLabel";
-            this.montoDescuentoDataLabel.Size = new System.Drawing.Size(320, 34);
+            this.montoDescuentoDataLabel.Size = new System.Drawing.Size(303, 34);
             this.montoDescuentoDataLabel.TabIndex = 3;
             this.montoDescuentoDataLabel.Text = "$ 0.00";
             this.montoDescuentoDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -505,7 +505,7 @@
             this.totalDescuentoDataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalDescuentoDataLabel.Location = new System.Drawing.Point(112, 68);
             this.totalDescuentoDataLabel.Name = "totalDescuentoDataLabel";
-            this.totalDescuentoDataLabel.Size = new System.Drawing.Size(320, 34);
+            this.totalDescuentoDataLabel.Size = new System.Drawing.Size(303, 34);
             this.totalDescuentoDataLabel.TabIndex = 5;
             this.totalDescuentoDataLabel.Text = "$ 0.00";
             this.totalDescuentoDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -539,7 +539,7 @@
             this.estatusLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.estatusLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.estatusLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.estatusLayoutPanel.Size = new System.Drawing.Size(435, 114);
+            this.estatusLayoutPanel.Size = new System.Drawing.Size(418, 114);
             this.estatusLayoutPanel.TabIndex = 3;
             // 
             // recibidoLabel
@@ -559,7 +559,7 @@
             this.recibidoDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recibidoDataLabel.Location = new System.Drawing.Point(112, 0);
             this.recibidoDataLabel.Name = "recibidoDataLabel";
-            this.recibidoDataLabel.Size = new System.Drawing.Size(320, 40);
+            this.recibidoDataLabel.Size = new System.Drawing.Size(303, 40);
             this.recibidoDataLabel.TabIndex = 1;
             this.recibidoDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -595,6 +595,15 @@
             this.estatusLabel.Text = "Estatus";
             this.estatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // estatusComboBox
+            // 
+            this.estatusComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.estatusComboBox.FormattingEnabled = true;
+            this.estatusComboBox.Location = new System.Drawing.Point(112, 89);
+            this.estatusComboBox.Name = "estatusComboBox";
+            this.estatusComboBox.Size = new System.Drawing.Size(200, 21);
+            this.estatusComboBox.TabIndex = 5;
+            // 
             // pagosLayoutPanel
             // 
             this.pagosLayoutPanel.ColumnCount = 1;
@@ -611,7 +620,7 @@
             this.pagosLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pagosLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.pagosLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.pagosLayoutPanel.Size = new System.Drawing.Size(435, 124);
+            this.pagosLayoutPanel.Size = new System.Drawing.Size(418, 124);
             this.pagosLayoutPanel.TabIndex = 4;
             // 
             // pagosHeaderLayoutPanel
@@ -633,7 +642,7 @@
             this.pagosHeaderLayoutPanel.Name = "pagosHeaderLayoutPanel";
             this.pagosHeaderLayoutPanel.RowCount = 1;
             this.pagosHeaderLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pagosHeaderLayoutPanel.Size = new System.Drawing.Size(429, 19);
+            this.pagosHeaderLayoutPanel.Size = new System.Drawing.Size(412, 19);
             this.pagosHeaderLayoutPanel.TabIndex = 0;
             // 
             // pagoFechaLabel
@@ -642,7 +651,7 @@
             this.pagoFechaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pagoFechaLabel.Location = new System.Drawing.Point(68, 0);
             this.pagoFechaLabel.Name = "pagoFechaLabel";
-            this.pagoFechaLabel.Size = new System.Drawing.Size(115, 19);
+            this.pagoFechaLabel.Size = new System.Drawing.Size(109, 19);
             this.pagoFechaLabel.TabIndex = 0;
             this.pagoFechaLabel.Text = "Fecha";
             this.pagoFechaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -651,9 +660,9 @@
             // 
             this.pagoMetodoLabel.AutoSize = true;
             this.pagoMetodoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pagoMetodoLabel.Location = new System.Drawing.Point(189, 0);
+            this.pagoMetodoLabel.Location = new System.Drawing.Point(183, 0);
             this.pagoMetodoLabel.Name = "pagoMetodoLabel";
-            this.pagoMetodoLabel.Size = new System.Drawing.Size(115, 19);
+            this.pagoMetodoLabel.Size = new System.Drawing.Size(109, 19);
             this.pagoMetodoLabel.TabIndex = 1;
             this.pagoMetodoLabel.Text = "Método de pago";
             this.pagoMetodoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -662,9 +671,9 @@
             // 
             this.pagoMontoLabel.AutoSize = true;
             this.pagoMontoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pagoMontoLabel.Location = new System.Drawing.Point(310, 0);
+            this.pagoMontoLabel.Location = new System.Drawing.Point(298, 0);
             this.pagoMontoLabel.Name = "pagoMontoLabel";
-            this.pagoMontoLabel.Size = new System.Drawing.Size(116, 19);
+            this.pagoMontoLabel.Size = new System.Drawing.Size(111, 19);
             this.pagoMontoLabel.TabIndex = 2;
             this.pagoMontoLabel.Text = "Monto";
             this.pagoMontoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -685,7 +694,7 @@
             this.totalPagosLayoutPanel.RowCount = 2;
             this.totalPagosLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.totalPagosLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.totalPagosLayoutPanel.Size = new System.Drawing.Size(429, 44);
+            this.totalPagosLayoutPanel.Size = new System.Drawing.Size(412, 44);
             this.totalPagosLayoutPanel.TabIndex = 1;
             // 
             // totalPagadoLabel
@@ -695,7 +704,7 @@
             this.totalPagadoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalPagadoLabel.Location = new System.Drawing.Point(68, 0);
             this.totalPagadoLabel.Name = "totalPagadoLabel";
-            this.totalPagadoLabel.Size = new System.Drawing.Size(236, 22);
+            this.totalPagadoLabel.Size = new System.Drawing.Size(225, 22);
             this.totalPagadoLabel.TabIndex = 0;
             this.totalPagadoLabel.Text = "Total pagado";
             this.totalPagadoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -707,7 +716,7 @@
             this.restanteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.restanteLabel.Location = new System.Drawing.Point(68, 22);
             this.restanteLabel.Name = "restanteLabel";
-            this.restanteLabel.Size = new System.Drawing.Size(236, 22);
+            this.restanteLabel.Size = new System.Drawing.Size(225, 22);
             this.restanteLabel.TabIndex = 1;
             this.restanteLabel.Text = "Restante";
             this.restanteLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -717,9 +726,9 @@
             this.totalPagadoDataLabel.AutoSize = true;
             this.totalPagadoDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalPagadoDataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalPagadoDataLabel.Location = new System.Drawing.Point(310, 0);
+            this.totalPagadoDataLabel.Location = new System.Drawing.Point(299, 0);
             this.totalPagadoDataLabel.Name = "totalPagadoDataLabel";
-            this.totalPagadoDataLabel.Size = new System.Drawing.Size(116, 22);
+            this.totalPagadoDataLabel.Size = new System.Drawing.Size(110, 22);
             this.totalPagadoDataLabel.TabIndex = 2;
             this.totalPagadoDataLabel.Text = "$ 0.00";
             this.totalPagadoDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -729,9 +738,9 @@
             this.restanteDataLabel.AutoSize = true;
             this.restanteDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.restanteDataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.restanteDataLabel.Location = new System.Drawing.Point(310, 22);
+            this.restanteDataLabel.Location = new System.Drawing.Point(299, 22);
             this.restanteDataLabel.Name = "restanteDataLabel";
-            this.restanteDataLabel.Size = new System.Drawing.Size(116, 22);
+            this.restanteDataLabel.Size = new System.Drawing.Size(110, 22);
             this.restanteDataLabel.TabIndex = 3;
             this.restanteDataLabel.Text = "$ 0.00";
             this.restanteDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -739,7 +748,7 @@
             // agregarPagoButton
             // 
             this.agregarPagoButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.agregarPagoButton.Location = new System.Drawing.Point(142, 97);
+            this.agregarPagoButton.Location = new System.Drawing.Point(134, 97);
             this.agregarPagoButton.Name = "agregarPagoButton";
             this.agregarPagoButton.Size = new System.Drawing.Size(150, 23);
             this.agregarPagoButton.TabIndex = 2;
@@ -754,19 +763,21 @@
             this.pagosFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pagosFlowLayoutPanel.Location = new System.Drawing.Point(3, 28);
             this.pagosFlowLayoutPanel.Name = "pagosFlowLayoutPanel";
-            this.pagosFlowLayoutPanel.Size = new System.Drawing.Size(429, 13);
+            this.pagosFlowLayoutPanel.Size = new System.Drawing.Size(412, 13);
             this.pagosFlowLayoutPanel.TabIndex = 3;
             this.pagosFlowLayoutPanel.WrapContents = false;
             // 
             // imprimirButton
             // 
             this.imprimirButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.imprimirButton.Location = new System.Drawing.Point(185, 644);
+            this.imprimirButton.Enabled = false;
+            this.imprimirButton.Location = new System.Drawing.Point(176, 644);
             this.imprimirButton.Name = "imprimirButton";
             this.imprimirButton.Size = new System.Drawing.Size(75, 34);
             this.imprimirButton.TabIndex = 6;
             this.imprimirButton.Text = "Imprimir";
             this.imprimirButton.UseVisualStyleBackColor = true;
+            this.imprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // observacionesLayoutPanel
             // 
@@ -780,7 +791,7 @@
             this.observacionesLayoutPanel.Name = "observacionesLayoutPanel";
             this.observacionesLayoutPanel.RowCount = 1;
             this.observacionesLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.observacionesLayoutPanel.Size = new System.Drawing.Size(435, 54);
+            this.observacionesLayoutPanel.Size = new System.Drawing.Size(418, 54);
             this.observacionesLayoutPanel.TabIndex = 7;
             // 
             // observacionesLabel
@@ -804,15 +815,6 @@
             this.observacionesTextBox.Size = new System.Drawing.Size(200, 41);
             this.observacionesTextBox.TabIndex = 1;
             // 
-            // estatusComboBox
-            // 
-            this.estatusComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.estatusComboBox.FormattingEnabled = true;
-            this.estatusComboBox.Location = new System.Drawing.Point(112, 89);
-            this.estatusComboBox.Name = "estatusComboBox";
-            this.estatusComboBox.Size = new System.Drawing.Size(200, 21);
-            this.estatusComboBox.TabIndex = 5;
-            // 
             // DetalleNota
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -821,7 +823,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.detalleNotaLayoutPanel);
             this.Name = "DetalleNota";
-            this.Size = new System.Drawing.Size(445, 593);
+            this.Size = new System.Drawing.Size(428, 593);
             this.Resize += new System.EventHandler(this.DetalleNota_Resize);
             this.detalleNotaLayoutPanel.ResumeLayout(false);
             this.detalleNotaLayoutPanel.PerformLayout();
