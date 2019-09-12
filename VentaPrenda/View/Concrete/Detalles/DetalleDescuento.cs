@@ -135,6 +135,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 DescuentoDto d = (DescuentoDto)model;
+                Visible = false;
                 idDataLabel.Text = d.ID > 0 ? d.ID.ToString() : "";
                 nombreTextBox.Text = d.Nombre;
                 inicioVigenciaDateTimePicker.Value = d.VigenciaInicio;
@@ -163,6 +164,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     //DescuentoDomainUpDown_SelectedItemChanged(null, null);
                     descuentoNumUpDown.Value = d.Porcentaje;
                 }
+                Visible = true;
             }
         }
 

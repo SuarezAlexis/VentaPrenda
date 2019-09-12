@@ -127,6 +127,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 PerfilDto p = (PerfilDto)model;
+                Visible = false;
                 idDataLabel.Text = p.ID.ToString();
                 nombreTextBox.Text = p.Nombre;
                 int i = 0;
@@ -149,6 +150,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonCatalogos);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonUsuarios);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.AdmonPerfiles);
+                Visible = true;
             }
         }
 
@@ -261,7 +263,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             this.nombreTextBox.Location = new System.Drawing.Point(112, 7);
             this.nombreTextBox.MaxLength = 32;
             this.nombreTextBox.Name = "nombreTextBox";
-            this.nombreTextBox.Size = new System.Drawing.Size(170, 20);
+            this.nombreTextBox.Size = new System.Drawing.Size(200, 20);
             this.nombreTextBox.TabIndex = 1;
             this.nombreTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.nombreTextBox_Validating);
             this.nombreTextBox.Validated += new System.EventHandler(this.nombreTextBox_Validated);
@@ -323,7 +325,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             "Perfiles"});
             this.funcionesChecklistBox.Location = new System.Drawing.Point(112, 3);
             this.funcionesChecklistBox.Name = "funcionesChecklistBox";
-            this.funcionesChecklistBox.Size = new System.Drawing.Size(170, 152);
+            this.funcionesChecklistBox.Size = new System.Drawing.Size(200, 152);
             this.funcionesChecklistBox.TabIndex = 2;
             // 
             // permisosChecklistBox
@@ -343,7 +345,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             "Admón. Perfiles"});
             this.permisosChecklistBox.Location = new System.Drawing.Point(112, 161);
             this.permisosChecklistBox.Name = "permisosChecklistBox";
-            this.permisosChecklistBox.Size = new System.Drawing.Size(170, 152);
+            this.permisosChecklistBox.Size = new System.Drawing.Size(200, 152);
             this.permisosChecklistBox.TabIndex = 3;
             // 
             // DetallePerfil

@@ -65,6 +65,9 @@ namespace VentaPrenda.Service
             return list;
         }
 
+        public static ClienteDto ClienteStats(int ClienteID)
+        { return DaoManager.ClienteDao.GetCliente(ClienteID); }
+
         public static List<CatalogoDto> PrendasAsList()
         { return CatalogoAsList(DaoManager.CatalogoDao.GetPrendas()); }
 

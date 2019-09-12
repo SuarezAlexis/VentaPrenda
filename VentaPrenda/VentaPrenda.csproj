@@ -90,6 +90,7 @@
     <Compile Include="DTO\NotaDto.cs" />
     <Compile Include="DTO\PagoDto.cs" />
     <Compile Include="DTO\PrendaItemDto.cs" />
+    <Compile Include="DTO\ReporteDto.cs" />
     <Compile Include="DTO\ServicioDto.cs" />
     <Compile Include="DTO\ServicioItemDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
@@ -114,12 +115,25 @@
     <Compile Include="Service\Cipher.cs" />
     <Compile Include="Service\DtoMapper.cs" />
     <Compile Include="Service\DtoProvider.cs" />
+    <Compile Include="Service\Reportes.cs" />
     <Compile Include="Service\TicketPrinter.cs" />
     <Compile Include="View\Abstract\DetalleModelo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Abstract\ILoginView.cs" />
     <Compile Include="View\Abstract\IMainView.cs" />
+    <Compile Include="View\Concrete\Detalles\DetalleReporte.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleReporte.Designer.cs">
+      <DependentUpon>DetalleReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\EstadisticasClienteDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\EstadisticasClienteDisplay.Designer.cs">
+      <DependentUpon>EstadisticasClienteDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Concrete\NuevoPago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +228,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleReporte.resx">
+      <DependentUpon>DetalleReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\EstadisticasClienteDisplay.resx">
+      <DependentUpon>EstadisticasClienteDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\NuevoPago.resx">
       <DependentUpon>NuevoPago.cs</DependentUpon>
     </EmbeddedResource>

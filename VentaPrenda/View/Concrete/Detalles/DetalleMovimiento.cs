@@ -93,11 +93,13 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 MovimientoDto m = (MovimientoDto)model;
+                Visible = false;
                 idDataLabel.Text = m.ID > 0 ? m.ID.ToString() : "";
                 conceptoTextBox.Text = m.Concepto;
                 importeNumUpDown.Value = m.Importe;
                 descripcionTextBox.Text = m.Descripcion;
-                fechaDataLabel.Text = m.Fecha.ToShortDateString() + " " + m.Fecha.ToShortTimeString(); 
+                fechaDataLabel.Text = m.Fecha.ToShortDateString() + " " + m.Fecha.ToShortTimeString();
+                Visible = true;
             }
         }
 

@@ -38,14 +38,14 @@
             this.importeLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.importeLabel = new System.Windows.Forms.Label();
             this.importeNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.ingresoRadioButton = new System.Windows.Forms.RadioButton();
+            this.gastoRadioButton = new System.Windows.Forms.RadioButton();
             this.descripcionLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.descripcionLabel = new System.Windows.Forms.Label();
             this.descripcionTextBox = new System.Windows.Forms.TextBox();
             this.fechaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fechaLabel = new System.Windows.Forms.Label();
             this.fechaDataLabel = new System.Windows.Forms.Label();
-            this.ingresoRadioButton = new System.Windows.Forms.RadioButton();
-            this.gastoRadioButton = new System.Windows.Forms.RadioButton();
             this.detalleMovLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.conceptoLayoutPanel.SuspendLayout();
@@ -146,7 +146,7 @@
             this.conceptoTextBox.Location = new System.Drawing.Point(112, 7);
             this.conceptoTextBox.MaxLength = 32;
             this.conceptoTextBox.Name = "conceptoTextBox";
-            this.conceptoTextBox.Size = new System.Drawing.Size(170, 20);
+            this.conceptoTextBox.Size = new System.Drawing.Size(200, 20);
             this.conceptoTextBox.TabIndex = 1;
             this.conceptoTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.conceptoTextBox_Validating);
             this.conceptoTextBox.Validated += new System.EventHandler(this.conceptoTextBox_Validated);
@@ -204,6 +204,33 @@
             this.importeNumUpDown.ThousandsSeparator = true;
             this.importeNumUpDown.ValueChanged += new System.EventHandler(this.ImporteNumUpDown_ValueChanged);
             // 
+            // ingresoRadioButton
+            // 
+            this.ingresoRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ingresoRadioButton.AutoSize = true;
+            this.ingresoRadioButton.Checked = true;
+            this.ingresoRadioButton.Location = new System.Drawing.Point(221, 8);
+            this.ingresoRadioButton.Name = "ingresoRadioButton";
+            this.ingresoRadioButton.Size = new System.Drawing.Size(60, 17);
+            this.ingresoRadioButton.TabIndex = 2;
+            this.ingresoRadioButton.TabStop = true;
+            this.ingresoRadioButton.Text = "Ingreso";
+            this.ingresoRadioButton.UseVisualStyleBackColor = true;
+            this.ingresoRadioButton.Click += new System.EventHandler(this.IngresoRadioButton_Click);
+            // 
+            // gastoRadioButton
+            // 
+            this.gastoRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.gastoRadioButton.AutoSize = true;
+            this.gastoRadioButton.Location = new System.Drawing.Point(303, 8);
+            this.gastoRadioButton.Name = "gastoRadioButton";
+            this.gastoRadioButton.Size = new System.Drawing.Size(53, 17);
+            this.gastoRadioButton.TabIndex = 3;
+            this.gastoRadioButton.TabStop = true;
+            this.gastoRadioButton.Text = "Gasto";
+            this.gastoRadioButton.UseVisualStyleBackColor = true;
+            this.gastoRadioButton.Click += new System.EventHandler(this.GastoRadioButton_Click);
+            // 
             // descripcionLayoutPanel
             // 
             this.descripcionLayoutPanel.ColumnCount = 2;
@@ -236,7 +263,7 @@
             this.descripcionTextBox.Location = new System.Drawing.Point(112, 7);
             this.descripcionTextBox.MaxLength = 256;
             this.descripcionTextBox.Name = "descripcionTextBox";
-            this.descripcionTextBox.Size = new System.Drawing.Size(170, 20);
+            this.descripcionTextBox.Size = new System.Drawing.Size(200, 20);
             this.descripcionTextBox.TabIndex = 1;
             // 
             // fechaLayoutPanel
@@ -274,33 +301,6 @@
             this.fechaDataLabel.Size = new System.Drawing.Size(249, 34);
             this.fechaDataLabel.TabIndex = 1;
             this.fechaDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ingresoRadioButton
-            // 
-            this.ingresoRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.ingresoRadioButton.AutoSize = true;
-            this.ingresoRadioButton.Checked = true;
-            this.ingresoRadioButton.Location = new System.Drawing.Point(221, 8);
-            this.ingresoRadioButton.Name = "ingresoRadioButton";
-            this.ingresoRadioButton.Size = new System.Drawing.Size(60, 17);
-            this.ingresoRadioButton.TabIndex = 2;
-            this.ingresoRadioButton.TabStop = true;
-            this.ingresoRadioButton.Text = "Ingreso";
-            this.ingresoRadioButton.UseVisualStyleBackColor = true;
-            this.ingresoRadioButton.Click += new System.EventHandler(this.IngresoRadioButton_Click);
-            // 
-            // gastoRadioButton
-            // 
-            this.gastoRadioButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.gastoRadioButton.AutoSize = true;
-            this.gastoRadioButton.Location = new System.Drawing.Point(303, 8);
-            this.gastoRadioButton.Name = "gastoRadioButton";
-            this.gastoRadioButton.Size = new System.Drawing.Size(53, 17);
-            this.gastoRadioButton.TabIndex = 3;
-            this.gastoRadioButton.TabStop = true;
-            this.gastoRadioButton.Text = "Gasto";
-            this.gastoRadioButton.UseVisualStyleBackColor = true;
-            this.gastoRadioButton.Click += new System.EventHandler(this.GastoRadioButton_Click);
             // 
             // DetalleMovimiento
             // 

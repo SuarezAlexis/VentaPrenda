@@ -16,6 +16,7 @@ namespace VentaPrenda.DAO.Concrete
         private static readonly string PRENDA_SELECT_SQL = "SELECT * FROM PrendaItem";
         private static readonly string SERVICIO_SELECT_SQL = "SELECT * FROM ServicioItem";
         private static readonly string PAGO_SELECT_SQL = "SELECT * FROM Pago";
+        private static readonly string SELECT_CLIENTE_STATS_SQL = "SELECT * FROM ClienteStatsView";
 
         private static readonly string INSERT_SQL = "INSERT INTO Nota (Estatus,Cliente,Recibido,Entregado,Observaciones,Descuento) VALUES (@Estatus,@Cliente,CURRENT_TIMESTAMP,@Entregado,@Observaciones,@Descuento); SELECT last_insert_id();";
         private static readonly string PRENDA_INSERT_SQL = "INSERT INTO PrendaItem(Nota,Cantidad,Prenda,Tipo,Color) VALUES";
@@ -160,6 +161,20 @@ namespace VentaPrenda.DAO.Concrete
                     Monto = Convert.ToDecimal(dr["Monto"]),
                     Metodo = (MetodoPago)Enum.Parse( typeof(MetodoPago), dr["Metodo"].ToString())
                 });
+            }
+            foreach (DataRow dr in MySqlDbContext.Query(SELECT_CLIENTE_STATS_SQL + " WHERE ID = " + notaDto.Cliente.ID).Rows)
+            {
+                notaDto.Cliente.Estadisticas.MontoTotal += Convert.ToDecimal(dr["Monto"].GetType() != typeof(DBNull) ? dr["Monto"] : 0);
+                notaDto.Cliente.Estadisticas.NotasTotal++;
+                notaDto.Cliente.Estadisticas.PrendasTotal += Convert.ToInt32(dr["Prendas"]);
+                notaDto.Cliente.Estadisticas.ServiciosTotal += Convert.ToInt32(dr["Servicios"]);
+                if (Convert.ToDateTime(dr["Fecha"]) >= notaDto.Cliente.Estadisticas.Periodo)
+                {
+                    notaDto.Cliente.Estadisticas.MontoPeriodo += Convert.ToDecimal(dr["Monto"].GetType() != typeof(DBNull) ? dr["Monto"] : 0);
+                    notaDto.Cliente.Estadisticas.NotasPeriodo++;
+                    notaDto.Cliente.Estadisticas.PrendasPeriodo += Convert.ToInt32(dr["Prendas"]);
+                    notaDto.Cliente.Estadisticas.ServiciosPeriodo += Convert.ToInt32(dr["Servicios"]);
+                }
             }
             return notaDto;
         }

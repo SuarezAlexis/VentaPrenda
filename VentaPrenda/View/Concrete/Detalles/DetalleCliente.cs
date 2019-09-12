@@ -104,6 +104,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 ClienteDto c = (ClienteDto)model;
+                Visible = false;
                 idDataLabel.Text = c.ID > 0 ? c.ID.ToString() : "";
                 nombreTextBox.Text = c.Nombre;
                 domicilioTextBox.Text = c.Domicilio;
@@ -112,6 +113,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                 telefonoTextBox.Text = c.Telefono;
                 emailTextBox.Text = c.Email;
                 habilitadoCheckBox.Checked = c.Habilitado;
+                clienteStatsDisplay.Fill(c.Estadisticas);
+                Visible = true;
             }
         }
 

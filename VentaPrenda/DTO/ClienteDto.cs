@@ -16,6 +16,13 @@ namespace VentaPrenda.DTO
         public string Telefono { get; set; }
         public string Email { get; set; }
         public bool Habilitado { get; set; }
+        public EstadisticasCliente Estadisticas { get; set; }
+
+        public ClienteDto()
+        {
+            ID = -1;
+            Estadisticas = new EstadisticasCliente();
+        }
 
         public override string ToString()
         {
@@ -32,5 +39,18 @@ namespace VentaPrenda.DTO
                 return ID == c.ID;
             }
         }
+    }
+
+    public class EstadisticasCliente
+    {
+        public DateTime Periodo = DateTime.Now.AddMonths(-1);
+        public int NotasTotal;
+        public int NotasPeriodo;
+        public int ServiciosTotal;
+        public int ServiciosPeriodo;
+        public int PrendasTotal;
+        public int PrendasPeriodo;
+        public decimal MontoTotal;
+        public decimal MontoPeriodo;
     }
 }

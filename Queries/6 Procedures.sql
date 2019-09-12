@@ -126,3 +126,46 @@ BEGIN
 	COMMIT;
 END$$
 DELIMITER ;
+
+USE `VentaPrenda`;
+DROP procedure IF EXISTS `sp_ReporteNotas`;
+
+DELIMITER $$
+CREATE PROCEDURE `sp_ReporteNotas` (p_Inicio DATETIME, p_Fin DATETIME)
+BEGIN
+	SELECT 
+		Notas.Nota, 
+		SUM(Prendas) Prendas, 
+		SUM(Servicios) Servicios, 
+		SUM(Monto) Monto, 
+		IF(Descuento IS NULL, 0, SUM(Monto)*Descuento) Descuento, 
+		IF(Descuento IS NULL, SUM(Monto), SUM(Monto) * (1 - Descuento)) 'Total a pagar', 
+		Efectivo,
+		Tarjeta,
+		`Total ingresos`,
+		IF(Descuento IS NULL, SUM(Monto), SUM(Monto) * (1 - Descuento)) - `Total ingresos` 'Por cobrar'
+	FROM
+	(
+	SELECT N.ID Nota, N.Recibido Fecha, P.Cantidad Prendas, SUM(P.Cantidad*S.Cantidad) Servicios, SUM(P.Cantidad*S.Monto) Monto, D.Porcentaje * 0.01 Descuento
+	FROM Nota N
+	JOIN PrendaItem P ON(P.Nota = N.ID)
+	JOIN ServicioItem S ON(S.PrendaItem = P.ID)
+	LEFT JOIN Descuento D ON(D.ID = N.Descuento)
+	GROUP BY N.ID, P.ID
+	) Notas
+	JOIN
+	(
+	SELECT 
+		Nota, 
+		SUM(IF(Metodo = 'Efectivo', Monto, 0)) Efectivo, 
+		SUM(IF(Metodo = 'Tarjeta', Monto,0)) Tarjeta,
+		SUM(IF(Metodo = 'Efectivo', Monto, 0))+SUM(IF(Metodo = 'Tarjeta', Monto,0)) 'Total ingresos'
+	FROM Pago
+	WHERE Fecha BETWEEN p_Inicio AND p_Fin
+	GROUP BY Nota
+	) Pagos ON(Pagos.Nota = Notas.Nota)
+	GROUP BY Notas.Nota;
+END$$
+
+DELIMITER ;
+

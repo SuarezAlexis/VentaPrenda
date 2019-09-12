@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.detalleClienteLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.idLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.idLabel = new System.Windows.Forms.Label();
             this.idDataLabel = new System.Windows.Forms.Label();
@@ -53,7 +53,8 @@
             this.habilitadoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.habilitadoLabel = new System.Windows.Forms.Label();
             this.habilitadoCheckBox = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.clienteStatsDisplay = new VentaPrenda.View.Concrete.EstadisticasClienteDisplay();
+            this.detalleClienteLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.nombreLayoutPanel.SuspendLayout();
             this.domicilioLayoutPanel.SuspendLayout();
@@ -64,42 +65,36 @@
             this.habilitadoLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // detalleClienteLayoutPanel
             // 
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.idLayoutPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.nombreLayoutPanel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.domicilioLayoutPanel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.coloniaLayoutPanel, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.cpLayoutPanel, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.telefonoLayoutPanel, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.emailLayoutPanel, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.habilitadoLayoutPanel, 0, 7);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(374, 410);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.detalleClienteLayoutPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.detalleClienteLayoutPanel.ColumnCount = 1;
+            this.detalleClienteLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.detalleClienteLayoutPanel.Controls.Add(this.idLayoutPanel, 0, 0);
+            this.detalleClienteLayoutPanel.Controls.Add(this.nombreLayoutPanel, 0, 1);
+            this.detalleClienteLayoutPanel.Controls.Add(this.domicilioLayoutPanel, 0, 2);
+            this.detalleClienteLayoutPanel.Controls.Add(this.coloniaLayoutPanel, 0, 3);
+            this.detalleClienteLayoutPanel.Controls.Add(this.cpLayoutPanel, 0, 4);
+            this.detalleClienteLayoutPanel.Controls.Add(this.telefonoLayoutPanel, 0, 5);
+            this.detalleClienteLayoutPanel.Controls.Add(this.emailLayoutPanel, 0, 6);
+            this.detalleClienteLayoutPanel.Controls.Add(this.habilitadoLayoutPanel, 0, 7);
+            this.detalleClienteLayoutPanel.Controls.Add(this.clienteStatsDisplay, 0, 8);
+            this.detalleClienteLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detalleClienteLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.detalleClienteLayoutPanel.Name = "detalleClienteLayoutPanel";
+            this.detalleClienteLayoutPanel.RowCount = 10;
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.detalleClienteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.detalleClienteLayoutPanel.Size = new System.Drawing.Size(374, 500);
+            this.detalleClienteLayoutPanel.TabIndex = 0;
             // 
             // idLayoutPanel
             // 
@@ -388,15 +383,23 @@
             this.habilitadoCheckBox.TabIndex = 1;
             this.habilitadoCheckBox.UseVisualStyleBackColor = true;
             // 
+            // clienteStatsDisplay
+            // 
+            this.clienteStatsDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clienteStatsDisplay.Location = new System.Drawing.Point(5, 341);
+            this.clienteStatsDisplay.Name = "clienteStatsDisplay";
+            this.clienteStatsDisplay.Size = new System.Drawing.Size(364, 64);
+            this.clienteStatsDisplay.TabIndex = 8;
+            // 
             // DetalleCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.detalleClienteLayoutPanel);
             this.Name = "DetalleCliente";
-            this.Size = new System.Drawing.Size(374, 410);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(374, 500);
+            this.detalleClienteLayoutPanel.ResumeLayout(false);
             this.idLayoutPanel.ResumeLayout(false);
             this.idLayoutPanel.PerformLayout();
             this.nombreLayoutPanel.ResumeLayout(false);
@@ -419,7 +422,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel detalleClienteLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel idLayoutPanel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Label idDataLabel;
@@ -444,5 +447,6 @@
         private System.Windows.Forms.TextBox telefonoTextBox;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.CheckBox habilitadoCheckBox;
+        private EstadisticasClienteDisplay clienteStatsDisplay;
     }
 }

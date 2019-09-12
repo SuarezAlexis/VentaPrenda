@@ -88,9 +88,11 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 CatalogoDto c = (CatalogoDto)model;
+                Visible = false;
                 idDataLabel.Text = c.ID > 0 ? c.ID.ToString() : "";
                 nombreTextBox.Text = c.Nombre;
                 habilitadoCheckBox.Checked = c.Habilitado;
+                Visible = true;
             }
         }
 

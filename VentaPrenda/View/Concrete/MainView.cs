@@ -106,6 +106,8 @@ namespace VentaPrenda.View.Concrete
         {
             ClearFunctionButtons();
             Detalle = newDetalle(errorProvider);
+            listGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            listGridView.MultiSelect = false;
             switch (Controller.Funcion)
             {
                 case Funcion.NINGUNA:
@@ -146,6 +148,9 @@ namespace VentaPrenda.View.Concrete
                     break;
                 case Funcion.REPORTES:
                     ReportesButton.BackColor = ActiveColor;
+                    listGridView.SelectionMode = DataGridViewSelectionMode.CellSelect;
+                    listGridView.MultiSelect = true;
+                    SetSelectButtonsEnabled(false);
                     break;
                 case Funcion.HISTORIAL:
                     HistorialButton.BackColor = ActiveColor;
@@ -271,8 +276,7 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.BALANCE:
                     return new DetalleMovimiento(errorProvider);
                 case Funcion.REPORTES:
-
-                    break;
+                    return new DetalleReporte(errorProvider);
                 case Funcion.HISTORIAL:
 
                     break;
@@ -282,69 +286,48 @@ namespace VentaPrenda.View.Concrete
 
         /******************** MÉTODOS: EventHandlers *******************/
         private void PerfilesButton_Click(object sender, EventArgs e)
-        {
-            Controller.Perfiles();
-        }
+        { Controller.Perfiles(); }
 
         private void UsuariosButton_Click(object sender, EventArgs e)
-        {
-            Controller.Usuarios();
-        }
+        { Controller.Usuarios(); }
 
         public void ColoresButton_Click(object sender, EventArgs e)
-        {
-            Controller.Colores();
-        }
+        { Controller.Colores(); }
 
         public void PrendasButton_Click(object sender, EventArgs e)
-        {
-            Controller.Prendas();
-        }
+        { Controller.Prendas(); }
 
         public void TiposButton_Click(object sender, EventArgs e)
-        {
-            Controller.TiposPrenda();
-        }
+        { Controller.TiposPrenda(); } 
 
         public void ServiciosButton_Click(object sender, EventArgs e)
-        {
-            Controller.Servicios();
-        }
+        { Controller.Servicios(); }
 
         public void DescuentosButton_Click(object sender, EventArgs e)
-        {
-            Controller.Descuentos();
-        }
+        { Controller.Descuentos(); }
 
         public void NotasButton_Click(object sender, EventArgs e)
-        {
-            Controller.Notas();
-        }
+        { Controller.Notas(); }
 
         public void ClientesButton_Click(object sender, EventArgs e)
-        {
-            Controller.Clientes();
-        }
+        { Controller.Clientes(); }
 
         public void BalanceButton_Click(object sender, EventArgs e)
-        {
-            Controller.Balance();
-        }
+        { Controller.Balance(); }
 
         public void ReportesButton_Click(object sender, EventArgs e)
-        {
-            Controller.Reportes();
-        }
+        { Controller.Reportes(); }
 
         public void HistorialButton_Click(object sender, EventArgs e)
-        {
-            Controller.Historial();
-        }
+        { Controller.Historial(); }
 
         private void ListGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Controller.FillDetalle(Convert.ToInt64(listGridView.SelectedRows[0].Cells[0].Value));
-            objetoLabel.Text = Detalle.Dto.ToString();
+            if(listGridView.SelectedRows.Count > 0)
+            {
+                Controller.FillDetalle(Convert.ToInt64(listGridView.SelectedRows[0].Cells[0].Value));
+                objetoLabel.Text = Detalle.Dto.ToString();
+            }
         }
 
         /******************** MÉTODOS: EventHandlers *******************/
@@ -355,14 +338,10 @@ namespace VentaPrenda.View.Concrete
         }
 
         private void EditarButton_Click(object sender, EventArgs e)
-        {
-            Controller.Editar();
-        }
+        { Controller.Editar(); }
 
         private void LimpiarButton_Click(object sender, EventArgs e)
-        {
-            Detalle.Clear();
-        }
+        { Detalle.Clear(); }
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
@@ -410,6 +389,11 @@ namespace VentaPrenda.View.Concrete
                     }
                 }
             }
+        }
+
+        private void ListGridView_DataSourceChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

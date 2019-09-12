@@ -533,6 +533,7 @@
             this.listGridView.AllowUserToDeleteRows = false;
             this.listGridView.AllowUserToOrderColumns = true;
             this.listGridView.AllowUserToResizeRows = false;
+            this.listGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.listGridView.CausesValidation = false;
             this.listGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -546,6 +547,7 @@
             this.listGridView.ShowEditingIcon = false;
             this.listGridView.Size = new System.Drawing.Size(621, 672);
             this.listGridView.TabIndex = 0;
+            this.listGridView.DataSourceChanged += new System.EventHandler(this.ListGridView_DataSourceChanged);
             this.listGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListGridView_CellDoubleClick);
             // 
             // detalleBox

@@ -125,7 +125,26 @@ namespace VentaPrenda.Controller
         }
 
         public void ImprimirNota(NotaDto nota)
-        { TicketPrinter.PrintTicket(nota); }
+        { TicketPrinter.PrintTicket(nota,Usuario); }
+
+        public ClienteDto ClienteStats(ClienteDto Dto)
+        {
+            Dto.Estadisticas = DtoProvider.ClienteStats(Dto.ID).Estadisticas;
+            return Dto;
+        }
+
+        public void Reporte(ReporteDto Dto)
+        {
+            switch(Dto.Tipo)
+            {
+                case TipoReporte.Clientes:
+                    _mainView.DataSource = Service.Reportes.Clientes(Dto.Desde, Dto.Hasta);
+                    break;
+                case TipoReporte.Ingresos:
+                    _mainView.DataSource = Service.Reportes.Ingresos(Dto.Desde,Dto.Hasta);
+                    break;
+            }
+        }
 
         /************************ MÉTODOS: Funciones ***********************/
         public void Perfiles()
@@ -233,6 +252,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.REPORTES;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = null;
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -411,5 +431,6 @@ namespace VentaPrenda.Controller
             Modo = Modo.SELECCION;
             _mainView.UpdateModo();
         }
+
     }
 }

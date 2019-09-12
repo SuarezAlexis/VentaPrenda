@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VentaPrenda.DTO;
+using VentaPrenda.Model;
 
 namespace VentaPrenda.Service
 {
@@ -18,7 +19,7 @@ namespace VentaPrenda.Service
         public static Margins Margins = new Margins(15, 15, 15, 15);
         static private NotaDto Nota;
         
-        public static void PrintTicket(NotaDto nota)
+        public static void PrintTicket(NotaDto nota, Usuario usuario)
         {
             Nota = nota;
             PrintDocument pd = new PrintDocument();

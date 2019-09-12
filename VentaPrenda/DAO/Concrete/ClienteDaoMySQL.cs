@@ -14,6 +14,7 @@ namespace VentaPrenda.DAO.Concrete
     public class ClienteDaoMySQL : IClienteDao
     {
         private static readonly string SELECT_SQL = "SELECT * FROM Cliente";
+        private static readonly string SELECT_STATS_SQL = "SELECT * FROM ClienteStatsView";
         private static readonly string INSERT_SQL = "INSERT INTO Cliente(Nombre,Domicilio,Colonia,CP,Telefono,Email,Habilitado) VALUES(@Nombre,@Domicilio,@Colonia,@CP,@Telefono,@Email,@Habilitado); SELECT LAST_INSERT_ID();";
         private static readonly string UPDATE_SQL = "UPDATE Cliente SET Nombre = @Nombre, Domicilio = @Domicilio, Colonia = @Colonia, CP = @CP, Telefono = @Telefono, Email = @Email,Habilitado = @Habilitado WHERE ID = @ID";
         private static readonly string DELETE_SQL = "sp_DeleteCliente";
@@ -49,7 +50,22 @@ namespace VentaPrenda.DAO.Concrete
         public ClienteDto GetCliente(int id)
         {
             DataTable dt = MySqlDbContext.Query(SELECT_SQL + " WHERE ID = " + id);
-            return dt.Rows.Count > 0 ? Map(dt.Rows[0]) : null;
+            ClienteDto c = dt.Rows.Count > 0? Map(dt.Rows[0]) : null;
+            foreach(DataRow dr in MySqlDbContext.Query(SELECT_STATS_SQL + " WHERE ID = " + id).Rows)
+            {
+                c.Estadisticas.MontoTotal += Convert.ToDecimal(dr["Monto"].GetType() != typeof(DBNull) ? dr["Monto"] : 0);
+                c.Estadisticas.NotasTotal++;
+                c.Estadisticas.PrendasTotal += Convert.ToInt32(dr["Prendas"]);
+                c.Estadisticas.ServiciosTotal += Convert.ToInt32(dr["Servicios"]);
+                if(Convert.ToDateTime(dr["Fecha"]) >= c.Estadisticas.Periodo)
+                {
+                    c.Estadisticas.MontoPeriodo += Convert.ToDecimal(dr["Monto"].GetType() != typeof(DBNull) ? dr["Monto"] : 0);
+                    c.Estadisticas.NotasPeriodo++;
+                    c.Estadisticas.PrendasPeriodo += Convert.ToInt32(dr["Prendas"]);
+                    c.Estadisticas.ServiciosPeriodo += Convert.ToInt32(dr["Servicios"]);    
+                }
+            }
+            return c;
         }
 
         public DataTable GetClientes()

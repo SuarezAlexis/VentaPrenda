@@ -93,6 +93,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         public DetalleNota()
         {
             InitializeComponent();
+            Visible = false;
             entregadoDateTimePicker.MinDate = DateTime.Now;
             _dto = new NotaDto();
             foreach (ClienteDto c in NotaDto.Clientes)
@@ -103,6 +104,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             foreach(Estatus s in Enum.GetValues(typeof(Estatus)))
             { estatusComboBox.Items.Add(s); }
             estatusComboBox.SelectedIndex = 0;
+            Visible = true;
         }
 
         public DetalleNota(ErrorProvider e) : this()
@@ -150,8 +152,10 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 NotaDto n = (NotaDto)model;
+                Visible = false;
                 idDataLabel.Text = n.ID > 0 ? n.ID.ToString() : "";
                 clienteComboBox.SelectedItem = n.Cliente;
+                clienteStatsDisplay.Fill(n.Cliente.Estadisticas);
                 resumenFlowLayoutPanel.Controls.Clear();
                 detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height = 110;
                 foreach (PrendaItemDto p in n.Prendas)
@@ -170,6 +174,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 estatusComboBox.SelectedItem = n.Estatus;
                 observacionesTextBox.Text = n.Observaciones;
                 imprimirButton.Enabled = !String.IsNullOrEmpty(idDataLabel.Text);
+                Visible = true;
             }
         }
 
@@ -333,9 +338,13 @@ namespace VentaPrenda.View.Concrete.Detalles
                 ClienteDto c = (ClienteDto)clienteComboBox.SelectedItem;
                 clienteDataLabel.Text = c.Nombre + "\n" + c.Telefono + "\n"
                     + c.Domicilio + " " + c.Colonia + (String.IsNullOrEmpty(c.CP) ? "" : (" C.P. " + c.CP));
+                clienteStatsDisplay.Fill(((IMainView)ParentForm).Controller.ClienteStats(c).Estadisticas);
             }
             else
-            { clienteDataLabel.Text = ""; }
+            {
+                clienteDataLabel.Text = "";
+                clienteStatsDisplay.Clear();
+            }
 
         }
         private void ClienteComboBox_KeyDown(object sender, KeyEventArgs e)

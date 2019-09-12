@@ -95,11 +95,13 @@ namespace VentaPrenda.View.Concrete.Detalles
             else
             {
                 ServicioDto s = (ServicioDto)model;
+                Visible = false;
                 idDataLabel.Text = s.ID > 0 ? s.ID.ToString() : "";
                 nombreTextBox.Text = s.Nombre;
                 costoNumUpDown.Value = s.Costo;
                 descripcionTextBox.Text = s.Descripcion;
                 habilitadoCheckBox.Checked = s.Habilitado;
+                Visible = true;
             }
         }
 

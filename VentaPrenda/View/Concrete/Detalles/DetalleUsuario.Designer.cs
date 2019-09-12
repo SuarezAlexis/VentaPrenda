@@ -166,7 +166,7 @@
             this.usernameTextBox.Location = new System.Drawing.Point(148, 7);
             this.usernameTextBox.MaxLength = 32;
             this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(170, 20);
+            this.usernameTextBox.Size = new System.Drawing.Size(200, 20);
             this.usernameTextBox.TabIndex = 1;
             this.usernameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.usernameTextBox_Validating);
             this.usernameTextBox.Validated += new System.EventHandler(this.usernameTextBox_Validated);
@@ -203,7 +203,7 @@
             this.nombreTextBox.Location = new System.Drawing.Point(148, 7);
             this.nombreTextBox.MaxLength = 128;
             this.nombreTextBox.Name = "nombreTextBox";
-            this.nombreTextBox.Size = new System.Drawing.Size(170, 20);
+            this.nombreTextBox.Size = new System.Drawing.Size(200, 20);
             this.nombreTextBox.TabIndex = 1;
             this.nombreTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.nombreTextBox_Validating);
             this.nombreTextBox.Validated += new System.EventHandler(this.nombreTextBox_Validated);
@@ -241,7 +241,7 @@
             this.passwordTextBox.MaxLength = 64;
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '•';
-            this.passwordTextBox.Size = new System.Drawing.Size(170, 20);
+            this.passwordTextBox.Size = new System.Drawing.Size(200, 20);
             this.passwordTextBox.TabIndex = 1;
             this.passwordTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.passwordTextBox_Validating);
             this.passwordTextBox.Validated += new System.EventHandler(this.passwordTextBox_Validated);
@@ -279,7 +279,7 @@
             this.confirmaTextBox.MaxLength = 64;
             this.confirmaTextBox.Name = "confirmaTextBox";
             this.confirmaTextBox.PasswordChar = '•';
-            this.confirmaTextBox.Size = new System.Drawing.Size(170, 20);
+            this.confirmaTextBox.Size = new System.Drawing.Size(200, 20);
             this.confirmaTextBox.TabIndex = 1;
             this.confirmaTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.confirmaTextBox_Validating);
             this.confirmaTextBox.Validated += new System.EventHandler(this.confirmaTextBox_Validated);
@@ -424,7 +424,7 @@
             this.perfilesListBox.FormattingEnabled = true;
             this.perfilesListBox.Location = new System.Drawing.Point(148, 3);
             this.perfilesListBox.Name = "perfilesListBox";
-            this.perfilesListBox.Size = new System.Drawing.Size(170, 49);
+            this.perfilesListBox.Size = new System.Drawing.Size(200, 49);
             this.perfilesListBox.TabIndex = 1;
             // 
             // DetalleUsuario

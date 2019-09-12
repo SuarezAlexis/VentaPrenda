@@ -107,6 +107,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             } else
             {
                 UsuarioDto u = (UsuarioDto)model;
+                Visible = false;
                 idDataLabel.Text = u.ID > 0? u.ID.ToString() : "";
                 usernameTextBox.Text = u.Username;
                 nombreTextBox.Text = u.Nombre;
@@ -120,6 +121,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     perfilesListBox.Items.Add(kvp.Key);
                     perfilesListBox.SetItemChecked(i++,kvp.Value);
                 }
+                Visible = true;
             }
         }
 
