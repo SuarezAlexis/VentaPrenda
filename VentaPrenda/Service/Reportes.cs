@@ -12,6 +12,7 @@ namespace VentaPrenda.Service
     {
         private static readonly string INGRESOS_SQL = "sp_ReporteNotas";
         private static readonly string CLIENTES_SQL = "SELECT C.ID, C.Nombre, SUM(Monto) Monto, SUM(Prendas) Prendas, SUM(Servicios) Servicios, C.Domicilio, C.Colonia, C.CP, C.Email, C.Habilitado FROM ClienteStatsView CSV JOIN Cliente C ON(C.ID = CSV.ID)WHERE Fecha BETWEEN  @Inicio AND @Fin GROUP BY ID";
+        private static readonly string CLIENTE_STATS_SQL = "SELECT SUM(Monto) Monto, SUM(Prendas) Prendas, SUM(Servicios) Servicios FROM ClienteStatsView WHERE ID = @ID AND Fecha >= TIMESTAMP(@Fecha)";
 
 
         public static DataTable Ingresos(DateTime desde, DateTime hasta)
@@ -28,6 +29,24 @@ namespace VentaPrenda.Service
             param.Add("@Inicio", desde);
             param.Add("@Fin", hasta.AddDays(1));
             return MySqlDbContext.Query(CLIENTES_SQL,param);
+        }
+
+        public static decimal MontoAcumulado(int clienteID, DateTime desde)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("@ID", clienteID);
+            param.Add("@Fecha", desde);
+            DataTable dt = MySqlDbContext.Query(CLIENTE_STATS_SQL, param);
+            return dt.Rows.Count > 0 && dt.Rows[0]["Monto"].GetType() != typeof(DBNull)? Convert.ToDecimal(dt.Rows[0]["Monto"]) : 0M;
+        }
+
+        public static int ServiciosAcumulados(int clienteID, DateTime desde)
+        {
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("@ID", clienteID);
+            param.Add("@Fecha", desde);
+            DataTable dt = MySqlDbContext.Query(CLIENTE_STATS_SQL, param);
+            return dt.Rows.Count > 0 && dt.Rows[0]["Servicios"].GetType() != typeof(DBNull)? Convert.ToInt32(dt.Rows[0]["Servicios"]) : 0;
         }
     }
 }

@@ -115,14 +115,10 @@ namespace VentaPrenda.Controller
         }
         
         public decimal MontoAcumulado(int clienteID, DateTime desde)
-        {
-            return 0;
-        }
+        { return Service.Reportes.MontoAcumulado(clienteID, desde); }
 
         public int ServiciosAcumulados(int clienteID, DateTime desde)
-        {
-            return 0;
-        }
+        { return Service.Reportes.ServiciosAcumulados(clienteID, desde); }
 
         public void ImprimirNota(NotaDto nota)
         { TicketPrinter.PrintTicket(nota,Usuario); }

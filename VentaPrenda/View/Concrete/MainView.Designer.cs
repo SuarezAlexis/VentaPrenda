@@ -222,7 +222,7 @@
             this.BalanceButton.Name = "BalanceButton";
             this.BalanceButton.Size = new System.Drawing.Size(118, 52);
             this.BalanceButton.TabIndex = 2;
-            this.BalanceButton.Text = "Balance";
+            this.BalanceButton.Text = "Gastos";
             this.BalanceButton.UseVisualStyleBackColor = true;
             this.BalanceButton.Click += new System.EventHandler(this.BalanceButton_Click);
             // 
