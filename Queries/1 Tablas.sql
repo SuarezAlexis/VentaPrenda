@@ -32,15 +32,17 @@ CREATE TABLE `Descuento` (
   UNIQUE KEY `Nombre_UNIQUE` (`Nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
 CREATE TABLE `Movimiento` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `Concepto` varchar(32) NOT NULL,
   `Importe` decimal(8,2) NOT NULL,
   `Fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Descripcion` varchar(256) DEFAULT NULL,
+  `NumFactura` varchar(64) DEFAULT NULL,
+  `RFC` varchar(15) DEFAULT NULL,
+  `FechaFactura` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `Perfil` (
   `ID` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -119,8 +121,6 @@ CREATE TABLE `Pago` (
   CONSTRAINT `Pago_Ref_Nota` FOREIGN KEY (`Nota`) REFERENCES `nota` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-
 CREATE TABLE `PrendaItem` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `Nota` bigint(20) NOT NULL,
@@ -158,3 +158,11 @@ CREATE TABLE `ServicioItem` (
   CONSTRAINT `ServicioItem_Ref_Usuario` FOREIGN KEY (`Encargado`) REFERENCES `usuario` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `Servicio_Prenda` (
+  `Servicio` int(11) NOT NULL,
+  `Prenda` smallint(6) NOT NULL,
+  PRIMARY KEY (`Servicio`,`Prenda`),
+  KEY `ServicioPrenda_Ref_Prenda_idx` (`Prenda`),
+  CONSTRAINT `ServicioPrenda_Ref_Prenda` FOREIGN KEY (`Prenda`) REFERENCES `prenda` (`ID`),
+  CONSTRAINT `ServicioPrenda_Ref_Servicio` FOREIGN KEY (`Servicio`) REFERENCES `servicio` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

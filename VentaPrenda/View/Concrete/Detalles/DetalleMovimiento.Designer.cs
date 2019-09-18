@@ -45,7 +45,19 @@
             this.descripcionTextBox = new System.Windows.Forms.TextBox();
             this.fechaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fechaLabel = new System.Windows.Forms.Label();
-            this.fechaDataLabel = new System.Windows.Forms.Label();
+            this.fechaDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.numFacturaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.numFacturaLabel = new System.Windows.Forms.Label();
+            this.numFacturaTextBox = new System.Windows.Forms.TextBox();
+            this.rfcLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.rfcLabel = new System.Windows.Forms.Label();
+            this.rfcTextBox = new System.Windows.Forms.TextBox();
+            this.fechaFacturaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.fechaFacturaLabel = new System.Windows.Forms.Label();
+            this.fechaFacturaDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.deducibleLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.deducibleLabel = new System.Windows.Forms.Label();
+            this.deducibleCheckBox = new System.Windows.Forms.CheckBox();
             this.detalleMovLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.conceptoLayoutPanel.SuspendLayout();
@@ -53,6 +65,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.importeNumUpDown)).BeginInit();
             this.descripcionLayoutPanel.SuspendLayout();
             this.fechaLayoutPanel.SuspendLayout();
+            this.numFacturaLayoutPanel.SuspendLayout();
+            this.rfcLayoutPanel.SuspendLayout();
+            this.fechaFacturaLayoutPanel.SuspendLayout();
+            this.deducibleLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // detalleMovLayoutPanel
@@ -65,10 +81,18 @@
             this.detalleMovLayoutPanel.Controls.Add(this.importeLayoutPanel, 0, 2);
             this.detalleMovLayoutPanel.Controls.Add(this.descripcionLayoutPanel, 0, 3);
             this.detalleMovLayoutPanel.Controls.Add(this.fechaLayoutPanel, 0, 4);
+            this.detalleMovLayoutPanel.Controls.Add(this.numFacturaLayoutPanel, 0, 6);
+            this.detalleMovLayoutPanel.Controls.Add(this.rfcLayoutPanel, 0, 7);
+            this.detalleMovLayoutPanel.Controls.Add(this.fechaFacturaLayoutPanel, 0, 8);
+            this.detalleMovLayoutPanel.Controls.Add(this.deducibleLayoutPanel, 0, 5);
             this.detalleMovLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleMovLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.detalleMovLayoutPanel.Name = "detalleMovLayoutPanel";
-            this.detalleMovLayoutPanel.RowCount = 6;
+            this.detalleMovLayoutPanel.RowCount = 10;
+            this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleMovLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -272,7 +296,7 @@
             this.fechaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
             this.fechaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.fechaLayoutPanel.Controls.Add(this.fechaLabel, 0, 0);
-            this.fechaLayoutPanel.Controls.Add(this.fechaDataLabel, 1, 0);
+            this.fechaLayoutPanel.Controls.Add(this.fechaDateTimePicker, 1, 0);
             this.fechaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fechaLayoutPanel.Location = new System.Drawing.Point(5, 173);
             this.fechaLayoutPanel.Name = "fechaLayoutPanel";
@@ -292,20 +316,167 @@
             this.fechaLabel.Text = "Fecha";
             this.fechaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // fechaDataLabel
+            // fechaDateTimePicker
             // 
-            this.fechaDataLabel.AutoSize = true;
-            this.fechaDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fechaDataLabel.Location = new System.Drawing.Point(112, 0);
-            this.fechaDataLabel.Name = "fechaDataLabel";
-            this.fechaDataLabel.Size = new System.Drawing.Size(249, 34);
-            this.fechaDataLabel.TabIndex = 1;
-            this.fechaDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.fechaDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fechaDateTimePicker.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.fechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.fechaDateTimePicker.Location = new System.Drawing.Point(112, 7);
+            this.fechaDateTimePicker.Name = "fechaDateTimePicker";
+            this.fechaDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.fechaDateTimePicker.TabIndex = 1;
+            // 
+            // numFacturaLayoutPanel
+            // 
+            this.numFacturaLayoutPanel.ColumnCount = 2;
+            this.numFacturaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.numFacturaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.numFacturaLayoutPanel.Controls.Add(this.numFacturaLabel, 0, 0);
+            this.numFacturaLayoutPanel.Controls.Add(this.numFacturaTextBox, 1, 0);
+            this.numFacturaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numFacturaLayoutPanel.Location = new System.Drawing.Point(5, 257);
+            this.numFacturaLayoutPanel.Name = "numFacturaLayoutPanel";
+            this.numFacturaLayoutPanel.RowCount = 1;
+            this.numFacturaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.numFacturaLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.numFacturaLayoutPanel.TabIndex = 5;
+            this.numFacturaLayoutPanel.Visible = false;
+            // 
+            // numFacturaLabel
+            // 
+            this.numFacturaLabel.AutoSize = true;
+            this.numFacturaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numFacturaLabel.Location = new System.Drawing.Point(3, 0);
+            this.numFacturaLabel.Name = "numFacturaLabel";
+            this.numFacturaLabel.Size = new System.Drawing.Size(103, 34);
+            this.numFacturaLabel.TabIndex = 0;
+            this.numFacturaLabel.Text = "Num. de factura";
+            this.numFacturaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // numFacturaTextBox
+            // 
+            this.numFacturaTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.numFacturaTextBox.Location = new System.Drawing.Point(112, 7);
+            this.numFacturaTextBox.MaxLength = 64;
+            this.numFacturaTextBox.Name = "numFacturaTextBox";
+            this.numFacturaTextBox.Size = new System.Drawing.Size(200, 20);
+            this.numFacturaTextBox.TabIndex = 1;
+            // 
+            // rfcLayoutPanel
+            // 
+            this.rfcLayoutPanel.ColumnCount = 2;
+            this.rfcLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.rfcLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rfcLayoutPanel.Controls.Add(this.rfcLabel, 0, 0);
+            this.rfcLayoutPanel.Controls.Add(this.rfcTextBox, 1, 0);
+            this.rfcLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rfcLayoutPanel.Location = new System.Drawing.Point(5, 299);
+            this.rfcLayoutPanel.Name = "rfcLayoutPanel";
+            this.rfcLayoutPanel.RowCount = 1;
+            this.rfcLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rfcLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.rfcLayoutPanel.TabIndex = 6;
+            this.rfcLayoutPanel.Visible = false;
+            // 
+            // rfcLabel
+            // 
+            this.rfcLabel.AutoSize = true;
+            this.rfcLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rfcLabel.Location = new System.Drawing.Point(3, 0);
+            this.rfcLabel.Name = "rfcLabel";
+            this.rfcLabel.Size = new System.Drawing.Size(103, 34);
+            this.rfcLabel.TabIndex = 0;
+            this.rfcLabel.Text = "RFC";
+            this.rfcLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // rfcTextBox
+            // 
+            this.rfcTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.rfcTextBox.Location = new System.Drawing.Point(112, 7);
+            this.rfcTextBox.MaxLength = 15;
+            this.rfcTextBox.Name = "rfcTextBox";
+            this.rfcTextBox.Size = new System.Drawing.Size(200, 20);
+            this.rfcTextBox.TabIndex = 1;
+            // 
+            // fechaFacturaLayoutPanel
+            // 
+            this.fechaFacturaLayoutPanel.ColumnCount = 2;
+            this.fechaFacturaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.fechaFacturaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.fechaFacturaLayoutPanel.Controls.Add(this.fechaFacturaLabel, 0, 0);
+            this.fechaFacturaLayoutPanel.Controls.Add(this.fechaFacturaDateTimePicker, 1, 0);
+            this.fechaFacturaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fechaFacturaLayoutPanel.Location = new System.Drawing.Point(5, 341);
+            this.fechaFacturaLayoutPanel.Name = "fechaFacturaLayoutPanel";
+            this.fechaFacturaLayoutPanel.RowCount = 1;
+            this.fechaFacturaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.fechaFacturaLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.fechaFacturaLayoutPanel.TabIndex = 7;
+            this.fechaFacturaLayoutPanel.Visible = false;
+            // 
+            // fechaFacturaLabel
+            // 
+            this.fechaFacturaLabel.AutoSize = true;
+            this.fechaFacturaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fechaFacturaLabel.Location = new System.Drawing.Point(3, 0);
+            this.fechaFacturaLabel.Name = "fechaFacturaLabel";
+            this.fechaFacturaLabel.Size = new System.Drawing.Size(103, 34);
+            this.fechaFacturaLabel.TabIndex = 0;
+            this.fechaFacturaLabel.Text = "Fecha de factura";
+            this.fechaFacturaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // fechaFacturaDateTimePicker
+            // 
+            this.fechaFacturaDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fechaFacturaDateTimePicker.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            this.fechaFacturaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.fechaFacturaDateTimePicker.Location = new System.Drawing.Point(112, 7);
+            this.fechaFacturaDateTimePicker.Name = "fechaFacturaDateTimePicker";
+            this.fechaFacturaDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.fechaFacturaDateTimePicker.TabIndex = 1;
+            // 
+            // deducibleLayoutPanel
+            // 
+            this.deducibleLayoutPanel.ColumnCount = 2;
+            this.deducibleLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.deducibleLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.deducibleLayoutPanel.Controls.Add(this.deducibleLabel, 0, 0);
+            this.deducibleLayoutPanel.Controls.Add(this.deducibleCheckBox, 1, 0);
+            this.deducibleLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deducibleLayoutPanel.Location = new System.Drawing.Point(5, 215);
+            this.deducibleLayoutPanel.Name = "deducibleLayoutPanel";
+            this.deducibleLayoutPanel.RowCount = 1;
+            this.deducibleLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.deducibleLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.deducibleLayoutPanel.TabIndex = 8;
+            // 
+            // deducibleLabel
+            // 
+            this.deducibleLabel.AutoSize = true;
+            this.deducibleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deducibleLabel.Location = new System.Drawing.Point(3, 0);
+            this.deducibleLabel.Name = "deducibleLabel";
+            this.deducibleLabel.Size = new System.Drawing.Size(103, 34);
+            this.deducibleLabel.TabIndex = 0;
+            this.deducibleLabel.Text = "Deducible";
+            this.deducibleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // deducibleCheckBox
+            // 
+            this.deducibleCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.deducibleCheckBox.AutoSize = true;
+            this.deducibleCheckBox.Location = new System.Drawing.Point(112, 10);
+            this.deducibleCheckBox.Name = "deducibleCheckBox";
+            this.deducibleCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.deducibleCheckBox.TabIndex = 1;
+            this.deducibleCheckBox.UseVisualStyleBackColor = true;
+            this.deducibleCheckBox.CheckedChanged += new System.EventHandler(this.DeducibleCheckBox_CheckedChanged);
             // 
             // DetalleMovimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.detalleMovLayoutPanel);
             this.Name = "DetalleMovimiento";
             this.Size = new System.Drawing.Size(374, 410);
@@ -321,6 +492,14 @@
             this.descripcionLayoutPanel.PerformLayout();
             this.fechaLayoutPanel.ResumeLayout(false);
             this.fechaLayoutPanel.PerformLayout();
+            this.numFacturaLayoutPanel.ResumeLayout(false);
+            this.numFacturaLayoutPanel.PerformLayout();
+            this.rfcLayoutPanel.ResumeLayout(false);
+            this.rfcLayoutPanel.PerformLayout();
+            this.fechaFacturaLayoutPanel.ResumeLayout(false);
+            this.fechaFacturaLayoutPanel.PerformLayout();
+            this.deducibleLayoutPanel.ResumeLayout(false);
+            this.deducibleLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -342,8 +521,20 @@
         private System.Windows.Forms.TextBox conceptoTextBox;
         private System.Windows.Forms.NumericUpDown importeNumUpDown;
         private System.Windows.Forms.TextBox descripcionTextBox;
-        private System.Windows.Forms.Label fechaDataLabel;
         private System.Windows.Forms.RadioButton ingresoRadioButton;
         private System.Windows.Forms.RadioButton gastoRadioButton;
+        private System.Windows.Forms.TableLayoutPanel numFacturaLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel rfcLayoutPanel;
+        private System.Windows.Forms.Label numFacturaLabel;
+        private System.Windows.Forms.Label rfcLabel;
+        private System.Windows.Forms.TableLayoutPanel fechaFacturaLayoutPanel;
+        private System.Windows.Forms.Label fechaFacturaLabel;
+        private System.Windows.Forms.TextBox numFacturaTextBox;
+        private System.Windows.Forms.TextBox rfcTextBox;
+        private System.Windows.Forms.DateTimePicker fechaFacturaDateTimePicker;
+        private System.Windows.Forms.TableLayoutPanel deducibleLayoutPanel;
+        private System.Windows.Forms.Label deducibleLabel;
+        private System.Windows.Forms.DateTimePicker fechaDateTimePicker;
+        private System.Windows.Forms.CheckBox deducibleCheckBox;
     }
 }

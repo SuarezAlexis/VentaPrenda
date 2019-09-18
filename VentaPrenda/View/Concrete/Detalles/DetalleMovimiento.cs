@@ -30,6 +30,10 @@ namespace VentaPrenda.View.Concrete.Detalles
                 conceptoTextBox.ReadOnly = value;
                 importeNumUpDown.ReadOnly = value;
                 descripcionTextBox.ReadOnly = value;
+                deducibleCheckBox.Enabled = !value;
+                numFacturaTextBox.ReadOnly = value;
+                rfcTextBox.ReadOnly = value;
+                fechaFacturaDateTimePicker.Enabled = !value;
             }
         }
 
@@ -41,6 +45,18 @@ namespace VentaPrenda.View.Concrete.Detalles
                 _dto.Concepto = conceptoTextBox.Text;
                 _dto.Importe = importeNumUpDown.Value;
                 _dto.Descripcion = descripcionTextBox.Text;
+                _dto.Fecha = fechaDateTimePicker.Value;
+                if(deducibleCheckBox.Checked)
+                {
+                    _dto.NumFactura = numFacturaTextBox.Text;
+                    _dto.RFC = rfcTextBox.Text;
+                    _dto.FechaFactura = fechaFacturaDateTimePicker.Value;
+                }
+                else
+                {
+                    _dto.NumFactura = String.Empty;
+                    _dto.RFC = string.Empty;
+                }
                 return _dto;
             }
             set
@@ -75,7 +91,8 @@ namespace VentaPrenda.View.Concrete.Detalles
             conceptoTextBox.Text = "";
             importeNumUpDown.Value = 0;
             descripcionTextBox.Text = "";
-            fechaDataLabel.Text = "";
+            fechaDateTimePicker.Value = DateTime.Now;
+            fechaFacturaDateTimePicker.Value = DateTime.Now;
         }
 
         public override void Fill(object model)
@@ -98,7 +115,13 @@ namespace VentaPrenda.View.Concrete.Detalles
                 conceptoTextBox.Text = m.Concepto;
                 importeNumUpDown.Value = m.Importe;
                 descripcionTextBox.Text = m.Descripcion;
-                fechaDataLabel.Text = m.Fecha.ToShortDateString() + " " + m.Fecha.ToShortTimeString();
+                fechaDateTimePicker.Value = m.Fecha;
+                if (deducibleCheckBox.Checked = m.Deducible)
+                {
+                    numFacturaTextBox.Text = m.NumFactura;
+                    rfcTextBox.Text = m.RFC;
+                    fechaFacturaDateTimePicker.Value = m.FechaFactura == new DateTime()? DateTimePicker.MinimumDateTime : m.FechaFactura;
+                }
                 Visible = true;
             }
         }
@@ -127,6 +150,13 @@ namespace VentaPrenda.View.Concrete.Detalles
             { importeNumUpDown.Value = Math.Abs(importeNumUpDown.Value); }
             if (gastoRadioButton.Checked)
             { importeNumUpDown.Value = -Math.Abs(importeNumUpDown.Value); }
+        }
+
+        private void DeducibleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            numFacturaLayoutPanel.Visible = deducibleCheckBox.Checked;
+            rfcLayoutPanel.Visible = deducibleCheckBox.Checked;
+            fechaFacturaLayoutPanel.Visible = deducibleCheckBox.Checked;
         }
     }
 }
