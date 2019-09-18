@@ -55,10 +55,11 @@
             this.detalleReporteLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleReporteLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.detalleReporteLayoutPanel.Name = "detalleReporteLayoutPanel";
-            this.detalleReporteLayoutPanel.RowCount = 4;
+            this.detalleReporteLayoutPanel.RowCount = 5;
             this.detalleReporteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleReporteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.detalleReporteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleReporteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.detalleReporteLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.detalleReporteLayoutPanel.Size = new System.Drawing.Size(500, 500);
             this.detalleReporteLayoutPanel.TabIndex = 0;

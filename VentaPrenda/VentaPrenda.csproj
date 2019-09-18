@@ -146,6 +146,12 @@
     <Compile Include="View\Concrete\PagoDisplay.Designer.cs">
       <DependentUpon>PagoDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Concrete\ResumenReporteIngresos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\ResumenReporteIngresos.Designer.cs">
+      <DependentUpon>ResumenReporteIngresos.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Concrete\ServicioUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\PagoDisplay.resx">
       <DependentUpon>PagoDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\ResumenReporteIngresos.resx">
+      <DependentUpon>ResumenReporteIngresos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\ServicioUserControl.resx">
       <DependentUpon>ServicioUserControl.cs</DependentUpon>

@@ -50,7 +50,12 @@
             this.busquedaBox = new System.Windows.Forms.GroupBox();
             this.busquedaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.busquedaTextBox = new System.Windows.Forms.TextBox();
-            this.BusquedaButton = new System.Windows.Forms.Button();
+            this.desdeLabel = new System.Windows.Forms.Label();
+            this.buscarLabel = new System.Windows.Forms.Label();
+            this.hastaLabel = new System.Windows.Forms.Label();
+            this.desdeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.hastaDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.filtrarButton = new System.Windows.Forms.Button();
             this.edicionBox = new System.Windows.Forms.GroupBox();
             this.edicionLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.NuevoButton = new System.Windows.Forms.Button();
@@ -352,41 +357,111 @@
             this.busquedaBox.Size = new System.Drawing.Size(623, 78);
             this.busquedaBox.TabIndex = 0;
             this.busquedaBox.TabStop = false;
-            this.busquedaBox.Text = "Búsqueda";
+            this.busquedaBox.Text = "Búsqueda y filtrado";
             // 
             // busquedaLayoutPanel
             // 
-            this.busquedaLayoutPanel.ColumnCount = 2;
-            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.busquedaLayoutPanel.Controls.Add(this.busquedaTextBox, 0, 0);
-            this.busquedaLayoutPanel.Controls.Add(this.BusquedaButton, 1, 0);
+            this.busquedaLayoutPanel.ColumnCount = 5;
+            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.busquedaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.busquedaLayoutPanel.Controls.Add(this.busquedaTextBox, 1, 0);
+            this.busquedaLayoutPanel.Controls.Add(this.desdeLabel, 2, 0);
+            this.busquedaLayoutPanel.Controls.Add(this.buscarLabel, 0, 0);
+            this.busquedaLayoutPanel.Controls.Add(this.hastaLabel, 2, 1);
+            this.busquedaLayoutPanel.Controls.Add(this.desdeDateTimePicker, 3, 0);
+            this.busquedaLayoutPanel.Controls.Add(this.hastaDateTimePicker, 3, 1);
+            this.busquedaLayoutPanel.Controls.Add(this.filtrarButton, 4, 0);
             this.busquedaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.busquedaLayoutPanel.Location = new System.Drawing.Point(3, 16);
             this.busquedaLayoutPanel.Name = "busquedaLayoutPanel";
-            this.busquedaLayoutPanel.RowCount = 1;
-            this.busquedaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.busquedaLayoutPanel.RowCount = 2;
+            this.busquedaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.busquedaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.busquedaLayoutPanel.Size = new System.Drawing.Size(617, 59);
             this.busquedaLayoutPanel.TabIndex = 0;
             // 
             // busquedaTextBox
             // 
-            this.busquedaTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.busquedaTextBox.Location = new System.Drawing.Point(94, 19);
+            this.busquedaTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.busquedaTextBox.Location = new System.Drawing.Point(64, 19);
             this.busquedaTextBox.Name = "busquedaTextBox";
-            this.busquedaTextBox.Size = new System.Drawing.Size(213, 20);
+            this.busquedaLayoutPanel.SetRowSpan(this.busquedaTextBox, 2);
+            this.busquedaTextBox.Size = new System.Drawing.Size(240, 20);
             this.busquedaTextBox.TabIndex = 13;
             this.busquedaTextBox.TextChanged += new System.EventHandler(this.BusquedaTextBox_TextChanged);
             // 
-            // BusquedaButton
+            // desdeLabel
             // 
-            this.BusquedaButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BusquedaButton.Location = new System.Drawing.Point(471, 18);
-            this.BusquedaButton.Name = "BusquedaButton";
-            this.BusquedaButton.Size = new System.Drawing.Size(75, 23);
-            this.BusquedaButton.TabIndex = 14;
-            this.BusquedaButton.Text = "Buscar";
-            this.BusquedaButton.UseVisualStyleBackColor = true;
+            this.desdeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.desdeLabel.AutoSize = true;
+            this.desdeLabel.Location = new System.Drawing.Point(358, 8);
+            this.desdeLabel.Name = "desdeLabel";
+            this.desdeLabel.Size = new System.Drawing.Size(38, 13);
+            this.desdeLabel.TabIndex = 16;
+            this.desdeLabel.Text = "Desde";
+            this.desdeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.desdeLabel.Visible = false;
+            // 
+            // buscarLabel
+            // 
+            this.buscarLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buscarLabel.AutoSize = true;
+            this.buscarLabel.Location = new System.Drawing.Point(18, 23);
+            this.buscarLabel.Name = "buscarLabel";
+            this.busquedaLayoutPanel.SetRowSpan(this.buscarLabel, 2);
+            this.buscarLabel.Size = new System.Drawing.Size(40, 13);
+            this.buscarLabel.TabIndex = 17;
+            this.buscarLabel.Text = "Buscar";
+            // 
+            // hastaLabel
+            // 
+            this.hastaLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.hastaLabel.AutoSize = true;
+            this.hastaLabel.Location = new System.Drawing.Point(361, 37);
+            this.hastaLabel.Name = "hastaLabel";
+            this.hastaLabel.Size = new System.Drawing.Size(35, 13);
+            this.hastaLabel.TabIndex = 18;
+            this.hastaLabel.Text = "Hasta";
+            this.hastaLabel.Visible = false;
+            // 
+            // desdeDateTimePicker
+            // 
+            this.desdeDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.desdeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.desdeDateTimePicker.Location = new System.Drawing.Point(402, 4);
+            this.desdeDateTimePicker.Name = "desdeDateTimePicker";
+            this.desdeDateTimePicker.Size = new System.Drawing.Size(140, 20);
+            this.desdeDateTimePicker.TabIndex = 19;
+            this.desdeDateTimePicker.Value = new System.DateTime(2019, 9, 17, 0, 0, 0, 0);
+            this.desdeDateTimePicker.Visible = false;
+            this.desdeDateTimePicker.ValueChanged += new System.EventHandler(this.DesdeDateTimePicker_ValueChanged);
+            // 
+            // hastaDateTimePicker
+            // 
+            this.hastaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.hastaDateTimePicker.Location = new System.Drawing.Point(402, 32);
+            this.hastaDateTimePicker.Name = "hastaDateTimePicker";
+            this.hastaDateTimePicker.Size = new System.Drawing.Size(140, 20);
+            this.hastaDateTimePicker.TabIndex = 20;
+            this.hastaDateTimePicker.Value = new System.DateTime(2019, 9, 17, 23, 59, 0, 0);
+            this.hastaDateTimePicker.Visible = false;
+            this.hastaDateTimePicker.ValueChanged += new System.EventHandler(this.HastaDateTimePicker_ValueChanged);
+            // 
+            // filtrarButton
+            // 
+            this.filtrarButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.filtrarButton.Location = new System.Drawing.Point(556, 18);
+            this.filtrarButton.Name = "filtrarButton";
+            this.busquedaLayoutPanel.SetRowSpan(this.filtrarButton, 2);
+            this.filtrarButton.Size = new System.Drawing.Size(58, 23);
+            this.filtrarButton.TabIndex = 21;
+            this.filtrarButton.Text = "Filtrar";
+            this.filtrarButton.UseVisualStyleBackColor = true;
+            this.filtrarButton.Visible = false;
+            this.filtrarButton.Click += new System.EventHandler(this.FiltrarButton_Click);
             // 
             // edicionBox
             // 
@@ -547,7 +622,6 @@
             this.listGridView.ShowEditingIcon = false;
             this.listGridView.Size = new System.Drawing.Size(621, 672);
             this.listGridView.TabIndex = 0;
-            this.listGridView.DataSourceChanged += new System.EventHandler(this.ListGridView_DataSourceChanged);
             this.listGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListGridView_CellDoubleClick);
             // 
             // detalleBox
@@ -691,7 +765,6 @@
         private System.Windows.Forms.Button UsuariosButton;
         private System.Windows.Forms.Button PerfilesButton;
         private System.Windows.Forms.TextBox busquedaTextBox;
-        private System.Windows.Forms.Button BusquedaButton;
         private System.Windows.Forms.Button NuevoButton;
         private System.Windows.Forms.Button RegresarButton;
         private System.Windows.Forms.Button EditarButton;
@@ -710,5 +783,11 @@
         private System.Windows.Forms.Button PrendasButton;
         private System.Windows.Forms.Button ColoresButton;
         private System.Windows.Forms.Button TiposButton;
+        private System.Windows.Forms.Label desdeLabel;
+        private System.Windows.Forms.Label buscarLabel;
+        private System.Windows.Forms.Label hastaLabel;
+        private System.Windows.Forms.DateTimePicker desdeDateTimePicker;
+        private System.Windows.Forms.DateTimePicker hastaDateTimePicker;
+        private System.Windows.Forms.Button filtrarButton;
     }
 }

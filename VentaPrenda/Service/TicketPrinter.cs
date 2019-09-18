@@ -18,10 +18,12 @@ namespace VentaPrenda.Service
         public static float LineSpacing = 1.25f;
         public static Margins Margins = new Margins(15, 15, 15, 15);
         static private NotaDto Nota;
+        static private Usuario Usuario;
         
         public static void PrintTicket(NotaDto nota, Usuario usuario)
         {
             Nota = nota;
+            Usuario = usuario;
             PrintDocument pd = new PrintDocument();
             pd.DefaultPageSettings.PaperSize = new PaperSize("Roll Paper 80mm x 297mm", 333, 1236);
             pd.DefaultPageSettings.Margins = Margins;
@@ -90,10 +92,22 @@ namespace VentaPrenda.Service
             yPos += lineHeight;
             ev.Graphics.DrawString("Por pagar".PadRight(48) + "$ " + string.Format("{0:0.00}", total - aCuenta).PadLeft(8), Font, Brush, leftMargin, yPos, format);
             yPos += 2 * lineHeight;
-            ev.Graphics.DrawString("Entrega: " + Nota.Entregado.ToLongDateString(), Font, Brush, leftMargin, yPos, format);
+            ev.Graphics.DrawString("Entrega: " + Nota.Entregado.ToLongDateString().PadLeft(49), Font, Brush, leftMargin, yPos, format);
             yPos += lineHeight;
-            ev.Graphics.DrawString("Lo atendió: ", Font, Brush, leftMargin, yPos, format);
+            ev.Graphics.DrawString("Lo atendió: " + Usuario.Nombre.PadLeft(46), Font, Brush, leftMargin, yPos, format);
             yPos += lineHeight;
+            string obs = Nota.Observaciones;
+            ev.Graphics.DrawString("Observaciones: " 
+                + (String.IsNullOrEmpty(obs)? "Ninguna" : obs.Substring(0,Math.Min(43,obs.Length))), 
+                Font, Brush, leftMargin, yPos, format);
+            yPos += lineHeight;
+            obs = obs.Length > 43? obs.Substring(43).TrimStart(new char[] {' '}) : String.Empty;
+            while (obs.Length > 0)
+            {
+                ev.Graphics.DrawString(obs.Substring(0,Math.Min(58,obs.Length)),Font, Brush, leftMargin, yPos, format);
+                yPos += lineHeight;
+                obs = obs.Length > 58 ? obs.Substring(58).TrimStart(new char[] {' '}) : String.Empty;
+            }
             ev.Graphics.DrawString("__________________________________________________________", Font, Brush, leftMargin, yPos, format);
             yPos += lineHeight;
 

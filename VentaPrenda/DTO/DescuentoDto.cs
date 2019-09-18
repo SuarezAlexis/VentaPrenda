@@ -21,7 +21,7 @@ namespace VentaPrenda.DTO
         public DescuentoDto()
         {
             ID = -1;
-            Nombre = "";
+            Nombre = "Ninguno";
         }
 
         public override string ToString()

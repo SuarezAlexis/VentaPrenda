@@ -16,6 +16,7 @@ namespace VentaPrenda.View.Concrete.Detalles
     {
         private ReporteDto _dto;
         private ErrorProvider _errorProvider;
+        private UserControl resumen;
         public override object Dto
         {
             get
@@ -33,6 +34,7 @@ namespace VentaPrenda.View.Concrete.Detalles
 
         public DetalleReporte()
         {
+            Visible = false;
             InitializeComponent();
             _dto = new ReporteDto();
             desdePicker.MaxDate = DateTime.Today;
@@ -41,16 +43,67 @@ namespace VentaPrenda.View.Concrete.Detalles
             hastaPicker.Value = DateTime.Today;
             foreach(TipoReporte tr in Enum.GetValues(typeof(TipoReporte)) )
             { tipoReporteComboBox.Items.Add(tr); }
+            Visible = true;
         }
 
         public DetalleReporte(ErrorProvider e) : this()
         { _errorProvider = e; }
 
+        private void FillIngresosResumen(DataRowCollection rows)
+        {
+            int notas = 0, prendas = 0, servicios = 0;
+            decimal monto = 0,
+                desc = 0,
+                ventaNeta = 0,
+                efectivo = 0,
+                tarjeta = 0,
+                totalIngresos = 0,
+                porCobrar = 0;
+            foreach (DataRow row in rows)
+            {
+                notas++;
+                prendas += Convert.ToInt32(row["Prendas"]);
+                servicios += Convert.ToInt32(row["Servicios"]);
+                monto += Convert.ToDecimal(row["Monto"]);
+                desc += Convert.ToDecimal(row["Descuento"]);
+                ventaNeta += Convert.ToDecimal(row["Total a pagar"]);
+                efectivo += Convert.ToDecimal(row["Efectivo"]);
+                tarjeta += Convert.ToDecimal(row["Tarjeta"]);
+                totalIngresos += Convert.ToDecimal(row["Total ingresos"]);
+                porCobrar += Convert.ToDecimal(row["Por cobrar"]);
+            }
+            ResumenReporteIngresos r = new ResumenReporteIngresos();
+            r.Notas = notas.ToString();
+            r.Prendas = prendas.ToString();
+            r.Servicios = servicios.ToString();
+            r.Monto = "$ " + String.Format("{0:0.00}",monto);
+            r.Descuento = "$ " + String.Format("{0:0.00}", desc);
+            r.VentaNeta = "$ " + String.Format("{0:0.00}", ventaNeta);
+            r.Efectivo = "$ " + String.Format("{0:0.00}", efectivo);
+            r.Tarjeta = "$ " + String.Format("{0:0.00}", tarjeta);
+            r.TotalIngresos = "$ " + String.Format("{0:0.00}", totalIngresos);
+            r.PorCobrar = "$ " + String.Format("{0:0.00}", porCobrar);
+            resumen = r;
+            detalleReporteLayoutPanel.Controls.Add(resumen);
+            resumen.Dock = DockStyle.Fill;
+        }
 
         private void ObtenerReporteButton_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
-            { ((IMainView)ParentForm).Controller.Reporte((ReporteDto)Dto); }
+            {
+                if (resumen != null) detalleReporteLayoutPanel.Controls.Remove(resumen);
+                IMainView mainView = (IMainView)ParentForm;
+                mainView.Controller.Reporte((ReporteDto)Dto);
+                switch(((ReporteDto)Dto).Tipo)
+                {
+                    case TipoReporte.Clientes:
+                        break;
+                    case TipoReporte.Ingresos:
+                        FillIngresosResumen(mainView.DataSource.Rows);
+                        break;
+                }
+            }
         }
 
         private void IntervaloCheckBox_CheckedChanged(object sender, EventArgs e)

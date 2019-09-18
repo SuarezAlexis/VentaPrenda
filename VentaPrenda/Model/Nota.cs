@@ -8,6 +8,7 @@ namespace VentaPrenda.Model
 {
     public enum Estatus
     {
+        Cancelado,
         Pendiente,
         Terminado,
         Entregado,

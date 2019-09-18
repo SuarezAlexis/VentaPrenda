@@ -298,7 +298,7 @@
             this.soloNotaRadioButton.TabIndex = 3;
             this.soloNotaRadioButton.Text = "Sólo nota";
             this.soloNotaRadioButton.UseVisualStyleBackColor = true;
-            this.soloNotaRadioButton.Click += new System.EventHandler(this.SoloNotaRadioButton_Click);
+            this.soloNotaRadioButton.CheckedChanged += new System.EventHandler(this.SoloNotaRadioButton_CheckedChanged);
             // 
             // vigenciaRadioButton
             // 
@@ -312,7 +312,7 @@
             this.vigenciaRadioButton.TabStop = true;
             this.vigenciaRadioButton.Text = "Periodo de vigencia";
             this.vigenciaRadioButton.UseVisualStyleBackColor = true;
-            this.vigenciaRadioButton.Click += new System.EventHandler(this.VigenciaRadioButton_Click);
+            this.vigenciaRadioButton.CheckedChanged += new System.EventHandler(this.VigenciaRadioButton_CheckedChanged);
             // 
             // descuentoLayoutPanel
             // 

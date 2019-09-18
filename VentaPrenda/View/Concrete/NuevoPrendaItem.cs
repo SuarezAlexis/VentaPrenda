@@ -29,7 +29,7 @@ namespace VentaPrenda.View.Concrete
                 _dto.ID = String.IsNullOrEmpty(idDataLabel.Text) ? -1L : Convert.ToInt64(idDataLabel.Text);
                 _dto.Nota = _dto.Nota;
                 _dto.Prenda = (CatalogoDto)prendasComboBox.SelectedItem;
-                _dto.TipoPrenda = (CatalogoDto)tiposPrendaComboBox.SelectedItem;
+                _dto.TipoPrenda = tiposPrendaComboBox.SelectedItem != null && ((CatalogoDto)tiposPrendaComboBox.SelectedItem).ID >= 0? (CatalogoDto)tiposPrendaComboBox.SelectedItem : null;
                 _dto.Color = (CatalogoDto)coloresComboBox.SelectedItem;
                 _dto.Cantidad = Convert.ToInt32(cantNumUpDown.Value);
                 _dto.Servicios = new List<ServicioItemDto>();
@@ -71,9 +71,9 @@ namespace VentaPrenda.View.Concrete
             AgregarServicio();
             foreach(CatalogoDto p in PrendaItemDto.Prendas)
             { prendasComboBox.Items.Add(p); }
+            tiposPrendaComboBox.Items.Add(new CatalogoDto());
             foreach (CatalogoDto t in PrendaItemDto.Tipos)
             { tiposPrendaComboBox.Items.Add(t); }
-            tiposPrendaComboBox.SelectedText = "N/A";
             foreach (CatalogoDto c in PrendaItemDto.Colores)
             { coloresComboBox.Items.Add(c); }
         }
@@ -160,12 +160,15 @@ namespace VentaPrenda.View.Concrete
                         servicios += mainView.Controller.ServiciosAcumulados(eventArgs.ClienteID, d.VigenciaInicio);
                     else
                     {
-                        MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
-                            "Selecciona un cliente",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                        ((ServicioUserControl)sender).DescuentoInvalido = true;
-                        return;
+                        if (eventArgs.ClienteID < -1)
+                        {
+                            MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
+                                "Selecciona un cliente",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                            ((ServicioUserControl)sender).DescuentoInvalido = true;
+                            return;
+                        }
                     }
                 }
                 foreach (ServicioUserControl s in serviciosFlowLayoutPanel.Controls)
@@ -202,11 +205,14 @@ namespace VentaPrenda.View.Concrete
                         monto += mainView.Controller.MontoAcumulado(eventArgs.ClienteID, d.VigenciaInicio);
                     else
                     {
-                        MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
+                        if(eventArgs.ClienteID < -1)
+                        {
+                            MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
                             "Selecciona un cliente",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
-                        ((ServicioUserControl)sender).DescuentoInvalido = true;
+                            ((ServicioUserControl)sender).DescuentoInvalido = true;
+                        }
                     }
                 }
                 foreach (ServicioUserControl s in serviciosFlowLayoutPanel.Controls)

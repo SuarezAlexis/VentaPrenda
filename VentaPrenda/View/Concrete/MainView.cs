@@ -21,6 +21,7 @@ namespace VentaPrenda.View.Concrete
         /*******************************************************************/
         private readonly System.Drawing.Color ClearColor = SystemColors.ControlLight;
         private readonly System.Drawing.Color ActiveColor = SystemColors.ControlDark;
+        private readonly int DataRowHeight = 22;
         public MainController Controller { get; set; }
 
         private object _dto;
@@ -57,6 +58,31 @@ namespace VentaPrenda.View.Concrete
                 _dataSource = value;
                 listGridView.DataSource = _dataSource;
                 listGridView.ClearSelection();
+                if (Controller.Funcion == Funcion.NOTA)
+                {
+                    foreach (DataGridViewRow row in listGridView.Rows)
+                    {
+                        switch(Enum.Parse(typeof(Estatus), row.Cells["Estatus"].Value.ToString()))
+                        {
+                            case Estatus.Cancelado:
+                                row.DefaultCellStyle.BackColor = System.Drawing.Color.Pink;
+                                break;
+                            case Estatus.Pendiente:
+                                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightYellow;
+                                break;
+                            case Estatus.Terminado:
+                                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightCyan;
+                                break;
+                            case Estatus.Entregado:
+                                row.DefaultCellStyle.BackColor = System.Drawing.Color.Honeydew;
+                                break;
+                            case Estatus.Caducado:
+                                row.DefaultCellStyle.BackColor = System.Drawing.Color.Thistle;
+                                break;
+                        }
+                    }
+                        
+                }
             }
         }
 
@@ -108,6 +134,7 @@ namespace VentaPrenda.View.Concrete
             Detalle = newDetalle(errorProvider);
             listGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listGridView.MultiSelect = false;
+            SetFiltroVisible(false);
             switch (Controller.Funcion)
             {
                 case Funcion.NINGUNA:
@@ -138,12 +165,14 @@ namespace VentaPrenda.View.Concrete
                     DescuentosButton.BackColor = ActiveColor;
                     break;
                 case Funcion.NOTA:
+                    SetFiltroVisible(true);
                     NotasButton.BackColor = ActiveColor;
                     break;
                 case Funcion.CLIENTES:
                     ClientesButton.BackColor = ActiveColor;
                     break;
                 case Funcion.BALANCE:
+                    SetFiltroVisible(true);
                     BalanceButton.BackColor = ActiveColor;
                     break;
                 case Funcion.REPORTES:
@@ -237,6 +266,17 @@ namespace VentaPrenda.View.Concrete
             LimpiarButton.Enabled = e;
         }
 
+        private void SetFiltroVisible(bool v)
+        {
+            desdeLabel.Visible = v;
+            hastaLabel.Visible = v;
+            desdeDateTimePicker.Visible = v;
+            hastaDateTimePicker.Visible = v;
+            filtrarButton.Visible = v;
+            desdeDateTimePicker.Value = DateTime.Today.AddDays(1 - DateTime.Today.Day);
+            hastaDateTimePicker.Value = DateTime.Today.AddSeconds(86399);
+        }
+
         private void ClearFunctionButtons()
         {
             NotasButton.BackColor = ClearColor;
@@ -282,6 +322,32 @@ namespace VentaPrenda.View.Concrete
                     break;
             }
             return null;
+        }
+
+        private void Filtrar()
+        {
+            string cellName = Controller.Funcion == Funcion.NOTA ? "Recibido" : Controller.Funcion == Funcion.BALANCE ? "Fecha" : null;
+            bool show = true;
+            foreach (DataGridViewRow row in listGridView.Rows)
+            {
+                if (cellName != null && filtrarButton.BackColor == ActiveColor)
+                {
+                    DateTime fecha = (DateTime)row.Cells[cellName].Value;
+                    show = fecha >= desdeDateTimePicker.Value && fecha <= hastaDateTimePicker.Value;
+                }
+                else { show = true; }
+                if (show && !String.IsNullOrEmpty(busquedaTextBox.Text))
+                {
+                    foreach (DataGridViewTextBoxCell cell in row.Cells)
+                    {
+                        if (cell.Value.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
+                        { show = true; break; }
+                        else
+                        { show = false; }
+                    }
+                }
+                listGridView.Rows[row.Index].Height = show ? DataRowHeight : 0;
+            }
         }
 
         /******************** MÉTODOS: EventHandlers *******************/
@@ -372,28 +438,18 @@ namespace VentaPrenda.View.Concrete
         }
 
         private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int height = 22;
-            foreach (DataGridViewRow row in listGridView.Rows)
-            {
-                if (String.IsNullOrEmpty(busquedaTextBox.Text))
-                {  listGridView.Rows[row.Index].Height = height;  }
-                else
-                {
-                    foreach (DataGridViewTextBoxCell cell in row.Cells)
-                    {
-                        if (cell.Value.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
-                        { listGridView.Rows[row.Index].Height = height; break; }
-                        else
-                        { listGridView.Rows[row.Index].Height = 0; }
-                    }
-                }
-            }
-        }
+        { Filtrar(); }
 
-        private void ListGridView_DataSourceChanged(object sender, EventArgs e)
-        {
+        private void DesdeDateTimePicker_ValueChanged(object sender, EventArgs e)
+        { Filtrar(); }
 
+        private void HastaDateTimePicker_ValueChanged(object sender, EventArgs e)
+        { Filtrar(); }
+
+        private void FiltrarButton_Click(object sender, EventArgs e)
+        {
+            filtrarButton.BackColor = filtrarButton.BackColor == ActiveColor? ClearColor : ActiveColor;
+            Filtrar();
         }
     }
 }

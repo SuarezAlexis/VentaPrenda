@@ -25,6 +25,9 @@ namespace VentaPrenda.DTO
 
         public UsuarioDto()
         {
+            ID = -1;
+            Username = "";
+            Nombre = "";
             Permisos = new Permisos();
             Perfiles = new Dictionary<PerfilDto, bool>();
             UltimoIngreso = new DateTime();
@@ -44,8 +47,17 @@ namespace VentaPrenda.DTO
         }
 
         public override string ToString()
+        { return Username; }
+
+        public override bool Equals(object obj)
         {
-            return Username;
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) return false;
+            else
+            {
+                if (this == obj) return true;
+                UsuarioDto d = (UsuarioDto)obj;
+                return ID == d.ID;
+            }
         }
     }
 }

@@ -36,8 +36,8 @@ namespace VentaPrenda.View.Concrete
             get
             {
                 _dto.Cantidad = Convert.ToInt32(cantNumUpDown.Value);
-                _dto.Descuento = (DescuentoDto)descuentoComboBox.SelectedItem;
-                _dto.Encargado = (UsuarioDto)encargadoComboBox.SelectedItem;
+                _dto.Descuento = descuentoComboBox.SelectedItem != null && ((DescuentoDto)descuentoComboBox.SelectedItem).ID >= 0? (DescuentoDto)descuentoComboBox.SelectedItem : null;
+                _dto.Encargado = encargadoComboBox.SelectedItem != null && ((UsuarioDto)encargadoComboBox.SelectedItem).ID >= 0? (UsuarioDto)encargadoComboBox.SelectedItem : null;
                 _dto.ID = _dto != null && _dto.ID >= 0 ? _dto.ID : -1;
                 _dto.Monto = Monto;
                 _dto.Servicio = (ServicioDto)servicioComboBox.SelectedItem;
@@ -52,6 +52,7 @@ namespace VentaPrenda.View.Concrete
                 servicioComboBox.SelectedItem = value.Servicio;
                 subtotalLabel.Text = "$ " + string.Format("{0:0.00}", value.Monto / value.Cantidad);
                 montoNumUpDown.Value = value.Monto/value.Cantidad - value.Servicio.Costo;
+                encargadoComboBox.Enabled = value.ID >= 0;
             }
         }
 
@@ -61,8 +62,10 @@ namespace VentaPrenda.View.Concrete
             _dto = new ServicioItemDto();
             foreach(ServicioDto s in ServicioItemDto.Servicios)
             { servicioComboBox.Items.Add(s); }
+            descuentoComboBox.Items.Add(new DescuentoDto());
             foreach(DescuentoDto d in ServicioItemDto.Descuentos)
             { descuentoComboBox.Items.Add(d); }
+            encargadoComboBox.Items.Add(new UsuarioDto());
             foreach(UsuarioDto u in ServicioItemDto.Usuarios)
             { encargadoComboBox.Items.Add(u); }
         }
@@ -144,13 +147,10 @@ namespace VentaPrenda.View.Concrete
 
         private void DescuentoComboBox_Validating(object sender, CancelEventArgs e)
         {
-            if (descuentoComboBox.SelectedItem != null)
+            if (descuentoComboBox.SelectedItem != null && ((DescuentoDto)descuentoComboBox.SelectedItem).ID >= 0)
             {
                 DescuentoRequested?.Invoke(this, EventArgs.Empty);
-                if (DescuentoInvalido)
-                { e.Cancel = true; }
-                else
-                { e.Cancel = false; }
+                e.Cancel = DescuentoInvalido;
             }
             else
                 e.Cancel = false;

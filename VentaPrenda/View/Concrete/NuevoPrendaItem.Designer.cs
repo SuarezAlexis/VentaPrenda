@@ -318,7 +318,7 @@
             this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.serviciosHeaderLayoutPanel.Controls.Add(this.servicioCantLabel, 0, 0);
             this.serviciosHeaderLayoutPanel.Controls.Add(this.servicioLabel, 1, 0);
             this.serviciosHeaderLayoutPanel.Controls.Add(this.descuentoLabel, 2, 0);
@@ -365,7 +365,7 @@
             this.descuentoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descuentoLabel.Location = new System.Drawing.Point(194, 0);
             this.descuentoLabel.Name = "descuentoLabel";
-            this.descuentoLabel.Size = new System.Drawing.Size(95, 14);
+            this.descuentoLabel.Size = new System.Drawing.Size(94, 14);
             this.descuentoLabel.TabIndex = 2;
             this.descuentoLabel.Text = "Descuento";
             this.descuentoLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -375,7 +375,7 @@
             this.costoUnitarioLabel.AutoSize = true;
             this.costoUnitarioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.costoUnitarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.costoUnitarioLabel.Location = new System.Drawing.Point(295, 0);
+            this.costoUnitarioLabel.Location = new System.Drawing.Point(294, 0);
             this.costoUnitarioLabel.Name = "costoUnitarioLabel";
             this.costoUnitarioLabel.Size = new System.Drawing.Size(74, 14);
             this.costoUnitarioLabel.TabIndex = 3;
@@ -388,7 +388,7 @@
             this.serviciosHeaderLayoutPanel.SetColumnSpan(this.descuentosRecargosaLabel, 2);
             this.descuentosRecargosaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descuentosRecargosaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descuentosRecargosaLabel.Location = new System.Drawing.Point(375, 0);
+            this.descuentosRecargosaLabel.Location = new System.Drawing.Point(374, 0);
             this.descuentosRecargosaLabel.Name = "descuentosRecargosaLabel";
             this.descuentosRecargosaLabel.Size = new System.Drawing.Size(104, 14);
             this.descuentosRecargosaLabel.TabIndex = 4;
@@ -400,11 +400,11 @@
             this.encargadoLabel.AutoSize = true;
             this.encargadoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.encargadoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.encargadoLabel.Location = new System.Drawing.Point(565, 0);
+            this.encargadoLabel.Location = new System.Drawing.Point(564, 0);
             this.encargadoLabel.Name = "encargadoLabel";
             this.encargadoLabel.Size = new System.Drawing.Size(64, 14);
             this.encargadoLabel.TabIndex = 5;
-            this.encargadoLabel.Text = "Encargado";
+            this.encargadoLabel.Text = "Elaboró";
             this.encargadoLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // subtotalLabel
@@ -412,7 +412,7 @@
             this.subtotalLabel.AutoSize = true;
             this.subtotalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.subtotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtotalLabel.Location = new System.Drawing.Point(485, 0);
+            this.subtotalLabel.Location = new System.Drawing.Point(484, 0);
             this.subtotalLabel.Name = "subtotalLabel";
             this.subtotalLabel.Size = new System.Drawing.Size(74, 14);
             this.subtotalLabel.TabIndex = 6;

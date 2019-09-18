@@ -12,7 +12,7 @@ namespace VentaPrenda.DTO
         public string Nombre { get; set; }
         public bool Habilitado { get; set; }
 
-        public CatalogoDto() { }
+        public CatalogoDto() { ID = -1; Nombre = ""; }
 
         public CatalogoDto(CatalogoDto c)
         {

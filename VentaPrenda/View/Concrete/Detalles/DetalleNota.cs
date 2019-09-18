@@ -48,8 +48,8 @@ namespace VentaPrenda.View.Concrete.Detalles
             get
             {
                 _dto.ID = string.IsNullOrEmpty(idDataLabel.Text) ? -1 : Convert.ToInt64(idDataLabel.Text);
-                _dto.Cliente = (ClienteDto)clienteComboBox.SelectedItem;
-                _dto.Descuento = (DescuentoDto)descuentoComboBox.SelectedItem;
+                _dto.Cliente = clienteComboBox.SelectedItem != null ? (ClienteDto)clienteComboBox.SelectedItem : new ClienteDto { Nombre = clienteComboBox.Text };
+                _dto.Descuento = new DescuentoDto().Equals(descuentoComboBox.SelectedItem)? null : (DescuentoDto)descuentoComboBox.SelectedItem;
                 _dto.Recibido = string.IsNullOrEmpty(idDataLabel.Text) ? DateTime.Now : Convert.ToDateTime(recibidoDataLabel.Text);
                 _dto.Entregado = entregadoDateTimePicker.Value;
                 _dto.Estatus = (Estatus)estatusComboBox.SelectedItem;
@@ -92,18 +92,19 @@ namespace VentaPrenda.View.Concrete.Detalles
         /*******************************************************************/
         public DetalleNota()
         {
-            InitializeComponent();
             Visible = false;
+            InitializeComponent();
             entregadoDateTimePicker.MinDate = DateTime.Now;
             _dto = new NotaDto();
             foreach (ClienteDto c in NotaDto.Clientes)
             { clienteComboBox.Items.Add(c); }
+            descuentoComboBox.Items.Add(new DescuentoDto());
             foreach(DescuentoDto d in NotaDto.Descuentos)
             { descuentoComboBox.Items.Add(d); }
             recibidoDataLabel.Text = DateTime.Now.ToShortDateString();
             foreach(Estatus s in Enum.GetValues(typeof(Estatus)))
             { estatusComboBox.Items.Add(s); }
-            estatusComboBox.SelectedIndex = 0;
+            estatusComboBox.SelectedIndex = 1;
             Visible = true;
         }
 
@@ -264,12 +265,15 @@ namespace VentaPrenda.View.Concrete.Detalles
                     }
                     else
                     {
-                        MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
+                        if(clienteComboBox.Text.Length <= 0)
+                        {
+                            MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
                             "Selecciona un cliente",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
-                        descuentoComboBox.SelectedIndex = -1;
-                        return 0;
+                            descuentoComboBox.SelectedIndex = -1;
+                            return 0;
+                        }
                     }
                 }
                 servicios += Servicios;
@@ -297,12 +301,15 @@ namespace VentaPrenda.View.Concrete.Detalles
                     }
                     else
                     {
-                        MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
+                        if (clienteComboBox.Text.Length <= 0)
+                        {
+                            MessageBox.Show("Selecciona un cliente para poder validar el descuento.",
                             "Selecciona un cliente",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
-                        descuentoComboBox.SelectedIndex = -1;
-                        return 0;
+                            descuentoComboBox.SelectedIndex = -1;
+                            return 0;
+                        }
                     }
                 }
                 monto += Total;
@@ -358,10 +365,10 @@ namespace VentaPrenda.View.Concrete.Detalles
             {
                 foreach (ClienteDto c in clienteComboBox.Items)
                 {
-                    clienteComboBox.Text = clienteComboBox.Text.Replace(" ", "");
-                    if (!string.IsNullOrEmpty(clienteComboBox.Text)
-                        && (c.Nombre.ToLower().IndexOf(clienteComboBox.Text.ToLower()) >= 0
-                            || c.Telefono.IndexOf(clienteComboBox.Text) >= 0)
+                    string search = clienteComboBox.Text.Replace(" ", "");
+                    if (!string.IsNullOrEmpty(search)
+                        && (c.Nombre.ToLower().IndexOf(search.ToLower()) >= 0
+                            || c.Telefono.IndexOf(search) >= 0)
                         )
                     {
                         clienteComboBox.SelectedItem = c;
@@ -372,10 +379,13 @@ namespace VentaPrenda.View.Concrete.Detalles
                 }
                 if (clienteComboBox.SelectedItem == null)
                 {
+                    /*
                     e.Cancel = true;
                     clienteComboBox.BackColor = System.Drawing.Color.Pink;
                     _errorProvider.SetError(clienteComboBox, "No fue posible encontrar un cliente que coincida con el criterio de búsqueda. Para continuar selecciona un cliente válido o crea uno nuevo en el apartado de clientes.");
+                    */
                     clienteDataLabel.Text = "";
+                    clienteStatsDisplay.Clear();
                 }
             }
             else
@@ -477,22 +487,25 @@ namespace VentaPrenda.View.Concrete.Detalles
 
         private void DescuentoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ActualizarDescuentoLabels();
-            ActualizarPagosLabels();
+            if( descuentoComboBox.SelectedItem != null && ((DescuentoDto)descuentoComboBox.SelectedItem).ID >= 0)
+            {
+                ActualizarDescuentoLabels();
+                ActualizarPagosLabels();
+            }
         }
 
         private void NuevoPrendaItem_ServiciosRequested(object sender, DescuentoEventArgs e)
         {
             e.ServiciosNota = Servicios;
             e.DescuentosNota = Descuentos(e.DescuentoDto);
-            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : clienteComboBox.Text.Length > 0? -1 : -2;
         }
 
         private void NuevoPrendaItem_MontoRequested(object sender, DescuentoEventArgs e)
         {
             e.MontoNota = Total;
             e.DescuentosNota = Descuentos(e.DescuentoDto);
-            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : -1;
+            e.ClienteID = clienteComboBox.SelectedItem != null ? ((ClienteDto)clienteComboBox.SelectedItem).ID : clienteComboBox.Text.Length > 0? -1 : -2;
         }
 
         private void ImprimirButton_Click(object sender, EventArgs e)

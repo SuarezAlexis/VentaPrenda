@@ -169,7 +169,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         }
 
         /************************ EventListenners **************************/
-        private void conceptoTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ConceptoTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         { ValidatingTextBox(nombreTextBox, 32, e, _errorProvider); }
         private void conceptoTextBox_Validated(object sender, EventArgs e)
         { ValidatedTextBox(nombreTextBox); }
@@ -241,16 +241,10 @@ namespace VentaPrenda.View.Concrete.Detalles
         private void FinVigenciaDateTimePicker_Validated(object sender, EventArgs e)
         { finVigenciaDateTimePicker.BackColor = SystemColors.Window; }
 
-        private void VigenciaRadioButton_Click(object sender, EventArgs e)
-        {
-            vigenciaRadioButton.Checked = !vigenciaRadioButton.Checked;
-            soloNotaRadioButton.Checked = !soloNotaRadioButton.Checked;
-        }
+        private void SoloNotaRadioButton_CheckedChanged(object sender, EventArgs e)
+        { vigenciaRadioButton.Checked = !soloNotaRadioButton.Checked; }
 
-        private void SoloNotaRadioButton_Click(object sender, EventArgs e)
-        {
-            vigenciaRadioButton.Checked = !vigenciaRadioButton.Checked;
-            soloNotaRadioButton.Checked = !soloNotaRadioButton.Checked;
-        }
+        private void VigenciaRadioButton_CheckedChanged(object sender, EventArgs e)
+        { soloNotaRadioButton.Checked = !vigenciaRadioButton.Checked; }
     }
 }

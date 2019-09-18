@@ -33,20 +33,31 @@ namespace VentaPrenda.Service
 
         public static decimal MontoAcumulado(int clienteID, DateTime desde)
         {
-            Dictionary<string, object> param = new Dictionary<string, object>();
-            param.Add("@ID", clienteID);
-            param.Add("@Fecha", desde);
-            DataTable dt = MySqlDbContext.Query(CLIENTE_STATS_SQL, param);
-            return dt.Rows.Count > 0 && dt.Rows[0]["Monto"].GetType() != typeof(DBNull)? Convert.ToDecimal(dt.Rows[0]["Monto"]) : 0M;
+            if (clienteID >= 0)
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("@ID", clienteID);
+                param.Add("@Fecha", desde);
+                DataTable dt = MySqlDbContext.Query(CLIENTE_STATS_SQL, param);
+                return dt.Rows.Count > 0 && dt.Rows[0]["Monto"].GetType() != typeof(DBNull) ? Convert.ToDecimal(dt.Rows[0]["Monto"]) : 0M;
+            }
+            else
+            { return 0; }
         }
 
         public static int ServiciosAcumulados(int clienteID, DateTime desde)
         {
-            Dictionary<string, object> param = new Dictionary<string, object>();
-            param.Add("@ID", clienteID);
-            param.Add("@Fecha", desde);
-            DataTable dt = MySqlDbContext.Query(CLIENTE_STATS_SQL, param);
-            return dt.Rows.Count > 0 && dt.Rows[0]["Servicios"].GetType() != typeof(DBNull)? Convert.ToInt32(dt.Rows[0]["Servicios"]) : 0;
+            if(clienteID >= 0)
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("@ID", clienteID);
+                param.Add("@Fecha", desde);
+                DataTable dt = MySqlDbContext.Query(CLIENTE_STATS_SQL, param);
+                return dt.Rows.Count > 0 && dt.Rows[0]["Servicios"].GetType() != typeof(DBNull) ? Convert.ToInt32(dt.Rows[0]["Servicios"]) : 0;
+            }
+            else
+            { return 0; }
+            
         }
     }
 }
