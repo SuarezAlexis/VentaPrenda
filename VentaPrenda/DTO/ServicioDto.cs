@@ -13,6 +13,13 @@ namespace VentaPrenda.DTO
         public string Descripcion { get; set; }
         public decimal Costo { get; set; }
         public bool Habilitado { get; set; }
+        public List<CatalogoDto> Prendas { get; set; }
+
+        public ServicioDto()
+        {
+            ID = -1;
+            Prendas = new List<CatalogoDto>();
+        }
 
         public override string ToString()
         {

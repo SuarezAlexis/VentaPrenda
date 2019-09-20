@@ -249,7 +249,11 @@ namespace VentaPrenda.View.Concrete
         { this.DialogResult = DialogResult.OK; }
 
         private void PrendasComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        { EnableAceptarButton(); }
+        {
+            EnableAceptarButton();
+            foreach(ServicioUserControl s in serviciosFlowLayoutPanel.Controls)
+            { s.UpdateServicios((CatalogoDto)prendasComboBox.SelectedItem); }
+        }
 
         private void ColoresComboBox_SelectedIndexChanged(object sender, EventArgs e)
         { EnableAceptarButton();  }

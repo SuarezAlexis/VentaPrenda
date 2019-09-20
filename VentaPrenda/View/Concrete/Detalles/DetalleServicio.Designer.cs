@@ -44,6 +44,12 @@
             this.descripcionLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.descripcionLabel = new System.Windows.Forms.Label();
             this.descripcionTextBox = new System.Windows.Forms.TextBox();
+            this.prendasLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.prendasLabel = new System.Windows.Forms.Label();
+            this.prendasCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.selectListButtonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.seleccionarTodoButton = new System.Windows.Forms.Button();
+            this.limpiarSeleccionButton = new System.Windows.Forms.Button();
             this.detalleServicioLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.nombreLayoutPanel.SuspendLayout();
@@ -51,6 +57,8 @@
             this.costoLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.costoNumUpDown)).BeginInit();
             this.descripcionLayoutPanel.SuspendLayout();
+            this.prendasLayoutPanel.SuspendLayout();
+            this.selectListButtonsLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // detalleServicioLayoutPanel
@@ -63,6 +71,7 @@
             this.detalleServicioLayoutPanel.Controls.Add(this.habilitadoLayoutPanel, 0, 4);
             this.detalleServicioLayoutPanel.Controls.Add(this.costoLayoutPanel, 0, 2);
             this.detalleServicioLayoutPanel.Controls.Add(this.descripcionLayoutPanel, 0, 3);
+            this.detalleServicioLayoutPanel.Controls.Add(this.prendasLayoutPanel, 0, 5);
             this.detalleServicioLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleServicioLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.detalleServicioLayoutPanel.Name = "detalleServicioLayoutPanel";
@@ -73,7 +82,8 @@
             this.detalleServicioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleServicioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleServicioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.detalleServicioLayoutPanel.Size = new System.Drawing.Size(374, 410);
+            this.detalleServicioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.detalleServicioLayoutPanel.Size = new System.Drawing.Size(500, 410);
             this.detalleServicioLayoutPanel.TabIndex = 0;
             // 
             // idLayoutPanel
@@ -88,7 +98,7 @@
             this.idLayoutPanel.Name = "idLayoutPanel";
             this.idLayoutPanel.RowCount = 1;
             this.idLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.idLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.idLayoutPanel.Size = new System.Drawing.Size(490, 34);
             this.idLayoutPanel.TabIndex = 0;
             // 
             // idLabel
@@ -108,7 +118,7 @@
             this.idDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.idDataLabel.Location = new System.Drawing.Point(112, 0);
             this.idDataLabel.Name = "idDataLabel";
-            this.idDataLabel.Size = new System.Drawing.Size(249, 34);
+            this.idDataLabel.Size = new System.Drawing.Size(375, 34);
             this.idDataLabel.TabIndex = 1;
             this.idDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -124,7 +134,7 @@
             this.nombreLayoutPanel.Name = "nombreLayoutPanel";
             this.nombreLayoutPanel.RowCount = 1;
             this.nombreLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.nombreLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.nombreLayoutPanel.Size = new System.Drawing.Size(490, 34);
             this.nombreLayoutPanel.TabIndex = 1;
             // 
             // nombreLabel
@@ -144,7 +154,7 @@
             this.nombreTextBox.Location = new System.Drawing.Point(112, 7);
             this.nombreTextBox.MaxLength = 64;
             this.nombreTextBox.Name = "nombreTextBox";
-            this.nombreTextBox.Size = new System.Drawing.Size(170, 20);
+            this.nombreTextBox.Size = new System.Drawing.Size(200, 20);
             this.nombreTextBox.TabIndex = 1;
             this.nombreTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.nombreTextBox_Validating);
             this.nombreTextBox.Validated += new System.EventHandler(this.nombreTextBox_Validated);
@@ -161,7 +171,7 @@
             this.habilitadoLayoutPanel.Name = "habilitadoLayoutPanel";
             this.habilitadoLayoutPanel.RowCount = 1;
             this.habilitadoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.habilitadoLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.habilitadoLayoutPanel.Size = new System.Drawing.Size(490, 34);
             this.habilitadoLayoutPanel.TabIndex = 4;
             // 
             // habilitadoLabel
@@ -199,7 +209,7 @@
             this.costoLayoutPanel.Name = "costoLayoutPanel";
             this.costoLayoutPanel.RowCount = 1;
             this.costoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.costoLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.costoLayoutPanel.Size = new System.Drawing.Size(490, 34);
             this.costoLayoutPanel.TabIndex = 3;
             // 
             // costoLabel
@@ -241,7 +251,7 @@
             this.descripcionLayoutPanel.Name = "descripcionLayoutPanel";
             this.descripcionLayoutPanel.RowCount = 1;
             this.descripcionLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.descripcionLayoutPanel.Size = new System.Drawing.Size(364, 34);
+            this.descripcionLayoutPanel.Size = new System.Drawing.Size(490, 34);
             this.descripcionLayoutPanel.TabIndex = 2;
             // 
             // descripcionLabel
@@ -262,16 +272,93 @@
             this.descripcionTextBox.MaxLength = 128;
             this.descripcionTextBox.Multiline = true;
             this.descripcionTextBox.Name = "descripcionTextBox";
-            this.descripcionTextBox.Size = new System.Drawing.Size(170, 20);
+            this.descripcionTextBox.Size = new System.Drawing.Size(200, 20);
             this.descripcionTextBox.TabIndex = 1;
+            // 
+            // prendasLayoutPanel
+            // 
+            this.prendasLayoutPanel.ColumnCount = 3;
+            this.prendasLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.prendasLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.prendasLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.prendasLayoutPanel.Controls.Add(this.prendasLabel, 0, 0);
+            this.prendasLayoutPanel.Controls.Add(this.prendasCheckedListBox, 1, 0);
+            this.prendasLayoutPanel.Controls.Add(this.selectListButtonsLayoutPanel, 2, 0);
+            this.prendasLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prendasLayoutPanel.Location = new System.Drawing.Point(5, 215);
+            this.prendasLayoutPanel.Name = "prendasLayoutPanel";
+            this.prendasLayoutPanel.RowCount = 1;
+            this.prendasLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.prendasLayoutPanel.Size = new System.Drawing.Size(490, 190);
+            this.prendasLayoutPanel.TabIndex = 5;
+            // 
+            // prendasLabel
+            // 
+            this.prendasLabel.AutoSize = true;
+            this.prendasLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.prendasLabel.Location = new System.Drawing.Point(3, 0);
+            this.prendasLabel.Name = "prendasLabel";
+            this.prendasLabel.Size = new System.Drawing.Size(103, 190);
+            this.prendasLabel.TabIndex = 0;
+            this.prendasLabel.Text = "Prendas";
+            this.prendasLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // prendasCheckedListBox
+            // 
+            this.prendasCheckedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.prendasCheckedListBox.CheckOnClick = true;
+            this.prendasCheckedListBox.FormattingEnabled = true;
+            this.prendasCheckedListBox.Location = new System.Drawing.Point(112, 3);
+            this.prendasCheckedListBox.Name = "prendasCheckedListBox";
+            this.prendasCheckedListBox.Size = new System.Drawing.Size(200, 184);
+            this.prendasCheckedListBox.TabIndex = 1;
+            // 
+            // selectListButtonsLayoutPanel
+            // 
+            this.selectListButtonsLayoutPanel.ColumnCount = 1;
+            this.selectListButtonsLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.selectListButtonsLayoutPanel.Controls.Add(this.seleccionarTodoButton, 0, 0);
+            this.selectListButtonsLayoutPanel.Controls.Add(this.limpiarSeleccionButton, 0, 1);
+            this.selectListButtonsLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.selectListButtonsLayoutPanel.Location = new System.Drawing.Point(318, 3);
+            this.selectListButtonsLayoutPanel.Name = "selectListButtonsLayoutPanel";
+            this.selectListButtonsLayoutPanel.RowCount = 2;
+            this.selectListButtonsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.selectListButtonsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.selectListButtonsLayoutPanel.Size = new System.Drawing.Size(169, 100);
+            this.selectListButtonsLayoutPanel.TabIndex = 2;
+            // 
+            // seleccionarTodoButton
+            // 
+            this.seleccionarTodoButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.seleccionarTodoButton.Location = new System.Drawing.Point(34, 13);
+            this.seleccionarTodoButton.Name = "seleccionarTodoButton";
+            this.seleccionarTodoButton.Size = new System.Drawing.Size(100, 23);
+            this.seleccionarTodoButton.TabIndex = 0;
+            this.seleccionarTodoButton.Text = "Seleccionar todo";
+            this.seleccionarTodoButton.UseVisualStyleBackColor = true;
+            this.seleccionarTodoButton.Click += new System.EventHandler(this.SeleccionarTodoButton_Click);
+            // 
+            // limpiarSeleccionButton
+            // 
+            this.limpiarSeleccionButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.limpiarSeleccionButton.Location = new System.Drawing.Point(34, 63);
+            this.limpiarSeleccionButton.Name = "limpiarSeleccionButton";
+            this.limpiarSeleccionButton.Size = new System.Drawing.Size(100, 23);
+            this.limpiarSeleccionButton.TabIndex = 1;
+            this.limpiarSeleccionButton.Text = "Limpiar selección";
+            this.limpiarSeleccionButton.UseVisualStyleBackColor = true;
+            this.limpiarSeleccionButton.Click += new System.EventHandler(this.LimpiarSeleccionButton_Click);
             // 
             // DetalleServicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.detalleServicioLayoutPanel);
             this.Name = "DetalleServicio";
-            this.Size = new System.Drawing.Size(374, 410);
+            this.Size = new System.Drawing.Size(500, 410);
             this.detalleServicioLayoutPanel.ResumeLayout(false);
             this.idLayoutPanel.ResumeLayout(false);
             this.idLayoutPanel.PerformLayout();
@@ -284,6 +371,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.costoNumUpDown)).EndInit();
             this.descripcionLayoutPanel.ResumeLayout(false);
             this.descripcionLayoutPanel.PerformLayout();
+            this.prendasLayoutPanel.ResumeLayout(false);
+            this.prendasLayoutPanel.PerformLayout();
+            this.selectListButtonsLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -306,5 +396,11 @@
         private System.Windows.Forms.NumericUpDown costoNumUpDown;
         private System.Windows.Forms.TextBox descripcionTextBox;
         private System.Windows.Forms.CheckBox habilitadoCheckBox;
+        private System.Windows.Forms.TableLayoutPanel prendasLayoutPanel;
+        private System.Windows.Forms.Label prendasLabel;
+        private System.Windows.Forms.CheckedListBox prendasCheckedListBox;
+        private System.Windows.Forms.TableLayoutPanel selectListButtonsLayoutPanel;
+        private System.Windows.Forms.Button seleccionarTodoButton;
+        private System.Windows.Forms.Button limpiarSeleccionButton;
     }
 }

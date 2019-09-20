@@ -31,6 +31,9 @@ namespace VentaPrenda.View.Concrete.Detalles
                 descripcionTextBox.ReadOnly = value;
                 costoNumUpDown.ReadOnly = value;
                 habilitadoCheckBox.Enabled = !value;
+                prendasCheckedListBox.Enabled = !value;
+                seleccionarTodoButton.Enabled = !value;
+                limpiarSeleccionButton.Enabled = !value;
             }
         }
 
@@ -43,6 +46,9 @@ namespace VentaPrenda.View.Concrete.Detalles
                 _dto.Costo = costoNumUpDown.Value;
                 _dto.Descripcion = descripcionTextBox.Text;
                 _dto.Habilitado = habilitadoCheckBox.Checked;
+                _dto.Prendas.Clear();
+                foreach(CatalogoDto p in prendasCheckedListBox.CheckedItems)
+                { _dto.Prendas.Add(p); }
                 return _dto;
             }
             set
@@ -61,6 +67,8 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             InitializeComponent();
             _dto = new ServicioDto();
+            foreach(CatalogoDto p in PrendaItemDto.Prendas)
+            { prendasCheckedListBox.Items.Add(p); }
         }
 
         public DetalleServicio(ErrorProvider e) : this()
@@ -78,6 +86,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             descripcionTextBox.Text = "";
             costoNumUpDown.Value = 0;
             habilitadoCheckBox.Checked = true;
+            SeleccionarTodasLasPrendas(false);
         }
 
         public override void Fill(object model)
@@ -101,8 +110,16 @@ namespace VentaPrenda.View.Concrete.Detalles
                 costoNumUpDown.Value = s.Costo;
                 descripcionTextBox.Text = s.Descripcion;
                 habilitadoCheckBox.Checked = s.Habilitado;
+                for(int i = 0; i < prendasCheckedListBox.Items.Count; i++)
+                { prendasCheckedListBox.SetItemChecked(i, s.Prendas.Contains(prendasCheckedListBox.Items[i])); }
                 Visible = true;
             }
+        }
+
+        private void SeleccionarTodasLasPrendas(bool s)
+        {
+            for (int i = 0; i < prendasCheckedListBox.Items.Count; i++)
+            { prendasCheckedListBox.SetItemChecked(i, s); }
         }
 
         /************************ EventListenners **************************/
@@ -111,5 +128,10 @@ namespace VentaPrenda.View.Concrete.Detalles
         private void nombreTextBox_Validated(object sender, EventArgs e)
         { ValidatedTextBox(nombreTextBox); }
 
+        private void SeleccionarTodoButton_Click(object sender, EventArgs e)
+        { SeleccionarTodasLasPrendas(true); }
+
+        private void LimpiarSeleccionButton_Click(object sender, EventArgs e)
+        { SeleccionarTodasLasPrendas(false); }
     }
 }

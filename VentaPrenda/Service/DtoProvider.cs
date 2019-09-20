@@ -110,16 +110,7 @@ namespace VentaPrenda.Service
             foreach(DataRow dr in DaoManager.ServicioDao.GetServicios().Rows)
             {
                 if(Convert.ToBoolean(dr["Habilitado"]))
-                {
-                    list.Add(new ServicioDto
-                    {
-                        ID = Convert.ToInt32(dr["ID"]),
-                        Nombre = dr["Nombre"].ToString(),
-                        Descripcion = dr["Descripcion"].ToString(),
-                        Costo = Convert.ToDecimal(dr["Costo"]),
-                        Habilitado = Convert.ToBoolean(dr["Habilitado"])
-                    });
-                }
+                { list.Add(DaoManager.ServicioDao.GetServicio(Convert.ToInt32(dr["ID"]))); }
             }
             return list;
         }

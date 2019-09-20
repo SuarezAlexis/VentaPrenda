@@ -60,8 +60,10 @@ namespace VentaPrenda.View.Concrete
         {
             InitializeComponent();
             _dto = new ServicioItemDto();
+            /*
             foreach(ServicioDto s in ServicioItemDto.Servicios)
             { servicioComboBox.Items.Add(s); }
+            */
             descuentoComboBox.Items.Add(new DescuentoDto());
             foreach(DescuentoDto d in ServicioItemDto.Descuentos)
             { descuentoComboBox.Items.Add(d); }
@@ -104,6 +106,13 @@ namespace VentaPrenda.View.Concrete
             PorcentajeRadioButton_Click(this, EventArgs.Empty);
             montoNumUpDown.Value = cantNumUpDown.Value > d.Unidades ? -100 * d.Unidades / cantNumUpDown.Value : -100;
             ActualizarSubtotal();
+        }
+
+        public void UpdateServicios(CatalogoDto prenda)
+        {
+            servicioComboBox.Items.Clear();
+            foreach(ServicioDto s in ServicioItemDto.Servicios.Where(s => s.Prendas.Contains(prenda)))
+            { servicioComboBox.Items.Add(s); }
         }
 
         private void ServicioComboBox_SelectedIndexChanged(object sender, EventArgs e)

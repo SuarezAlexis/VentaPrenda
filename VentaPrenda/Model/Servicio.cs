@@ -13,5 +13,6 @@ namespace VentaPrenda.Model
         public string Descripcion { get; set; }
         public decimal Costo { get; set; }
         public bool Habilitado { get; set; }
+        public List<Prenda> Prendas { get; set; }
     }
 }

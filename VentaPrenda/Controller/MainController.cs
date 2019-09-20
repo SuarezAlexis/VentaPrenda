@@ -194,6 +194,7 @@ namespace VentaPrenda.Controller
             Funcion = Funcion.SERVICIOS;
             Modo = Modo.SELECCION;
             _mainView.DataSource = DaoManager.ServicioDao.GetServicios();
+            PrendaItemDto.Prendas = DtoProvider.PrendasAsList();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }

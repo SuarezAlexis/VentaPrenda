@@ -17,6 +17,9 @@ BEGIN
 		EXECUTE selectStmt;
 		DEALLOCATE PREPARE selectStmt;
 		
+        IF(p_Cat = "Prenda") THEN
+			DELETE FROM Servicio_Prenda WHERE Prenda = p_ID;
+		END IF;
         SET @delete_sql = CONCAT("DELETE FROM ", p_Cat, " WHERE ID = ", p_ID);
         PREPARE deleteStmt FROM @delete_sql;
 		EXECUTE deleteStmt;
@@ -66,15 +69,23 @@ BEGIN
 END$$
 DELIMITER ;
 
+
+DROP procedure IF EXISTS `sp_DeleteServicio`;
+
 DELIMITER $$
+USE `VentaPrenda`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteServicio`(p_ID INT)
 BEGIN
 	START TRANSACTION;
 		SELECT * FROM Servicio WHERE ID = p_ID;
+        DELETE FROM Servicio_Prenda WHERE Servicio = p_ID;
 		DELETE FROM Servicio WHERE ID = p_ID;
 	COMMIT;
 END$$
+
 DELIMITER ;
+
+
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteUsuario`(p_ID BIGINT)
@@ -165,6 +176,39 @@ BEGIN
 	GROUP BY Nota
 	) Pagos ON(Pagos.Nota = Notas.Nota)
 	GROUP BY Notas.Nota;
+END$$
+
+DELIMITER ;
+
+USE `VentaPrenda`;
+DROP procedure IF EXISTS `sp_UpdateServicioPrenda`;
+
+DELIMITER $$
+USE `VentaPrenda`$$
+CREATE PROCEDURE `sp_UpdateServicioPrenda` (p_Servicio INT, p_Prendas VARCHAR(64))
+BEGIN
+	IF p_Prendas IS NULL OR LENGTH(p_Prendas) = 0 THEN
+		DELETE FROM Servicio_Prenda WHERE Servicio = p_Servicio;
+    ELSE
+		SET @delete_sql = CONCAT('DELETE FROM Servicio_Prenda WHERE Servicio = ', p_Servicio, ' AND Prenda NOT IN(', p_Prendas ,')');
+		SET @insert_sql = 'INSERT IGNORE INTO Servicio_Prenda (Servicio,Prenda) VALUES ';
+
+		PREPARE delStmt FROM @delete_sql;
+		EXECUTE delStmt;
+		DEALLOCATE PREPARE delStmt;
+
+		WHILE LENGTH(p_Prendas) > 0 DO
+			SET @Prenda = SUBSTRING_INDEX(p_Prendas,',',1);
+			SET @insert_sql = CONCAT(@insert_sql, '(',p_Servicio,',',@Prenda,'), ');
+			SET p_Prendas = SUBSTR(p_Prendas, LENGTH(@Prenda) + 2, LENGTH(p_Prendas) - LENGTH(@Prenda) - 1);
+		END WHILE;
+		SET @insert_sql = SUBSTR(@insert_sql, 1, LENGTH(@insert_sql) - 2);
+		
+		PREPARE insStmt FROM @insert_sql;
+		EXECUTE insStmt;
+		DEALLOCATE PREPARE insStmt;
+	END	IF;
+	SELECT P.* FROM Prenda P JOIN Servicio_Prenda SP ON(SP.Prenda = P.ID) WHERE SP.Servicio = p_Servicio;
 END$$
 
 DELIMITER ;

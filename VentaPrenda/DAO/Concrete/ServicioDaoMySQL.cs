@@ -14,7 +14,9 @@ namespace VentaPrenda.DAO.Concrete
     public class ServicioDaoMySQL : IServicioDao
     {
         private static readonly string SELECT_SQL = "SELECT * FROM Servicio";
+        private static readonly string SELECT_PRENDAS_SQL = "SELECT P.* FROM Servicio_Prenda SP JOIN Prenda P ON(P.ID = SP.Prenda) WHERE SP.Servicio = @ID";
         private static readonly string INSERT_SQL = "INSERT INTO Servicio(Nombre,Descripcion,Costo,Habilitado) VALUES(@Nombre,@Descripcion,@Costo,@Habilitado); SELECT LAST_INSERT_ID();";
+        private static readonly string UPDATE_PRENDAS_SQL = "sp_UpdateServicioPrenda";
         private static readonly string UPDATE_SQL = "UPDATE Servicio SET Nombre = @Nombre, Descripcion = @Descripcion, Costo = @Costo, Habilitado = @Habilitado WHERE ID = @ID";
         private static readonly string DELETE_SQL = "sp_DeleteServicio";
 
@@ -35,6 +37,21 @@ namespace VentaPrenda.DAO.Concrete
             return dto;
         }
 
+        private static CatalogoDto PrendaMap(DataRow dr)
+        {
+            CatalogoDto p = null;
+            if(dr != null)
+            {
+                p = new CatalogoDto
+                {
+                    ID = Convert.ToInt16(dr["ID"]),
+                    Nombre = dr["Nombre"].ToString(),
+                    Habilitado = Convert.ToBoolean(dr["Habilitado"])
+                };
+            }
+            return p;
+        }
+
         public ServicioDto EliminarServicio(ServicioDto dto)
         {
             Dictionary<string, object> param = new Dictionary<string, object>();
@@ -46,7 +63,14 @@ namespace VentaPrenda.DAO.Concrete
         public ServicioDto GetServicio(int id)
         {
             DataTable dt = MySqlDbContext.Query(SELECT_SQL + " WHERE ID = " + id);
-            return dt.Rows.Count > 0 ? Map(dt.Rows[0]) : null;
+            ServicioDto servicio = dt.Rows.Count > 0 ? Map(dt.Rows[0]) : null;
+
+            Dictionary<string, object> param = new Dictionary<string, object>();
+            param.Add("@ID", id);
+            foreach(DataRow dr in  MySqlDbContext.Query(SELECT_PRENDAS_SQL, param).Rows)
+            { servicio.Prendas.Add(PrendaMap(dr)); }
+
+            return servicio;
         }
 
         public DataTable GetServicios()
@@ -80,7 +104,22 @@ namespace VentaPrenda.DAO.Concrete
                     { throw new DuplicateKeyException(e); }
                 }
             }
+            GuardarPrendas(dto.Prendas, dto.ID);
             return dto;
+        }
+
+        private void GuardarPrendas(List<CatalogoDto> Prendas, int ServicioID)
+        {
+            Dictionary<string,object> param = new Dictionary<string, object>();
+            param.Add("@p_Servicio", ServicioID);
+            string perfiles = "";
+            foreach (CatalogoDto p in Prendas)
+            {
+                perfiles += p.ID + ",";
+            }
+            perfiles = perfiles.Substring(0, perfiles.Length - 1);
+            param.Add("@p_Prendas", perfiles);
+            MySqlDbContext.Call(UPDATE_PRENDAS_SQL, param);
         }
     }
 }
