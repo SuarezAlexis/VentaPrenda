@@ -211,35 +211,47 @@ namespace VentaPrenda.View.Concrete.Detalles
             if(inicioVigenciaDateTimePicker.Value > finVigenciaDateTimePicker.Value)
             {
                 e.Cancel = true;
-                inicioVigenciaDateTimePicker.BackColor = System.Drawing.Color.Pink;
-                _errorProvider.SetError(inicioVigenciaDateTimePicker,"El inicio de la vigencia debe ser anterior al fin de la vigencia.");
+                finVigenciaDateTimePicker.CalendarMonthBackground = System.Drawing.Color.Pink;
+                inicioVigenciaDateTimePicker.CalendarMonthBackground = System.Drawing.Color.Pink;
+                _errorProvider.SetError(finVigenciaDateTimePicker, "El fin de la vigencia debe ser posterior al inicio de la vigencia.");
+                _errorProvider.SetError(inicioVigenciaDateTimePicker, "El inicio de la vigencia debe ser anterior al fin de la vigencia.");
             } else
             {
                 e.Cancel = false;
+                _errorProvider.SetError(finVigenciaDateTimePicker, "");
                 _errorProvider.SetError(inicioVigenciaDateTimePicker, "");
             }
         }
 
         private void InicioVigenciaDateTimePicker_Validated(object sender, EventArgs e)
-        { inicioVigenciaDateTimePicker.BackColor = SystemColors.Window; }
+        {
+            finVigenciaDateTimePicker.CalendarMonthBackground = SystemColors.Window;
+            inicioVigenciaDateTimePicker.CalendarMonthBackground = SystemColors.Window;
+        }
 
         private void FinVigenciaDateTimePicker_Validating(object sender, CancelEventArgs e)
         {
-            if (finVigenciaDateTimePicker.Value < finVigenciaDateTimePicker.Value)
+            if (finVigenciaDateTimePicker.Value < inicioVigenciaDateTimePicker.Value)
             {
                 e.Cancel = true;
-                finVigenciaDateTimePicker.BackColor = System.Drawing.Color.Pink;
+                finVigenciaDateTimePicker.CalendarMonthBackground = System.Drawing.Color.Pink;
+                inicioVigenciaDateTimePicker.CalendarMonthBackground = System.Drawing.Color.Pink;
                 _errorProvider.SetError(finVigenciaDateTimePicker, "El fin de la vigencia debe ser posterior al inicio de la vigencia.");
+                _errorProvider.SetError(inicioVigenciaDateTimePicker, "El inicio de la vigencia debe ser anterior al fin de la vigencia.");
             }
             else
             {
                 e.Cancel = false;
                 _errorProvider.SetError(finVigenciaDateTimePicker, "");
+                _errorProvider.SetError(inicioVigenciaDateTimePicker, "");
             }
         }
 
         private void FinVigenciaDateTimePicker_Validated(object sender, EventArgs e)
-        { finVigenciaDateTimePicker.BackColor = SystemColors.Window; }
+        {
+            finVigenciaDateTimePicker.CalendarMonthBackground = SystemColors.Window;
+            inicioVigenciaDateTimePicker.CalendarMonthBackground = SystemColors.Window;
+        }
 
         private void SoloNotaRadioButton_CheckedChanged(object sender, EventArgs e)
         { vigenciaRadioButton.Checked = !soloNotaRadioButton.Checked; }

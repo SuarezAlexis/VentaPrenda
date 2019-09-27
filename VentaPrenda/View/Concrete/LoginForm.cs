@@ -32,29 +32,27 @@ namespace VentaPrenda.View.Concrete
         /*************************** MÉTODOS *******************************/
         public LoginDto RequestCredentials()
         {
+            usuarioTextBox.Focus();
             if( ShowDialog() == DialogResult.OK)
             {
                 return new LoginDto {
-                    Usuario = this.usuarioTextBox.Text,
-                    Contraseña = this.contraTextBox.Text
+                    Usuario = usuarioTextBox.Text,
+                    Contraseña = contraTextBox.Text
                 };
             }
             else
-            {
-                throw new ViewClosedException(this.GetType());
-            }
+            { throw new ViewClosedException(this.GetType()); }
         }
 
         public void WrongCredentials()
         {
-            this.usuarioTextBox.Text = "";
-            this.contraTextBox.Text = "";
+            contraTextBox.Text = "";
             MessageBox.Show(
                 "El nombre de usuario o contraseña son incorrectos.",
                 "Datos inválidos",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Hand);
-            this.usuarioTextBox.Focus();
+            usuarioTextBox.Focus();
         }
 
         public void BlockedUser()

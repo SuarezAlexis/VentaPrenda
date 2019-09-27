@@ -126,18 +126,19 @@ CREATE TABLE `PrendaItem` (
   `Nota` bigint(20) NOT NULL,
   `Cantidad` tinyint(4) NOT NULL DEFAULT '1',
   `Prenda` smallint(6) NOT NULL,
-  `Tipo` smallint(6) DEFAULT NULL,
+  `TipoPrenda` smallint(6) DEFAULT NULL,
   `Color` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `PrendaItem_Ref_Nota_idx` (`Nota`),
   KEY `PrendaItem_Ref_Prenda_idx` (`Prenda`),
-  KEY `PrendaItem_Ref_Tipo_idx` (`Tipo`),
+  KEY `PrendaItem_Ref_Tipo_idx` (`TipoPrenda`),
   KEY `PrendaItem_Ref_Color_idx` (`Color`),
   CONSTRAINT `PrendaItem_Ref_Color` FOREIGN KEY (`Color`) REFERENCES `color` (`ID`),
   CONSTRAINT `PrendaItem_Ref_Nota` FOREIGN KEY (`Nota`) REFERENCES `nota` (`ID`),
   CONSTRAINT `PrendaItem_Ref_Prenda` FOREIGN KEY (`Prenda`) REFERENCES `prenda` (`ID`),
-  CONSTRAINT `PrendaItem_Ref_Tipo` FOREIGN KEY (`Tipo`) REFERENCES `tipoprenda` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `PrendaItem_Ref_Tipo` FOREIGN KEY (`TipoPrenda`) REFERENCES `tipoprenda` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `ServicioItem` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,

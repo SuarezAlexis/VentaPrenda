@@ -60,7 +60,7 @@ namespace VentaPrenda.Controller
                     "Error de base de datos",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }
+            } 
             return Usuario != null && Usuario.Logged;
         }
     }

@@ -186,6 +186,7 @@
             // inicioVigenciaDateTimePicker
             // 
             this.inicioVigenciaDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.inicioVigenciaDateTimePicker.CalendarMonthBackground = System.Drawing.Color.WhiteSmoke;
             this.inicioVigenciaDateTimePicker.CustomFormat = "ddd dd/MMM/yyyy hh:mm tt";
             this.inicioVigenciaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.inicioVigenciaDateTimePicker.Location = new System.Drawing.Point(112, 7);

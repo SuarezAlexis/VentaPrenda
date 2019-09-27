@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VentaPrenda.DAO.Abstract;
 using VentaPrenda.DTO;
 using VentaPrenda.Exceptions;
@@ -112,13 +109,13 @@ namespace VentaPrenda.DAO.Concrete
         {
             Dictionary<string,object> param = new Dictionary<string, object>();
             param.Add("@p_Servicio", ServicioID);
-            string perfiles = "";
+            string prendas = "";
             foreach (CatalogoDto p in Prendas)
             {
-                perfiles += p.ID + ",";
+                prendas += p.ID + ",";
             }
-            perfiles = perfiles.Substring(0, perfiles.Length - 1);
-            param.Add("@p_Prendas", perfiles);
+            prendas = prendas.Substring(0, Math.Max(0,prendas.Length - 1));
+            param.Add("@p_Prendas", prendas);
             MySqlDbContext.Call(UPDATE_PRENDAS_SQL, param);
         }
     }

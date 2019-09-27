@@ -394,11 +394,11 @@ namespace VentaPrenda.Controller
                     _mainView.DataSource = DaoManager.CatalogoDao.GetColores();
                     break;
                 case Funcion.PRENDAS:
-                    _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);
+                    _mainView.Dto = DaoManager.CatalogoDao.EliminarPrenda((CatalogoDto)dto);
                     _mainView.DataSource = DaoManager.CatalogoDao.GetPrendas();
                     break;
                 case Funcion.TIPOS_PRENDA:
-                    _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);
+                    _mainView.Dto = DaoManager.CatalogoDao.EliminarTipoPrenda((CatalogoDto)dto);
                     _mainView.DataSource = DaoManager.CatalogoDao.GetTiposPrenda();
                     break;
                 case Funcion.SERVICIOS:

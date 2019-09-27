@@ -94,7 +94,7 @@
             this.nuevoPrendaItemLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.nuevoPrendaItemLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.nuevoPrendaItemLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.nuevoPrendaItemLayoutPanel.Size = new System.Drawing.Size(704, 441);
+            this.nuevoPrendaItemLayoutPanel.Size = new System.Drawing.Size(704, 312);
             this.nuevoPrendaItemLayoutPanel.TabIndex = 0;
             // 
             // formHeaderLayoutPanel
@@ -299,7 +299,7 @@
             this.serviciosFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.serviciosFlowLayoutPanel.Location = new System.Drawing.Point(5, 155);
             this.serviciosFlowLayoutPanel.Name = "serviciosFlowLayoutPanel";
-            this.serviciosFlowLayoutPanel.Size = new System.Drawing.Size(694, 207);
+            this.serviciosFlowLayoutPanel.Size = new System.Drawing.Size(694, 78);
             this.serviciosFlowLayoutPanel.TabIndex = 3;
             this.serviciosFlowLayoutPanel.WrapContents = false;
             this.serviciosFlowLayoutPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.ServiciosFlowLayoutPanel_ControlAdded);
@@ -318,7 +318,7 @@
             this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.serviciosHeaderLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.serviciosHeaderLayoutPanel.Controls.Add(this.servicioCantLabel, 0, 0);
             this.serviciosHeaderLayoutPanel.Controls.Add(this.servicioLabel, 1, 0);
             this.serviciosHeaderLayoutPanel.Controls.Add(this.descuentoLabel, 2, 0);
@@ -353,7 +353,7 @@
             this.servicioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.servicioLabel.Location = new System.Drawing.Point(43, 0);
             this.servicioLabel.Name = "servicioLabel";
-            this.servicioLabel.Size = new System.Drawing.Size(145, 14);
+            this.servicioLabel.Size = new System.Drawing.Size(144, 14);
             this.servicioLabel.TabIndex = 1;
             this.servicioLabel.Text = "Servicio";
             this.servicioLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -363,7 +363,7 @@
             this.descuentoLabel.AutoSize = true;
             this.descuentoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descuentoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descuentoLabel.Location = new System.Drawing.Point(194, 0);
+            this.descuentoLabel.Location = new System.Drawing.Point(193, 0);
             this.descuentoLabel.Name = "descuentoLabel";
             this.descuentoLabel.Size = new System.Drawing.Size(94, 14);
             this.descuentoLabel.TabIndex = 2;
@@ -375,7 +375,7 @@
             this.costoUnitarioLabel.AutoSize = true;
             this.costoUnitarioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.costoUnitarioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.costoUnitarioLabel.Location = new System.Drawing.Point(294, 0);
+            this.costoUnitarioLabel.Location = new System.Drawing.Point(293, 0);
             this.costoUnitarioLabel.Name = "costoUnitarioLabel";
             this.costoUnitarioLabel.Size = new System.Drawing.Size(74, 14);
             this.costoUnitarioLabel.TabIndex = 3;
@@ -388,7 +388,7 @@
             this.serviciosHeaderLayoutPanel.SetColumnSpan(this.descuentosRecargosaLabel, 2);
             this.descuentosRecargosaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descuentosRecargosaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descuentosRecargosaLabel.Location = new System.Drawing.Point(374, 0);
+            this.descuentosRecargosaLabel.Location = new System.Drawing.Point(373, 0);
             this.descuentosRecargosaLabel.Name = "descuentosRecargosaLabel";
             this.descuentosRecargosaLabel.Size = new System.Drawing.Size(104, 14);
             this.descuentosRecargosaLabel.TabIndex = 4;
@@ -400,7 +400,7 @@
             this.encargadoLabel.AutoSize = true;
             this.encargadoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.encargadoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.encargadoLabel.Location = new System.Drawing.Point(564, 0);
+            this.encargadoLabel.Location = new System.Drawing.Point(563, 0);
             this.encargadoLabel.Name = "encargadoLabel";
             this.encargadoLabel.Size = new System.Drawing.Size(64, 14);
             this.encargadoLabel.TabIndex = 5;
@@ -412,7 +412,7 @@
             this.subtotalLabel.AutoSize = true;
             this.subtotalLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.subtotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.subtotalLabel.Location = new System.Drawing.Point(484, 0);
+            this.subtotalLabel.Location = new System.Drawing.Point(483, 0);
             this.subtotalLabel.Name = "subtotalLabel";
             this.subtotalLabel.Size = new System.Drawing.Size(74, 14);
             this.subtotalLabel.TabIndex = 6;
@@ -423,7 +423,7 @@
             // 
             this.aceptarButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.aceptarButton.Enabled = false;
-            this.aceptarButton.Location = new System.Drawing.Point(314, 407);
+            this.aceptarButton.Location = new System.Drawing.Point(314, 278);
             this.aceptarButton.Name = "aceptarButton";
             this.aceptarButton.Size = new System.Drawing.Size(75, 23);
             this.aceptarButton.TabIndex = 5;
@@ -499,7 +499,7 @@
             // 
             this.agregarServicioButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.agregarServicioButton.Enabled = false;
-            this.agregarServicioButton.Location = new System.Drawing.Point(292, 370);
+            this.agregarServicioButton.Location = new System.Drawing.Point(292, 241);
             this.agregarServicioButton.Name = "agregarServicioButton";
             this.agregarServicioButton.Size = new System.Drawing.Size(120, 23);
             this.agregarServicioButton.TabIndex = 7;
@@ -512,8 +512,10 @@
             this.AcceptButton = this.aceptarButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 441);
+            this.ClientSize = new System.Drawing.Size(704, 312);
             this.Controls.Add(this.nuevoPrendaItemLayoutPanel);
+            this.MaximumSize = new System.Drawing.Size(1050, 541);
+            this.MinimumSize = new System.Drawing.Size(700, 351);
             this.Name = "NuevoPrendaItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Prenda";

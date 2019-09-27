@@ -60,7 +60,7 @@ namespace VentaPrenda.View.Concrete
         {
             InitializeComponent();
             _dto = new ServicioItemDto();
-            /*
+            /* //Se quitó para que no se poble el drop down antes de seleccionar una prenda.
             foreach(ServicioDto s in ServicioItemDto.Servicios)
             { servicioComboBox.Items.Add(s); }
             */
@@ -73,7 +73,10 @@ namespace VentaPrenda.View.Concrete
         }
 
         public ServicioUserControl(PrendaItemDto Prenda) : this()
-        { _dto.PrendaItem = Prenda; }
+        {
+            _dto.PrendaItem = Prenda;
+            UpdateServicios(Prenda.Prenda);
+        }
 
         public ServicioUserControl(ServicioItemDto Servicio) : this(Servicio.PrendaItem)
         { Dto = Servicio; }
@@ -108,11 +111,15 @@ namespace VentaPrenda.View.Concrete
             ActualizarSubtotal();
         }
 
-        public void UpdateServicios(CatalogoDto prenda)
+        public int UpdateServicios(CatalogoDto prenda)
         {
             servicioComboBox.Items.Clear();
-            foreach(ServicioDto s in ServicioItemDto.Servicios.Where(s => s.Prendas.Contains(prenda)))
-            { servicioComboBox.Items.Add(s); }
+            if (prenda != null)
+            {
+                foreach (ServicioDto s in ServicioItemDto.Servicios.Where(s => s.Prendas.Contains(prenda)))
+                { servicioComboBox.Items.Add(s); }
+            }
+            return servicioComboBox.Items.Count;
         }
 
         private void ServicioComboBox_SelectedIndexChanged(object sender, EventArgs e)

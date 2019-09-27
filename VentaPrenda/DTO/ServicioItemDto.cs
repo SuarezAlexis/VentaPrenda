@@ -17,7 +17,12 @@ namespace VentaPrenda.DTO
         public UsuarioDto Encargado { get; set; }
 
         public ServicioItemDto()
-        { ID = -1; }
+        {
+            ID = -1;
+            Descuentos = Descuentos == null? new List<DescuentoDto>() : Descuentos;
+            Servicios = Servicios == null? new List<ServicioDto>() : Servicios;
+            Usuarios = Usuarios == null? new List<UsuarioDto>() : Usuarios;
+        }
 
         public override string ToString()
         {

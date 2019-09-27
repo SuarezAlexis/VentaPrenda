@@ -49,7 +49,8 @@ namespace VentaPrenda.View.Concrete
                 tiposPrendaComboBox.SelectedItem = value.TipoPrenda;
                 coloresComboBox.SelectedItem = value.Color;
                 cantNumUpDown.Value = value.Cantidad;
-                foreach(ServicioItemDto s in value.Servicios)
+                serviciosFlowLayoutPanel.Controls.Clear();
+                foreach (ServicioItemDto s in value.Servicios)
                 {
                     ServicioUserControl servicio = new ServicioUserControl(s);
                     servicio.Width = serviciosFlowLayoutPanel.Width - 30;
@@ -68,7 +69,6 @@ namespace VentaPrenda.View.Concrete
         {
             InitializeComponent();
             Dto = new PrendaItemDto();
-            AgregarServicio();
             foreach(CatalogoDto p in PrendaItemDto.Prendas)
             { prendasComboBox.Items.Add(p); }
             tiposPrendaComboBox.Items.Add(new CatalogoDto());
@@ -80,7 +80,6 @@ namespace VentaPrenda.View.Concrete
 
         public NuevoPrendaItem(PrendaItemDto Prenda) : this()
         {
-            serviciosFlowLayoutPanel.Controls.Clear();
             Dto = Prenda;
             UpdateLabels();
             EnableAceptarButton();
@@ -95,9 +94,11 @@ namespace VentaPrenda.View.Concrete
         {
             ServicioUserControl servicio = new ServicioUserControl(_dto);
             servicio.Width = serviciosFlowLayoutPanel.Width - 30;
+            servicio.UpdateServicios((CatalogoDto)prendasComboBox.SelectedItem);
             servicio.DeleteClicked += Servicio_DeleteClicked;
             servicio.DataChanged += Servicio_DataChanged;
             servicio.DescuentoRequested += Servicio_DescuentoRequested;
+            this.Height += (this.Height + servicio.Height) >= this.MaximumSize.Height? 0 : servicio.Height;
             serviciosFlowLayoutPanel.Controls.Add(servicio);
         }
 
@@ -180,6 +181,8 @@ namespace VentaPrenda.View.Concrete
                 int comprometidos = aplicados * (int)d.CantMinima;
                 if (servicios >= comprometidos)
                 {
+                    cantNumUpDown.Value = 1;
+                    cantNumUpDown.Maximum = 1;
                     ((ServicioUserControl)sender).AplicarDescuento();
                     ((ServicioUserControl)sender).DescuentoInvalido = false;
                 }    
@@ -251,8 +254,8 @@ namespace VentaPrenda.View.Concrete
         private void PrendasComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             EnableAceptarButton();
-            foreach(ServicioUserControl s in serviciosFlowLayoutPanel.Controls)
-            { s.UpdateServicios((CatalogoDto)prendasComboBox.SelectedItem); }
+            serviciosFlowLayoutPanel.Controls.Clear();
+            AgregarServicio();
         }
 
         private void ColoresComboBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -7,36 +7,55 @@ BEGIN
 END$$
 DELIMITER ;
 
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteCatalogo`(p_ID SMALLINT, p_Cat VARCHAR(16))
 BEGIN
 	START TRANSACTION;
-		SET @select_sql = CONCAT("SELECT * FROM ", p_Cat, " WHERE ID = ", p_ID);
+		SET @exists_sql = CONCAT("SET @referenced = EXISTS(SELECT * FROM PrendaItem WHERE ", p_Cat," = ", p_ID, ")");
+		PREPARE existsStmt FROM @exists_sql;
+        EXECUTE existsStmt;
+        DEALLOCATE PREPARE existsStmt;
+
+		IF(@referenced) THEN
+			SET @update_sql = CONCAT("UPDATE ", p_Cat, " SET Habilitado = 0 WHERE ID = ", p_ID);
+			PREPARE updateStmt FROM @update_sql;
+			EXECUTE updateStmt;
+			DEALLOCATE PREPARE updateStmt;
+        END IF;
         
+		SET @select_sql = CONCAT("SELECT * FROM ", p_Cat, " WHERE ID = ", p_ID);
 		PREPARE selectStmt FROM @select_sql;
 		EXECUTE selectStmt;
 		DEALLOCATE PREPARE selectStmt;
 		
-        IF(p_Cat = "Prenda") THEN
-			DELETE FROM Servicio_Prenda WHERE Prenda = p_ID;
+        IF( NOT @referenced) THEN
+			IF(p_Cat = "Prenda") THEN
+				DELETE FROM Servicio_Prenda WHERE Prenda = p_ID;
+			END IF;
+			SET @delete_sql = CONCAT("DELETE FROM ", p_Cat, " WHERE ID = ", p_ID);
+			PREPARE deleteStmt FROM @delete_sql;
+			EXECUTE deleteStmt;
+			DEALLOCATE PREPARE deleteStmt;
 		END IF;
-        SET @delete_sql = CONCAT("DELETE FROM ", p_Cat, " WHERE ID = ", p_ID);
-        PREPARE deleteStmt FROM @delete_sql;
-		EXECUTE deleteStmt;
-		DEALLOCATE PREPARE deleteStmt;
 	COMMIT;
 END$$
 DELIMITER ;
+
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteCliente`(p_ID INT)
 BEGIN
 	START TRANSACTION;
+		UPDATE Cliente SET Habilitado = 0 WHERE ID = p_ID AND EXISTS(SELECT * FROM Nota WHERE Cliente = p_ID);
 		SELECT * FROM Cliente WHERE ID = p_ID;
-		DELETE FROM Cliente WHERE ID = p_ID;
+        IF(NOT EXISTS(SELECT * FROM Nota WHERE Cliente = p_ID)) THEN
+			DELETE FROM Cliente WHERE ID = p_ID;
+		END IF;
 	COMMIT;
 END$$
 DELIMITER ;
+
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteDescuento`(p_ID INT)
@@ -69,22 +88,19 @@ BEGIN
 END$$
 DELIMITER ;
 
-
-DROP procedure IF EXISTS `sp_DeleteServicio`;
-
 DELIMITER $$
-USE `VentaPrenda`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteServicio`(p_ID INT)
 BEGIN
 	START TRANSACTION;
+		UPDATE Servicio SET Habilitado = 0 WHERE ID = p_ID AND EXISTS(SELECT * FROM ServicioItem WHERE Servicio = p_ID);
 		SELECT * FROM Servicio WHERE ID = p_ID;
-        DELETE FROM Servicio_Prenda WHERE Servicio = p_ID;
-		DELETE FROM Servicio WHERE ID = p_ID;
+        IF(NOT EXISTS(SELECT * FROM ServicioItem WHERE Servicio = p_ID)) THEN
+			DELETE FROM Servicio_Prenda WHERE Servicio = p_ID;
+			DELETE FROM Servicio WHERE ID = p_ID;
+		END IF;
 	COMMIT;
 END$$
-
 DELIMITER ;
-
 
 
 DELIMITER $$

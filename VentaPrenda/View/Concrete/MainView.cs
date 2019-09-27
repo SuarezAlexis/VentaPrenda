@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaPrenda.Controller;
 using VentaPrenda.Model;
@@ -431,9 +427,28 @@ namespace VentaPrenda.View.Concrete
             {
                 string dtoString = Dto.ToString();
                 Controller.Eliminar(Detalle.Dto);
+                Type DetalleType = Detalle.Dto.GetType();
+                bool eliminado = true;
+                foreach(DataRow dr in DataSource.Rows)
+                {
+                    eliminado = !Convert.ToInt64(dr["ID"]).Equals(Convert.ToInt64(DetalleType.GetProperty("ID").GetValue(Detalle.Dto)));
+                    if (!eliminado) break;
+                }
+                if (DetalleType.GetProperties().Where(p => "Habilitado".Equals(p.Name)).Count() > 0
+                    && !(bool)DetalleType.GetProperty("Habilitado").GetValue(Detalle.Dto) 
+                    && !eliminado)
+                {
+                    MessageBox.Show("No fue posible eliminar: '" + dtoString 
+                        + "' debido a que está asociado a otros registros.\nSe inhabilitó.",
+                        "Se inhabilitó correctamente",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    infoLabel.Text = "Se inhabilitó correctamente: " + dtoString;
+                }
+                else
+                { infoLabel.Text = "Se eliminó correctamente: " + dtoString;  }
                 Detalle.Clear();
                 Detalle.ReadOnly = false;
-                infoLabel.Text = "Se eliminó correctamente: " + dtoString;
             }
         }
 
