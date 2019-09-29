@@ -1,3 +1,4 @@
+DROP PROCEDURE IF EXISTS sp_Login;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Login`(IN p_Username VARCHAR(32), IN p_Password VARCHAR(64))
 BEGIN
@@ -7,7 +8,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS sp_DeleteCatalogo;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteCatalogo`(p_ID SMALLINT, p_Cat VARCHAR(16))
 BEGIN
@@ -42,7 +43,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS sp_DeleteCliente;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteCliente`(p_ID INT)
 BEGIN
@@ -56,7 +57,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS sp_DeleteDescuento;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteDescuento`(p_ID INT)
 BEGIN
@@ -67,6 +68,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_DeleteMovimiento;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteMovimiento`(p_ID BIGINT)
 BEGIN
@@ -77,6 +79,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_DeletePerfil;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeletePerfil`(p_Perfil TINYINT)
 BEGIN
@@ -88,6 +91,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_DeleteServicio;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteServicio`(p_ID INT)
 BEGIN
@@ -102,7 +106,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS sp_DeleteUsuario;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteUsuario`(p_ID BIGINT)
 BEGIN
@@ -114,6 +118,7 @@ BEGIN
 END$$
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS sp_UpdatePerfiles;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_UpdatePerfiles`(p_Usuario BIGINT, p_Perfiles VARCHAR(64))
 BEGIN
@@ -142,6 +147,8 @@ BEGIN
 END$$
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS sp_DeleteNota;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteNota`(p_ID BIGINT)
 BEGIN
@@ -154,9 +161,8 @@ BEGIN
 END$$
 DELIMITER ;
 
-USE `VentaPrenda`;
-DROP procedure IF EXISTS `sp_ReporteNotas`;
 
+DROP procedure IF EXISTS `sp_ReporteNotas`;
 DELIMITER $$
 CREATE PROCEDURE `sp_ReporteNotas` (p_Inicio DATETIME, p_Fin DATETIME)
 BEGIN
@@ -196,9 +202,8 @@ END$$
 
 DELIMITER ;
 
-USE `VentaPrenda`;
-DROP procedure IF EXISTS `sp_UpdateServicioPrenda`;
 
+DROP procedure IF EXISTS `sp_UpdateServicioPrenda`;
 DELIMITER $$
 USE `VentaPrenda`$$
 CREATE PROCEDURE `sp_UpdateServicioPrenda` (p_Servicio INT, p_Prendas VARCHAR(64))
@@ -226,6 +231,5 @@ BEGIN
 	END	IF;
 	SELECT P.* FROM Prenda P JOIN Servicio_Prenda SP ON(SP.Prenda = P.ID) WHERE SP.Servicio = p_Servicio;
 END$$
-
 DELIMITER ;
 
