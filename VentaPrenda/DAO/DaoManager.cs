@@ -18,5 +18,6 @@ namespace VentaPrenda.DAO
         public static readonly IMovimientoDao MovimientoDao = new MovimientoDaoMySQL();
         public static readonly IDescuentoDao DescuentoDao = new DescuentoDaoMySQL();
         public static readonly INotaDao NotaDao = new NotaDaoMySQL();
+        public static readonly ITicketConfigDao TicketConfigDao= new TicketConfigDaoMySQL();
     }
 }

@@ -167,3 +167,15 @@ CREATE TABLE `Servicio_Prenda` (
   CONSTRAINT `ServicioPrenda_Ref_Prenda` FOREIGN KEY (`Prenda`) REFERENCES `prenda` (`ID`),
   CONSTRAINT `ServicioPrenda_Ref_Servicio` FOREIGN KEY (`Servicio`) REFERENCES `servicio` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Ticket` (
+  `ID` tinyint(4) NOT NULL DEFAULT '1',
+  `Impresora` varchar(256) DEFAULT NULL,
+  `Encabezado` varchar(1024) DEFAULT NULL,
+  `Pie` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID_UNIQUE` (`ID`),
+  CONSTRAINT `Ticket_chck` CHECK ((`ID` = 1))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO Ticket(Impresora,Encabezado,Pie) VALUES(NULL,NULL,NULL);

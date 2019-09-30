@@ -53,7 +53,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 _dto.Recibido = string.IsNullOrEmpty(idDataLabel.Text) ? DateTime.Now : Convert.ToDateTime(recibidoDataLabel.Text);
                 _dto.Entregado = entregadoDateTimePicker.Value;
                 _dto.Estatus = (Estatus)estatusComboBox.SelectedItem;
-                _dto.Observaciones = observacionesTextBox.Text;
+                _dto.Observaciones = observacionesTextBox.Text.Replace("\n"," ");
                 return _dto;
             }
             set

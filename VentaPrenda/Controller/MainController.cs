@@ -29,7 +29,8 @@ namespace VentaPrenda.Controller
         REPORTES,
         DESCUENTOS,
         SERVICIOS,
-        HISTORIAL
+        HISTORIAL,
+        TICKET
     };
 
     public enum Modo {
@@ -208,6 +209,16 @@ namespace VentaPrenda.Controller
             _mainView.UpdateFuncion();
         }
 
+        public void Ticket()
+        {
+            Funcion = Funcion.TICKET;
+            Modo = Modo.SELECCION;
+            _mainView.DataSource = null;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+            _mainView.Dto = DaoManager.TicketConfigDao.GetConfig();
+        }
+
         public void Notas()
         {
             Funcion = Funcion.NOTA;
@@ -358,6 +369,9 @@ namespace VentaPrenda.Controller
                         break;
                     case Funcion.HISTORIAL:
                         
+                        break;
+                    case Funcion.TICKET:
+                        _mainView.Dto = DaoManager.TicketConfigDao.GuardarConfig((TicketConfigDto)dto);
                         break;
                 }
                 Modo = Modo.SOLO_LECTURA;

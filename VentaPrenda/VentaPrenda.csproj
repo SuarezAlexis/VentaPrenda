@@ -72,6 +72,7 @@
     <Compile Include="DAO\Abstract\INotaDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
     <Compile Include="DAO\Abstract\IServicioDao.cs" />
+    <Compile Include="DAO\Abstract\ITicketConfigDao.cs" />
     <Compile Include="DAO\Abstract\IUsuarioDao.cs" />
     <Compile Include="DAO\Concrete\CatalogoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ClienteDaoMySQL.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="DAO\Concrete\NotaDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\PerfilDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ServicioDaoMySQL.cs" />
+    <Compile Include="DAO\Concrete\TicketConfigDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\UsuarioDaoMySQL.cs" />
     <Compile Include="DAO\DaoManager.cs" />
     <Compile Include="DTO\CatalogoDto.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="DTO\ReporteDto.cs" />
     <Compile Include="DTO\ServicioDto.cs" />
     <Compile Include="DTO\ServicioItemDto.cs" />
+    <Compile Include="DTO\TicketConfigDto.cs" />
     <Compile Include="DTO\UsuarioDto.cs" />
     <Compile Include="DTO\LoginDto.cs" />
     <Compile Include="DTO\PerfilDto.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Model\Nota.cs" />
     <Compile Include="Model\Pago.cs" />
     <Compile Include="Model\Perfil.cs" />
+    <Compile Include="Model\TicketConfig.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +131,12 @@
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleReporte.Designer.cs">
       <DependentUpon>DetalleReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleTicket.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleTicket.Designer.cs">
+      <DependentUpon>DetalleTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Concrete\EstadisticasClienteDisplay.cs">
       <SubType>UserControl</SubType>
@@ -236,6 +246,9 @@
     </Compile>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleReporte.resx">
       <DependentUpon>DetalleReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleTicket.resx">
+      <DependentUpon>DetalleTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\EstadisticasClienteDisplay.resx">
       <DependentUpon>EstadisticasClienteDisplay.cs</DependentUpon>

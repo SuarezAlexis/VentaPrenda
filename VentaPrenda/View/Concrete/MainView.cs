@@ -180,6 +180,9 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.HISTORIAL:
                     HistorialButton.BackColor = ActiveColor;
                     break;
+                case Funcion.TICKET:
+                    TicketButton.BackColor = ActiveColor;
+                    break;
             }
         }
 
@@ -287,6 +290,7 @@ namespace VentaPrenda.View.Concrete
             DescuentosButton.BackColor = ClearColor;
             UsuariosButton.BackColor = ClearColor;
             PerfilesButton.BackColor = ClearColor;
+            TicketButton.BackColor = ClearColor;
         }
 
         private DetalleModelo newDetalle(ErrorProvider e)
@@ -316,6 +320,8 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.HISTORIAL:
 
                     break;
+                case Funcion.TICKET:
+                    return new DetalleTicket();
             }
             return null;
         }
@@ -367,6 +373,9 @@ namespace VentaPrenda.View.Concrete
 
         public void DescuentosButton_Click(object sender, EventArgs e)
         { Controller.Descuentos(); }
+
+        private void TicketButton_Click(object sender, EventArgs e)
+        { Controller.Ticket(); }
 
         public void NotasButton_Click(object sender, EventArgs e)
         { Controller.Notas(); }
@@ -466,5 +475,6 @@ namespace VentaPrenda.View.Concrete
             filtrarButton.BackColor = filtrarButton.BackColor == ActiveColor? ClearColor : ActiveColor;
             Filtrar();
         }
+
     }
 }

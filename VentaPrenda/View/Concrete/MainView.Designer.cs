@@ -75,6 +75,7 @@
             this.objetoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.infoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.TicketButton = new System.Windows.Forms.Button();
             this.MainLayoutPanel.SuspendLayout();
             this.functionsLayoutPanel.SuspendLayout();
             this.adminLayoutPanel.SuspendLayout();
@@ -108,11 +109,11 @@
             this.MainLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.MainLayoutPanel.Name = "MainLayoutPanel";
             this.MainLayoutPanel.RowCount = 4;
-            this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.MainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.MainLayoutPanel.Size = new System.Drawing.Size(1264, 887);
+            this.MainLayoutPanel.Size = new System.Drawing.Size(1264, 749);
             this.MainLayoutPanel.TabIndex = 0;
             // 
             // functionsLayoutPanel
@@ -130,24 +131,24 @@
             this.functionsLayoutPanel.Name = "functionsLayoutPanel";
             this.functionsLayoutPanel.RowCount = 1;
             this.functionsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.functionsLayoutPanel.Size = new System.Drawing.Size(1258, 64);
+            this.functionsLayoutPanel.Size = new System.Drawing.Size(1258, 94);
             this.functionsLayoutPanel.TabIndex = 0;
             // 
             // adminLayoutPanel
             // 
             this.adminLayoutPanel.ColumnCount = 2;
-            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33533F));
-            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33233F));
-            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33233F));
+            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00225F));
+            this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99775F));
             this.adminLayoutPanel.Controls.Add(this.UsuariosButton, 0, 0);
             this.adminLayoutPanel.Controls.Add(this.PerfilesButton, 0, 1);
             this.adminLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.adminLayoutPanel.Location = new System.Drawing.Point(1047, 3);
             this.adminLayoutPanel.Name = "adminLayoutPanel";
-            this.adminLayoutPanel.RowCount = 2;
-            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.adminLayoutPanel.Size = new System.Drawing.Size(208, 58);
+            this.adminLayoutPanel.RowCount = 3;
+            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.adminLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.adminLayoutPanel.Size = new System.Drawing.Size(208, 88);
             this.adminLayoutPanel.TabIndex = 2;
             // 
             // UsuariosButton
@@ -192,7 +193,7 @@
             this.operationButtonsLayoutPanel.Name = "operationButtonsLayoutPanel";
             this.operationButtonsLayoutPanel.RowCount = 1;
             this.operationButtonsLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.operationButtonsLayoutPanel.Size = new System.Drawing.Size(623, 58);
+            this.operationButtonsLayoutPanel.Size = new System.Drawing.Size(623, 88);
             this.operationButtonsLayoutPanel.TabIndex = 0;
             // 
             // HistorialButton
@@ -201,7 +202,7 @@
             this.HistorialButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HistorialButton.Location = new System.Drawing.Point(499, 3);
             this.HistorialButton.Name = "HistorialButton";
-            this.HistorialButton.Size = new System.Drawing.Size(121, 52);
+            this.HistorialButton.Size = new System.Drawing.Size(121, 82);
             this.HistorialButton.TabIndex = 4;
             this.HistorialButton.Text = "Historial";
             this.HistorialButton.UseVisualStyleBackColor = true;
@@ -213,7 +214,7 @@
             this.ReportesButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ReportesButton.Location = new System.Drawing.Point(375, 3);
             this.ReportesButton.Name = "ReportesButton";
-            this.ReportesButton.Size = new System.Drawing.Size(118, 52);
+            this.ReportesButton.Size = new System.Drawing.Size(118, 82);
             this.ReportesButton.TabIndex = 3;
             this.ReportesButton.Text = "Reportes";
             this.ReportesButton.UseVisualStyleBackColor = true;
@@ -225,7 +226,7 @@
             this.BalanceButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BalanceButton.Location = new System.Drawing.Point(251, 3);
             this.BalanceButton.Name = "BalanceButton";
-            this.BalanceButton.Size = new System.Drawing.Size(118, 52);
+            this.BalanceButton.Size = new System.Drawing.Size(118, 82);
             this.BalanceButton.TabIndex = 2;
             this.BalanceButton.Text = "Gastos";
             this.BalanceButton.UseVisualStyleBackColor = true;
@@ -237,7 +238,7 @@
             this.ClientesButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ClientesButton.Location = new System.Drawing.Point(127, 3);
             this.ClientesButton.Name = "ClientesButton";
-            this.ClientesButton.Size = new System.Drawing.Size(118, 52);
+            this.ClientesButton.Size = new System.Drawing.Size(118, 82);
             this.ClientesButton.TabIndex = 1;
             this.ClientesButton.Text = "Clientes";
             this.ClientesButton.UseVisualStyleBackColor = true;
@@ -249,7 +250,7 @@
             this.NotasButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NotasButton.Location = new System.Drawing.Point(3, 3);
             this.NotasButton.Name = "NotasButton";
-            this.NotasButton.Size = new System.Drawing.Size(118, 52);
+            this.NotasButton.Size = new System.Drawing.Size(118, 82);
             this.NotasButton.TabIndex = 0;
             this.NotasButton.Text = "Notas";
             this.NotasButton.UseVisualStyleBackColor = true;
@@ -265,14 +266,16 @@
             this.configLayoutPanel.Controls.Add(this.DescuentosButton, 0, 1);
             this.configLayoutPanel.Controls.Add(this.PrendasButton, 1, 0);
             this.configLayoutPanel.Controls.Add(this.ColoresButton, 1, 1);
-            this.configLayoutPanel.Controls.Add(this.TiposButton, 2, 0);
+            this.configLayoutPanel.Controls.Add(this.TiposButton, 1, 2);
+            this.configLayoutPanel.Controls.Add(this.TicketButton, 0, 2);
             this.configLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.configLayoutPanel.Location = new System.Drawing.Point(632, 3);
             this.configLayoutPanel.Name = "configLayoutPanel";
-            this.configLayoutPanel.RowCount = 2;
-            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.configLayoutPanel.Size = new System.Drawing.Size(409, 58);
+            this.configLayoutPanel.RowCount = 3;
+            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.configLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.configLayoutPanel.Size = new System.Drawing.Size(409, 88);
             this.configLayoutPanel.TabIndex = 1;
             // 
             // ServiciosButton
@@ -324,9 +327,9 @@
             // TiposButton
             // 
             this.TiposButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TiposButton.Location = new System.Drawing.Point(275, 3);
+            this.TiposButton.Location = new System.Drawing.Point(139, 61);
             this.TiposButton.Name = "TiposButton";
-            this.TiposButton.Size = new System.Drawing.Size(131, 23);
+            this.TiposButton.Size = new System.Drawing.Size(130, 24);
             this.TiposButton.TabIndex = 4;
             this.TiposButton.Text = "Tipos de prenda";
             this.TiposButton.UseVisualStyleBackColor = true;
@@ -341,7 +344,7 @@
             this.secondaryLayoutPanel.Controls.Add(this.busquedaBox, 0, 0);
             this.secondaryLayoutPanel.Controls.Add(this.edicionBox, 1, 0);
             this.secondaryLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.secondaryLayoutPanel.Location = new System.Drawing.Point(3, 73);
+            this.secondaryLayoutPanel.Location = new System.Drawing.Point(3, 103);
             this.secondaryLayoutPanel.Name = "secondaryLayoutPanel";
             this.secondaryLayoutPanel.RowCount = 1;
             this.secondaryLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -574,7 +577,7 @@
             this.splitContainer.CausesValidation = false;
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.IsSplitterFixed = true;
-            this.splitContainer.Location = new System.Drawing.Point(3, 163);
+            this.splitContainer.Location = new System.Drawing.Point(3, 193);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
@@ -586,7 +589,7 @@
             // 
             this.splitContainer.Panel2.CausesValidation = false;
             this.splitContainer.Panel2.Controls.Add(this.detalleBox);
-            this.splitContainer.Size = new System.Drawing.Size(1258, 691);
+            this.splitContainer.Size = new System.Drawing.Size(1258, 523);
             this.splitContainer.SplitterDistance = 627;
             this.splitContainer.TabIndex = 2;
             // 
@@ -597,7 +600,7 @@
             this.listaBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaBox.Location = new System.Drawing.Point(0, 0);
             this.listaBox.Name = "listaBox";
-            this.listaBox.Size = new System.Drawing.Size(627, 691);
+            this.listaBox.Size = new System.Drawing.Size(627, 523);
             this.listaBox.TabIndex = 0;
             this.listaBox.TabStop = false;
             this.listaBox.Text = "Lista";
@@ -620,7 +623,7 @@
             this.listGridView.RowTemplate.ReadOnly = true;
             this.listGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listGridView.ShowEditingIcon = false;
-            this.listGridView.Size = new System.Drawing.Size(621, 672);
+            this.listGridView.Size = new System.Drawing.Size(621, 504);
             this.listGridView.TabIndex = 0;
             this.listGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListGridView_CellDoubleClick);
             // 
@@ -629,7 +632,7 @@
             this.detalleBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleBox.Location = new System.Drawing.Point(0, 0);
             this.detalleBox.Name = "detalleBox";
-            this.detalleBox.Size = new System.Drawing.Size(627, 691);
+            this.detalleBox.Size = new System.Drawing.Size(627, 523);
             this.detalleBox.TabIndex = 15;
             this.detalleBox.TabStop = false;
             this.detalleBox.Text = "Detalle";
@@ -642,7 +645,7 @@
             this.modoLabel,
             this.objetoLabel,
             this.infoLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 863);
+            this.statusStrip.Location = new System.Drawing.Point(0, 725);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1264, 24);
             this.statusStrip.TabIndex = 3;
@@ -706,12 +709,23 @@
             this.errorProvider.BlinkRate = 200;
             this.errorProvider.ContainerControl = this;
             // 
+            // TicketButton
+            // 
+            this.TicketButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TicketButton.Location = new System.Drawing.Point(3, 61);
+            this.TicketButton.Name = "TicketButton";
+            this.TicketButton.Size = new System.Drawing.Size(130, 24);
+            this.TicketButton.TabIndex = 5;
+            this.TicketButton.Text = "Ticket";
+            this.TicketButton.UseVisualStyleBackColor = true;
+            this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(1264, 887);
+            this.ClientSize = new System.Drawing.Size(1264, 749);
             this.Controls.Add(this.MainLayoutPanel);
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -789,5 +803,6 @@
         private System.Windows.Forms.DateTimePicker desdeDateTimePicker;
         private System.Windows.Forms.DateTimePicker hastaDateTimePicker;
         private System.Windows.Forms.Button filtrarButton;
+        private System.Windows.Forms.Button TicketButton;
     }
 }
