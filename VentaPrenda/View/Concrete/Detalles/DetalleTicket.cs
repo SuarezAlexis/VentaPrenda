@@ -19,7 +19,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
         private TicketConfigDto _dto;
-
+        private Image original;
         public override object Dto
         {
             get
@@ -28,6 +28,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                 _dto.PrinterName = String.IsNullOrEmpty(_dto.PrinterName) ? null : _dto.PrinterName;
                 _dto.Encabezado = encabezadoTextBox.Text;
                 _dto.Pie = pieTextBox.Text;
+                _dto.Logo = logoPictureBox.Image;
+                _dto.Ancho = (int)anchoNumUpDown.Value;
                 return _dto;
             }
             set
@@ -81,8 +83,40 @@ namespace VentaPrenda.View.Concrete.Detalles
                 printerNameComboBox.SelectedItem = t.PrinterName;
                 encabezadoTextBox.Text = t.Encabezado;
                 pieTextBox.Text = t.Pie;
+                if(t.Logo != null)
+                { logoPictureBox.Image = original = t.Logo; }
+                anchoNumUpDown.Value = t.Ancho;
                 Visible = true;
             }
+        }
+
+        private void LogoButton_Click(object sender, EventArgs e)
+        {
+            if(fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                logoPictureBox.Image = original = ResizeImage(Image.FromFile(fileDialog.FileName), (int)anchoNumUpDown.Value);
+            }
+        }
+
+        private Image ResizeImage(Image img, int maxWidth)
+        {
+            float ratio = (float)maxWidth / img.Width;
+            int newWidth = (int)(img.Width * ratio);
+            int newHeight = (int)(img.Height * ratio);
+            Image newImage = new Bitmap(newWidth, newHeight);
+            Graphics.FromImage(newImage).DrawImage(img, 0, 0, newWidth, newHeight);
+            return newImage;
+        }
+
+        private void QuitarLogoButton_Click(object sender, EventArgs e)
+        { logoPictureBox.Image = null; }
+
+        private void AnchoNumUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            logoPictureBox.Width = (int)anchoNumUpDown.Value;
+            _dto.Ancho = (int)anchoNumUpDown.Value;
+            if(logoPictureBox.Image != null)
+            { logoPictureBox.Image = ResizeImage(original, (int)anchoNumUpDown.Value); }
         }
     }
 }

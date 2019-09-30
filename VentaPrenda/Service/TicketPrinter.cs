@@ -47,9 +47,11 @@ namespace VentaPrenda.Service
             /*****************************************************************
              * Logo
              ****************************************************************/
-            Image logo = new Bitmap("C:\\Users\\Alexis\\Downloads\\github_PNG20.png");
-            ev.Graphics.DrawImage(new Bitmap(logo, new Size { Width = 128, Height = 116 }), center - 128 / 2, yPos);
-            yPos += 116 + (float)1.5 * lineHeight;
+            if (Config.Logo != null)
+            {
+                ev.Graphics.DrawImage(Config.Logo, center - Config.Logo.Width / 2, yPos);
+                yPos += Config.Logo.Height + (float)1.5 * lineHeight;
+            }
 
             /*****************************************************************
              * Encabezado

@@ -426,7 +426,10 @@ namespace VentaPrenda.View.Concrete
             if (Detalle.ValidateChildren() && Controller.Guardar(Detalle.Dto))
             {
                 infoLabel.Text = "Se guardó correctamente: " + Dto.ToString();
-                NuevoButton.Focus();
+                if (Controller.Funcion == Funcion.TICKET)
+                { SetEditButtonsEnabled(false); SetSelectButtonsEnabled(true); }
+                else
+                { NuevoButton.Focus(); }
             }
         }
 

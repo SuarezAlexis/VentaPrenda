@@ -173,6 +173,8 @@ CREATE TABLE `Ticket` (
   `Impresora` varchar(256) DEFAULT NULL,
   `Encabezado` varchar(1024) DEFAULT NULL,
   `Pie` varchar(1024) DEFAULT NULL,
+  `Logo` mediumblob,
+  `Ancho` smallint(6) NOT NULL DEFAULT '200',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`),
   CONSTRAINT `Ticket_chck` CHECK ((`ID` = 1))
