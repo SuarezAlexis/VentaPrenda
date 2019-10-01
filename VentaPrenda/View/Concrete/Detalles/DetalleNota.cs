@@ -511,7 +511,15 @@ namespace VentaPrenda.View.Concrete.Detalles
         private void ImprimirButton_Click(object sender, EventArgs e)
         {
             IMainView mainView = (IMainView)ParentForm;
-            mainView.Controller.ImprimirNota((NotaDto)Dto);
+            try { mainView.Controller.ImprimirNota((NotaDto)Dto); }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al intentar imprimir:\n\n" + ex.Message + "\n\nError: " + ex.GetType(),
+                            "Error de impresión",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+            }
+            
         }
     }
 }
