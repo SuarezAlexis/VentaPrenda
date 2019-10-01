@@ -47,6 +47,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 soloNotaRadioButton.Enabled = !value;
                 descuentoNumUpDown.ReadOnly = value;
                 descuentoDomainUpDown.ReadOnly = value;
+                habilitadoCheckBox.Enabled = !value;
             }
         }
 
@@ -77,6 +78,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     _dto.Unidades = descuentoNumUpDown.Value;
                     _dto.Porcentaje = -1;
                 }
+                _dto.Habilitado = habilitadoCheckBox.Checked;
                 return _dto;
             }
             set
@@ -115,9 +117,9 @@ namespace VentaPrenda.View.Concrete.Detalles
             consMinDomainUpDown.ResetText();
             soloNotaRadioButton.Checked = false;
             vigenciaRadioButton.Checked = true;
-            descuentoNumUpDown.Value = 0;
+            descuentoNumUpDown.Value = 1;
             descuentoNumUpDown.ResetText();
-            
+            habilitadoCheckBox.Checked = true;
         }
 
         public override void Fill(object model)
@@ -164,6 +166,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     //DescuentoDomainUpDown_SelectedItemChanged(null, null);
                     descuentoNumUpDown.Value = d.Porcentaje;
                 }
+                habilitadoCheckBox.Checked = d.Habilitado;
                 Visible = true;
             }
         }

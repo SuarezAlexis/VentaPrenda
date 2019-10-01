@@ -57,16 +57,19 @@ BEGIN
 END$$
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS sp_DeleteDescuento;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteDescuento`(p_ID INT)
 BEGIN
 	START TRANSACTION;
+		UPDATE Descuento SET Habilitado = 0 WHERE ID = p_ID AND (EXISTS(SELECT * FROM ServicioItem WHERE Descuento = p_ID) OR EXISTS(SELECT * FROM Nota WHERE Descuento = p_ID));
 		SELECT * FROM Descuento WHERE ID = p_ID;
-		DELETE FROM Descuento WHERE ID = p_ID;
+        IF(NOT (EXISTS(SELECT * FROM ServicioItem WHERE Descuento = p_ID) OR EXISTS(SELECT * FROM Nota WHERE Descuento = p_ID))) THEN
+			DELETE FROM Descuento WHERE ID = p_ID;
+        END IF;
 	COMMIT;
 END$$
 DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS sp_DeleteMovimiento;
 DELIMITER $$

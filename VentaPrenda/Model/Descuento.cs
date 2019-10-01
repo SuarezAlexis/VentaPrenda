@@ -17,5 +17,6 @@ namespace VentaPrenda.Model
         public bool SoloNota { get; set; }
         public decimal Porcentaje { get; set; }
         public decimal Unidades { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

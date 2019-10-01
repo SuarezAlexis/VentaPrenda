@@ -51,6 +51,9 @@
             this.descuentoLabel = new System.Windows.Forms.Label();
             this.descuentoNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.descuentoDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.habilitadoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.habilitadoCheckBox = new System.Windows.Forms.CheckBox();
             this.detalleDescuentoLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.nombreLayoutPanel.SuspendLayout();
@@ -60,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.consMinNumUpDown)).BeginInit();
             this.descuentoLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.descuentoNumUpDown)).BeginInit();
+            this.habilitadoLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // detalleDescuentoLayoutPanel
@@ -73,10 +77,12 @@
             this.detalleDescuentoLayoutPanel.Controls.Add(this.finVigenciaLayoutPanel, 0, 3);
             this.detalleDescuentoLayoutPanel.Controls.Add(this.consumoMinimoLayoutPanel, 0, 4);
             this.detalleDescuentoLayoutPanel.Controls.Add(this.descuentoLayoutPanel, 0, 5);
+            this.detalleDescuentoLayoutPanel.Controls.Add(this.habilitadoLayoutPanel, 0, 6);
             this.detalleDescuentoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detalleDescuentoLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.detalleDescuentoLayoutPanel.Name = "detalleDescuentoLayoutPanel";
-            this.detalleDescuentoLayoutPanel.RowCount = 7;
+            this.detalleDescuentoLayoutPanel.RowCount = 8;
+            this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleDescuentoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -375,6 +381,44 @@
             this.descuentoDomainUpDown.Text = "Servicios";
             this.descuentoDomainUpDown.SelectedItemChanged += new System.EventHandler(this.DescuentoDomainUpDown_SelectedItemChanged);
             // 
+            // habilitadoLayoutPanel
+            // 
+            this.habilitadoLayoutPanel.ColumnCount = 2;
+            this.habilitadoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.habilitadoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.habilitadoLayoutPanel.Controls.Add(this.label1, 0, 0);
+            this.habilitadoLayoutPanel.Controls.Add(this.habilitadoCheckBox, 1, 0);
+            this.habilitadoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.habilitadoLayoutPanel.Location = new System.Drawing.Point(5, 257);
+            this.habilitadoLayoutPanel.Name = "habilitadoLayoutPanel";
+            this.habilitadoLayoutPanel.RowCount = 1;
+            this.habilitadoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.habilitadoLayoutPanel.Size = new System.Drawing.Size(590, 34);
+            this.habilitadoLayoutPanel.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 34);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Habilitado";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // habilitadoCheckBox
+            // 
+            this.habilitadoCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.habilitadoCheckBox.AutoSize = true;
+            this.habilitadoCheckBox.Checked = true;
+            this.habilitadoCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.habilitadoCheckBox.Location = new System.Drawing.Point(112, 10);
+            this.habilitadoCheckBox.Name = "habilitadoCheckBox";
+            this.habilitadoCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.habilitadoCheckBox.TabIndex = 1;
+            this.habilitadoCheckBox.UseVisualStyleBackColor = true;
+            // 
             // DetalleDescuento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,6 +442,8 @@
             this.descuentoLayoutPanel.ResumeLayout(false);
             this.descuentoLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.descuentoNumUpDown)).EndInit();
+            this.habilitadoLayoutPanel.ResumeLayout(false);
+            this.habilitadoLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -427,5 +473,8 @@
         private System.Windows.Forms.DomainUpDown descuentoDomainUpDown;
         private System.Windows.Forms.RadioButton soloNotaRadioButton;
         private System.Windows.Forms.RadioButton vigenciaRadioButton;
+        private System.Windows.Forms.TableLayoutPanel habilitadoLayoutPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox habilitadoCheckBox;
     }
 }

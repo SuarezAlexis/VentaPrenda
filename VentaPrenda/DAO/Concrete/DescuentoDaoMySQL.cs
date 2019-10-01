@@ -14,8 +14,8 @@ namespace VentaPrenda.DAO.Concrete
     public class DescuentoDaoMySQL : IDescuentoDao
     {
         private static readonly string SELECT_SQL = "SELECT * FROM Descuento";
-        private static readonly string INSERT_SQL = "INSERT INTO Descuento(Nombre,VigenciaInicio,VigenciaFin,MontoMinimo,CantMinima,SoloNota,Porcentaje,Unidades) VALUES(@Nombre,@VigenciaInicio,@VigenciaFin,@MontoMinimo,@CantMinima,@SoloNota,@Porcentaje,@Unidades); SELECT LAST_INSERT_ID();";
-        private static readonly string UPDATE_SQL = "UPDATE Descuento SET Nombre = @Nombre, VigenciaInicio = @VigenciaInicio, VigenciaFin = @VigenciaFin, MontoMinimo = @MontoMinimo, CantMinima = @CantMinima, SoloNota = @SoloNota, Porcentaje = @Porcentaje, Unidades = @Unidades WHERE ID = @ID";
+        private static readonly string INSERT_SQL = "INSERT INTO Descuento(Nombre,VigenciaInicio,VigenciaFin,MontoMinimo,CantMinima,SoloNota,Porcentaje,Unidades,Habilitado) VALUES(@Nombre,@VigenciaInicio,@VigenciaFin,@MontoMinimo,@CantMinima,@SoloNota,@Porcentaje,@Unidades,@Habilitado); SELECT LAST_INSERT_ID();";
+        private static readonly string UPDATE_SQL = "UPDATE Descuento SET Nombre = @Nombre, VigenciaInicio = @VigenciaInicio, VigenciaFin = @VigenciaFin, MontoMinimo = @MontoMinimo, CantMinima = @CantMinima, SoloNota = @SoloNota, Porcentaje = @Porcentaje, Unidades = @Unidades, Habilitado = @Habilitado WHERE ID = @ID";
         private static readonly string DELETE_SQL = "sp_DeleteDescuento";
 
         private static DescuentoDto Map(DataRow dr)
@@ -33,7 +33,8 @@ namespace VentaPrenda.DAO.Concrete
                     MontoMinimo = Convert.ToDecimal(dr["MontoMinimo"]),
                     SoloNota = Convert.ToBoolean(dr["SoloNota"]),
                     Porcentaje = Convert.ToDecimal(dr["Porcentaje"]),
-                    Unidades = Convert.ToDecimal(dr["Unidades"])
+                    Unidades = Convert.ToDecimal(dr["Unidades"]),
+                    Habilitado = Convert.ToBoolean(dr["Habilitado"])
                 };
             }
             return dto;
@@ -69,6 +70,7 @@ namespace VentaPrenda.DAO.Concrete
             param.Add("@CantMinima", dto.CantMinima);
             param.Add("@Porcentaje", dto.Porcentaje);
             param.Add("@Unidades", dto.Unidades);
+            param.Add("@Habilitado", dto.Habilitado);
 
             if (dto.ID > 0)
             {

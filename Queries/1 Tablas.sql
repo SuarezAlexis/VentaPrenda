@@ -28,9 +28,11 @@ CREATE TABLE `Descuento` (
   `Porcentaje` decimal(3,0) DEFAULT NULL,
   `Unidades` decimal(4,2) DEFAULT NULL,
   `SoloNota` bit(1) NOT NULL DEFAULT b'0',
+  `Habilitado` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Nombre_UNIQUE` (`Nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `Movimiento` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,

@@ -85,7 +85,7 @@ namespace VentaPrenda.Service
                 DateTime inicio = Convert.ToDateTime(dr["VigenciaInicio"]);
                 DateTime fin = Convert.ToDateTime(dr["VigenciaFin"]);
                 DateTime now = DateTime.Now;
-                if( now > inicio && now < fin )
+                if( now > inicio && now < fin && Convert.ToBoolean(dr["Habilitado"]) )
                 {
                     list.Add(new DescuentoDto
                     {
@@ -97,7 +97,8 @@ namespace VentaPrenda.Service
                         MontoMinimo = Convert.ToDecimal(dr["MontoMinimo"]),
                         Porcentaje = Convert.ToDecimal(dr["Porcentaje"]),
                         Unidades = Convert.ToDecimal(dr["Unidades"]),
-                        SoloNota = Convert.ToBoolean(dr["SoloNota"])
+                        SoloNota = Convert.ToBoolean(dr["SoloNota"]),
+                        Habilitado = Convert.ToBoolean(dr["Habilitado"])
                     }); 
                 }
             }

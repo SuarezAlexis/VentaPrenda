@@ -17,6 +17,7 @@ namespace VentaPrenda.DTO
         public decimal CantMinima { get; set; }
         public decimal Porcentaje { get; set; }
         public decimal Unidades { get; set; }
+        public bool Habilitado { get; set; }
 
         public DescuentoDto()
         {
