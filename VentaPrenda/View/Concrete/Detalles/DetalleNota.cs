@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaPrenda.View.Abstract;
 using VentaPrenda.DTO;
@@ -361,37 +356,37 @@ namespace VentaPrenda.View.Concrete.Detalles
         }
         private void ClienteComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (clienteComboBox.SelectedItem == null)
+            if(!String.IsNullOrEmpty(clienteComboBox.Text))
             {
-                foreach (ClienteDto c in clienteComboBox.Items)
-                {
-                    string search = clienteComboBox.Text.Replace(" ", "");
-                    if (!string.IsNullOrEmpty(search)
-                        && (c.Nombre.ToLower().IndexOf(search.ToLower()) >= 0
-                            || c.Telefono.IndexOf(search) >= 0)
-                        )
-                    {
-                        clienteComboBox.SelectedItem = c;
-                        e.Cancel = false;
-                        ClienteComboBox_Validated(sender, EventArgs.Empty);
-                        break;
-                    }
-                }
                 if (clienteComboBox.SelectedItem == null)
                 {
-                    /*
-                    e.Cancel = true;
-                    clienteComboBox.BackColor = System.Drawing.Color.Pink;
-                    _errorProvider.SetError(clienteComboBox, "No fue posible encontrar un cliente que coincida con el criterio de búsqueda. Para continuar selecciona un cliente válido o crea uno nuevo en el apartado de clientes.");
-                    */
-                    clienteDataLabel.Text = "";
-                    clienteStatsDisplay.Clear();
+                    foreach (ClienteDto c in clienteComboBox.Items)
+                    {
+                        string search = clienteComboBox.Text.Replace(" ", "");
+                        if (!string.IsNullOrEmpty(search)
+                            && (c.Nombre.ToLower().IndexOf(search.ToLower()) >= 0
+                                || c.Telefono.IndexOf(search) >= 0)
+                            )
+                        {
+                            clienteComboBox.SelectedItem = c;
+                            break;
+                        }
+                    }
+                    if (clienteComboBox.SelectedItem == null)
+                    {
+                        clienteDataLabel.Text = clienteComboBox.Text;
+                        clienteStatsDisplay.Clear();
+                    }
                 }
+                e.Cancel = false;
+                ClienteComboBox_Validated(sender, EventArgs.Empty);
             }
             else
             {
-                e.Cancel = false;
-                ClienteComboBox_Validated(sender, EventArgs.Empty);
+                e.Cancel = true;
+                clienteComboBox.BackColor = System.Drawing.Color.Pink;
+                clienteDataLabel.Text = "";
+                clienteStatsDisplay.Clear();
             }
         }
 
@@ -399,6 +394,19 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             clienteComboBox.BackColor = SystemColors.Window;
             _errorProvider.SetError(clienteComboBox, "");
+        }
+
+        private void ResumenFlowLayoutPanel_Validating(object sender, CancelEventArgs e)
+        {
+            if(resumenFlowLayoutPanel.Controls.Count == 0)
+            {
+                e.Cancel = true;
+                _errorProvider.SetError(resumenFlowLayoutPanel, "Para guardar una nota debe haber al menos una prenda.");
+            } else
+            {
+                e.Cancel = false;
+                _errorProvider.SetError(resumenFlowLayoutPanel,"");
+            }
         }
 
         private void AgregarPrendaButton_Click(object sender, EventArgs e)

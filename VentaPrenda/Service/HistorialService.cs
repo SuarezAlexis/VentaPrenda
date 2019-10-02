@@ -27,7 +27,11 @@ namespace VentaPrenda.Service
             Type t = dto.GetType();
             foreach(PropertyInfo p in t.GetProperties())
             {
-                if (!p.Name.Equals("Confirmacion") && !p.Name.Equals("Logged"))
+                if (!p.Name.Equals("Confirmacion") 
+                    && !p.Name.Equals("Logged")
+                    && !p.Name.Equals("Clientes")
+                    && !p.Name.Equals("Descuentos")
+                    && !p.Name.Equals("Estadisticas"))
                 {
                     cambios.Add(new DatoHistorialDto
                     {

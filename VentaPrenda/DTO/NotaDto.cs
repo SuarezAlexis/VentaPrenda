@@ -20,6 +20,7 @@ namespace VentaPrenda.DTO
         public List<PrendaItemDto> Prendas { get; set; }
         public string Observaciones { get; set; }
         public DescuentoDto Descuento { get; set; }
+        public Usuario Recibio { get; set; }
 
         public NotaDto()
         {

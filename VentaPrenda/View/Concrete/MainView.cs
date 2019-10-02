@@ -178,6 +178,7 @@ namespace VentaPrenda.View.Concrete
                     SetSelectButtonsEnabled(false);
                     break;
                 case Funcion.HISTORIAL:
+                    SetFiltroVisible(true);
                     HistorialButton.BackColor = ActiveColor;
                     SetSelectButtonsEnabled(false);
                     break;
@@ -328,7 +329,7 @@ namespace VentaPrenda.View.Concrete
 
         private void Filtrar()
         {
-            string cellName = Controller.Funcion == Funcion.NOTA ? "Recibido" : Controller.Funcion == Funcion.BALANCE ? "Fecha" : null;
+            string cellName = Controller.Funcion == Funcion.NOTA ? "Recibido" : "Fecha";
             bool show = true;
             foreach (DataGridViewRow row in listGridView.Rows)
             {

@@ -25,5 +25,6 @@ namespace VentaPrenda.Model
         public List<PrendaItem> Prendas { get; set; }
         public string Observaciones { get; set; }
         public Descuento Descuento { get; set; }
+        public Usuario Recibio { get; set; }
     }
 }

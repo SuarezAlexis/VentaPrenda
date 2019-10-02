@@ -20,5 +20,9 @@ namespace VentaPrenda.Model
 
         public Usuario() { }
 
+        public override string ToString()
+        {
+            return Username + " " + Nombre;
+        }
     }
 }

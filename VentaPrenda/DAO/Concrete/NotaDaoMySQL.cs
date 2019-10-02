@@ -11,8 +11,8 @@ namespace VentaPrenda.DAO.Concrete
 {
     public class NotaDaoMySQL : INotaDao
     {
-        private static readonly string SELECT_SQL = "SELECT N.ID NotaID, N.Estatus, N.Cliente ClienteID, C.Nombre ClienteNombre, C.Domicilio, C.Colonia, C.CP, C.Telefono, C.Email, C.Habilitado ClienteHabilitado, Recibido, Entregado, Observaciones, N.Descuento DescuentoID, D.Nombre DescuentoNombre, D.VigenciaInicio, D.VigenciaFin, D.MontoMinimo, D.CantMinima, D.Porcentaje, D.Unidades, D.SoloNota, PI.ID PrendaItemID, PI.Cantidad PrendaItemCantidad, PI.Prenda PrendaID, P.Nombre PrendaNombre, P.Habilitado PrendaHabilitado, PI.TipoPrenda TipoID, T.Nombre TipoNombre, T.Habilitado TipoHabilitado, PI.Color ColorID, Co.Nombre ColorNombre, Co.Habilitado ColorHabilitado, SI.ID ServicioItemID, SI.Cantidad ServicioItemCantidad, SI.Servicio ServicioID, S.Nombre ServicioNombre, S.Descripcion ServicioDescripcion, S.Costo ServicioCosto, S.Habilitado ServicioHabilitado, SI.Monto ServicioItemMonto, SI.Descuento ServicioItemDescuento, D2.Nombre SIDescNombre, D2.VigenciaInicio SIDescVigenciaInicio, D2.VigenciaFin SIDescVigenciaFin, D2.MontoMinimo SIDescMontoMinimo, D2.CantMinima SIDescCantMinima, D2.Porcentaje SIDescPorcentaje, D2.Unidades SIDescUnidades, D2.SoloNota SIDescSoloNota, SI.Encargado EncargadoID, E.Nombre EncargadoNombre, E.Username EncargadoUsername FROM Nota N JOIN Cliente C ON(C.ID = N.Cliente) LEFT JOIN Descuento D ON(D.ID = N.Descuento) JOIN PrendaItem PI ON(PI.Nota = N.ID) JOIN Prenda P ON(P.ID = PI.Prenda) LEFT JOIN TipoPrenda T ON(T.ID = PI.TipoPrenda) JOIN Color Co ON(Co.ID = PI.Color) JOIN ServicioItem SI ON(SI.PrendaItem = PI.ID) JOIN Servicio S ON(S.ID = SI.Servicio) LEFT JOIN Descuento D2 ON(D2.ID = SI.Descuento) LEFT JOIN Usuario E ON(E.ID = SI.Encargado)";
-        private static readonly string LIST_SELECT_SQL = "SELECT N.ID, C.Nombre Cliente, CASE WHEN Estatus = 0 THEN 'Cancelado' WHEN Estatus = 1 THEN 'Pendiente' WHEN Estatus = 2 THEN 'Terminado' WHEN Estatus = 3 THEN 'Entregado' WHEN Estatus = 4 THEN 'Caducado' ELSE '' END Estatus, Recibido, Entregado FechaEntrega, D.Nombre Descuento FROM Nota N JOIN Cliente C ON (C.ID = N.Cliente) LEFT JOIN Descuento D ON (D.ID = N.Descuento)";
+        private static readonly string SELECT_SQL = "SELECT N.ID NotaID, N.Estatus, N.Cliente ClienteID, C.Nombre ClienteNombre, C.Domicilio, C.Colonia, C.CP, C.Telefono, C.Email, C.Habilitado ClienteHabilitado, Recibido, Entregado, Observaciones, N.Descuento DescuentoID, D.Nombre DescuentoNombre, D.VigenciaInicio, D.VigenciaFin, D.MontoMinimo, D.CantMinima, D.Porcentaje, D.Unidades, D.SoloNota, PI.ID PrendaItemID, PI.Cantidad PrendaItemCantidad, PI.Prenda PrendaID, P.Nombre PrendaNombre, P.Habilitado PrendaHabilitado, PI.TipoPrenda TipoID, T.Nombre TipoNombre, T.Habilitado TipoHabilitado, PI.Color ColorID, Co.Nombre ColorNombre, Co.Habilitado ColorHabilitado, SI.ID ServicioItemID, SI.Cantidad ServicioItemCantidad, SI.Servicio ServicioID, S.Nombre ServicioNombre, S.Descripcion ServicioDescripcion, S.Costo ServicioCosto, S.Habilitado ServicioHabilitado, SI.Monto ServicioItemMonto, SI.Descuento ServicioItemDescuento, D2.Nombre SIDescNombre, D2.VigenciaInicio SIDescVigenciaInicio, D2.VigenciaFin SIDescVigenciaFin, D2.MontoMinimo SIDescMontoMinimo, D2.CantMinima SIDescCantMinima, D2.Porcentaje SIDescPorcentaje, D2.Unidades SIDescUnidades, D2.SoloNota SIDescSoloNota, SI.Encargado EncargadoID, E.Nombre EncargadoNombre, E.Username EncargadoUsername, H.Usuario RecibioID, R.Nombre RecibioNombre, R.Username RecibioUsername FROM Nota N JOIN Cliente C ON(C.ID = N.Cliente) LEFT JOIN Descuento D ON(D.ID = N.Descuento) JOIN PrendaItem PI ON(PI.Nota = N.ID) JOIN Prenda P ON(P.ID = PI.Prenda) LEFT JOIN TipoPrenda T ON(T.ID = PI.TipoPrenda) JOIN Color Co ON(Co.ID = PI.Color) JOIN ServicioItem SI ON(SI.PrendaItem = PI.ID) JOIN Servicio S ON(S.ID = SI.Servicio) LEFT JOIN Descuento D2 ON(D2.ID = SI.Descuento) LEFT JOIN Usuario E ON(E.ID = SI.Encargado) LEFT JOIN DatosHistorial DH ON(DH.Valor = N.ID AND DH.Tabla = 'Nota' AND DH.Columna = 'ID' AND Operacion = 'I') LEFT JOIN Historial H ON(H.ID = DH.Historial) LEFT JOIN Usuario R ON(R.ID = H.Usuario)";
+        private static readonly string LIST_SELECT_SQL = "SELECT N.ID, C.Nombre Cliente, CASE WHEN Estatus = 0 THEN 'Cancelado' WHEN Estatus = 1 THEN 'Pendiente' WHEN Estatus = 2 THEN 'Terminado' WHEN Estatus = 3 THEN 'Entregado' WHEN Estatus = 4 THEN 'Caducado' ELSE '' END Estatus, Recibido, Entregado FechaEntrega, D.Nombre Descuento, R.Nombre Recibio FROM Nota N JOIN Cliente C ON (C.ID = N.Cliente) LEFT JOIN Descuento D ON (D.ID = N.Descuento) LEFT JOIN DatosHistorial DH ON(DH.Valor = N.ID AND DH.Tabla = 'Nota' AND DH.Columna = 'ID' AND Operacion = 'I') LEFT JOIN Historial H ON(H.ID = DH.Historial) LEFT JOIN Usuario R ON(R.ID = H.Usuario)";
         private static readonly string PRENDA_SELECT_SQL = "SELECT * FROM PrendaItem";
         private static readonly string SERVICIO_SELECT_SQL = "SELECT * FROM ServicioItem";
         private static readonly string PAGO_SELECT_SQL = "SELECT * FROM Pago";
@@ -65,6 +65,12 @@ namespace VentaPrenda.DAO.Concrete
                         Porcentaje = Convert.ToDecimal(dt.Rows[0]["Porcentaje"]),
                         Unidades = Convert.ToDecimal(dt.Rows[0]["Unidades"]),
                         SoloNota = Convert.ToBoolean(dt.Rows[0]["SoloNota"])
+                    },
+                    Recibio = new Usuario
+                    {
+                        ID = Convert.ToInt64(dt.Rows[0]["RecibioID"]),
+                        Nombre = dt.Rows[0]["RecibioNombre"].ToString(),
+                        Username = dt.Rows[0]["RecibioUsername"].ToString()
                     }
                 };
                 PrendaItemDto prenda = new PrendaItemDto();
@@ -186,26 +192,29 @@ namespace VentaPrenda.DAO.Concrete
 
         public NotaDto GuardarNota(NotaDto dto)
         {
-            Dictionary<string, object> param = new Dictionary<string, object>();
-            param.Add("@Estatus", (short)dto.Estatus);
-            param.Add("@Cliente", dto.Cliente.ID);
-            param.Add("@Entregado", dto.Entregado);
-            param.Add("@Observaciones", dto.Observaciones);
-            param.Add("@Descuento", dto.Descuento != null? (object)dto.Descuento.ID : null);
-
-            if (dto.ID > 0)
+            if(dto.Prendas.Count > 0)
             {
-                param.Add("@ID", dto.ID);
-                MySqlDbContext.Update(UPDATE_SQL, param);
-            }
-            else
-            {
-                DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
-                dto.ID = dt.Rows.Count > 0 ? Convert.ToInt64(dt.Rows[0][0]) : -1;
-            }
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("@Estatus", (short)dto.Estatus);
+                param.Add("@Cliente", dto.Cliente.ID);
+                param.Add("@Entregado", dto.Entregado);
+                param.Add("@Observaciones", dto.Observaciones);
+                param.Add("@Descuento", dto.Descuento != null ? (object)dto.Descuento.ID : null);
 
-            GuardarPrendas(dto.Prendas);
-            GuardarPagos(dto.Pagos);
+                if (dto.ID > 0)
+                {
+                    param.Add("@ID", dto.ID);
+                    MySqlDbContext.Update(UPDATE_SQL, param);
+                }
+                else
+                {
+                    DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
+                    dto.ID = dt.Rows.Count > 0 ? Convert.ToInt64(dt.Rows[0][0]) : -1;
+                }
+
+                GuardarPrendas(dto.Prendas);
+                GuardarPagos(dto.Pagos);
+            }
 
             return dto;
         }
