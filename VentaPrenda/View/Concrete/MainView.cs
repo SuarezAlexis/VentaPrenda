@@ -179,6 +179,7 @@ namespace VentaPrenda.View.Concrete
                     break;
                 case Funcion.HISTORIAL:
                     HistorialButton.BackColor = ActiveColor;
+                    SetSelectButtonsEnabled(false);
                     break;
                 case Funcion.TICKET:
                     TicketButton.BackColor = ActiveColor;
@@ -317,11 +318,10 @@ namespace VentaPrenda.View.Concrete
                     return new DetalleMovimiento(errorProvider);
                 case Funcion.REPORTES:
                     return new DetalleReporte(errorProvider);
-                case Funcion.HISTORIAL:
-
-                    break;
                 case Funcion.TICKET:
                     return new DetalleTicket();
+                case Funcion.HISTORIAL:
+                    return new DetalleHistorial();
             }
             return null;
         }
@@ -398,6 +398,8 @@ namespace VentaPrenda.View.Concrete
             {
                 Controller.FillDetalle(Convert.ToInt64(listGridView.SelectedRows[0].Cells[0].Value));
                 objetoLabel.Text = Detalle.Dto.ToString();
+                if (Controller.Funcion == Funcion.HISTORIAL)
+                    SetEditButtonsEnabled(false);
             }
         }
 

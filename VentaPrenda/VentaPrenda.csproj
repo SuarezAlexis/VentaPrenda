@@ -68,6 +68,7 @@
     <Compile Include="DAO\Abstract\ICatalogoDao.cs" />
     <Compile Include="DAO\Abstract\IClienteDao.cs" />
     <Compile Include="DAO\Abstract\IDescuentoDao.cs" />
+    <Compile Include="DAO\Abstract\IHistorialDao.cs" />
     <Compile Include="DAO\Abstract\IMovimientoDao.cs" />
     <Compile Include="DAO\Abstract\INotaDao.cs" />
     <Compile Include="DAO\Abstract\IPerfilDao.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="DAO\Concrete\CatalogoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\ClienteDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\DescuentoDaoMySQL.cs" />
+    <Compile Include="DAO\Concrete\HistorialDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MovimientoDaoMySQL.cs" />
     <Compile Include="DAO\Concrete\MySQLDbContext.cs" />
     <Compile Include="DAO\Concrete\NotaDaoMySQL.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="DTO\CatalogoDto.cs" />
     <Compile Include="DTO\ClienteDto.cs" />
     <Compile Include="DTO\DescuentoDto.cs" />
+    <Compile Include="DTO\HistorialDto.cs" />
     <Compile Include="DTO\MovimientoDto.cs" />
     <Compile Include="DTO\NotaDto.cs" />
     <Compile Include="DTO\PagoDto.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\DuplicateKeyException.cs" />
     <Compile Include="Exceptions\ViewClosedException.cs" />
+    <Compile Include="Model\Historial.cs" />
     <Compile Include="Model\PrendaItem.cs" />
     <Compile Include="Model\Servicio.cs" />
     <Compile Include="Model\Catalogo.cs" />
@@ -119,6 +123,7 @@
     <Compile Include="Service\Cipher.cs" />
     <Compile Include="Service\DtoMapper.cs" />
     <Compile Include="Service\DtoProvider.cs" />
+    <Compile Include="Service\HistorialService.cs" />
     <Compile Include="Service\Reportes.cs" />
     <Compile Include="Service\TicketPrinter.cs" />
     <Compile Include="View\Abstract\DetalleModelo.cs">
@@ -126,6 +131,12 @@
     </Compile>
     <Compile Include="View\Abstract\ILoginView.cs" />
     <Compile Include="View\Abstract\IMainView.cs" />
+    <Compile Include="View\Concrete\Detalles\DetalleHistorial.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleHistorial.Designer.cs">
+      <DependentUpon>DetalleHistorial.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleReporte.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -244,6 +255,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleHistorial.resx">
+      <DependentUpon>DetalleHistorial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleReporte.resx">
       <DependentUpon>DetalleReporte.cs</DependentUpon>
     </EmbeddedResource>

@@ -183,3 +183,26 @@ CREATE TABLE `Ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO Ticket(Impresora,Encabezado,Pie) VALUES(NULL,NULL,NULL);
+
+CREATE TABLE `Historial` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Usuario` bigint(20) NOT NULL,
+  `Concepto` varchar(64) NOT NULL,
+  `Fecha` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Historial_Ref_Usuario_idx` (`Usuario`),
+  CONSTRAINT `Historial_Ref_Usuario` FOREIGN KEY (`Usuario`) REFERENCES `usuario` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `DatosHistorial` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Historial` bigint(20) NOT NULL,
+  `Operacion` char(1) NOT NULL,
+  `Tabla` varchar(32) NOT NULL,
+  `Columna` varchar(32) NOT NULL,
+  `Valor` varchar(256) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `DatosHist_Ref_Historial_idx` (`Historial`),
+  CONSTRAINT `DatosHist_Ref_Historial` FOREIGN KEY (`Historial`) REFERENCES `historial` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

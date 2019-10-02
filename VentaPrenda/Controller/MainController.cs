@@ -108,7 +108,7 @@ namespace VentaPrenda.Controller
                     //dto = DaoManager.ArregloDao.GetColor((short)id);
                     break;
                 case Funcion.HISTORIAL:
-                    //dto = DaoManager.ArregloDao.GetColor((short)id);
+                    dto = DaoManager.HistorialDao.GetHistorial(id);
                     break;
             }
             _mainView.Dto = dto;
@@ -269,6 +269,7 @@ namespace VentaPrenda.Controller
         {
             Funcion = Funcion.HISTORIAL;
             Modo = Modo.SELECCION;
+            _mainView.DataSource = DaoManager.HistorialDao.GetHistorial();
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }
@@ -317,6 +318,7 @@ namespace VentaPrenda.Controller
             bool success = false;
             try
             {
+                char op = Convert.ToInt64(dto.GetType().GetProperty("ID").GetValue(dto)) > 0? 'U' : 'I';
                 switch (Funcion)
                 {
                     case Funcion.PERFILES:
@@ -367,13 +369,11 @@ namespace VentaPrenda.Controller
                     case Funcion.REPORTES:
                         
                         break;
-                    case Funcion.HISTORIAL:
-                        
-                        break;
                     case Funcion.TICKET:
                         _mainView.Dto = DaoManager.TicketConfigDao.GuardarConfig((TicketConfigDto)dto);
                         break;
                 }
+                HistorialService.GuardarHistoria(Usuario, op, Funcion, dto);
                 Modo = Modo.SOLO_LECTURA;
                 _mainView.UpdateModo();
                 success = true;
@@ -392,6 +392,7 @@ namespace VentaPrenda.Controller
 
         public void Eliminar(object dto)
         {
+            HistorialService.GuardarHistoria(Usuario, 'D', Funcion, dto);
             switch(Funcion)
             {
                 case Funcion.PERFILES:
@@ -436,9 +437,6 @@ namespace VentaPrenda.Controller
                     _mainView.DataSource = DaoManager.MovimientoDao.GetMovimientos();
                     break;
                 case Funcion.REPORTES:
-                    
-                    break;
-                case Funcion.HISTORIAL:
                     
                     break;
             }

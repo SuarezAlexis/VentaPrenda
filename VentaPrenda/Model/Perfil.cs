@@ -224,6 +224,11 @@ namespace VentaPrenda.Model
                     Numeric = (value ? Numeric | AdmonMovimientosMask : Numeric ^ AdmonMovimientosMask);
             }
         }
+
+        public override string ToString()
+        {
+            return Numeric.ToString();
+        }
     }    
 
 }
