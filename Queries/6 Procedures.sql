@@ -151,11 +151,11 @@ END$$
 DELIMITER ;
 
 
-DROP PROCEDURE IF EXISTS sp_DeleteNota;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteNota`(p_ID BIGINT)
 BEGIN
 	START TRANSACTION;
+		SELECT N.ID NotaID, N.Estatus, N.Cliente ClienteID, C.Nombre ClienteNombre, C.Domicilio, C.Colonia, C.CP, C.Telefono, C.Email, C.Habilitado ClienteHabilitado, Recibido, Entregado, Observaciones, N.Descuento DescuentoID, D.Nombre DescuentoNombre, D.VigenciaInicio, D.VigenciaFin, D.MontoMinimo, D.CantMinima, D.Porcentaje, D.Unidades, D.SoloNota, PI.ID PrendaItemID, PI.Cantidad PrendaItemCantidad, PI.Prenda PrendaID, P.Nombre PrendaNombre, P.Habilitado PrendaHabilitado, PI.TipoPrenda TipoID, T.Nombre TipoNombre, T.Habilitado TipoHabilitado, PI.Color ColorID, Co.Nombre ColorNombre, Co.Habilitado ColorHabilitado, SI.ID ServicioItemID, SI.Cantidad ServicioItemCantidad, SI.Servicio ServicioID, S.Nombre ServicioNombre, S.Descripcion ServicioDescripcion, S.Costo ServicioCosto, S.Habilitado ServicioHabilitado, SI.Monto ServicioItemMonto, SI.Descuento ServicioItemDescuento, D2.Nombre SIDescNombre, D2.VigenciaInicio SIDescVigenciaInicio, D2.VigenciaFin SIDescVigenciaFin, D2.MontoMinimo SIDescMontoMinimo, D2.CantMinima SIDescCantMinima, D2.Porcentaje SIDescPorcentaje, D2.Unidades SIDescUnidades, D2.SoloNota SIDescSoloNota, SI.Encargado EncargadoID, E.Nombre EncargadoNombre, E.Username EncargadoUsername, H.Usuario RecibioID, R.Nombre RecibioNombre, R.Username RecibioUsername FROM Nota N JOIN Cliente C ON(C.ID = N.Cliente) LEFT JOIN Descuento D ON(D.ID = N.Descuento) JOIN PrendaItem PI ON(PI.Nota = N.ID) JOIN Prenda P ON(P.ID = PI.Prenda) LEFT JOIN TipoPrenda T ON(T.ID = PI.TipoPrenda) JOIN Color Co ON(Co.ID = PI.Color) JOIN ServicioItem SI ON(SI.PrendaItem = PI.ID) JOIN Servicio S ON(S.ID = SI.Servicio) LEFT JOIN Descuento D2 ON(D2.ID = SI.Descuento) LEFT JOIN Usuario E ON(E.ID = SI.Encargado) LEFT JOIN DatosHistorial DH ON(DH.Valor = N.ID AND DH.Tabla = 'Nota' AND DH.Columna = 'ID' AND Operacion = 'I') LEFT JOIN Historial H ON(H.ID = DH.Historial) LEFT JOIN Usuario R ON(R.ID = H.Usuario) WHERE N.ID = p_ID;
 		DELETE FROM ServicioItem WHERE PrendaItem IN( SELECT ID FROM PrendaItem  WHERE Nota = p_ID );
 		DELETE FROM PrendaItem WHERE Nota = p_ID;
         DELETE FROM Pago WHERE Nota = p_ID;
@@ -163,6 +163,7 @@ BEGIN
 	COMMIT;
 END$$
 DELIMITER ;
+
 
 
 DROP procedure IF EXISTS `sp_ReporteNotas`;

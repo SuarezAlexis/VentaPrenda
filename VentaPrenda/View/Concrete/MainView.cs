@@ -29,8 +29,7 @@ namespace VentaPrenda.View.Concrete
             set
             {
                 _dto = value;
-                if (value != null)
-                    Detalle.Fill(Dto);                    
+                Detalle.Fill(Dto);                    
             }
         }
         private DetalleModelo Detalle {

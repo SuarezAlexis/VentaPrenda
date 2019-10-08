@@ -9,7 +9,8 @@ namespace VentaPrenda.DTO
     public enum TipoReporte
     {
         Clientes,
-        Ingresos
+        Ingresos,
+        Produccion
     }
 
     public class ReporteDto

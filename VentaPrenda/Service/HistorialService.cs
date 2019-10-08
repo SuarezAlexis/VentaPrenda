@@ -40,6 +40,19 @@ namespace VentaPrenda.Service
                         Columna = p.Name,
                         Valor = ValueToString(p.GetValue(dto))
                     });
+                    if( p.Name.Equals("Prendas") && dto is NotaDto)
+                    {
+                        foreach(PrendaItemDto prenda in (List<PrendaItemDto>)p.GetValue(dto))
+                        {
+                            cambios.Add(new DatoHistorialDto
+                            {
+                                Operacion = op,
+                                Tabla = "PrendaItem " + prenda.ID,
+                                Columna = "Servicios",
+                                Valor = ValueToString(prenda.Servicios)
+                            });
+                        }
+                    }
                 }
             }
             HistorialDto h = new HistorialDto

@@ -56,7 +56,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 if (value != null && (value is NotaDto))
                     _dto = (NotaDto)value;
                 else
-                    throw new Exception("No fue posible asignar el Dto a la instancia de DetalleNota porque no es del tipo correcto.");
+                    throw new Exception("No fue posible desplegar la información obtenida de la base de datos porque es nula o es del tipo incorrecto.");
             }
         }
 
@@ -134,19 +134,10 @@ namespace VentaPrenda.View.Concrete.Detalles
         }
 
         public override void Fill(object model)
-        {
-            Dto = model;
-            if (model == null || model.GetType() != typeof(NotaDto))
+        {            
+            try
             {
-                //Registrar el Log
-                MessageBox.Show(
-                    "No fue posible obtener el registro solicitado.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            else
-            {
+                Dto = model;
                 NotaDto n = (NotaDto)model;
                 Visible = false;
                 idDataLabel.Text = n.ID > 0 ? n.ID.ToString() : "";
@@ -171,6 +162,14 @@ namespace VentaPrenda.View.Concrete.Detalles
                 observacionesTextBox.Text = n.Observaciones;
                 imprimirButton.Enabled = !String.IsNullOrEmpty(idDataLabel.Text);
                 Visible = true;
+            } catch(Exception e)
+            { 
+                //Registrar el Log
+                MessageBox.Show(
+                    "Ocurrió un error al intentar obtener el registro solicitado.\n\n" + e.Message + "\n\nTipo de error: " + e.GetType().Name,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

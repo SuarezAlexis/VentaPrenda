@@ -68,9 +68,9 @@ namespace VentaPrenda.DAO.Concrete
                     },
                     Recibio = new Usuario
                     {
-                        ID = Convert.ToInt64(dt.Rows[0]["RecibioID"]),
-                        Nombre = dt.Rows[0]["RecibioNombre"].ToString(),
-                        Username = dt.Rows[0]["RecibioUsername"].ToString()
+                        ID = dt.Rows[0]["RecibioID"] is DBNull? -1 : Convert.ToInt64(dt.Rows[0]["RecibioID"]),
+                        Nombre = dt.Rows[0]["RecibioNombre"] is DBNull? null : dt.Rows[0]["RecibioNombre"].ToString(),
+                        Username = dt.Rows[0]["RecibioUsername"] is DBNull? null : dt.Rows[0]["RecibioUsername"].ToString()
                     }
                 };
                 PrendaItemDto prenda = new PrendaItemDto();
@@ -156,7 +156,9 @@ namespace VentaPrenda.DAO.Concrete
         public NotaDto GetNota(long id)
         {
             DataTable dt = MySqlDbContext.Query(SELECT_SQL + " WHERE N.ID = " + id);
-            NotaDto notaDto = dt.Rows.Count > 0 ? Map(dt) : null;
+            if (dt.Rows.Count <= 0)
+                return null;
+            NotaDto notaDto = Map(dt);
             foreach(DataRow dr in MySqlDbContext.Query(PAGO_SELECT_SQL + " WHERE Nota = " + id).Rows)
             {
                 notaDto.Pagos.Add(new PagoDto

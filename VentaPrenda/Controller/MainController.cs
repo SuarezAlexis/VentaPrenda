@@ -140,6 +140,9 @@ namespace VentaPrenda.Controller
                 case TipoReporte.Ingresos:
                     _mainView.DataSource = Service.Reportes.Ingresos(Dto.Desde,Dto.Hasta);
                     break;
+                case TipoReporte.Produccion:
+                    _mainView.DataSource = Service.Reportes.Produccion(Dto.Desde, Dto.Hasta);
+                    break;
             }
         }
 
