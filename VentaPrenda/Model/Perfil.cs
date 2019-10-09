@@ -24,15 +24,17 @@ namespace VentaPrenda.Model
         private const int ReportesMask = 64;
         private const int DescuentosMask = 128;
         private const int HistorialMask = 256;
-        private const int AdmonUsuariosMask = 512;
-        private const int AdmonPerfilesMask = 1024;
-        private const int GeneraNotaMask = 2048;
-        private const int EditaNotaMask = 4096;
-        private const int EliminaNotaMask = 8192;
-        private const int AdmonClientesMask = 16384;
-        private const int AdmonCatalogosMask = 32768;
-        private const int GeneraMovimientosMask = 65536;
-        private const int AdmonMovimientosMask = 131072;
+        private const int TicketMask = 512;
+        private const int DatabaseMask = 1024;
+        private const int AdmonUsuariosMask = 2048;
+        private const int AdmonPerfilesMask = 4096;
+        private const int GeneraNotaMask = 8192;
+        private const int EditaNotaMask = 16384;
+        private const int EliminaNotaMask = 32768;
+        private const int AdmonClientesMask = 65536;
+        private const int AdmonCatalogosMask = 131072;
+        private const int GeneraMovimientosMask = 262144;
+        private const int AdmonMovimientosMask = 524288;
 
         private int _numeric;
 
@@ -134,6 +136,26 @@ namespace VentaPrenda.Model
             {
                 if (Historial != value)
                     Numeric = (value ? Numeric | HistorialMask : Numeric ^ HistorialMask);
+            }
+        }
+
+        public Boolean Ticket
+        {
+            get { return (Numeric & TicketMask) == TicketMask; }
+            set
+            {
+                if (Ticket != value)
+                    Numeric = (value ? Numeric | TicketMask : Numeric ^ TicketMask);
+            }
+        }
+
+        public Boolean Database
+        {
+            get { return (Numeric & DatabaseMask) == DatabaseMask; }
+            set
+            {
+                if (Database != value)
+                    Numeric = (value ? Numeric | DatabaseMask : Numeric ^ DatabaseMask);
             }
         }
 

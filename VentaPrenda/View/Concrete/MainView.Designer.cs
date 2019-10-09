@@ -34,6 +34,7 @@
             this.adminLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.UsuariosButton = new System.Windows.Forms.Button();
             this.PerfilesButton = new System.Windows.Forms.Button();
+            this.BaseDeDatosButton = new System.Windows.Forms.Button();
             this.operationButtonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.HistorialButton = new System.Windows.Forms.Button();
             this.ReportesButton = new System.Windows.Forms.Button();
@@ -76,7 +77,6 @@
             this.objetoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.infoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.baseDeDatosButton = new System.Windows.Forms.Button();
             this.MainLayoutPanel.SuspendLayout();
             this.functionsLayoutPanel.SuspendLayout();
             this.adminLayoutPanel.SuspendLayout();
@@ -142,7 +142,7 @@
             this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99775F));
             this.adminLayoutPanel.Controls.Add(this.UsuariosButton, 0, 0);
             this.adminLayoutPanel.Controls.Add(this.PerfilesButton, 0, 1);
-            this.adminLayoutPanel.Controls.Add(this.baseDeDatosButton, 0, 2);
+            this.adminLayoutPanel.Controls.Add(this.BaseDeDatosButton, 0, 2);
             this.adminLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.adminLayoutPanel.Location = new System.Drawing.Point(1047, 3);
             this.adminLayoutPanel.Name = "adminLayoutPanel";
@@ -176,6 +176,17 @@
             this.PerfilesButton.Text = "Perfiles";
             this.PerfilesButton.UseVisualStyleBackColor = true;
             this.PerfilesButton.Click += new System.EventHandler(this.PerfilesButton_Click);
+            // 
+            // BaseDeDatosButton
+            // 
+            this.BaseDeDatosButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaseDeDatosButton.Location = new System.Drawing.Point(3, 61);
+            this.BaseDeDatosButton.Name = "BaseDeDatosButton";
+            this.BaseDeDatosButton.Size = new System.Drawing.Size(98, 24);
+            this.BaseDeDatosButton.TabIndex = 2;
+            this.BaseDeDatosButton.Text = "Base de datos";
+            this.BaseDeDatosButton.UseVisualStyleBackColor = true;
+            this.BaseDeDatosButton.Click += new System.EventHandler(this.BaseDeDatosButton_Click);
             // 
             // operationButtonsLayoutPanel
             // 
@@ -722,17 +733,6 @@
             this.errorProvider.BlinkRate = 200;
             this.errorProvider.ContainerControl = this;
             // 
-            // baseDeDatosButton
-            // 
-            this.baseDeDatosButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.baseDeDatosButton.Location = new System.Drawing.Point(3, 61);
-            this.baseDeDatosButton.Name = "baseDeDatosButton";
-            this.baseDeDatosButton.Size = new System.Drawing.Size(98, 24);
-            this.baseDeDatosButton.TabIndex = 2;
-            this.baseDeDatosButton.Text = "Base de datos";
-            this.baseDeDatosButton.UseVisualStyleBackColor = true;
-            this.baseDeDatosButton.Click += new System.EventHandler(this.BaseDeDatosButton_Click);
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -817,6 +817,6 @@
         private System.Windows.Forms.DateTimePicker hastaDateTimePicker;
         private System.Windows.Forms.Button filtrarButton;
         private System.Windows.Forms.Button TicketButton;
-        private System.Windows.Forms.Button baseDeDatosButton;
+        private System.Windows.Forms.Button BaseDeDatosButton;
     }
 }

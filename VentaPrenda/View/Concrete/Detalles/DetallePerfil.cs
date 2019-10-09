@@ -64,6 +64,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                     Historial = funcionesChecklistBox.GetItemChecked(i++),
                     Usuarios = funcionesChecklistBox.GetItemChecked(i++),
                     Perfiles = funcionesChecklistBox.GetItemChecked(i++),
+                    Database = funcionesChecklistBox.GetItemChecked(i++),
+                    Ticket = funcionesChecklistBox.GetItemChecked(i++),
                     GenerarNota = permisosChecklistBox.GetItemChecked(i = 0),
                     EditarNota = permisosChecklistBox.GetItemChecked(++i),
                     EliminarNota = permisosChecklistBox.GetItemChecked(++i),
@@ -140,6 +142,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Historial);
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Usuarios);
                 funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Perfiles);
+                funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Ticket);
+                funcionesChecklistBox.SetItemChecked(i++, p.Permisos.Database);
                 i = 0;
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.GenerarNota);
                 permisosChecklistBox.SetItemChecked(i++, p.Permisos.EditarNota);
@@ -322,7 +326,9 @@ namespace VentaPrenda.View.Concrete.Detalles
             "Descuentos",
             "Historial",
             "Usuarios",
-            "Perfiles"});
+            "Perfiles",
+            "Ticket",
+            "BaseDeDatos"});
             this.funcionesChecklistBox.Location = new System.Drawing.Point(112, 3);
             this.funcionesChecklistBox.Name = "funcionesChecklistBox";
             this.funcionesChecklistBox.Size = new System.Drawing.Size(200, 152);

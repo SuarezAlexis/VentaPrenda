@@ -185,7 +185,7 @@ namespace VentaPrenda.View.Concrete
                     TicketButton.BackColor = ActiveColor;
                     break;
                 case Funcion.DATABASE:
-                    baseDeDatosButton.BackColor = ActiveColor;
+                    BaseDeDatosButton.BackColor = ActiveColor;
                     SetSelectButtonsEnabled(false);
                     break;
             }
@@ -197,6 +197,7 @@ namespace VentaPrenda.View.Concrete
             ClientesButton.Visible = p.Clientes || p.AdmonClientes;
             UsuariosButton.Visible = p.Usuarios || p.AdmonUsuarios;
             PerfilesButton.Visible = p.Perfiles || p.AdmonPerfiles;
+            BaseDeDatosButton.Visible = p.Database;
             ReportesButton.Visible = p.Reportes;
             BalanceButton.Visible = p.Balance || p.AdmonMovimientos || p.GeneraMovimientos;
             HistorialButton.Visible = p.Historial;
@@ -205,6 +206,7 @@ namespace VentaPrenda.View.Concrete
             PrendasButton.Visible = p.Catalogos;
             TiposButton.Visible = p.Catalogos;
             ServiciosButton.Visible = p.Catalogos;
+            TicketButton.Visible = p.Ticket;
         }
 
         public void DuplicateKeyAlert(string duplicateKey)
@@ -296,7 +298,7 @@ namespace VentaPrenda.View.Concrete
             UsuariosButton.BackColor = ClearColor;
             PerfilesButton.BackColor = ClearColor;
             TicketButton.BackColor = ClearColor;
-            baseDeDatosButton.BackColor = ClearColor;
+            BaseDeDatosButton.BackColor = ClearColor;
         }
 
         private DetalleModelo newDetalle(ErrorProvider e)
