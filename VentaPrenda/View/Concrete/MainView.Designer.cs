@@ -46,6 +46,7 @@
             this.PrendasButton = new System.Windows.Forms.Button();
             this.ColoresButton = new System.Windows.Forms.Button();
             this.TiposButton = new System.Windows.Forms.Button();
+            this.TicketButton = new System.Windows.Forms.Button();
             this.secondaryLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.busquedaBox = new System.Windows.Forms.GroupBox();
             this.busquedaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -75,7 +76,7 @@
             this.objetoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.infoLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.TicketButton = new System.Windows.Forms.Button();
+            this.baseDeDatosButton = new System.Windows.Forms.Button();
             this.MainLayoutPanel.SuspendLayout();
             this.functionsLayoutPanel.SuspendLayout();
             this.adminLayoutPanel.SuspendLayout();
@@ -141,6 +142,7 @@
             this.adminLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99775F));
             this.adminLayoutPanel.Controls.Add(this.UsuariosButton, 0, 0);
             this.adminLayoutPanel.Controls.Add(this.PerfilesButton, 0, 1);
+            this.adminLayoutPanel.Controls.Add(this.baseDeDatosButton, 0, 2);
             this.adminLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.adminLayoutPanel.Location = new System.Drawing.Point(1047, 3);
             this.adminLayoutPanel.Name = "adminLayoutPanel";
@@ -334,6 +336,17 @@
             this.TiposButton.Text = "Tipos de prenda";
             this.TiposButton.UseVisualStyleBackColor = true;
             this.TiposButton.Click += new System.EventHandler(this.TiposButton_Click);
+            // 
+            // TicketButton
+            // 
+            this.TicketButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TicketButton.Location = new System.Drawing.Point(3, 61);
+            this.TicketButton.Name = "TicketButton";
+            this.TicketButton.Size = new System.Drawing.Size(130, 24);
+            this.TicketButton.TabIndex = 5;
+            this.TicketButton.Text = "Ticket";
+            this.TicketButton.UseVisualStyleBackColor = true;
+            this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
             // 
             // secondaryLayoutPanel
             // 
@@ -709,16 +722,16 @@
             this.errorProvider.BlinkRate = 200;
             this.errorProvider.ContainerControl = this;
             // 
-            // TicketButton
+            // baseDeDatosButton
             // 
-            this.TicketButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TicketButton.Location = new System.Drawing.Point(3, 61);
-            this.TicketButton.Name = "TicketButton";
-            this.TicketButton.Size = new System.Drawing.Size(130, 24);
-            this.TicketButton.TabIndex = 5;
-            this.TicketButton.Text = "Ticket";
-            this.TicketButton.UseVisualStyleBackColor = true;
-            this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
+            this.baseDeDatosButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.baseDeDatosButton.Location = new System.Drawing.Point(3, 61);
+            this.baseDeDatosButton.Name = "baseDeDatosButton";
+            this.baseDeDatosButton.Size = new System.Drawing.Size(98, 24);
+            this.baseDeDatosButton.TabIndex = 2;
+            this.baseDeDatosButton.Text = "Base de datos";
+            this.baseDeDatosButton.UseVisualStyleBackColor = true;
+            this.baseDeDatosButton.Click += new System.EventHandler(this.BaseDeDatosButton_Click);
             // 
             // MainView
             // 
@@ -804,5 +817,6 @@
         private System.Windows.Forms.DateTimePicker hastaDateTimePicker;
         private System.Windows.Forms.Button filtrarButton;
         private System.Windows.Forms.Button TicketButton;
+        private System.Windows.Forms.Button baseDeDatosButton;
     }
 }

@@ -30,7 +30,8 @@ namespace VentaPrenda.Controller
         DESCUENTOS,
         SERVICIOS,
         HISTORIAL,
-        TICKET
+        TICKET,
+        DATABASE
     };
 
     public enum Modo {
@@ -273,6 +274,15 @@ namespace VentaPrenda.Controller
             Funcion = Funcion.HISTORIAL;
             Modo = Modo.SELECCION;
             _mainView.DataSource = DaoManager.HistorialDao.GetHistorial();
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
+        public void BaseDeDatos()
+        {
+            Funcion = Funcion.DATABASE;
+            Modo = Modo.SELECCION;
+            _mainView.DataSource = null;
             _mainView.UpdateModo();
             _mainView.UpdateFuncion();
         }

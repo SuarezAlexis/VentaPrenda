@@ -184,6 +184,10 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.TICKET:
                     TicketButton.BackColor = ActiveColor;
                     break;
+                case Funcion.DATABASE:
+                    baseDeDatosButton.BackColor = ActiveColor;
+                    SetSelectButtonsEnabled(false);
+                    break;
             }
         }
 
@@ -292,6 +296,7 @@ namespace VentaPrenda.View.Concrete
             UsuariosButton.BackColor = ClearColor;
             PerfilesButton.BackColor = ClearColor;
             TicketButton.BackColor = ClearColor;
+            baseDeDatosButton.BackColor = ClearColor;
         }
 
         private DetalleModelo newDetalle(ErrorProvider e)
@@ -322,6 +327,8 @@ namespace VentaPrenda.View.Concrete
                     return new DetalleTicket();
                 case Funcion.HISTORIAL:
                     return new DetalleHistorial();
+                case Funcion.DATABASE:
+                    return new DetalleBaseDeDatos();
             }
             return null;
         }
@@ -392,6 +399,9 @@ namespace VentaPrenda.View.Concrete
         public void HistorialButton_Click(object sender, EventArgs e)
         { Controller.Historial(); }
 
+        private void BaseDeDatosButton_Click(object sender, EventArgs e)
+        { Controller.BaseDeDatos(); }
+
         private void ListGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(listGridView.SelectedRows.Count > 0)
@@ -402,6 +412,7 @@ namespace VentaPrenda.View.Concrete
                     SetEditButtonsEnabled(false);
             }
         }
+
 
         /******************** MÉTODOS: EventHandlers *******************/
         private void RegresarButton_Click(object sender, EventArgs e)
@@ -480,6 +491,5 @@ namespace VentaPrenda.View.Concrete
             filtrarButton.BackColor = filtrarButton.BackColor == ActiveColor? ClearColor : ActiveColor;
             Filtrar();
         }
-
     }
 }

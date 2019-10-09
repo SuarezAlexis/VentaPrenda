@@ -67,6 +67,7 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="DAO\Abstract\ICatalogoDao.cs" />
     <Compile Include="DAO\Abstract\IClienteDao.cs" />
+    <Compile Include="DAO\Abstract\IDbContext.cs" />
     <Compile Include="DAO\Abstract\IDescuentoDao.cs" />
     <Compile Include="DAO\Abstract\IHistorialDao.cs" />
     <Compile Include="DAO\Abstract\IMovimientoDao.cs" />
@@ -131,6 +132,12 @@
     </Compile>
     <Compile Include="View\Abstract\ILoginView.cs" />
     <Compile Include="View\Abstract\IMainView.cs" />
+    <Compile Include="View\Concrete\Detalles\DetalleBaseDeDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetalleBaseDeDatos.Designer.cs">
+      <DependentUpon>DetalleBaseDeDatos.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleHistorial.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,6 +262,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetalleBaseDeDatos.resx">
+      <DependentUpon>DetalleBaseDeDatos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleHistorial.resx">
       <DependentUpon>DetalleHistorial.cs</DependentUpon>
     </EmbeddedResource>
