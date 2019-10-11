@@ -96,7 +96,7 @@
             this.respaldosLabel.Name = "respaldosLabel";
             this.respaldosLabel.Size = new System.Drawing.Size(144, 60);
             this.respaldosLabel.TabIndex = 0;
-            this.respaldosLabel.Text = "Archivos disponibles";
+            this.respaldosLabel.Text = "Restaurar";
             this.respaldosLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // archivosListBox
@@ -178,7 +178,7 @@
             this.seleccionarButton.Name = "seleccionarButton";
             this.seleccionarButton.Size = new System.Drawing.Size(200, 23);
             this.seleccionarButton.TabIndex = 1;
-            this.seleccionarButton.Text = "Seleccionar archivo";
+            this.seleccionarButton.Text = "Seleccionar ubicación";
             this.seleccionarButton.UseVisualStyleBackColor = true;
             this.seleccionarButton.Click += new System.EventHandler(this.SeleccionarButton_Click);
             // 
@@ -205,7 +205,7 @@
             this.respaldarLabel.Name = "respaldarLabel";
             this.respaldarLabel.Size = new System.Drawing.Size(144, 54);
             this.respaldarLabel.TabIndex = 0;
-            this.respaldarLabel.Text = "Generar respaldo";
+            this.respaldarLabel.Text = "Respaldar";
             this.respaldarLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // iniciarRespaldoButton
@@ -215,7 +215,7 @@
             this.iniciarRespaldoButton.Name = "iniciarRespaldoButton";
             this.iniciarRespaldoButton.Size = new System.Drawing.Size(200, 43);
             this.iniciarRespaldoButton.TabIndex = 1;
-            this.iniciarRespaldoButton.Text = "Iniciar respaldo";
+            this.iniciarRespaldoButton.Text = "Generar respaldo";
             this.iniciarRespaldoButton.UseVisualStyleBackColor = true;
             this.iniciarRespaldoButton.Click += new System.EventHandler(this.IniciarRespaldoButton_Click);
             // 

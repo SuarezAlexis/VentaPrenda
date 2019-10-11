@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.MainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.functionsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.adminLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -213,11 +214,13 @@
             // 
             this.HistorialButton.CausesValidation = false;
             this.HistorialButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HistorialButton.Image = ((System.Drawing.Image)(resources.GetObject("HistorialButton.Image")));
             this.HistorialButton.Location = new System.Drawing.Point(499, 3);
             this.HistorialButton.Name = "HistorialButton";
             this.HistorialButton.Size = new System.Drawing.Size(121, 82);
             this.HistorialButton.TabIndex = 4;
             this.HistorialButton.Text = "Historial";
+            this.HistorialButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.HistorialButton.UseVisualStyleBackColor = true;
             this.HistorialButton.Click += new System.EventHandler(this.HistorialButton_Click);
             // 
@@ -225,11 +228,13 @@
             // 
             this.ReportesButton.CausesValidation = false;
             this.ReportesButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ReportesButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportesButton.Image")));
             this.ReportesButton.Location = new System.Drawing.Point(375, 3);
             this.ReportesButton.Name = "ReportesButton";
             this.ReportesButton.Size = new System.Drawing.Size(118, 82);
             this.ReportesButton.TabIndex = 3;
             this.ReportesButton.Text = "Reportes";
+            this.ReportesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ReportesButton.UseVisualStyleBackColor = true;
             this.ReportesButton.Click += new System.EventHandler(this.ReportesButton_Click);
             // 
@@ -237,11 +242,13 @@
             // 
             this.BalanceButton.CausesValidation = false;
             this.BalanceButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BalanceButton.Image = ((System.Drawing.Image)(resources.GetObject("BalanceButton.Image")));
             this.BalanceButton.Location = new System.Drawing.Point(251, 3);
             this.BalanceButton.Name = "BalanceButton";
             this.BalanceButton.Size = new System.Drawing.Size(118, 82);
             this.BalanceButton.TabIndex = 2;
             this.BalanceButton.Text = "Gastos";
+            this.BalanceButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BalanceButton.UseVisualStyleBackColor = true;
             this.BalanceButton.Click += new System.EventHandler(this.BalanceButton_Click);
             // 
@@ -249,11 +256,13 @@
             // 
             this.ClientesButton.CausesValidation = false;
             this.ClientesButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ClientesButton.Image = ((System.Drawing.Image)(resources.GetObject("ClientesButton.Image")));
             this.ClientesButton.Location = new System.Drawing.Point(127, 3);
             this.ClientesButton.Name = "ClientesButton";
             this.ClientesButton.Size = new System.Drawing.Size(118, 82);
             this.ClientesButton.TabIndex = 1;
             this.ClientesButton.Text = "Clientes";
+            this.ClientesButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ClientesButton.UseVisualStyleBackColor = true;
             this.ClientesButton.Click += new System.EventHandler(this.ClientesButton_Click);
             // 
@@ -261,11 +270,14 @@
             // 
             this.NotasButton.CausesValidation = false;
             this.NotasButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NotasButton.Image = ((System.Drawing.Image)(resources.GetObject("NotasButton.Image")));
             this.NotasButton.Location = new System.Drawing.Point(3, 3);
             this.NotasButton.Name = "NotasButton";
+            this.NotasButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.NotasButton.Size = new System.Drawing.Size(118, 82);
             this.NotasButton.TabIndex = 0;
             this.NotasButton.Text = "Notas";
+            this.NotasButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.NotasButton.UseVisualStyleBackColor = true;
             this.NotasButton.Click += new System.EventHandler(this.NotasButton_Click);
             // 
@@ -530,11 +542,13 @@
             // 
             this.NuevoButton.CausesValidation = false;
             this.NuevoButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NuevoButton.Image = ((System.Drawing.Image)(resources.GetObject("NuevoButton.Image")));
             this.NuevoButton.Location = new System.Drawing.Point(105, 3);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(96, 53);
             this.NuevoButton.TabIndex = 4;
             this.NuevoButton.Text = "Nuevo";
+            this.NuevoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.NuevoButton.UseVisualStyleBackColor = true;
             this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
@@ -542,11 +556,13 @@
             // 
             this.RegresarButton.CausesValidation = false;
             this.RegresarButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RegresarButton.Image = ((System.Drawing.Image)(resources.GetObject("RegresarButton.Image")));
             this.RegresarButton.Location = new System.Drawing.Point(3, 3);
             this.RegresarButton.Name = "RegresarButton";
             this.RegresarButton.Size = new System.Drawing.Size(96, 53);
             this.RegresarButton.TabIndex = 3;
             this.RegresarButton.Text = "Regresar";
+            this.RegresarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.RegresarButton.UseVisualStyleBackColor = true;
             this.RegresarButton.Click += new System.EventHandler(this.RegresarButton_Click);
             // 
@@ -554,33 +570,39 @@
             // 
             this.EditarButton.CausesValidation = false;
             this.EditarButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EditarButton.Image = ((System.Drawing.Image)(resources.GetObject("EditarButton.Image")));
             this.EditarButton.Location = new System.Drawing.Point(207, 3);
             this.EditarButton.Name = "EditarButton";
             this.EditarButton.Size = new System.Drawing.Size(96, 53);
             this.EditarButton.TabIndex = 5;
             this.EditarButton.Text = "Editar";
+            this.EditarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EditarButton.UseVisualStyleBackColor = true;
             this.EditarButton.Click += new System.EventHandler(this.EditarButton_Click);
             // 
             // GuardarButton
             // 
             this.GuardarButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GuardarButton.Image = ((System.Drawing.Image)(resources.GetObject("GuardarButton.Image")));
             this.GuardarButton.Location = new System.Drawing.Point(309, 3);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(96, 53);
             this.GuardarButton.TabIndex = 0;
             this.GuardarButton.Text = "Guardar";
+            this.GuardarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // EliminarButton
             // 
             this.EliminarButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EliminarButton.Image = ((System.Drawing.Image)(resources.GetObject("EliminarButton.Image")));
             this.EliminarButton.Location = new System.Drawing.Point(411, 3);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(96, 53);
             this.EliminarButton.TabIndex = 1;
             this.EliminarButton.Text = "Eliminar";
+            this.EliminarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.EliminarButton.UseVisualStyleBackColor = true;
             this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
@@ -588,11 +610,13 @@
             // 
             this.LimpiarButton.CausesValidation = false;
             this.LimpiarButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LimpiarButton.Image = ((System.Drawing.Image)(resources.GetObject("LimpiarButton.Image")));
             this.LimpiarButton.Location = new System.Drawing.Point(513, 3);
             this.LimpiarButton.Name = "LimpiarButton";
             this.LimpiarButton.Size = new System.Drawing.Size(101, 53);
             this.LimpiarButton.TabIndex = 2;
             this.LimpiarButton.Text = "Limpiar";
+            this.LimpiarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.LimpiarButton.UseVisualStyleBackColor = true;
             this.LimpiarButton.Click += new System.EventHandler(this.LimpiarButton_Click);
             // 

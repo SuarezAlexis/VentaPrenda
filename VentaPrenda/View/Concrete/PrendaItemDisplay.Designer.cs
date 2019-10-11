@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrendaItemDisplay));
             this.prendaItemLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.editButtonsLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.editButton = new System.Windows.Forms.Button();
@@ -95,11 +96,12 @@
             // 
             this.editButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(3, 3);
+            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
+            this.editButton.Location = new System.Drawing.Point(1, 1);
+            this.editButton.Margin = new System.Windows.Forms.Padding(1);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(23, 18);
+            this.editButton.Size = new System.Drawing.Size(27, 22);
             this.editButton.TabIndex = 0;
-            this.editButton.Text = "E";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
@@ -107,11 +109,12 @@
             // 
             this.deleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(32, 3);
+            this.deleteButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteButton.Image")));
+            this.deleteButton.Location = new System.Drawing.Point(30, 1);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(1);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(24, 18);
+            this.deleteButton.Size = new System.Drawing.Size(28, 22);
             this.deleteButton.TabIndex = 1;
-            this.deleteButton.Text = "X";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 

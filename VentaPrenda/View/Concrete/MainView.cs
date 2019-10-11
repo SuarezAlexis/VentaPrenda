@@ -29,7 +29,7 @@ namespace VentaPrenda.View.Concrete
             set
             {
                 _dto = value;
-                Detalle.Fill(Dto);                    
+                Detalle.Fill(Dto);
             }
         }
         private DetalleModelo Detalle {
@@ -232,6 +232,7 @@ namespace VentaPrenda.View.Concrete
 
         private void ModoSeleccion()
         {
+            _dto = null;
             SetEditButtonsEnabled(false);
             SetSelectButtonsEnabled(true);
             RegresarButton.Enabled = true;

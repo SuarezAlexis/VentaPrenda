@@ -296,13 +296,11 @@ namespace VentaPrenda.Controller
                     Modo = Modo.NINGUNO;
                     Funcion = Funcion.NINGUNA;
                     _mainView.DataSource = null;
-                    _mainView.Dto = null;
                     _mainView.UpdateModo();
                     _mainView.UpdateFuncion();
                     break;
                 case Modo.SOLO_LECTURA:
                     Modo = Modo.SELECCION;
-                    _mainView.Dto = null;
                     _mainView.UpdateModo();
                     _mainView.UpdateFuncion();
                     break;
