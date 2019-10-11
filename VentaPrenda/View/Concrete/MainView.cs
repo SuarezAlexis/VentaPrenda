@@ -455,16 +455,19 @@ namespace VentaPrenda.View.Concrete
             {
                 string dtoString = Dto.ToString();
                 Controller.Eliminar(Detalle.Dto);
-                Type DetalleType = Detalle.Dto.GetType();
+                Type DtoType = Detalle.Dto.GetType();
                 bool eliminado = true;
                 foreach(DataRow dr in DataSource.Rows)
                 {
-                    eliminado = !Convert.ToInt64(dr["ID"]).Equals(Convert.ToInt64(DetalleType.GetProperty("ID").GetValue(Detalle.Dto)));
+                    eliminado = !Convert.ToInt64(dr["ID"]).Equals(Convert.ToInt64(DtoType.GetProperty("ID").GetValue(Detalle.Dto)));
                     if (!eliminado) break;
                 }
-                if (DetalleType.GetProperties().Where(p => "Habilitado".Equals(p.Name)).Count() > 0
-                    && !(bool)DetalleType.GetProperty("Habilitado").GetValue(Detalle.Dto) 
-                    && !eliminado)
+                if (!eliminado 
+                    && ( 
+                    (DtoType.GetProperties().Where(p => "Habilitado".Equals(p.Name)).Count() > 0 && !(bool)DtoType.GetProperty("Habilitado").GetValue(Detalle.Dto)) 
+                    ||
+                    (DtoType.GetProperties().Where(p => "Bloqueado".Equals(p.Name)).Count() > 0 && (bool)DtoType.GetProperty("Bloqueado").GetValue(Detalle.Dto))
+                    ))
                 {
                     MessageBox.Show("No fue posible eliminar: '" + dtoString 
                         + "' debido a que está asociado a otros registros.\nSe inhabilitó.",

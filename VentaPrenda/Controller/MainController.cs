@@ -413,7 +413,7 @@ namespace VentaPrenda.Controller
                 case Funcion.USUARIOS:
                     _mainView.Dto = DaoManager.UsuarioDao.EliminarUsuario((UsuarioDto)dto);
                     _mainView.DataSource = DaoManager.UsuarioDao.GetUsuarios();
-                    _mainView.Dto = DtoProvider.UsuarioDto();
+                    //_mainView.Dto = DtoProvider.UsuarioDto();
                     break;
                 case Funcion.COLORES:
                     _mainView.Dto = DaoManager.CatalogoDao.EliminarColor((CatalogoDto)dto);

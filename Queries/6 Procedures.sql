@@ -114,9 +114,10 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_DeleteUsuario`(p_ID BIGINT)
 BEGIN
 	START TRANSACTION;
+		UPDATE Usuario SET Bloqueado = 1 WHERE ID = p_ID AND EXISTS(SELECT * FROM Historial WHERE Usuario = p_ID);
 		SELECT U.*, 0 AS Logged, BIT_OR(P.Permisos) AS Permisos FROM Usuario U JOIN Perfil_Usuario PU ON (PU.Usuario = U.ID) JOIN Perfil P ON(PU.Perfil = P.ID) WHERE U.ID = p_ID;
-		DELETE FROM Perfil_Usuario WHERE Usuario = p_ID;
-		DELETE FROM Usuario WHERE ID = p_ID;
+		DELETE FROM Perfil_Usuario WHERE Usuario = p_ID AND NOT EXISTS(SELECT * FROM Historial WHERE Usuario = p_ID);
+		DELETE FROM Usuario WHERE ID = p_ID AND NOT EXISTS(SELECT * FROM Historial WHERE Usuario = p_ID);
 	COMMIT;
 END$$
 DELIMITER ;

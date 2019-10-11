@@ -14,7 +14,7 @@ namespace VentaPrenda.DAO.Concrete
         private static readonly string SELECT_LIST_SQL = "SELECT U.ID, U.Username, U.Nombre, U.Bloqueado, U.IntentosFallidos, U.UltimoIngreso, BIT_OR(P.Permisos) Permisos FROM Usuario U LEFT JOIN Perfil_Usuario PU ON(PU.Usuario = U.ID) LEFT JOIN Perfil P ON(P.ID = PU.Perfil) GROUP BY ID";
         private static readonly string SELECT_PERFILES_SQL = "SELECT U.*, P.ID AS PerfilID, P.Nombre AS Perfil, P.Permisos, EXISTS(SELECT * FROM Perfil_Usuario WHERE Perfil = P.ID AND Usuario = U.ID) Habilitado FROM Usuario U, Perfil P";
         private static readonly string INSERT_SQL = "INSERT INTO Usuario(Username,Nombre,Password) VALUES(@Username,@Nombre,@Password); SELECT LAST_INSERT_ID();";
-        private static readonly string UPDATE_SQL = "UPDATE Usuario SET Username = @Username, Nombre = @Nombre, Password = @Password WHERE ID = @ID";
+        private static readonly string UPDATE_SQL = "UPDATE Usuario SET Username = @Username, Nombre = @Nombre, Password = @Password, Bloqueado = @Bloqueado WHERE ID = @ID";
         private static readonly string UPDATE_PERFILES_SQL = "sp_UpdatePerfiles";
         private static readonly string DELETE_SQL = "sp_DeleteUsuario";
 
@@ -104,7 +104,7 @@ namespace VentaPrenda.DAO.Concrete
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("@Nombre", u.Nombre);
             param.Add("@Username", u.Username);
-            
+
             if (u.ID > 0)
             {
                 string sql = UPDATE_SQL;
@@ -113,6 +113,7 @@ namespace VentaPrenda.DAO.Concrete
                 else
                     sql = sql.Replace(", Password = @Password","");
                 param.Add("@ID", u.ID.ToString());
+                param.Add("@Bloqueado", u.Bloqueado);
                 MySqlDbContext.Update(sql, param);
             }
             else
