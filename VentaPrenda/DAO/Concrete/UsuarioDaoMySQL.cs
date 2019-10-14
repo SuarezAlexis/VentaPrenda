@@ -13,10 +13,14 @@ namespace VentaPrenda.DAO.Concrete
     {
         private static readonly string SELECT_LIST_SQL = "SELECT U.ID, U.Username, U.Nombre, U.Bloqueado, U.IntentosFallidos, U.UltimoIngreso, BIT_OR(P.Permisos) Permisos FROM Usuario U LEFT JOIN Perfil_Usuario PU ON(PU.Usuario = U.ID) LEFT JOIN Perfil P ON(P.ID = PU.Perfil) GROUP BY ID";
         private static readonly string SELECT_PERFILES_SQL = "SELECT U.*, P.ID AS PerfilID, P.Nombre AS Perfil, P.Permisos, EXISTS(SELECT * FROM Perfil_Usuario WHERE Perfil = P.ID AND Usuario = U.ID) Habilitado FROM Usuario U, Perfil P";
+        private static readonly string SELECT_COLORES_SQL = "SELECT * FROM ColoresGUI";
         private static readonly string INSERT_SQL = "INSERT INTO Usuario(Username,Nombre,Password) VALUES(@Username,@Nombre,@Password); SELECT LAST_INSERT_ID();";
+        private static readonly string INSERT_COLORES_SQL = "INSERT INTO ColoresGUI(Usuario) VALUES(@ID)";
         private static readonly string UPDATE_SQL = "UPDATE Usuario SET Username = @Username, Nombre = @Nombre, Password = @Password, Bloqueado = @Bloqueado WHERE ID = @ID";
         private static readonly string UPDATE_PERFILES_SQL = "sp_UpdatePerfiles";
+        private static readonly string UPDATE_COLORES_SQL = "UPDATE ColoresGUI SET FondoVentana = @FondoVentana, FondoBoton = @FondoBoton, FondoBotonActivo = @FondoBotonActivo, Cancelado = @Cancelado, Pendiente = @Pendiente, Terminado = @Terminado, Entregado = @Entregado, Caducado = @Caducado WHERE Usuario = @Usuario";
         private static readonly string DELETE_SQL = "sp_DeleteUsuario";
+        
 
         /// <summary>
         /// Obtiene un objeto UsuarioDto a partir del primer registro de una DataTable. 
@@ -75,7 +79,9 @@ namespace VentaPrenda.DAO.Concrete
             Dictionary<string, object> param = new Dictionary<string, object>();
             param.Add("p_Username", loginDto.Usuario);
             param.Add("p_Password", loginDto.Contraseña);
-            return Map(MySqlDbContext.Call("sp_Login", param));            
+            UsuarioDto u = Map(MySqlDbContext.Call("sp_Login", param));
+            u.Colores = GetColores(u.ID);
+            return u;            
         }
 
         public UsuarioDto GetUsuario(long id)
@@ -91,6 +97,7 @@ namespace VentaPrenda.DAO.Concrete
                     Nombre = dr["Perfil"].ToString()
                 }, Convert.ToBoolean(dr["Habilitado"]));
             }
+            u.Colores = GetColores(id);
             return u;
         }
 
@@ -123,12 +130,13 @@ namespace VentaPrenda.DAO.Concrete
                 {
                     DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
                     u.ID = (short)(dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0][0]) : -1);
+                    param = new Dictionary<string, object>();
+                    GuardarColores(u.ID);
                 } catch(MySqlException e)
                 {
                     if(e.Number == 1062)
                     { throw new DuplicateKeyException(e); }
                 }
-                
             }
 
             param = new Dictionary<string, object>();
@@ -144,5 +152,47 @@ namespace VentaPrenda.DAO.Concrete
 
             return u;
         }
+
+        private ColoresGUIDto GetColores(long id)
+        {
+            ColoresGUIDto c = new ColoresGUIDto();
+            foreach (DataRow dr in MySqlDbContext.Query(SELECT_COLORES_SQL + " WHERE Usuario = '" + id + "'").Rows)
+            {
+                c.FondoVentana = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoVentana"]));
+                c.FondoBoton = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoBoton"]));
+                c.FondoBotonActivo = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoBotonActivo"]));
+                c.Cancelado = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Cancelado"]));
+                c.Pendiente = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Pendiente"]));
+                c.Terminado = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Terminado"]));
+                c.Entregado = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Entregado"]));
+                c.Caducado = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Caducado"]));
+            }
+            return c;
+        }
+
+        public ColoresGUIDto GuardarColores(ColoresGUIDto c, long id)
+        {
+            Dictionary<String, Object> param = new Dictionary<string, object>();
+            param.Add("@FondoVentana", c.FondoVentana.ToArgb());
+            param.Add("@FondoBoton", c.FondoBoton.ToArgb());
+            param.Add("@FondoBotonActivo", c.FondoBotonActivo.ToArgb());
+            param.Add("@Cancelado", c.Cancelado.ToArgb());
+            param.Add("@Pendiente", c.Pendiente.ToArgb());
+            param.Add("@Terminado", c.Terminado.ToArgb());
+            param.Add("@Entregado", c.Entregado.ToArgb());
+            param.Add("@Caducado", c.Cancelado.ToArgb());
+            param.Add("@Usuario", id);
+            MySqlDbContext.Query(UPDATE_COLORES_SQL, param);
+            return c;
+        }
+
+        private ColoresGUIDto GuardarColores(long id)
+        {
+            Dictionary<String, Object> param = new Dictionary<string, object>();
+            param.Add("@ID", id);
+            MySqlDbContext.Query(INSERT_COLORES_SQL, param);
+            return new ColoresGUIDto();
+        }
+
     }
 }

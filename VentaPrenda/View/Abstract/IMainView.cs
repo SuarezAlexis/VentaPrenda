@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaPrenda.Controller;
+using VentaPrenda.DTO;
 using VentaPrenda.Model;
 
 namespace VentaPrenda.View.Abstract
@@ -21,6 +22,7 @@ namespace VentaPrenda.View.Abstract
         void ShowDashboard();
         void UpdateModo();
         void UpdateFuncion();
+        void SetColors(ColoresGUIDto colores);
         void SetProfile(Permisos permisos);
         void DuplicateKeyAlert(string duplicateKey);
     }

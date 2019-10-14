@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using VentaPrenda.Controller;
+using VentaPrenda.DTO;
 using VentaPrenda.Model;
 using VentaPrenda.View.Abstract;
 using VentaPrenda.View.Concrete.Detalles;
@@ -15,8 +16,9 @@ namespace VentaPrenda.View.Concrete
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
-        private readonly System.Drawing.Color ClearColor = SystemColors.ControlLight;
-        private readonly System.Drawing.Color ActiveColor = SystemColors.ControlDark;
+        private System.Drawing.Color ClearColor = SystemColors.ControlLight;
+        private System.Drawing.Color ActiveColor = SystemColors.ControlDark;
+        private System.Drawing.Color BackgroundColor = SystemColors.Control;
         private readonly int DataRowHeight = 22;
         public MainController Controller { get; set; }
 
@@ -188,6 +190,9 @@ namespace VentaPrenda.View.Concrete
                     BaseDeDatosButton.BackColor = ActiveColor;
                     SetSelectButtonsEnabled(false);
                     break;
+                case Funcion.PERSONALIZAR:
+                    PersonalizarButton.BackColor = ActiveColor;
+                    break;
             }
         }
 
@@ -207,6 +212,32 @@ namespace VentaPrenda.View.Concrete
             TiposButton.Visible = p.Catalogos;
             ServiciosButton.Visible = p.Catalogos;
             TicketButton.Visible = p.Ticket;
+            PersonalizarButton.Visible = true;
+        }
+
+        public void SetColors(ColoresGUIDto colores)
+        {
+            BackgroundColor = colores.FondoVentana;
+            ClearColor = colores.FondoBoton;
+            ActiveColor = colores.FondoBotonActivo;
+
+            BackColor = BackgroundColor;
+            ClearFunctionButtons();
+            if(Controller.Funcion == Funcion.PERSONALIZAR)
+            { PersonalizarButton.BackColor = ActiveColor; }
+            RegresarButton.BackColor = ClearColor;
+            NuevoButton.BackColor = ClearColor;
+            EditarButton.BackColor = ClearColor;
+            GuardarButton.BackColor = ClearColor;
+            EliminarButton.BackColor = ClearColor;
+            LimpiarButton.BackColor = ClearColor;
+
+            RegresarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
+            NuevoButton.FlatAppearance.MouseDownBackColor = ActiveColor;
+            EditarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
+            GuardarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
+            EliminarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
+            LimpiarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
         }
 
         public void DuplicateKeyAlert(string duplicateKey)
@@ -300,6 +331,7 @@ namespace VentaPrenda.View.Concrete
             PerfilesButton.BackColor = ClearColor;
             TicketButton.BackColor = ClearColor;
             BaseDeDatosButton.BackColor = ClearColor;
+            PersonalizarButton.BackColor = ClearColor;
         }
 
         private DetalleModelo newDetalle(ErrorProvider e)
@@ -332,6 +364,8 @@ namespace VentaPrenda.View.Concrete
                     return new DetalleHistorial();
                 case Funcion.DATABASE:
                     return new DetalleBaseDeDatos();
+                case Funcion.PERSONALIZAR:
+                    return new DetallePersonalizar();
             }
             return null;
         }
@@ -404,6 +438,9 @@ namespace VentaPrenda.View.Concrete
 
         private void BaseDeDatosButton_Click(object sender, EventArgs e)
         { Controller.BaseDeDatos(); }
+
+        private void PersonalizarButton_Click(object sender, EventArgs e)
+        { Controller.Personalizar(); }
 
         private void ListGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

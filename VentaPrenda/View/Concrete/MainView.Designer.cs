@@ -49,6 +49,7 @@
             this.ColoresButton = new System.Windows.Forms.Button();
             this.TiposButton = new System.Windows.Forms.Button();
             this.TicketButton = new System.Windows.Forms.Button();
+            this.PersonalizarButton = new System.Windows.Forms.Button();
             this.secondaryLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.busquedaBox = new System.Windows.Forms.GroupBox();
             this.busquedaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -293,6 +294,7 @@
             this.configLayoutPanel.Controls.Add(this.ColoresButton, 1, 1);
             this.configLayoutPanel.Controls.Add(this.TiposButton, 1, 2);
             this.configLayoutPanel.Controls.Add(this.TicketButton, 0, 2);
+            this.configLayoutPanel.Controls.Add(this.PersonalizarButton, 2, 0);
             this.configLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.configLayoutPanel.Location = new System.Drawing.Point(632, 3);
             this.configLayoutPanel.Name = "configLayoutPanel";
@@ -370,6 +372,17 @@
             this.TicketButton.Text = "Ticket";
             this.TicketButton.UseVisualStyleBackColor = true;
             this.TicketButton.Click += new System.EventHandler(this.TicketButton_Click);
+            // 
+            // PersonalizarButton
+            // 
+            this.PersonalizarButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersonalizarButton.Location = new System.Drawing.Point(275, 3);
+            this.PersonalizarButton.Name = "PersonalizarButton";
+            this.PersonalizarButton.Size = new System.Drawing.Size(131, 23);
+            this.PersonalizarButton.TabIndex = 6;
+            this.PersonalizarButton.Text = "Personalizar";
+            this.PersonalizarButton.UseVisualStyleBackColor = true;
+            this.PersonalizarButton.Click += new System.EventHandler(this.PersonalizarButton_Click);
             // 
             // secondaryLayoutPanel
             // 
@@ -761,6 +774,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1264, 749);
             this.Controls.Add(this.MainLayoutPanel);
@@ -842,5 +856,6 @@
         private System.Windows.Forms.Button filtrarButton;
         private System.Windows.Forms.Button TicketButton;
         private System.Windows.Forms.Button BaseDeDatosButton;
+        private System.Windows.Forms.Button PersonalizarButton;
     }
 }

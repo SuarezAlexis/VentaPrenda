@@ -14,6 +14,7 @@ namespace VentaPrenda.DAO.Abstract
         UsuarioDto GetUsuario(LoginDto loginDto);
         UsuarioDto GetUsuario(long id);
         DataTable GetUsuarios();
+        ColoresGUIDto GuardarColores(ColoresGUIDto c, long id);
         UsuarioDto GuardarUsuario(UsuarioDto u);
         UsuarioDto EliminarUsuario(UsuarioDto u);
     }

@@ -90,6 +90,7 @@
     <Compile Include="DAO\DaoManager.cs" />
     <Compile Include="DTO\CatalogoDto.cs" />
     <Compile Include="DTO\ClienteDto.cs" />
+    <Compile Include="DTO\ColoresGUIDto.cs" />
     <Compile Include="DTO\DescuentoDto.cs" />
     <Compile Include="DTO\HistorialDto.cs" />
     <Compile Include="DTO\MovimientoDto.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Exceptions\DatabaseException.cs" />
     <Compile Include="Exceptions\DuplicateKeyException.cs" />
     <Compile Include="Exceptions\ViewClosedException.cs" />
+    <Compile Include="Model\ColoresGUI.cs" />
     <Compile Include="Model\Historial.cs" />
     <Compile Include="Model\PrendaItem.cs" />
     <Compile Include="Model\Servicio.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Service\HistorialService.cs" />
     <Compile Include="Service\Reportes.cs" />
     <Compile Include="Service\TicketPrinter.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="View\Abstract\DetalleModelo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +146,12 @@
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleHistorial.Designer.cs">
       <DependentUpon>DetalleHistorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetallePersonalizar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Concrete\Detalles\DetallePersonalizar.Designer.cs">
+      <DependentUpon>DetallePersonalizar.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Concrete\Detalles\DetalleReporte.cs">
       <SubType>UserControl</SubType>
@@ -267,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleHistorial.resx">
       <DependentUpon>DetalleHistorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Concrete\Detalles\DetallePersonalizar.resx">
+      <DependentUpon>DetallePersonalizar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Concrete\Detalles\DetalleReporte.resx">
       <DependentUpon>DetalleReporte.cs</DependentUpon>

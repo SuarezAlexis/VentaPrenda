@@ -22,8 +22,39 @@ namespace VentaPrenda.Service
                 Bloqueado = dto.Bloqueado,
                 UltimoIngreso = dto.UltimoIngreso,
                 IntentosFallidos = dto.IntentosFallidos,
-                Permisos = dto.Permisos
+                Permisos = dto.Permisos,
+                Colores = DtoMapper.ColoresGUI(dto.Colores)
             };
         }
+
+        public static ColoresGUIDto ColoresGUIDto(ColoresGUI c)
+        {
+            return new ColoresGUIDto
+            {
+                Caducado = c.Caducado,
+                Cancelado = c.Cancelado,
+                Entregado = c.Entregado,
+                FondoBoton = c.FondoBoton,
+                FondoBotonActivo = c.FondoBotonActivo,
+                FondoVentana = c.FondoVentana,
+                Pendiente = c.Pendiente,
+                Terminado = c.Terminado
+            };
+        }
+        public static ColoresGUI ColoresGUI(ColoresGUIDto dto)
+        {
+            return new ColoresGUI
+            {
+                Caducado = dto.Caducado,
+                Cancelado = dto.Cancelado,
+                Entregado = dto.Entregado,
+                FondoBoton = dto.FondoBoton,
+                FondoBotonActivo = dto.FondoBotonActivo,
+                FondoVentana = dto.FondoVentana,
+                Pendiente = dto.Pendiente,
+                Terminado = dto.Terminado
+            };
+        }
+
     }
 }

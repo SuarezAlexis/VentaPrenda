@@ -17,8 +17,9 @@ namespace VentaPrenda.Model
         public Permisos Permisos { get; set; }
         public bool Logged { get; set; }
         public DateTime UltimoIngreso { get; set; }
+        public ColoresGUI Colores { get; set; }
 
-        public Usuario() { }
+        public Usuario() { Colores = new ColoresGUI(); }
 
         public override string ToString()
         {

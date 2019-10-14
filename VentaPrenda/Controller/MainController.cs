@@ -31,7 +31,8 @@ namespace VentaPrenda.Controller
         SERVICIOS,
         HISTORIAL,
         TICKET,
-        DATABASE
+        DATABASE,
+        PERSONALIZAR
     };
 
     public enum Modo {
@@ -66,6 +67,7 @@ namespace VentaPrenda.Controller
         public void ShowView()
         {
             _mainView.SetProfile(Usuario.Permisos);
+            _mainView.SetColors(DtoMapper.ColoresGUIDto(Usuario.Colores));
             _mainView.ShowDashboard();
         }
 
@@ -287,6 +289,15 @@ namespace VentaPrenda.Controller
             _mainView.UpdateFuncion();
         }
 
+        public void Personalizar()
+        {
+            Funcion = Funcion.PERSONALIZAR;
+            Modo = Modo.SELECCION;
+            _mainView.DataSource = null;
+            _mainView.UpdateModo();
+            _mainView.UpdateFuncion();
+        }
+
         /***************** MÉTODOS: Botones de Edición *******************/
         public void Regresar()
         {
@@ -329,7 +340,11 @@ namespace VentaPrenda.Controller
             bool success = false;
             try
             {
-                char op = Convert.ToInt64(dto.GetType().GetProperty("ID").GetValue(dto)) > 0? 'U' : 'I';
+                char op;
+                if (Funcion == Funcion.PERSONALIZAR)
+                    op = 'U';
+                else
+                    op = Convert.ToInt64(dto.GetType().GetProperty("ID").GetValue(dto)) > 0? 'U' : 'I';
                 switch (Funcion)
                 {
                     case Funcion.PERFILES:
@@ -378,10 +393,12 @@ namespace VentaPrenda.Controller
                         _mainView.DataSource = DaoManager.MovimientoDao.GetMovimientos();
                         break;
                     case Funcion.REPORTES:
-                        
                         break;
                     case Funcion.TICKET:
                         _mainView.Dto = DaoManager.TicketConfigDao.GuardarConfig((TicketConfigDto)dto);
+                        break;
+                    case Funcion.PERSONALIZAR:
+                        _mainView.Dto = DaoManager.UsuarioDao.GuardarColores((ColoresGUIDto)dto, Usuario.ID);
                         break;
                 }
                 HistorialService.GuardarHistoria(Usuario, op, Funcion, dto);

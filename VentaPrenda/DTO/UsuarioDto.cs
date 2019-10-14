@@ -20,6 +20,7 @@ namespace VentaPrenda.DTO
         public Permisos Permisos { get; set; }
         public bool Logged { get; set; }
         public DateTime UltimoIngreso { get; set; }
+        public ColoresGUIDto Colores { get; set; }
 
         public Dictionary<PerfilDto,bool> Perfiles { get; set; }
 
@@ -31,6 +32,7 @@ namespace VentaPrenda.DTO
             Permisos = new Permisos();
             Perfiles = new Dictionary<PerfilDto, bool>();
             UltimoIngreso = new DateTime();
+            Colores = new ColoresGUIDto();
         }
 
         public UsuarioDto(Usuario u)
