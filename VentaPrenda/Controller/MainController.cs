@@ -341,7 +341,7 @@ namespace VentaPrenda.Controller
             try
             {
                 char op;
-                if (Funcion == Funcion.PERSONALIZAR)
+                if (Funcion == Funcion.PERSONALIZAR || Funcion == Funcion.TICKET)
                     op = 'U';
                 else
                     op = Convert.ToInt64(dto.GetType().GetProperty("ID").GetValue(dto)) > 0? 'U' : 'I';

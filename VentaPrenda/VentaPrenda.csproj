@@ -127,6 +127,7 @@
     <Compile Include="Service\DtoMapper.cs" />
     <Compile Include="Service\DtoProvider.cs" />
     <Compile Include="Service\HistorialService.cs" />
+    <Compile Include="Service\Logger.cs" />
     <Compile Include="Service\Reportes.cs" />
     <Compile Include="Service\TicketPrinter.cs" />
     <Compile Include="Settings.cs" />

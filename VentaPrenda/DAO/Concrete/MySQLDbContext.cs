@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using VentaPrenda.Exceptions;
+using VentaPrenda.Service;
 
 namespace VentaPrenda.DAO.Concrete
 {
@@ -148,11 +149,11 @@ namespace VentaPrenda.DAO.Concrete
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = MySqlBinPath + "\\mysqldump";
             psi.RedirectStandardInput = false;
-            psi.RedirectStandardOutput = false;
+            psi.RedirectStandardOutput = true;
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
             string fileName = DateTime.Now.ToString("yyyyMMMdd-HHmmss").Replace(".", "");
-            string args = string.Format("-R -u{0} --password={1} -h{2} --databases {3} -r{4} --add-drop-database --routines",
+            string args = string.Format("-R -u{0} --password={1} -h{2} --databases {3} -r\"{4}\" --add-drop-database --routines",
                 DbUid,
                 DbPwd,
                 DbServer,
@@ -160,9 +161,13 @@ namespace VentaPrenda.DAO.Concrete
                 BackupFolder + "\\" + fileName);
             psi.Arguments = args;
 
+            Logger.Log(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm ]") + " Inicia respaldo: " + psi.FileName + " " + psi.Arguments);
+
             Process process = Process.Start(psi);
+            Logger.Log(process.StandardOutput.ReadToEnd());
             process.WaitForExit();
             process.Close();
+            Logger.Log(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm ]") + " Termina respaldo ------------------------------------");
             return fileName;
         }
 

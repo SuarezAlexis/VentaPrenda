@@ -28,26 +28,26 @@ namespace DatabaseMigrationTool
                     PerfilDto p = new PerfilDto
                     {
                         ID = -1,
-                        Nombre = dt.Rows[0]["Nombre"].ToString(),
+                        Nombre = dr["Nombre"].ToString(),
                         Permisos = new Permisos
                         {
-                            Notas = Convert.ToBoolean(dt.Rows[0]["Nota"]),
-                            Clientes = Convert.ToBoolean(dt.Rows[0]["Clientes"]),
-                            Usuarios = Convert.ToBoolean(dt.Rows[0]["Usuarios"]),
-                            Perfiles = Convert.ToBoolean(dt.Rows[0]["Perfiles"]),
-                            Balance = Convert.ToBoolean(dt.Rows[0]["Gastos"]),
-                            Reportes = Convert.ToBoolean(dt.Rows[0]["Reportes"]),
-                            Descuentos = Convert.ToBoolean(dt.Rows[0]["Descuentos"]),
-                            AdmonUsuarios = Convert.ToBoolean(dt.Rows[0]["AdmonUsuarios"]),
-                            AdmonPerfiles = Convert.ToBoolean(dt.Rows[0]["AdmonPerfiles"]),
-                            GenerarNota = Convert.ToBoolean(dt.Rows[0]["GeneraNota"]),
-                            EditarNota = Convert.ToBoolean(dt.Rows[0]["EditaNota"]),
-                            EliminarNota = Convert.ToBoolean(dt.Rows[0]["EliminarNota"]),
-                            AdmonClientes = Convert.ToBoolean(dt.Rows[0]["AdmonClientes"]),
-                            AdmonCatalogos = Convert.ToBoolean(dt.Rows[0]["AdmonCatalogos"]),
-                            Catalogos = Convert.ToBoolean(dt.Rows[0]["AdmonCatalogos"]),
-                            AdmonMovimientos = Convert.ToBoolean(dt.Rows[0]["GeneraGastos"]),
-                            GeneraMovimientos = Convert.ToBoolean(dt.Rows[0]["GeneraGastos"]),
+                            Notas = Convert.ToBoolean(dr["Nota"]),
+                            Clientes = Convert.ToBoolean(dr["Clientes"]),
+                            Usuarios = Convert.ToBoolean(dr["Usuarios"]),
+                            Perfiles = Convert.ToBoolean(dr["Perfiles"]),
+                            Balance = Convert.ToBoolean(dr["Gastos"]),
+                            Reportes = Convert.ToBoolean(dr["Reportes"]),
+                            Descuentos = Convert.ToBoolean(dr["Descuentos"]),
+                            AdmonUsuarios = Convert.ToBoolean(dr["AdmonUsuarios"]),
+                            AdmonPerfiles = Convert.ToBoolean(dr["AdmonPerfiles"]),
+                            GenerarNota = Convert.ToBoolean(dr["GeneraNota"]),
+                            EditarNota = Convert.ToBoolean(dr["EditaNota"]),
+                            EliminarNota = Convert.ToBoolean(dr["EliminaNota"]),
+                            AdmonClientes = Convert.ToBoolean(dr["AdmonClientes"]),
+                            AdmonCatalogos = Convert.ToBoolean(dr["AdmonCatalogos"]),
+                            Catalogos = Convert.ToBoolean(dr["AdmonCatalogos"]),
+                            AdmonMovimientos = Convert.ToBoolean(dr["GeneraGastos"]),
+                            GeneraMovimientos = Convert.ToBoolean(dr["GeneraGastos"]),
                             Database = false,
                             Ticket = false,
                             Historial = false
@@ -134,7 +134,7 @@ namespace DatabaseMigrationTool
                 {
                     CatalogoDto c = new CatalogoDto
                     {
-                        ID = Convert.ToInt16(dr["ID"]),
+                        ID = -1,
                         Nombre = dr["Nombre"].ToString(),
                         Habilitado = true
                     };
@@ -164,7 +164,7 @@ namespace DatabaseMigrationTool
                 {
                     CatalogoDto p = new CatalogoDto
                     {
-                        ID = Convert.ToInt16(dr["ID"]),
+                        ID = -1,
                         Nombre = dr["Nombre"].ToString(),
                         Habilitado = true
                     };
@@ -194,7 +194,7 @@ namespace DatabaseMigrationTool
                 {
                     CatalogoDto t = new CatalogoDto
                     {
-                        ID = Convert.ToInt16(dr["ID"]),
+                        ID = -1,
                         Nombre = dr["Nombre"].ToString(),
                         Habilitado = true
                     };
@@ -264,12 +264,12 @@ namespace DatabaseMigrationTool
                     ClienteDto c = new ClienteDto
                     {
                         ID = -1,
-                        Nombre = dt.Rows[0]["Nombre"].ToString(),
-                        Domicilio = dt.Rows[0]["Domicilio"].ToString(),
-                        Colonia = dt.Rows[0]["Colonia"].ToString(),
-                        CP = dt.Rows[0]["CP"].ToString(),
-                        Telefono = dt.Rows[0]["Telefono"].ToString(),
-                        Email = dt.Rows[0]["Email"].ToString(),
+                        Nombre = dr["Nombre"].ToString(),
+                        Domicilio = dr["Domicilio"].ToString(),
+                        Colonia = dr["Colonia"].ToString(),
+                        CP = dr["CP"].ToString(),
+                        Telefono = dr["Telefono"].ToString(),
+                        Email = dr["Email"].ToString(),
                         Habilitado = true
                     };
                     DaoManager.ClienteDao.GuardarCliente(c);
