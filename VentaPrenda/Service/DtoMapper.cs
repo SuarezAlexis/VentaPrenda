@@ -36,6 +36,7 @@ namespace VentaPrenda.Service
                 Entregado = c.Entregado,
                 FondoBoton = c.FondoBoton,
                 FondoBotonActivo = c.FondoBotonActivo,
+                FondoLista = c.FondoLista,
                 FondoVentana = c.FondoVentana,
                 Pendiente = c.Pendiente,
                 Terminado = c.Terminado
@@ -50,6 +51,7 @@ namespace VentaPrenda.Service
                 Entregado = dto.Entregado,
                 FondoBoton = dto.FondoBoton,
                 FondoBotonActivo = dto.FondoBotonActivo,
+                FondoLista = dto.FondoLista,
                 FondoVentana = dto.FondoVentana,
                 Pendiente = dto.Pendiente,
                 Terminado = dto.Terminado

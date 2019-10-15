@@ -16,9 +16,7 @@ namespace VentaPrenda.View.Concrete
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
-        private System.Drawing.Color ClearColor = SystemColors.ControlLight;
-        private System.Drawing.Color ActiveColor = SystemColors.ControlDark;
-        private System.Drawing.Color BackgroundColor = SystemColors.Control;
+        private ColoresGUIDto _colores = new ColoresGUIDto();
         private readonly int DataRowHeight = 22;
         public MainController Controller { get; set; }
 
@@ -62,23 +60,22 @@ namespace VentaPrenda.View.Concrete
                         switch(Enum.Parse(typeof(Estatus), row.Cells["Estatus"].Value.ToString()))
                         {
                             case Estatus.Cancelado:
-                                row.DefaultCellStyle.BackColor = System.Drawing.Color.Pink;
+                                row.DefaultCellStyle.BackColor = _colores.Cancelado;
                                 break;
                             case Estatus.Pendiente:
-                                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightYellow;
+                                row.DefaultCellStyle.BackColor = _colores.Pendiente;
                                 break;
                             case Estatus.Terminado:
-                                row.DefaultCellStyle.BackColor = System.Drawing.Color.LightCyan;
+                                row.DefaultCellStyle.BackColor = _colores.Terminado;
                                 break;
                             case Estatus.Entregado:
-                                row.DefaultCellStyle.BackColor = System.Drawing.Color.Honeydew;
+                                row.DefaultCellStyle.BackColor = _colores.Entregado;
                                 break;
                             case Estatus.Caducado:
-                                row.DefaultCellStyle.BackColor = System.Drawing.Color.Thistle;
+                                row.DefaultCellStyle.BackColor = _colores.Caducado;
                                 break;
                         }
-                    }
-                        
+                    }   
                 }
             }
         }
@@ -87,9 +84,7 @@ namespace VentaPrenda.View.Concrete
         /* CONSTRUCTORES                                                   */
         /*******************************************************************/
         public MainView()
-        {
-            InitializeComponent();
-        }
+        { InitializeComponent(); }
 
         /*******************************************************************/
         /* MÉTODOS                                                         */
@@ -128,7 +123,8 @@ namespace VentaPrenda.View.Concrete
         public void UpdateFuncion()
         {
             ClearFunctionButtons();
-            Detalle = newDetalle(errorProvider);
+            Detalle = NewDetalle(errorProvider);
+            Detalle.Colores = _colores;
             listGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listGridView.MultiSelect = false;
             SetFiltroVisible(false);
@@ -141,57 +137,57 @@ namespace VentaPrenda.View.Concrete
                     infoLabel.Text = "Selecciona una función del menú.";
                     break;
                 case Funcion.PERFILES:
-                    PerfilesButton.BackColor = ActiveColor;
+                    PerfilesButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.USUARIOS:
-                    UsuariosButton.BackColor = ActiveColor;
+                    UsuariosButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.COLORES:
-                    ColoresButton.BackColor = ActiveColor;
+                    ColoresButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.PRENDAS:
-                    PrendasButton.BackColor = ActiveColor;
+                    PrendasButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.TIPOS_PRENDA:
-                    TiposButton.BackColor = ActiveColor;
+                    TiposButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.SERVICIOS:
-                    ServiciosButton.BackColor = ActiveColor;
+                    ServiciosButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.DESCUENTOS:
-                    DescuentosButton.BackColor = ActiveColor;
+                    DescuentosButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.NOTA:
                     SetFiltroVisible(true);
-                    NotasButton.BackColor = ActiveColor;
+                    NotasButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.CLIENTES:
-                    ClientesButton.BackColor = ActiveColor;
+                    ClientesButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.BALANCE:
                     SetFiltroVisible(true);
-                    BalanceButton.BackColor = ActiveColor;
+                    BalanceButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.REPORTES:
-                    ReportesButton.BackColor = ActiveColor;
+                    ReportesButton.BackColor = _colores.FondoBotonActivo;
                     listGridView.SelectionMode = DataGridViewSelectionMode.CellSelect;
                     listGridView.MultiSelect = true;
                     SetSelectButtonsEnabled(false);
                     break;
                 case Funcion.HISTORIAL:
                     SetFiltroVisible(true);
-                    HistorialButton.BackColor = ActiveColor;
+                    HistorialButton.BackColor = _colores.FondoBotonActivo;
                     SetSelectButtonsEnabled(false);
                     break;
                 case Funcion.TICKET:
-                    TicketButton.BackColor = ActiveColor;
+                    TicketButton.BackColor = _colores.FondoBotonActivo;
                     break;
                 case Funcion.DATABASE:
-                    BaseDeDatosButton.BackColor = ActiveColor;
+                    BaseDeDatosButton.BackColor = _colores.FondoBotonActivo;
                     SetSelectButtonsEnabled(false);
                     break;
                 case Funcion.PERSONALIZAR:
-                    PersonalizarButton.BackColor = ActiveColor;
+                    PersonalizarButton.BackColor = _colores.FondoBotonActivo;
                     break;
             }
         }
@@ -217,27 +213,27 @@ namespace VentaPrenda.View.Concrete
 
         public void SetColors(ColoresGUIDto colores)
         {
-            BackgroundColor = colores.FondoVentana;
-            ClearColor = colores.FondoBoton;
-            ActiveColor = colores.FondoBotonActivo;
+            _colores = colores;
 
-            BackColor = BackgroundColor;
+            BackColor = _colores.FondoVentana;
+            listGridView.BackgroundColor = _colores.FondoLista;
             ClearFunctionButtons();
             if(Controller.Funcion == Funcion.PERSONALIZAR)
-            { PersonalizarButton.BackColor = ActiveColor; }
-            RegresarButton.BackColor = ClearColor;
-            NuevoButton.BackColor = ClearColor;
-            EditarButton.BackColor = ClearColor;
-            GuardarButton.BackColor = ClearColor;
-            EliminarButton.BackColor = ClearColor;
-            LimpiarButton.BackColor = ClearColor;
+            { PersonalizarButton.BackColor = _colores.FondoBotonActivo; }
+            RegresarButton.BackColor = _colores.FondoBoton;
+            NuevoButton.BackColor = _colores.FondoBoton;
+            EditarButton.BackColor = _colores.FondoBoton;
+            GuardarButton.BackColor = _colores.FondoBoton;
+            EliminarButton.BackColor = _colores.FondoBoton;
+            LimpiarButton.BackColor = _colores.FondoBoton;
+            filtrarButton.BackColor = _colores.FondoBoton;
 
-            RegresarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
-            NuevoButton.FlatAppearance.MouseDownBackColor = ActiveColor;
-            EditarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
-            GuardarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
-            EliminarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
-            LimpiarButton.FlatAppearance.MouseDownBackColor = ActiveColor;
+            RegresarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
+            NuevoButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
+            EditarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
+            GuardarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
+            EliminarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
+            LimpiarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
         }
 
         public void DuplicateKeyAlert(string duplicateKey)
@@ -317,24 +313,24 @@ namespace VentaPrenda.View.Concrete
 
         private void ClearFunctionButtons()
         {
-            NotasButton.BackColor = ClearColor;
-            ClientesButton.BackColor = ClearColor;
-            BalanceButton.BackColor = ClearColor;
-            ReportesButton.BackColor = ClearColor;
-            HistorialButton.BackColor = ClearColor;
-            ColoresButton.BackColor = ClearColor;
-            PrendasButton.BackColor = ClearColor;
-            TiposButton.BackColor = ClearColor;
-            ServiciosButton.BackColor = ClearColor;
-            DescuentosButton.BackColor = ClearColor;
-            UsuariosButton.BackColor = ClearColor;
-            PerfilesButton.BackColor = ClearColor;
-            TicketButton.BackColor = ClearColor;
-            BaseDeDatosButton.BackColor = ClearColor;
-            PersonalizarButton.BackColor = ClearColor;
+            NotasButton.BackColor = _colores.FondoBoton;
+            ClientesButton.BackColor = _colores.FondoBoton;
+            BalanceButton.BackColor = _colores.FondoBoton;
+            ReportesButton.BackColor = _colores.FondoBoton;
+            HistorialButton.BackColor = _colores.FondoBoton;
+            ColoresButton.BackColor = _colores.FondoBoton;
+            PrendasButton.BackColor = _colores.FondoBoton;
+            TiposButton.BackColor = _colores.FondoBoton;
+            ServiciosButton.BackColor = _colores.FondoBoton;
+            DescuentosButton.BackColor = _colores.FondoBoton;
+            UsuariosButton.BackColor = _colores.FondoBoton;
+            PerfilesButton.BackColor = _colores.FondoBoton;
+            TicketButton.BackColor = _colores.FondoBoton;
+            BaseDeDatosButton.BackColor = _colores.FondoBoton;
+            PersonalizarButton.BackColor = _colores.FondoBoton;
         }
 
-        private DetalleModelo newDetalle(ErrorProvider e)
+        private DetalleModelo NewDetalle(ErrorProvider e)
         {
             switch (Controller.Funcion)
             {
@@ -376,7 +372,7 @@ namespace VentaPrenda.View.Concrete
             bool show = true;
             foreach (DataGridViewRow row in listGridView.Rows)
             {
-                if (cellName != null && filtrarButton.BackColor == ActiveColor)
+                if (cellName != null && filtrarButton.BackColor == _colores.FondoBotonActivo)
                 {
                     DateTime fecha = (DateTime)row.Cells[cellName].Value;
                     show = fecha >= desdeDateTimePicker.Value && fecha <= hastaDateTimePicker.Value;
@@ -469,7 +465,8 @@ namespace VentaPrenda.View.Concrete
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            Detalle = newDetalle(errorProvider);
+            Detalle = NewDetalle(errorProvider);
+            Detalle.Colores = _colores;
             Controller.Nuevo();
             Detalle.Focus();
         }
@@ -531,7 +528,7 @@ namespace VentaPrenda.View.Concrete
 
         private void FiltrarButton_Click(object sender, EventArgs e)
         {
-            filtrarButton.BackColor = filtrarButton.BackColor == ActiveColor? ClearColor : ActiveColor;
+            filtrarButton.BackColor = filtrarButton.BackColor == _colores.FondoBotonActivo? _colores.FondoBoton : _colores.FondoBotonActivo;
             Filtrar();
         }
     }

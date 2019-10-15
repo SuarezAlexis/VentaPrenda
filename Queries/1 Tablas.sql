@@ -213,6 +213,7 @@ CREATE TABLE `ColoresGUI` (
   `FondoVentana` int(11) NOT NULL DEFAULT '-986896',
   `FondoBoton` int(11) NOT NULL DEFAULT '-1842205',
   `FondoBotonActivo` int(11) NOT NULL DEFAULT '-6250336',
+  `FondoLista` int(11) NOT NULL DEFAULT '-5526613',
   `Cancelado` int(11) NOT NULL DEFAULT '-16181',
   `Terminado` int(11) NOT NULL DEFAULT '-2031617',
   `Pendiente` int(11) NOT NULL DEFAULT '-32',
@@ -221,3 +222,4 @@ CREATE TABLE `ColoresGUI` (
   PRIMARY KEY (`Usuario`),
   CONSTRAINT `Colores_Ref_Usuario` FOREIGN KEY (`Usuario`) REFERENCES `usuario` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+

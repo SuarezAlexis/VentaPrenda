@@ -17,6 +17,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
+        private ColoresGUIDto _colores;
         private bool _readOnly;
         private ServicioDto _dto;
         private ErrorProvider _errorProvider;
@@ -59,6 +60,19 @@ namespace VentaPrenda.View.Concrete.Detalles
                     throw new Exception("No fue posible asignar el Dto a la instancia de DetalleServicio porque no es del tipo correcto.");
             }
         }
+
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                seleccionarTodoButton.BackColor = _colores.FondoBoton;
+                limpiarSeleccionButton.BackColor = _colores.FondoBoton;
+            }
+        }
+
+
 
         /*******************************************************************/
         /* CONSTRUCTORES                                                   */

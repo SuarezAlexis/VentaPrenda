@@ -15,6 +15,7 @@ namespace VentaPrenda.View.Concrete
     public partial class NuevoPago : Form
     {
         private PagoDto _dto;
+        private ColoresGUIDto _colores;
         public PagoDto Dto
         {
             get
@@ -36,6 +37,18 @@ namespace VentaPrenda.View.Concrete
                 montoNumUpDown.Value = value.Monto;
             }
         }
+
+        public ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                aceptarButton.BackColor = _colores.FondoBoton;
+                BackColor = _colores.FondoVentana;
+            }
+        }
+
         public NuevoPago()
         {
             InitializeComponent();

@@ -20,6 +20,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         private bool _readOnly;
         private ClienteDto _dto;
         private ErrorProvider _errorProvider;
+        private ColoresGUIDto _colores;
 
         public override bool ReadOnly
         {
@@ -58,6 +59,12 @@ namespace VentaPrenda.View.Concrete.Detalles
                 else
                     throw new Exception("No fue posible asignar el Dto a la instancia de DetalleCliente porque no es del tipo correcto.");
             }
+        }
+
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set { _colores = value; }
         }
 
         /*******************************************************************/

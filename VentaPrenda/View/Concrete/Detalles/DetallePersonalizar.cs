@@ -28,6 +28,16 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
         }
 
+        public override ColoresGUIDto Colores
+        {
+            get { return _dto; }
+            set
+            {
+                _dto = value;
+                ActualizarColores();
+            }
+        }
+
         public DetallePersonalizar()
         {
             InitializeComponent();
@@ -37,6 +47,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         public override void Clear()
         {
             Dto = new ColoresGUIDto();
+            ActualizarColores();
             _mainView.SetColors(_dto);
         }
         public void Fill(object model)
@@ -51,6 +62,19 @@ namespace VentaPrenda.View.Concrete.Detalles
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void ActualizarColores()
+        {
+            fondoVentanaButton.BackColor = _dto.FondoBoton;
+            fondoBotonButton.BackColor = _dto.FondoBoton;
+            fondoBotonActivoButton.BackColor = _dto.FondoBoton;
+            fondoListaButton.BackColor = _dto.FondoBoton;
+            canceladoButton.BackColor = _dto.FondoBoton;
+            pendienteButton.BackColor = _dto.FondoBoton;
+            terminadoButton.BackColor = _dto.FondoBoton;
+            entregadoButton.BackColor = _dto.FondoBoton;
+            caducadoButton.BackColor = _dto.FondoBoton;
         }
 
         private void FondoVentanaButton_Click(object sender, EventArgs e)
@@ -69,6 +93,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             if (result == DialogResult.OK)
             { _dto.FondoBoton = colorDialog.Color; }
             _mainView.SetColors(_dto);
+            ActualizarColores();
         }
 
         private void FondoBotonActivoButton_Click(object sender, EventArgs e)
@@ -124,6 +149,15 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             if(Parent != null)
                 _mainView = (IMainView)Parent.Parent.Parent.Parent.Parent;
+        }
+
+        private void FondoListaButton_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = _dto.FondoLista;
+            DialogResult result = colorDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            { _dto.FondoLista = colorDialog.Color; }
+            _mainView.SetColors(_dto);
         }
     }
 }

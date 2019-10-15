@@ -14,6 +14,7 @@ namespace VentaPrenda.View.Concrete.Detalles
 {
     public partial class DetalleHistorial : DetalleModelo
     {
+        private ColoresGUIDto _colores;
         private HistorialDto _dto;
 
         public override object Dto
@@ -27,6 +28,13 @@ namespace VentaPrenda.View.Concrete.Detalles
                     throw new Exception("No fue posible asignar el Dto a la instancia de DetalleHistorial porque no es del tipo correcto.");
             }
         }
+
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set { _colores = value; }
+        }
+
         public DetalleHistorial()
         {
             InitializeComponent();

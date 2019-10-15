@@ -18,7 +18,7 @@ namespace VentaPrenda.DAO.Concrete
         private static readonly string INSERT_COLORES_SQL = "INSERT INTO ColoresGUI(Usuario) VALUES(@ID)";
         private static readonly string UPDATE_SQL = "UPDATE Usuario SET Username = @Username, Nombre = @Nombre, Password = @Password, Bloqueado = @Bloqueado WHERE ID = @ID";
         private static readonly string UPDATE_PERFILES_SQL = "sp_UpdatePerfiles";
-        private static readonly string UPDATE_COLORES_SQL = "UPDATE ColoresGUI SET FondoVentana = @FondoVentana, FondoBoton = @FondoBoton, FondoBotonActivo = @FondoBotonActivo, Cancelado = @Cancelado, Pendiente = @Pendiente, Terminado = @Terminado, Entregado = @Entregado, Caducado = @Caducado WHERE Usuario = @Usuario";
+        private static readonly string UPDATE_COLORES_SQL = "UPDATE ColoresGUI SET FondoVentana = @FondoVentana, FondoBoton = @FondoBoton, FondoBotonActivo = @FondoBotonActivo, FondoLista = @FondoLista, Cancelado = @Cancelado, Pendiente = @Pendiente, Terminado = @Terminado, Entregado = @Entregado, Caducado = @Caducado WHERE Usuario = @Usuario";
         private static readonly string DELETE_SQL = "sp_DeleteUsuario";
         
 
@@ -161,6 +161,7 @@ namespace VentaPrenda.DAO.Concrete
                 c.FondoVentana = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoVentana"]));
                 c.FondoBoton = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoBoton"]));
                 c.FondoBotonActivo = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoBotonActivo"]));
+                c.FondoLista = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["FondoLista"]));
                 c.Cancelado = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Cancelado"]));
                 c.Pendiente = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Pendiente"]));
                 c.Terminado = System.Drawing.Color.FromArgb(Convert.ToInt32(dr["Terminado"]));
@@ -176,6 +177,7 @@ namespace VentaPrenda.DAO.Concrete
             param.Add("@FondoVentana", c.FondoVentana.ToArgb());
             param.Add("@FondoBoton", c.FondoBoton.ToArgb());
             param.Add("@FondoBotonActivo", c.FondoBotonActivo.ToArgb());
+            param.Add("@FondoLista", c.FondoLista.ToArgb());
             param.Add("@Cancelado", c.Cancelado.ToArgb());
             param.Add("@Pendiente", c.Pendiente.ToArgb());
             param.Add("@Terminado", c.Terminado.ToArgb());

@@ -18,6 +18,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
+        private ColoresGUIDto _colores;
         private TicketConfigDto _dto;
         private Image original;
         public override object Dto
@@ -41,7 +42,16 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
         }
 
-
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                logoButton.BackColor = _colores.FondoBoton;
+                quitarLogoButton.BackColor = _colores.FondoBoton;
+            }
+        }
         /*******************************************************************/
         /* CONSTRUCTORES                                                   */
         /*******************************************************************/

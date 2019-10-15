@@ -1,28 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaPrenda.View.Abstract;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using VentaPrenda.DAO.Concrete;
+using VentaPrenda.DTO;
 
 namespace VentaPrenda.View.Concrete.Detalles
 {
     public partial class DetalleBaseDeDatos : DetalleModelo
     {
         private static readonly string BackupsPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\Backups";
+        private ColoresGUIDto _colores;
 
         public DetalleBaseDeDatos()
         {
             InitializeComponent();
             RefrescarListaDeArchivos();
+        }
+
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                iniciarRespaldoButton.BackColor = _colores.FondoBoton;
+                restaurarButton.BackColor = _colores.FondoBoton;
+                eliminarButton.BackColor = _colores.FondoBoton;
+                seleccionarButton.BackColor = _colores.FondoBoton;
+                archivosButton.BackColor = _colores.FondoBoton;
+            }
         }
 
         private void RefrescarListaDeArchivos()

@@ -16,6 +16,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         /*******************************************************************/
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
+        private ColoresGUIDto _colores;
         private bool _readOnly;
         private CatalogoDto _dto;
         private ErrorProvider _errorProvider;
@@ -47,6 +48,12 @@ namespace VentaPrenda.View.Concrete.Detalles
                 else
                     throw new Exception("No fue posible asignar el Dto a la instancia de DetalleCatalogo porque no es del tipo correcto.");
             }
+        }
+
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set { _colores = value; }
         }
 
         /*******************************************************************/

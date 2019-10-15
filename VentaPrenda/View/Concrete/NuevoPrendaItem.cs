@@ -18,6 +18,7 @@ namespace VentaPrenda.View.Concrete
         /* ATRIBUTOS                                                       */
         /*******************************************************************/
         private PrendaItemDto _dto;
+        private ColoresGUIDto _colores;
 
         public event DescuentoEventHandler ServiciosRequested;
         public event DescuentoEventHandler MontoRequested;
@@ -59,6 +60,18 @@ namespace VentaPrenda.View.Concrete
                     servicio.DescuentoRequested += Servicio_DescuentoRequested;
                     serviciosFlowLayoutPanel.Controls.Add(servicio);
                 }
+            }
+        }
+
+        public ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                BackColor = _colores.FondoVentana;
+                agregarServicioButton.BackColor = _colores.FondoBoton;
+                aceptarButton.BackColor = _colores.FondoBoton;
             }
         }
 

@@ -16,6 +16,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         private bool _readOnly;
         private NotaDto _dto;
         private ErrorProvider _errorProvider;
+        private ColoresGUIDto _colores;
 
         public override bool ReadOnly
         {
@@ -60,6 +61,17 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
         }
 
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                agregarPrendaButton.BackColor = _colores.FondoBoton;
+                agregarPagoButton.BackColor = _colores.FondoBoton;
+                imprimirButton.BackColor = _colores.FondoBoton;
+            }
+        }
         public int Servicios
         {
             get
@@ -414,6 +426,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             nuevoPrendaItem.Owner = ParentForm;
             nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
             nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
+            nuevoPrendaItem.Colores = _colores;
             if (nuevoPrendaItem.ShowDialog() == DialogResult.OK)
             {
                 PrendaItemDto prendaDto = nuevoPrendaItem.Dto;
@@ -433,6 +446,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             nuevoPrendaItem.Owner = ParentForm;
             nuevoPrendaItem.MontoRequested += NuevoPrendaItem_MontoRequested;
             nuevoPrendaItem.ServiciosRequested += NuevoPrendaItem_ServiciosRequested;
+            nuevoPrendaItem.Colores = _colores;
             if (nuevoPrendaItem.ShowDialog() == DialogResult.OK)
             {
                 _dto.Prendas.Remove(prenda);
@@ -460,6 +474,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         private void AgregarPagoButton_Click(object sender, EventArgs e)
         {
             NuevoPago nuevoPago = new NuevoPago(new PagoDto(_dto));
+            nuevoPago.Colores = _colores;
             if (nuevoPago.ShowDialog() == DialogResult.OK)
             {
                 PagoDto pagoDto = nuevoPago.Dto;
@@ -474,6 +489,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             PagoDisplay display = (PagoDisplay)sender;
             PagoDto pago = display.Dto;
             NuevoPago nuevoPago = new NuevoPago(pago);
+            nuevoPago.Colores = _colores;
             if (nuevoPago.ShowDialog() == DialogResult.OK)
             {
                 _dto.Pagos.Remove(pago);

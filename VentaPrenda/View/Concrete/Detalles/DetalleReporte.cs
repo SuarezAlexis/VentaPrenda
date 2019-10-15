@@ -14,6 +14,7 @@ namespace VentaPrenda.View.Concrete.Detalles
 {
     public partial class DetalleReporte : DetalleModelo
     {
+        private ColoresGUIDto _colores;
         private ReporteDto _dto;
         private ErrorProvider _errorProvider;
         private UserControl resumen;
@@ -29,6 +30,16 @@ namespace VentaPrenda.View.Concrete.Detalles
             set
             {
                 _dto = (ReporteDto)value;
+            }
+        }
+
+        public override ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                obtenerReporteButton.BackColor = _colores.FondoBoton;
             }
         }
 
