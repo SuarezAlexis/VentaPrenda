@@ -93,6 +93,7 @@ namespace VentaPrenda.View.Concrete
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.loginTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.loginLabel = new System.Windows.Forms.Label();
             this.usuarioTablePanel = new System.Windows.Forms.TableLayoutPanel();
@@ -227,6 +228,7 @@ namespace VentaPrenda.View.Concrete
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 145);
             this.Controls.Add(this.loginTablePanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Venta Prenda";

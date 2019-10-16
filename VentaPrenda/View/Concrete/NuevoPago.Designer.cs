@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NuevoPago));
             this.nuevoPagoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.idNotaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.idLabel = new System.Windows.Forms.Label();
@@ -35,15 +36,15 @@
             this.notaLabel = new System.Windows.Forms.Label();
             this.notaDataLabel = new System.Windows.Forms.Label();
             this.fechaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.metodoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.montoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.aceptarButton = new System.Windows.Forms.Button();
             this.fechaLabel = new System.Windows.Forms.Label();
             this.fechaDataLabel = new System.Windows.Forms.Label();
+            this.metodoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.metodoLabel = new System.Windows.Forms.Label();
-            this.montoLabel = new System.Windows.Forms.Label();
             this.metodoDomUpDown = new System.Windows.Forms.DomainUpDown();
+            this.montoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.montoLabel = new System.Windows.Forms.Label();
             this.montoNumUpDown = new System.Windows.Forms.NumericUpDown();
+            this.aceptarButton = new System.Windows.Forms.Button();
             this.nuevoPagoLayoutPanel.SuspendLayout();
             this.idNotaLayoutPanel.SuspendLayout();
             this.fechaLayoutPanel.SuspendLayout();
@@ -81,7 +82,7 @@
             this.idNotaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.idNotaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.idNotaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.idNotaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.idNotaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.idNotaLayoutPanel.Controls.Add(this.idLabel, 0, 0);
             this.idNotaLayoutPanel.Controls.Add(this.idDataLabel, 1, 0);
             this.idNotaLayoutPanel.Controls.Add(this.notaLabel, 2, 0);
@@ -151,47 +152,6 @@
             this.fechaLayoutPanel.Size = new System.Drawing.Size(317, 34);
             this.fechaLayoutPanel.TabIndex = 1;
             // 
-            // metodoLayoutPanel
-            // 
-            this.metodoLayoutPanel.ColumnCount = 2;
-            this.metodoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.metodoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.metodoLayoutPanel.Controls.Add(this.metodoLabel, 0, 0);
-            this.metodoLayoutPanel.Controls.Add(this.metodoDomUpDown, 1, 0);
-            this.metodoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metodoLayoutPanel.Location = new System.Drawing.Point(5, 89);
-            this.metodoLayoutPanel.Name = "metodoLayoutPanel";
-            this.metodoLayoutPanel.RowCount = 1;
-            this.metodoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.metodoLayoutPanel.Size = new System.Drawing.Size(317, 34);
-            this.metodoLayoutPanel.TabIndex = 2;
-            // 
-            // montoLayoutPanel
-            // 
-            this.montoLayoutPanel.ColumnCount = 2;
-            this.montoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.montoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.montoLayoutPanel.Controls.Add(this.montoLabel, 0, 0);
-            this.montoLayoutPanel.Controls.Add(this.montoNumUpDown, 1, 0);
-            this.montoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.montoLayoutPanel.Location = new System.Drawing.Point(5, 131);
-            this.montoLayoutPanel.Name = "montoLayoutPanel";
-            this.montoLayoutPanel.RowCount = 1;
-            this.montoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.montoLayoutPanel.Size = new System.Drawing.Size(317, 34);
-            this.montoLayoutPanel.TabIndex = 3;
-            // 
-            // aceptarButton
-            // 
-            this.aceptarButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.aceptarButton.Location = new System.Drawing.Point(126, 178);
-            this.aceptarButton.Name = "aceptarButton";
-            this.aceptarButton.Size = new System.Drawing.Size(75, 23);
-            this.aceptarButton.TabIndex = 4;
-            this.aceptarButton.Text = "Aceptar";
-            this.aceptarButton.UseVisualStyleBackColor = true;
-            this.aceptarButton.Click += new System.EventHandler(this.AceptarButton_Click);
-            // 
             // fechaLabel
             // 
             this.fechaLabel.AutoSize = true;
@@ -213,6 +173,21 @@
             this.fechaDataLabel.TabIndex = 1;
             this.fechaDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // metodoLayoutPanel
+            // 
+            this.metodoLayoutPanel.ColumnCount = 2;
+            this.metodoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.metodoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.metodoLayoutPanel.Controls.Add(this.metodoLabel, 0, 0);
+            this.metodoLayoutPanel.Controls.Add(this.metodoDomUpDown, 1, 0);
+            this.metodoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metodoLayoutPanel.Location = new System.Drawing.Point(5, 89);
+            this.metodoLayoutPanel.Name = "metodoLayoutPanel";
+            this.metodoLayoutPanel.RowCount = 1;
+            this.metodoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.metodoLayoutPanel.Size = new System.Drawing.Size(317, 34);
+            this.metodoLayoutPanel.TabIndex = 2;
+            // 
             // metodoLabel
             // 
             this.metodoLabel.AutoSize = true;
@@ -224,6 +199,30 @@
             this.metodoLabel.Text = "Método de pago";
             this.metodoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // metodoDomUpDown
+            // 
+            this.metodoDomUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.metodoDomUpDown.Location = new System.Drawing.Point(112, 7);
+            this.metodoDomUpDown.Name = "metodoDomUpDown";
+            this.metodoDomUpDown.Size = new System.Drawing.Size(100, 20);
+            this.metodoDomUpDown.TabIndex = 1;
+            this.metodoDomUpDown.Text = "domainUpDown1";
+            // 
+            // montoLayoutPanel
+            // 
+            this.montoLayoutPanel.ColumnCount = 2;
+            this.montoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.montoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.montoLayoutPanel.Controls.Add(this.montoLabel, 0, 0);
+            this.montoLayoutPanel.Controls.Add(this.montoNumUpDown, 1, 0);
+            this.montoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.montoLayoutPanel.Location = new System.Drawing.Point(5, 131);
+            this.montoLayoutPanel.Name = "montoLayoutPanel";
+            this.montoLayoutPanel.RowCount = 1;
+            this.montoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.montoLayoutPanel.Size = new System.Drawing.Size(317, 34);
+            this.montoLayoutPanel.TabIndex = 3;
+            // 
             // montoLabel
             // 
             this.montoLabel.AutoSize = true;
@@ -234,15 +233,6 @@
             this.montoLabel.TabIndex = 0;
             this.montoLabel.Text = "Monto";
             this.montoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // metodoDomUpDown
-            // 
-            this.metodoDomUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.metodoDomUpDown.Location = new System.Drawing.Point(112, 7);
-            this.metodoDomUpDown.Name = "metodoDomUpDown";
-            this.metodoDomUpDown.Size = new System.Drawing.Size(100, 20);
-            this.metodoDomUpDown.TabIndex = 1;
-            this.metodoDomUpDown.Text = "domainUpDown1";
             // 
             // montoNumUpDown
             // 
@@ -263,6 +253,17 @@
             this.montoNumUpDown.TabIndex = 1;
             this.montoNumUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // aceptarButton
+            // 
+            this.aceptarButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.aceptarButton.Location = new System.Drawing.Point(126, 178);
+            this.aceptarButton.Name = "aceptarButton";
+            this.aceptarButton.Size = new System.Drawing.Size(75, 23);
+            this.aceptarButton.TabIndex = 4;
+            this.aceptarButton.Text = "Aceptar";
+            this.aceptarButton.UseVisualStyleBackColor = true;
+            this.aceptarButton.Click += new System.EventHandler(this.AceptarButton_Click);
+            // 
             // NuevoPago
             // 
             this.AcceptButton = this.aceptarButton;
@@ -270,6 +271,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 211);
             this.Controls.Add(this.nuevoPagoLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NuevoPago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NuevoPago";

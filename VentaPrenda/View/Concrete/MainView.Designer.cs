@@ -778,6 +778,7 @@
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1264, 749);
             this.Controls.Add(this.MainLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VentaPrenda";
