@@ -83,6 +83,9 @@
             this.observacionesLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.observacionesLabel = new System.Windows.Forms.Label();
             this.observacionesTextBox = new System.Windows.Forms.TextBox();
+            this.recibioLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.recibioLabel = new System.Windows.Forms.Label();
+            this.recibioDataLabel = new System.Windows.Forms.Label();
             this.detalleNotaLayoutPanel.SuspendLayout();
             this.idLayoutPanel.SuspendLayout();
             this.clienteLayoutPanel.SuspendLayout();
@@ -95,6 +98,7 @@
             this.pagosHeaderLayoutPanel.SuspendLayout();
             this.totalPagosLayoutPanel.SuspendLayout();
             this.observacionesLayoutPanel.SuspendLayout();
+            this.recibioLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // detalleNotaLayoutPanel
@@ -110,12 +114,13 @@
             this.detalleNotaLayoutPanel.Controls.Add(this.descuentoLayoutPanel, 0, 3);
             this.detalleNotaLayoutPanel.Controls.Add(this.estatusLayoutPanel, 0, 5);
             this.detalleNotaLayoutPanel.Controls.Add(this.pagosLayoutPanel, 0, 4);
-            this.detalleNotaLayoutPanel.Controls.Add(this.imprimirButton, 0, 7);
+            this.detalleNotaLayoutPanel.Controls.Add(this.imprimirButton, 0, 8);
             this.detalleNotaLayoutPanel.Controls.Add(this.observacionesLayoutPanel, 0, 6);
+            this.detalleNotaLayoutPanel.Controls.Add(this.recibioLayoutPanel, 0, 7);
             this.detalleNotaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.detalleNotaLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.detalleNotaLayoutPanel.Name = "detalleNotaLayoutPanel";
-            this.detalleNotaLayoutPanel.RowCount = 8;
+            this.detalleNotaLayoutPanel.RowCount = 9;
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
@@ -124,7 +129,8 @@
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.detalleNotaLayoutPanel.Size = new System.Drawing.Size(483, 746);
+            this.detalleNotaLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.detalleNotaLayoutPanel.Size = new System.Drawing.Size(483, 788);
             this.detalleNotaLayoutPanel.TabIndex = 0;
             // 
             // idLayoutPanel
@@ -362,7 +368,7 @@
             this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
-            this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.resumenTotalLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
             this.resumenTotalLayoutPanel.Controls.Add(this.totalLabel, 6, 0);
             this.resumenTotalLayoutPanel.Controls.Add(this.totalDataLabel, 7, 0);
             this.resumenTotalLayoutPanel.Controls.Add(this.prendasLabel, 0, 0);
@@ -784,7 +790,7 @@
             // 
             this.imprimirButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.imprimirButton.Enabled = false;
-            this.imprimirButton.Location = new System.Drawing.Point(204, 707);
+            this.imprimirButton.Location = new System.Drawing.Point(204, 749);
             this.imprimirButton.Name = "imprimirButton";
             this.imprimirButton.Size = new System.Drawing.Size(75, 34);
             this.imprimirButton.TabIndex = 6;
@@ -828,6 +834,42 @@
             this.observacionesTextBox.Size = new System.Drawing.Size(200, 41);
             this.observacionesTextBox.TabIndex = 1;
             // 
+            // recibioLayoutPanel
+            // 
+            this.recibioLayoutPanel.ColumnCount = 2;
+            this.recibioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.recibioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.recibioLayoutPanel.Controls.Add(this.recibioLabel, 0, 0);
+            this.recibioLayoutPanel.Controls.Add(this.recibioDataLabel, 1, 0);
+            this.recibioLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recibioLayoutPanel.Location = new System.Drawing.Point(5, 707);
+            this.recibioLayoutPanel.Name = "recibioLayoutPanel";
+            this.recibioLayoutPanel.RowCount = 1;
+            this.recibioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.recibioLayoutPanel.Size = new System.Drawing.Size(473, 34);
+            this.recibioLayoutPanel.TabIndex = 8;
+            // 
+            // recibioLabel
+            // 
+            this.recibioLabel.AutoSize = true;
+            this.recibioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recibioLabel.Location = new System.Drawing.Point(3, 0);
+            this.recibioLabel.Name = "recibioLabel";
+            this.recibioLabel.Size = new System.Drawing.Size(103, 34);
+            this.recibioLabel.TabIndex = 0;
+            this.recibioLabel.Text = "Atendió";
+            this.recibioLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // recibioDataLabel
+            // 
+            this.recibioDataLabel.AutoSize = true;
+            this.recibioDataLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recibioDataLabel.Location = new System.Drawing.Point(112, 0);
+            this.recibioDataLabel.Name = "recibioDataLabel";
+            this.recibioDataLabel.Size = new System.Drawing.Size(358, 34);
+            this.recibioDataLabel.TabIndex = 1;
+            this.recibioDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // DetalleNota
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -836,7 +878,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.detalleNotaLayoutPanel);
             this.Name = "DetalleNota";
-            this.Size = new System.Drawing.Size(500, 593);
+            this.Size = new System.Drawing.Size(483, 593);
             this.Resize += new System.EventHandler(this.DetalleNota_Resize);
             this.detalleNotaLayoutPanel.ResumeLayout(false);
             this.detalleNotaLayoutPanel.PerformLayout();
@@ -860,6 +902,8 @@
             this.totalPagosLayoutPanel.PerformLayout();
             this.observacionesLayoutPanel.ResumeLayout(false);
             this.observacionesLayoutPanel.PerformLayout();
+            this.recibioLayoutPanel.ResumeLayout(false);
+            this.recibioLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -922,5 +966,8 @@
         private System.Windows.Forms.TextBox observacionesTextBox;
         private System.Windows.Forms.ComboBox estatusComboBox;
         private EstadisticasClienteDisplay clienteStatsDisplay;
+        private System.Windows.Forms.TableLayoutPanel recibioLayoutPanel;
+        private System.Windows.Forms.Label recibioLabel;
+        private System.Windows.Forms.Label recibioDataLabel;
     }
 }

@@ -139,6 +139,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             entregadoDateTimePicker.Value = DateTime.Now;
             estatusComboBox.SelectedIndex = 0;
             observacionesTextBox.Text = "";
+            recibioDataLabel.Text = "";
             ActualizarTotalLabel();
             ActualizarDescuentoLabels();
             ActualizarPagosLabels();
@@ -172,6 +173,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 entregadoDateTimePicker.Value = n.Entregado;
                 estatusComboBox.SelectedItem = n.Estatus;
                 observacionesTextBox.Text = n.Observaciones;
+                recibioDataLabel.Text = n.Recibio.Nombre;
                 imprimirButton.Enabled = !String.IsNullOrEmpty(idDataLabel.Text);
                 Visible = true;
             } catch(Exception e)
