@@ -32,7 +32,11 @@ namespace VentaPrenda.View.Concrete.Detalles
         public override ColoresGUIDto Colores
         {
             get { return _colores; }
-            set { _colores = value; }
+            set
+            {
+                _colores = value;
+                dataGridView.BackgroundColor = _colores.FondoLista;
+            }
         }
 
         public DetalleHistorial()

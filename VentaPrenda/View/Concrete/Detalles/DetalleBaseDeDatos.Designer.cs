@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetalleBaseDeDatos));
             this.detalleBaseDeDatosLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.respaldosLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.respaldosLabel = new System.Windows.Forms.Label();
@@ -101,12 +102,13 @@
             // 
             // archivosListBox
             // 
-            this.archivosListBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.archivosListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.archivosListBox.FormattingEnabled = true;
             this.archivosListBox.Location = new System.Drawing.Point(153, 3);
             this.archivosListBox.Name = "archivosListBox";
             this.respaldosLayoutPanel.SetRowSpan(this.archivosListBox, 3);
-            this.archivosListBox.Size = new System.Drawing.Size(200, 228);
+            this.archivosListBox.Size = new System.Drawing.Size(201, 228);
             this.archivosListBox.TabIndex = 1;
             this.archivosListBox.SelectedIndexChanged += new System.EventHandler(this.ArchivosListBox_SelectedIndexChanged);
             // 
@@ -114,11 +116,14 @@
             // 
             this.restaurarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.restaurarButton.Enabled = false;
+            this.restaurarButton.Image = ((System.Drawing.Image)(resources.GetObject("restaurarButton.Image")));
             this.restaurarButton.Location = new System.Drawing.Point(360, 8);
             this.restaurarButton.Name = "restaurarButton";
             this.restaurarButton.Size = new System.Drawing.Size(201, 43);
             this.restaurarButton.TabIndex = 2;
             this.restaurarButton.Text = "Iniciar restauración";
+            this.restaurarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.restaurarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.restaurarButton.UseVisualStyleBackColor = true;
             this.restaurarButton.Click += new System.EventHandler(this.RestaurarButton_Click);
             // 
@@ -137,11 +142,14 @@
             // 
             this.eliminarButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.eliminarButton.Enabled = false;
+            this.eliminarButton.Image = ((System.Drawing.Image)(resources.GetObject("eliminarButton.Image")));
             this.eliminarButton.Location = new System.Drawing.Point(360, 68);
             this.eliminarButton.Name = "eliminarButton";
             this.eliminarButton.Size = new System.Drawing.Size(201, 43);
             this.eliminarButton.TabIndex = 4;
             this.eliminarButton.Text = "Eliminar archivo";
+            this.eliminarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.eliminarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.eliminarButton.UseVisualStyleBackColor = true;
             this.eliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
@@ -211,11 +219,14 @@
             // iniciarRespaldoButton
             // 
             this.iniciarRespaldoButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.iniciarRespaldoButton.Image = ((System.Drawing.Image)(resources.GetObject("iniciarRespaldoButton.Image")));
             this.iniciarRespaldoButton.Location = new System.Drawing.Point(153, 5);
             this.iniciarRespaldoButton.Name = "iniciarRespaldoButton";
             this.iniciarRespaldoButton.Size = new System.Drawing.Size(200, 43);
             this.iniciarRespaldoButton.TabIndex = 1;
             this.iniciarRespaldoButton.Text = "Generar respaldo";
+            this.iniciarRespaldoButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iniciarRespaldoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.iniciarRespaldoButton.UseVisualStyleBackColor = true;
             this.iniciarRespaldoButton.Click += new System.EventHandler(this.IniciarRespaldoButton_Click);
             // 

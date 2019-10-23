@@ -51,6 +51,30 @@ namespace VentaPrenda.Service
                                 Columna = "Servicios",
                                 Valor = ValueToString(prenda.Servicios)
                             });
+                            foreach (ServicioItemDto servicio in prenda.Servicios)
+                            {
+                                cambios.Add(new DatoHistorialDto
+                                {
+                                    Operacion = op,
+                                    Tabla = "ServicioItem " + servicio.ID,
+                                    Columna = "Descuento",
+                                    Valor = ValueToString(servicio.Descuento)
+                                });
+                                cambios.Add(new DatoHistorialDto
+                                {
+                                    Operacion = op,
+                                    Tabla = "ServicioItem " + servicio.ID,
+                                    Columna = "Monto",
+                                    Valor = ValueToString(servicio.Monto)
+                                });
+                                cambios.Add(new DatoHistorialDto
+                                {
+                                    Operacion = op,
+                                    Tabla = "ServicioItem " + servicio.ID,
+                                    Columna = "Elaboro",
+                                    Valor = ValueToString(servicio.Encargado)
+                                });
+                            }
                         }
                     }
                 }
@@ -101,6 +125,8 @@ namespace VentaPrenda.Service
                     concepto += "Movimiento"; break;
                 case Funcion.TICKET:
                     concepto += "Ticket"; break;
+                case Funcion.PERSONALIZAR:
+                    concepto += "Colores GUI"; break;
             }
             return concepto;
         }

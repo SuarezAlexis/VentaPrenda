@@ -18,7 +18,7 @@ namespace VentaPrenda.Service
             { sw = File.CreateText(FilePath); }
             else
             { sw = File.AppendText(FilePath); }
-            sw.WriteLine(text);
+            sw.WriteLine(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm ]") + text);
             sw.Dispose();
         }
     }

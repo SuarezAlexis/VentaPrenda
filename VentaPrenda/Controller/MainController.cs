@@ -381,6 +381,7 @@ namespace VentaPrenda.Controller
                         NotaDto nota = (NotaDto)dto;
                         if(nota.Cliente.ID < 0)
                         { nota.Cliente = DaoManager.ClienteDao.GuardarCliente(nota.Cliente); }
+                        nota.Recibio = Usuario;
                         _mainView.Dto = DaoManager.NotaDao.GuardarNota(nota);
                         _mainView.DataSource = DaoManager.NotaDao.GetNotas();
                         break;

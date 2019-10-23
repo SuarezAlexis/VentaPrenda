@@ -124,7 +124,7 @@ namespace VentaPrenda.View.Concrete
         {
             ClearFunctionButtons();
             Detalle = NewDetalle(errorProvider);
-            Detalle.Colores = _colores;
+            if (Detalle != null) { Detalle.Colores = _colores; }
             listGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             listGridView.MultiSelect = false;
             SetFiltroVisible(false);
@@ -394,59 +394,67 @@ namespace VentaPrenda.View.Concrete
 
         /******************** MÉTODOS: EventHandlers *******************/
         private void PerfilesButton_Click(object sender, EventArgs e)
-        { Controller.Perfiles(); }
+        { Cursor = Cursors.WaitCursor; Controller.Perfiles(); Cursor = Cursors.Default; Cursor = Cursors.Default; }
 
         private void UsuariosButton_Click(object sender, EventArgs e)
-        { Controller.Usuarios(); }
+        { Cursor = Cursors.WaitCursor; Controller.Usuarios(); Cursor = Cursors.Default; }
 
         public void ColoresButton_Click(object sender, EventArgs e)
-        { Controller.Colores(); }
+        { Cursor = Cursors.WaitCursor; Controller.Colores(); Cursor = Cursors.Default; }
 
         public void PrendasButton_Click(object sender, EventArgs e)
-        { Controller.Prendas(); }
+        { Cursor = Cursors.WaitCursor; Controller.Prendas(); Cursor = Cursors.Default; }
 
         public void TiposButton_Click(object sender, EventArgs e)
-        { Controller.TiposPrenda(); } 
+        { Cursor = Cursors.WaitCursor; Controller.TiposPrenda(); Cursor = Cursors.Default; } 
 
         public void ServiciosButton_Click(object sender, EventArgs e)
-        { Controller.Servicios(); }
+        { Cursor = Cursors.WaitCursor; Controller.Servicios(); Cursor = Cursors.Default; }
 
         public void DescuentosButton_Click(object sender, EventArgs e)
-        { Controller.Descuentos(); }
+        { Cursor = Cursors.WaitCursor; Controller.Descuentos(); Cursor = Cursors.Default; }
 
         private void TicketButton_Click(object sender, EventArgs e)
-        { Controller.Ticket(); }
+        { Cursor = Cursors.WaitCursor; Controller.Ticket(); Cursor = Cursors.Default; }
 
         public void NotasButton_Click(object sender, EventArgs e)
-        { Controller.Notas(); }
+        { Cursor = Cursors.WaitCursor; Controller.Notas(); Cursor = Cursors.Default; }
 
         public void ClientesButton_Click(object sender, EventArgs e)
-        { Controller.Clientes(); }
+        { Cursor = Cursors.WaitCursor; Controller.Clientes(); Cursor = Cursors.Default; }
 
         public void BalanceButton_Click(object sender, EventArgs e)
-        { Controller.Balance(); }
+        { Cursor = Cursors.WaitCursor; Controller.Balance(); Cursor = Cursors.Default; }
 
         public void ReportesButton_Click(object sender, EventArgs e)
-        { Controller.Reportes(); }
+        { Cursor = Cursors.WaitCursor; Controller.Reportes(); Cursor = Cursors.Default; }
 
         public void HistorialButton_Click(object sender, EventArgs e)
-        { Controller.Historial(); }
+        { Cursor = Cursors.WaitCursor; Controller.Historial(); Cursor = Cursors.Default; }
 
         private void BaseDeDatosButton_Click(object sender, EventArgs e)
-        { Controller.BaseDeDatos(); }
+        { Cursor = Cursors.WaitCursor; Controller.BaseDeDatos(); Cursor = Cursors.Default; }
 
         private void PersonalizarButton_Click(object sender, EventArgs e)
-        { Controller.Personalizar(); }
+        { Cursor = Cursors.WaitCursor; Controller.Personalizar(); Cursor = Cursors.Default; }
 
         private void ListGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(listGridView.SelectedRows.Count > 0)
+            Cursor = Cursors.WaitCursor;
+            if (listGridView.SelectedRows.Count > 0)
             {
                 Controller.FillDetalle(Convert.ToInt64(listGridView.SelectedRows[0].Cells[0].Value));
                 objetoLabel.Text = Detalle.Dto.ToString();
                 if (Controller.Funcion == Funcion.HISTORIAL)
                     SetEditButtonsEnabled(false);
             }
+            Cursor = Cursors.Default;
+        }
+
+        private void ListGridView_Sorted(object sender, EventArgs e)
+        {
+            if (Controller.Funcion == Funcion.NOTA)
+            { SetColors(_colores); }
         }
 
 
@@ -473,19 +481,35 @@ namespace VentaPrenda.View.Concrete
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            if (Detalle.ValidateChildren() && Controller.Guardar(Detalle.Dto))
+            if(Detalle.ValidateChildren())
             {
-                infoLabel.Text = "Se guardó correctamente: " + Dto.ToString();
-                if (Controller.Funcion == Funcion.TICKET)
-                { SetEditButtonsEnabled(false); SetSelectButtonsEnabled(true); }
+                if (Controller.Funcion == Funcion.NOTA && ((NotaDto)Detalle.Dto).Prendas.Count == 0)
+                {
+                    MessageBox.Show("Es necesario agregar al menos una prenda.",
+                        "No se agregaron prendas",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
                 else
-                { NuevoButton.Focus(); }
+                {
+                    Cursor = Cursors.WaitCursor;
+                    if(Controller.Guardar(Detalle.Dto))
+                    {
+                        infoLabel.Text = "Se guardó correctamente: " + Dto.ToString();
+                        if (Controller.Funcion == Funcion.TICKET || Controller.Funcion == Funcion.PERSONALIZAR)
+                        { SetEditButtonsEnabled(false); SetSelectButtonsEnabled(true); }
+                        else
+                        { NuevoButton.Focus(); }
+                    }
+                    Cursor = Cursors.Default;
+                }
             }
         }
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Se eliminará " + Detalle.Dto.ToString() + "\n¿Estas seguro?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            Cursor = Cursors.WaitCursor;
+            if (MessageBox.Show("Se eliminará " + Detalle.Dto.ToString() + "\n¿Estas seguro?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string dtoString = Dto.ToString();
                 Controller.Eliminar(Detalle.Dto);
@@ -515,6 +539,7 @@ namespace VentaPrenda.View.Concrete
                 Detalle.Clear();
                 Detalle.ReadOnly = false;
             }
+            Cursor = Cursors.Default;
         }
 
         private void BusquedaTextBox_TextChanged(object sender, EventArgs e)
@@ -531,5 +556,6 @@ namespace VentaPrenda.View.Concrete
             filtrarButton.BackColor = filtrarButton.BackColor == _colores.FondoBotonActivo? _colores.FondoBoton : _colores.FondoBotonActivo;
             Filtrar();
         }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using VentaPrenda.View.Abstract;
 using VentaPrenda.DTO;
 using VentaPrenda.Model;
+using VentaPrenda.Service;
 
 namespace VentaPrenda.View.Concrete.Detalles
 {
@@ -177,8 +178,9 @@ namespace VentaPrenda.View.Concrete.Detalles
                 imprimirButton.Enabled = !String.IsNullOrEmpty(idDataLabel.Text);
                 Visible = true;
             } catch(Exception e)
-            { 
-                //Registrar el Log
+            {
+                Logger.Log("[ ERROR ] Error en DetalleNota al intentar llenar los datos.\nObjeto recibido: " + model
+                    + "\nExcepción: " + e.GetType() + "\nMensaje: " + e.Message + "\nTraza de pila:\n" + e.StackTrace);
                 MessageBox.Show(
                     "Ocurrió un error al intentar obtener el registro solicitado.\n\n" + e.Message + "\n\nTipo de error: " + e.GetType().Name,
                     "Error",
@@ -477,7 +479,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         {
             NuevoPago nuevoPago = new NuevoPago(new PagoDto(_dto));
             nuevoPago.Colores = _colores;
-            if (nuevoPago.ShowDialog() == DialogResult.OK)
+            if (nuevoPago.ShowDialog() == DialogResult.OK && nuevoPago.Dto.Monto > 0)
             {
                 PagoDto pagoDto = nuevoPago.Dto;
                 pagoDto.Nota = _dto;

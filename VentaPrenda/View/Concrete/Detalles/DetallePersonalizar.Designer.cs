@@ -53,10 +53,10 @@
             this.caducadoLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.caducadoLabel = new System.Windows.Forms.Label();
             this.caducadoButton = new System.Windows.Forms.Button();
-            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fondoListaLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fondoListaLabel = new System.Windows.Forms.Label();
             this.fondoListaButton = new System.Windows.Forms.Button();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.personalizarLayoutPanel.SuspendLayout();
             this.fondoVentanaLayoutPanel.SuspendLayout();
             this.fondoBotonLayoutPanel.SuspendLayout();
@@ -431,6 +431,11 @@
             this.fondoListaButton.Text = "Seleccionar";
             this.fondoListaButton.UseVisualStyleBackColor = true;
             this.fondoListaButton.Click += new System.EventHandler(this.FondoListaButton_Click);
+            // 
+            // colorDialog
+            // 
+            this.colorDialog.AnyColor = true;
+            this.colorDialog.FullOpen = true;
             // 
             // DetallePersonalizar
             // 
