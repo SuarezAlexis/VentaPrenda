@@ -161,13 +161,13 @@ namespace VentaPrenda.DAO.Concrete
                 BackupFolder + "\\" + fileName);
             psi.Arguments = args;
 
-            Logger.Log(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm ]") + " Inicia respaldo: " + psi.FileName + " " + psi.Arguments);
+            Logger.Log("Inicia respaldo: " + psi.FileName + " " + psi.Arguments);
 
             Process process = Process.Start(psi);
             Logger.Log(process.StandardOutput.ReadToEnd());
             process.WaitForExit();
             process.Close();
-            Logger.Log(DateTime.Now.ToString("[ yyyy-MM-dd HH:mm ]") + " Termina respaldo ------------------------------------");
+            Logger.Log("Termina respaldo ------------------------------------");
             return fileName;
         }
 

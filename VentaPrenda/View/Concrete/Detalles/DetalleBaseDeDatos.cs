@@ -67,6 +67,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                Cursor = Cursors.WaitCursor;
                 try
                 {
                     MySqlDbContext.Restore(BackupsPath + "\\" + archivosListBox.SelectedItem);
@@ -82,6 +83,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                 }
+                Cursor = Cursors.Default;
             }
         }
 

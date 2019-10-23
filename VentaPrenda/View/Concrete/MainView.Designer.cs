@@ -687,6 +687,7 @@
             this.listGridView.Size = new System.Drawing.Size(621, 504);
             this.listGridView.TabIndex = 0;
             this.listGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ListGridView_CellDoubleClick);
+            this.listGridView.Sorted += new System.EventHandler(this.ListGridView_Sorted);
             // 
             // detalleBox
             // 
