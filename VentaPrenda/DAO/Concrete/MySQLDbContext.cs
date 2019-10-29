@@ -31,15 +31,24 @@ namespace VentaPrenda.DAO.Concrete
 
         public static DataTable Query(string query)
         {
+            //Logger.Log("MySqlDbContext QUERY: " + query);
+            //Logger.Log("MySqlDbContext Getting connection...");
             using (conn = GetConnection())
             {
+                //Logger.Log("MySqlDbContext Done");
                 DataTable table = new DataTable();
                 MySqlCommand cmd = new MySqlCommand(query, (MySqlConnection)conn);
-
                 try
                 {
+                    //Logger.Log("MySqlDbContext Openning connection...");
                     conn.Open();
-                    table.Load(cmd.ExecuteReader(CommandBehavior.CloseConnection));
+                    //Logger.Log("MySqlDbContext Done");
+                    //Logger.Log("MySqlDbContext Executing reader and closing connection...");
+                    MySqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    //Logger.Log("MySqlDbContext Done");
+                    //Logger.Log("MySqlDbContext Loading data DataTable object...");
+                    table.Load(reader);
+                    //Logger.Log("MySqlDbContext Done");
                     return table;
                 }
                 catch (Exception e)

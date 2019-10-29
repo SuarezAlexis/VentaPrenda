@@ -51,7 +51,9 @@ namespace VentaPrenda.View.Concrete
             set
             {
                 _dataSource = value;
+                //listGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
                 listGridView.DataSource = _dataSource;
+                //listGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 listGridView.ClearSelection();
                 if (Controller.Funcion == Funcion.NOTA)
                     UpdateListColors();
@@ -371,28 +373,34 @@ namespace VentaPrenda.View.Concrete
 
         private void Filtrar()
         {
+            DataTable filteredDataSource = new DataTable();
+            foreach(DataColumn dc in _dataSource.Columns)
+            { filteredDataSource.Columns.Add(dc.ColumnName); }
+
             string cellName = Controller.Funcion == Funcion.NOTA ? "Recibido" : "Fecha";
             bool show = true;
-            foreach (DataGridViewRow row in listGridView.Rows)
+
+            for (int i = 0; i < _dataSource.Rows.Count; i++)
             {
                 if (cellName != null && filtrarButton.BackColor == _colores.FondoBotonActivo)
                 {
-                    DateTime fecha = (DateTime)row.Cells[cellName].Value;
+                    DateTime fecha = (DateTime) _dataSource.Rows[i][cellName];
                     show = fecha >= desdeDateTimePicker.Value && fecha <= hastaDateTimePicker.Value;
                 }
                 else { show = true; }
                 if (show && !String.IsNullOrEmpty(busquedaTextBox.Text))
                 {
-                    foreach (DataGridViewTextBoxCell cell in row.Cells)
+                    foreach (object cell in _dataSource.Rows[i].ItemArray)
                     {
-                        if (cell.Value.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
+                        if (cell.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
                         { show = true; break; }
                         else
                         { show = false; }
                     }
                 }
-                listGridView.Rows[row.Index].Height = show ? DataRowHeight : 0;
+                if (show) { filteredDataSource.Rows.Add(_dataSource.Rows[i].ItemArray); }
             }
+            listGridView.DataSource = filteredDataSource;
         }
 
         /******************** MÉTODOS: EventHandlers *******************/
@@ -559,6 +567,5 @@ namespace VentaPrenda.View.Concrete
             filtrarButton.BackColor = filtrarButton.BackColor == _colores.FondoBotonActivo? _colores.FondoBoton : _colores.FondoBotonActivo;
             Filtrar();
         }
-
     }
 }

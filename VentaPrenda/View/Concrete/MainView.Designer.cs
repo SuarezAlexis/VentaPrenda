@@ -680,7 +680,6 @@
             this.listGridView.MultiSelect = false;
             this.listGridView.Name = "listGridView";
             this.listGridView.ReadOnly = true;
-            this.listGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.listGridView.RowTemplate.ReadOnly = true;
             this.listGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listGridView.ShowEditingIcon = false;
