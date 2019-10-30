@@ -15,6 +15,7 @@ namespace VentaPrenda.View.Concrete
     {
         private bool _readOnly;
         public PagoDto Dto;
+        private ColoresGUIDto _colores;
         public bool ReadOnly
         {
             get { return _readOnly; }
@@ -23,6 +24,17 @@ namespace VentaPrenda.View.Concrete
                 _readOnly = value;
                 editButton.Enabled = !value;
                 deleteButton.Enabled = !value;
+            }
+        }
+
+        public ColoresGUIDto Colores
+        {
+            get { return _colores; }
+            set
+            {
+                _colores = value;
+                editButton.BackColor = _colores.FondoBoton;
+                deleteButton.BackColor = _colores.FondoBoton;
             }
         }
 

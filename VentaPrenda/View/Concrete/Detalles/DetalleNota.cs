@@ -244,6 +244,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             nuevaPrenda.Width = resumenFlowLayoutPanel.Width - 25;
             nuevaPrenda.Edit += Prenda_Edit;
             nuevaPrenda.Delete += Prenda_Delete;
+            nuevaPrenda.Colores = _colores;
             resumenFlowLayoutPanel.Controls.Add(nuevaPrenda);
             detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(resumenLayoutPanel)].Height += nuevaPrenda.Height + 5;
         }
@@ -254,6 +255,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             pagoDisplay.Width = pagosFlowLayoutPanel.Width - 25;
             pagoDisplay.Edit += Pago_Edit;
             pagoDisplay.Delete += Pago_Delete;
+            pagoDisplay.Colores = _colores;
             pagosFlowLayoutPanel.Controls.Add(pagoDisplay);
             detalleNotaLayoutPanel.RowStyles[detalleNotaLayoutPanel.GetRow(pagosLayoutPanel)].Height += pagoDisplay.Height + 5;
         }

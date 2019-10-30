@@ -19,6 +19,7 @@ namespace VentaPrenda.View.Concrete
         public event EventHandler Delete;
         public event EventHandler Edit;
         public PrendaItemDto Dto;
+        private ColoresGUIDto _colores;
         public bool ReadOnly
         {
             get { return _readOnly; }
@@ -27,6 +28,18 @@ namespace VentaPrenda.View.Concrete
                 _readOnly = value;
                 editButton.Enabled = !value;
                 deleteButton.Enabled = !value;
+            }
+        }
+
+        public ColoresGUIDto Colores
+        {
+            get
+            { return _colores; }
+            set
+            {
+                _colores = value;
+                deleteButton.BackColor = _colores.FondoBoton;
+                editButton.BackColor = _colores.FondoBoton;
             }
         }
 

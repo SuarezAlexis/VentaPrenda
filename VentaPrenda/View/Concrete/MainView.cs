@@ -233,6 +233,8 @@ namespace VentaPrenda.View.Concrete
             LimpiarButton.BackColor = _colores.FondoBoton;
             filtrarButton.BackColor = _colores.FondoBoton;
 
+            statusStrip.BackColor = _colores.FondoVentana;
+
             RegresarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
             NuevoButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
             EditarButton.FlatAppearance.MouseDownBackColor = _colores.FondoBotonActivo;
