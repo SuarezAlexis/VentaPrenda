@@ -375,34 +375,37 @@ namespace VentaPrenda.View.Concrete
 
         private void Filtrar()
         {
-            DataTable filteredDataSource = new DataTable();
-            foreach(DataColumn dc in _dataSource.Columns)
-            { filteredDataSource.Columns.Add(dc.ColumnName); }
-
-            string cellName = Controller.Funcion == Funcion.NOTA ? "Recibido" : "Fecha";
-            bool show = true;
-
-            for (int i = 0; i < _dataSource.Rows.Count; i++)
+            if(_dataSource != null)
             {
-                if (cellName != null && filtrarButton.BackColor == _colores.FondoBotonActivo)
+                DataTable filteredDataSource = new DataTable();
+                foreach (DataColumn dc in _dataSource.Columns)
+                { filteredDataSource.Columns.Add(dc.ColumnName); }
+
+                string cellName = Controller.Funcion == Funcion.NOTA ? "Recibido" : "Fecha";
+                bool show = true;
+
+                for (int i = 0; i < _dataSource.Rows.Count; i++)
                 {
-                    DateTime fecha = (DateTime) _dataSource.Rows[i][cellName];
-                    show = fecha >= desdeDateTimePicker.Value && fecha <= hastaDateTimePicker.Value;
-                }
-                else { show = true; }
-                if (show && !String.IsNullOrEmpty(busquedaTextBox.Text))
-                {
-                    foreach (object cell in _dataSource.Rows[i].ItemArray)
+                    if (cellName != null && filtrarButton.BackColor == _colores.FondoBotonActivo)
                     {
-                        if (cell.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
-                        { show = true; break; }
-                        else
-                        { show = false; }
+                        DateTime fecha = (DateTime)_dataSource.Rows[i][cellName];
+                        show = fecha >= desdeDateTimePicker.Value && fecha <= hastaDateTimePicker.Value;
                     }
+                    else { show = true; }
+                    if (show && !String.IsNullOrEmpty(busquedaTextBox.Text))
+                    {
+                        foreach (object cell in _dataSource.Rows[i].ItemArray)
+                        {
+                            if (cell.ToString().ToLower().Contains(busquedaTextBox.Text.ToLower()))
+                            { show = true; break; }
+                            else
+                            { show = false; }
+                        }
+                    }
+                    if (show) { filteredDataSource.Rows.Add(_dataSource.Rows[i].ItemArray); }
                 }
-                if (show) { filteredDataSource.Rows.Add(_dataSource.Rows[i].ItemArray); }
+                listGridView.DataSource = filteredDataSource;
             }
-            listGridView.DataSource = filteredDataSource;
         }
 
         /******************** MÉTODOS: EventHandlers *******************/

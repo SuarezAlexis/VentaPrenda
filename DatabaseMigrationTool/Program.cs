@@ -21,6 +21,8 @@ namespace DatabaseMigrationTool
             if (!Migracion.Servicios()) return;
             Console.WriteLine("Iniciando migración de clientes...");
             if (!Migracion.Clientes()) return;
+            Console.WriteLine("Iniciando migración de notas...");
+            if (!Migracion.Notas()) return;
         }
     }
 }
