@@ -19,6 +19,7 @@ namespace VentaPrenda.DAO.Concrete
         private static readonly string SELECT_CLIENTE_STATS_SQL = "SELECT * FROM ClienteStatsView";
 
         private static readonly string INSERT_SQL = "INSERT INTO Nota (Estatus,Cliente,Recibido,Entregado,Observaciones,Descuento) VALUES (@Estatus,@Cliente,CURRENT_TIMESTAMP,@Entregado,@Observaciones,@Descuento); SELECT last_insert_id();";
+        private static readonly string INSERT_ID_SQL = "INSERT INTO Nota (ID,Estatus,Cliente,Recibido,Entregado,Observaciones,Descuento) VALUES (@ID,@Estatus,@Cliente,CURRENT_TIMESTAMP,@Entregado,@Observaciones,@Descuento);";
         private static readonly string PRENDA_INSERT_SQL = "INSERT INTO PrendaItem(Nota,Cantidad,Prenda,TipoPrenda,Color) VALUES";
         private static readonly string SERVICIO_INSERT_SQL = "INSERT INTO ServicioItem(PrendaItem,Cantidad,Servicio,Monto,Descuento,Encargado) VALUES";
         private static readonly string PAGO_INSERT_SQL = "INSERT INTO Pago(Nota,Metodo,Monto,Fecha) VALUES";
@@ -213,6 +214,27 @@ namespace VentaPrenda.DAO.Concrete
                     DataTable dt = MySqlDbContext.Query(INSERT_SQL, param);
                     dto.ID = dt.Rows.Count > 0 ? Convert.ToInt64(dt.Rows[0][0]) : -1;
                 }
+
+                GuardarPrendas(dto.Prendas);
+                GuardarPagos(dto.Pagos);
+            }
+
+            return dto;
+        }
+
+        public NotaDto InsertarNota(NotaDto dto)
+        {
+            if (dto.Prendas.Count > 0)
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("@ID", dto.ID);
+                param.Add("@Estatus", (short)dto.Estatus);
+                param.Add("@Cliente", dto.Cliente.ID);
+                param.Add("@Entregado", dto.Entregado);
+                param.Add("@Observaciones", dto.Observaciones);
+                param.Add("@Descuento", dto.Descuento != null ? (object)dto.Descuento.ID : null);
+                    
+                DataTable dt = MySqlDbContext.Query(INSERT_ID_SQL, param);
 
                 GuardarPrendas(dto.Prendas);
                 GuardarPagos(dto.Pagos);

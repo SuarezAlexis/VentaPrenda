@@ -304,7 +304,8 @@ namespace DatabaseMigrationTool
             DataTable usuarios = DaoManager.UsuarioDao.GetUsuarios();
 
             DataTable dt = Database.Query("SELECT N.ID, N.FechaEntrada, N.FechaSalida, N.EstatusID, E.Nombre AS EstatusNombre, N.ClienteID, C.Nombre AS ClienteNombre, C.Telefono AS ClienteTelefono, N.DescuentoID, D.Nombre AS DescuentoNombre FROM Nota N JOIN Estatus_Nota E ON E.ID = N.EstatusID JOIN Cliente C ON C.ID = N.ClienteID LEFT JOIN Descuento D ON D.ID = N.DescuentoID");
-
+            Console.WriteLine("Se encontraron " + dt.Rows.Count + " notas.");
+            int i = 0;
             foreach(DataRow dr in dt.Rows)
             {
                 NotaDto n = new NotaDto
@@ -312,12 +313,16 @@ namespace DatabaseMigrationTool
                     ID = Convert.ToInt64(dr["ID"]),
                     Recibido = Convert.ToDateTime(dr["FechaEntrada"]),
                     Entregado = Convert.ToDateTime(dr["FechaSalida"]),
-                };
+                }; 
+                Console.WriteLine("Nota " + n.ID + " [ " + (((float)i/dt.Rows.Count) * 100).ToString(".00") + "% ]");
 
                 foreach (DataRow c in clientes.Rows)
                 {
                     if( c["Nombre"].ToString().Equals(dr["ClienteNombre"].ToString()) )
-                    { n.Cliente = new ClienteDto { ID = Convert.ToInt32(c["ID"]) }; break; }
+                    { 
+                        n.Cliente = new ClienteDto { ID = Convert.ToInt32(c["ID"]) }; 
+                        break; 
+                    }
                 }
 
                 DataTable prendaItemsDT = Database.Query("SELECT PN.ID, PN.PrendaID, P.Nombre AS PrendaNombre, PN.ColorID, C.Nombre AS ColorNombre, PN.Cantidad, PN.DescuentoID, D.Nombre AS DescuentoNombre, PN.TipoPrendaID, TP.Nombre AS TipoPrendaNombre, PN.SubtipoPrendaID, SP.Nombre AS SubtipoPrendaNombre FROM Prenda_Nota PN JOIN Prenda P ON P.ID = PN.PrendaID JOIN Color C ON C.ID = PN.ColorID LEFT JOIN Descuento D ON D.ID = PN.DescuentoID LEFT JOIN Tipo_Prenda TP ON TP.ID = PN.TipoPrendaID LEFT JOIN Subtipo_Prenda SP ON SP.ID = PN.SubtipoPrendaID WHERE NotaID = " + dr["ID"]);
@@ -330,22 +335,31 @@ namespace DatabaseMigrationTool
                         Cantidad = Convert.ToInt32(pdr["Cantidad"]),
                     };
 
-                    foreach(DataRow p in prendas.Rows)
+                    foreach (DataRow p in prendas.Rows)
                     {
                         if(p["Nombre"].ToString().Equals(pdr["PrendaNombre"].ToString()))
-                        { prenda.Prenda = new CatalogoDto { ID = Convert.ToInt16(pdr["PrendaID"])}; break; }
+                        { 
+                            prenda.Prenda = new CatalogoDto { ID = Convert.ToInt16(p["ID"])};
+                            break; 
+                        }
                     }
 
                     foreach (DataRow c in colores.Rows)
                     {
                         if (c["Nombre"].ToString().Equals(pdr["ColorNombre"].ToString()))
-                        { prenda.Color = new CatalogoDto { ID = Convert.ToInt16(c["ID"]) }; break; }
+                        { 
+                            prenda.Color = new CatalogoDto { ID = Convert.ToInt16(c["ID"]) };
+                            break; 
+                        }
                     }
-                    
+
                     foreach (DataRow t in tiposPrenda.Rows)
                     {
-                        if(t["Nombre"].ToString().Equals(dr["TipoPrendaNombre"].ToString()))
-                        { prenda.TipoPrenda = new CatalogoDto { ID = Convert.ToInt16(t["TipoPrendaID"])}; break; }
+                        if(t["Nombre"].ToString().Equals(pdr["TipoPrendaNombre"].ToString()))
+                        { 
+                            prenda.TipoPrenda = new CatalogoDto { ID = Convert.ToInt16(t["ID"])};
+                            break; 
+                        }
                     }
 
                     DataTable servicioItemsDT = Database.Query("SELECT APN.*, P.NotaID, A.Nombre AS NombreArreglo, A.CostoBase, U.Clave AS UsuarioNombre, D.Nombre AS DescuentoNombre FROM Arreglo_Prenda_Nota APN JOIN Prenda_Nota P ON P.ID = APN.PrendaNotaID JOIN Arreglo A ON A.ID = APN.ArregloID LEFT JOIN Usuario U ON U.ID = APN.UsuarioID LEFT JOIN Descuento D ON D.ID = APN.DescuentoID WHERE PrendaNotaID = CONVERT(UNIQUEIDENTIFIER, '" + pdr["ID"] + "')");
@@ -362,13 +376,19 @@ namespace DatabaseMigrationTool
                         foreach(DataRow u in usuarios.Rows)
                         {
                             if (u["Username"].ToString().Equals(sdr["UsuarioNombre"].ToString()))
-                            { servicio.Encargado = new UsuarioDto { Username = sdr["UsuarioNombre"].ToString() }; break; }
+                            { 
+                                servicio.Encargado = new UsuarioDto { ID = Convert.ToInt64(u["ID"]) };
+                                break;
+                            }
                         }
 
                         foreach(DataRow s in servicios.Rows)
                         {
                             if(s["Nombre"].ToString().Equals(sdr["NombreArreglo"].ToString()))
-                            { servicio.Servicio = new ServicioDto { ID = Convert.ToInt32(s["ID"]) }; break; }
+                            { 
+                                servicio.Servicio = new ServicioDto { ID = Convert.ToInt32(s["ID"]) };
+                                break; 
+                            }
                         }
                         prenda.Servicios.Add(servicio);
                     }
@@ -389,7 +409,9 @@ namespace DatabaseMigrationTool
                     };
                     n.Pagos.Add(pago);
                 }
-                DaoManager.NotaDao.GuardarNota(n);
+
+                DaoManager.NotaDao.InsertarNota(n);
+                i++;
             }
             return true;
         }

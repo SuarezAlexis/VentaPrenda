@@ -53,6 +53,7 @@ namespace VentaPrenda.DAO.Concrete
                 }
                 catch (Exception e)
                 {
+                    Logger.Log("MySqlDbContext Excepción " + e.GetType() + ": " + e.Message + "\nStackTrace: " + e.StackTrace);
                     throw e;
                 }
             }
@@ -60,22 +61,35 @@ namespace VentaPrenda.DAO.Concrete
 
         public static DataTable Query(string query, Dictionary<string,object> param)
         {
+            //Logger.Log("MySqlDbContext QUERY: " + query);
+            //Logger.Log("MySqlDbContext Getting connection...");
             using (conn = GetConnection())
             {
+                //Logger.Log("MySqlDbContext Done");
                 DataTable table = new DataTable();
                 MySqlCommand cmd = new MySqlCommand(query, (MySqlConnection)conn);
 
+                //Logger.Log("MySqlDbContext populating parameters...");
                 foreach (KeyValuePair<string, object> p in param)
                 { cmd.Parameters.AddWithValue(p.Key, p.Value); }
+                //Logger.Log("MySqlDbContext Done");
 
                 try
                 {
+                    //Logger.Log("MySqlDbContext Openning connection...");
                     conn.Open();
-                    table.Load(cmd.ExecuteReader(CommandBehavior.CloseConnection));
+                    //Logger.Log("MySqlDbContext Done");
+                    //Logger.Log("MySqlDbContext Executing reader and closing connection...");
+                    MySqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                    //Logger.Log("MySqlDbContext Done");
+                    //Logger.Log("MySqlDbContext Loading data DataTable object...");
+                    table.Load(reader);
+                    //Logger.Log("MySqlDbContext Done");
                     return table;
                 }
                 catch (Exception e)
                 {
+                    Logger.Log("MySqlDbContext Excepción " + e.GetType() + ": " + e.Message + "\nStackTrace: " + e.StackTrace);
                     throw e;
                 }
             }

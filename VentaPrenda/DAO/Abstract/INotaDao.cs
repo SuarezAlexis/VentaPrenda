@@ -13,6 +13,7 @@ namespace VentaPrenda.DAO.Abstract
         NotaDto GetNota(long id);
         DataTable GetNotas();
         NotaDto GuardarNota(NotaDto dto);
+        NotaDto InsertarNota(NotaDto dto);
         NotaDto EliminarNota(NotaDto dto);
     }
 }
