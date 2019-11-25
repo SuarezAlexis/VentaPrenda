@@ -314,16 +314,17 @@ namespace DatabaseMigrationTool
                     Recibido = Convert.ToDateTime(dr["FechaEntrada"]),
                     Entregado = Convert.ToDateTime(dr["FechaSalida"]),
                 }; 
-                Console.WriteLine("Nota " + n.ID + " [ " + (((float)i/dt.Rows.Count) * 100).ToString(".00") + "% ]");
+                Console.WriteLine("Nota " + n.ID + " [ " + i + " de " + dt.Rows.Count + " " + (((float)i/dt.Rows.Count) * 100).ToString("0.00") + "% ]");
 
                 foreach (DataRow c in clientes.Rows)
                 {
                     if( c["Nombre"].ToString().Equals(dr["ClienteNombre"].ToString()) )
                     { 
-                        n.Cliente = new ClienteDto { ID = Convert.ToInt32(c["ID"]) }; 
+                        n.Cliente = new ClienteDto { ID = Convert.ToInt32(c["ID"]) };
                         break; 
                     }
                 }
+                if (n.Cliente == null) { Console.WriteLine("no se encontró cliente"); }
 
                 DataTable prendaItemsDT = Database.Query("SELECT PN.ID, PN.PrendaID, P.Nombre AS PrendaNombre, PN.ColorID, C.Nombre AS ColorNombre, PN.Cantidad, PN.DescuentoID, D.Nombre AS DescuentoNombre, PN.TipoPrendaID, TP.Nombre AS TipoPrendaNombre, PN.SubtipoPrendaID, SP.Nombre AS SubtipoPrendaNombre FROM Prenda_Nota PN JOIN Prenda P ON P.ID = PN.PrendaID JOIN Color C ON C.ID = PN.ColorID LEFT JOIN Descuento D ON D.ID = PN.DescuentoID LEFT JOIN Tipo_Prenda TP ON TP.ID = PN.TipoPrendaID LEFT JOIN Subtipo_Prenda SP ON SP.ID = PN.SubtipoPrendaID WHERE NotaID = " + dr["ID"]);
                 n.Prendas = new List<PrendaItemDto>();
@@ -408,6 +409,22 @@ namespace DatabaseMigrationTool
                         Monto = Convert.ToDecimal(pdr["Monto"])
                     };
                     n.Pagos.Add(pago);
+                }
+
+                switch(dr["EstatusNombre"].ToString())
+                {
+                    case "En proceso":
+                        n.Estatus = Estatus.Terminado;
+                        break;
+                    case "Entregada":
+                        n.Estatus = Estatus.Entregado;
+                        break;
+                    case "Donada":
+                        n.Estatus = Estatus.Caducado;
+                        break;
+                    default:
+                        n.Estatus = Estatus.Pendiente;
+                        break;
                 }
 
                 DaoManager.NotaDao.InsertarNota(n);

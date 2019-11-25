@@ -53,7 +53,7 @@ namespace VentaPrenda.DAO.Concrete
                 }
                 catch (Exception e)
                 {
-                    Logger.Log("MySqlDbContext Excepción " + e.GetType() + ": " + e.Message + "\nStackTrace: " + e.StackTrace);
+                    Logger.Log("MySqlDbContext Excepción " + e.GetType() + ": " + e.Message + "\nStackTrace:\n" + e.StackTrace);
                     throw e;
                 }
             }
@@ -89,7 +89,7 @@ namespace VentaPrenda.DAO.Concrete
                 }
                 catch (Exception e)
                 {
-                    Logger.Log("MySqlDbContext Excepción " + e.GetType() + ": " + e.Message + "\nStackTrace: " + e.StackTrace);
+                    Logger.Log("MySqlDbContext Excepción " + e.GetType() + ": " + e.Message + "\nStackTrace:\n" + e.StackTrace);
                     throw e;
                 }
             }

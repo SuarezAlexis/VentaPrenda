@@ -6,6 +6,7 @@ using System.Linq;
 using VentaPrenda.DAO.Abstract;
 using VentaPrenda.DTO;
 using VentaPrenda.Model;
+using VentaPrenda.Service;
 
 namespace VentaPrenda.DAO.Concrete
 {
@@ -233,9 +234,9 @@ namespace VentaPrenda.DAO.Concrete
                 param.Add("@Entregado", dto.Entregado);
                 param.Add("@Observaciones", dto.Observaciones);
                 param.Add("@Descuento", dto.Descuento != null ? (object)dto.Descuento.ID : null);
-                    
-                DataTable dt = MySqlDbContext.Query(INSERT_ID_SQL, param);
 
+                DataTable dt = MySqlDbContext.Query(INSERT_ID_SQL, param);
+                    
                 GuardarPrendas(dto.Prendas);
                 GuardarPagos(dto.Pagos);
             }
