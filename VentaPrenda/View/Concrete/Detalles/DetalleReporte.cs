@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VentaPrenda.View.Abstract;
 using VentaPrenda.DTO;
@@ -99,6 +96,44 @@ namespace VentaPrenda.View.Concrete.Detalles
             resumen.Dock = DockStyle.Fill;
         }
 
+        private void FillProduccionResumen(DataRowCollection rows)
+        {
+            DataGridView dgv = new DataGridView();
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.MultiSelect = false;
+            dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            dgv.ShowEditingIcon = false;
+            dgv.Dock = DockStyle.Fill;
+            dgv.Columns.Add("Usuario", "Usuario");
+            dgv.Columns.Add("Servicios", "Servicios");
+            dgv.Columns.Add("Monto", "Monto");
+            Dictionary<string, Object[]> renglones = new Dictionary<string, Object[]>();
+            foreach (DataRow row in rows)
+            {
+                if (!renglones.ContainsKey(row["Elaboró"].ToString()))
+                {
+                    renglones.Add(
+                        row["Elaboró"].ToString(),
+                        new Object[] {
+                            Convert.ToInt32(row["Cantidad"]),
+                            Convert.ToDecimal(row["Precio"])
+                        }); ;
+                } else
+                {
+                    renglones[row["Elaboró"].ToString()][0] = (int)renglones[row["Elaboró"].ToString()][0] + Convert.ToInt32(row["Cantidad"]);
+                    renglones[row["Elaboró"].ToString()][1] = (decimal)renglones[row["Elaboró"].ToString()][1] + Convert.ToDecimal(row["Precio"]);
+                }
+            }
+            foreach (KeyValuePair<string, Object[]> kvp in renglones) 
+            {
+                dgv.Rows.Add(new Object[] { kvp.Key, kvp.Value[0], kvp.Value[1] });
+            }
+            detalleReporteLayoutPanel.Controls.Add(dgv);
+        }
+
         private void ObtenerReporteButton_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
@@ -112,6 +147,10 @@ namespace VentaPrenda.View.Concrete.Detalles
                         break;
                     case TipoReporte.Ingresos:
                         FillIngresosResumen(mainView.DataSource.Rows);
+                        break;
+                    case TipoReporte.Produccion:
+                        mainView.DataSource.Columns.Remove("#");
+                        FillProduccionResumen(mainView.DataSource.Rows);
                         break;
                 }
             }
