@@ -14,7 +14,7 @@ namespace VentaPrenda.View.Concrete.Detalles
         private ColoresGUIDto _colores;
         private ReporteDto _dto;
         private ErrorProvider _errorProvider;
-        private UserControl resumen;
+        private Control resumen;
         public override object Dto
         {
             get
@@ -102,9 +102,8 @@ namespace VentaPrenda.View.Concrete.Detalles
             dgv.AllowUserToAddRows = false;
             dgv.AllowUserToDeleteRows = false;
             dgv.AllowUserToResizeRows = false;
-            dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dgv.MultiSelect = false;
-            dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgv.ShowEditingIcon = false;
             dgv.BackgroundColor = Colores.FondoLista;
             dgv.ReadOnly = true;
@@ -139,13 +138,15 @@ namespace VentaPrenda.View.Concrete.Detalles
                     kvp.Value[1] 
                 });
             }
-            detalleReporteLayoutPanel.Controls.Add(dgv);
+            resumen = dgv;
+            detalleReporteLayoutPanel.Controls.Add(resumen);
         }
 
         private void ObtenerReporteButton_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
             {
+                Cursor = Cursors.WaitCursor;
                 if (resumen != null) detalleReporteLayoutPanel.Controls.Remove(resumen);
                 IMainView mainView = (IMainView)ParentForm;
                 mainView.Controller.Reporte((ReporteDto)Dto);
@@ -161,6 +162,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                         FillProduccionResumen(mainView.DataSource.Rows);
                         break;
                 }
+                Cursor = Cursors.Default;
             }
         }
 
