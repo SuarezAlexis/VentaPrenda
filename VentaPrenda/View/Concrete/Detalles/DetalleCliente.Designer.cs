@@ -134,9 +134,10 @@
             // 
             // nombreLayoutPanel
             // 
-            this.nombreLayoutPanel.ColumnCount = 2;
+            this.nombreLayoutPanel.ColumnCount = 3;
             this.nombreLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.nombreLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.nombreLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.nombreLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.nombreLayoutPanel.Controls.Add(this.nombreLabel, 0, 0);
             this.nombreLayoutPanel.Controls.Add(this.nombreTextBox, 1, 0);
             this.nombreLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -160,28 +161,28 @@
             // 
             // nombreTextBox
             // 
-            this.nombreTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.nombreTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.nombreTextBox.Location = new System.Drawing.Point(112, 7);
             this.nombreTextBox.MaxLength = 128;
             this.nombreTextBox.Name = "nombreTextBox";
-            this.nombreTextBox.Size = new System.Drawing.Size(170, 20);
+            this.nombreTextBox.Size = new System.Drawing.Size(121, 20);
             this.nombreTextBox.TabIndex = 1;
             this.nombreTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.nombreTextBox_Validating);
             this.nombreTextBox.Validated += new System.EventHandler(this.nombreTextBox_Validated);
             // 
             // domicilioLayoutPanel
             // 
-            this.domicilioLayoutPanel.ColumnCount = 2;
+            this.domicilioLayoutPanel.ColumnCount = 3;
             this.domicilioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.domicilioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.domicilioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.domicilioLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.domicilioLayoutPanel.Controls.Add(this.domicilioLabel, 0, 0);
             this.domicilioLayoutPanel.Controls.Add(this.domicilioTextBox, 1, 0);
             this.domicilioLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.domicilioLayoutPanel.Location = new System.Drawing.Point(5, 89);
             this.domicilioLayoutPanel.Name = "domicilioLayoutPanel";
             this.domicilioLayoutPanel.RowCount = 1;
-            this.domicilioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.domicilioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.domicilioLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.domicilioLayoutPanel.Size = new System.Drawing.Size(364, 34);
             this.domicilioLayoutPanel.TabIndex = 2;
             // 
@@ -198,18 +199,19 @@
             // 
             // domicilioTextBox
             // 
-            this.domicilioTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.domicilioTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.domicilioTextBox.Location = new System.Drawing.Point(112, 7);
             this.domicilioTextBox.MaxLength = 128;
             this.domicilioTextBox.Name = "domicilioTextBox";
-            this.domicilioTextBox.Size = new System.Drawing.Size(170, 20);
+            this.domicilioTextBox.Size = new System.Drawing.Size(121, 20);
             this.domicilioTextBox.TabIndex = 1;
             // 
             // coloniaLayoutPanel
             // 
-            this.coloniaLayoutPanel.ColumnCount = 2;
+            this.coloniaLayoutPanel.ColumnCount = 3;
             this.coloniaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.coloniaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.coloniaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.coloniaLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.coloniaLayoutPanel.Controls.Add(this.coloniaLabel, 0, 0);
             this.coloniaLayoutPanel.Controls.Add(this.coloniaTextBox, 1, 0);
             this.coloniaLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -233,11 +235,11 @@
             // 
             // coloniaTextBox
             // 
-            this.coloniaTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.coloniaTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.coloniaTextBox.Location = new System.Drawing.Point(112, 7);
             this.coloniaTextBox.MaxLength = 64;
             this.coloniaTextBox.Name = "coloniaTextBox";
-            this.coloniaTextBox.Size = new System.Drawing.Size(170, 20);
+            this.coloniaTextBox.Size = new System.Drawing.Size(121, 20);
             this.coloniaTextBox.TabIndex = 1;
             // 
             // cpLayoutPanel
@@ -277,9 +279,10 @@
             // 
             // telefonoLayoutPanel
             // 
-            this.telefonoLayoutPanel.ColumnCount = 2;
+            this.telefonoLayoutPanel.ColumnCount = 3;
             this.telefonoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.telefonoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.telefonoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.telefonoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.telefonoLayoutPanel.Controls.Add(this.telefonoLabel, 0, 0);
             this.telefonoLayoutPanel.Controls.Add(this.telefonoTextBox, 1, 0);
             this.telefonoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -303,18 +306,19 @@
             // 
             // telefonoTextBox
             // 
-            this.telefonoTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.telefonoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.telefonoTextBox.Location = new System.Drawing.Point(112, 7);
             this.telefonoTextBox.MaxLength = 10;
             this.telefonoTextBox.Name = "telefonoTextBox";
-            this.telefonoTextBox.Size = new System.Drawing.Size(170, 20);
+            this.telefonoTextBox.Size = new System.Drawing.Size(121, 20);
             this.telefonoTextBox.TabIndex = 1;
             // 
             // emailLayoutPanel
             // 
-            this.emailLayoutPanel.ColumnCount = 2;
+            this.emailLayoutPanel.ColumnCount = 3;
             this.emailLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.emailLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.emailLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.emailLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.emailLayoutPanel.Controls.Add(this.emailLabel, 0, 0);
             this.emailLayoutPanel.Controls.Add(this.emailTextBox, 1, 0);
             this.emailLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -338,11 +342,11 @@
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.emailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.emailTextBox.Location = new System.Drawing.Point(112, 7);
             this.emailTextBox.MaxLength = 64;
             this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(170, 20);
+            this.emailTextBox.Size = new System.Drawing.Size(121, 20);
             this.emailTextBox.TabIndex = 1;
             // 
             // habilitadoLayoutPanel

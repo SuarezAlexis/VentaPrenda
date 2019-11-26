@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicioUserControl));
             this.servicioLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.cantNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.servicioComboBox = new System.Windows.Forms.ComboBox();
@@ -146,11 +147,11 @@
             // 
             this.editButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.editButton.Enabled = false;
+            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
             this.editButton.Location = new System.Drawing.Point(670, 16);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(24, 23);
             this.editButton.TabIndex = 0;
-            this.editButton.Text = "X";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.EditButton_Click);
             // 

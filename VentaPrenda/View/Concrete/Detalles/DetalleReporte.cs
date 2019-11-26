@@ -106,10 +106,13 @@ namespace VentaPrenda.View.Concrete.Detalles
             dgv.MultiSelect = false;
             dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             dgv.ShowEditingIcon = false;
+            dgv.BackgroundColor = Colores.FondoLista;
+            dgv.ReadOnly = true;
             dgv.Dock = DockStyle.Fill;
             dgv.Columns.Add("Usuario", "Usuario");
             dgv.Columns.Add("Servicios", "Servicios");
             dgv.Columns.Add("Monto", "Monto");
+
             Dictionary<string, Object[]> renglones = new Dictionary<string, Object[]>();
             foreach (DataRow row in rows)
             {
@@ -129,7 +132,12 @@ namespace VentaPrenda.View.Concrete.Detalles
             }
             foreach (KeyValuePair<string, Object[]> kvp in renglones) 
             {
-                dgv.Rows.Add(new Object[] { kvp.Key, kvp.Value[0], kvp.Value[1] });
+                dgv.Rows.Add(new Object[] 
+                { 
+                    String.IsNullOrEmpty(kvp.Key)? "Sin asignar": kvp.Key, 
+                    kvp.Value[0], 
+                    kvp.Value[1] 
+                });
             }
             detalleReporteLayoutPanel.Controls.Add(dgv);
         }

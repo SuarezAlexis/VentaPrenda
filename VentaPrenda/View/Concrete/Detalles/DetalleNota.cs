@@ -37,6 +37,10 @@ namespace VentaPrenda.View.Concrete.Detalles
                 estatusComboBox.Enabled = !value && !string.IsNullOrEmpty(idDataLabel.Text);
                 observacionesTextBox.ReadOnly = value;
                 imprimirButton.Enabled = value;
+                entregarButton.Enabled = value &&
+                    _dto.Estatus != Estatus.Cancelado  &&
+                    _dto.Estatus != Estatus.Cancelado &&
+                    _dto.Estatus != Estatus.Entregado;
             }
         }
 
@@ -71,6 +75,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 agregarPrendaButton.BackColor = _colores.FondoBoton;
                 agregarPagoButton.BackColor = _colores.FondoBoton;
                 imprimirButton.BackColor = _colores.FondoBoton;
+                entregarButton.BackColor = _colores.FondoBoton;
             }
         }
         public int Servicios
@@ -549,6 +554,18 @@ namespace VentaPrenda.View.Concrete.Detalles
                             MessageBoxIcon.Error);
             }
             
+        }
+
+        private void EntregarButton_Click(object sender, EventArgs e)
+        {
+            IMainView mainView = (IMainView)ParentForm;
+            _dto.Entregado = DateTime.Now;
+            _dto.Estatus = Estatus.Entregado;
+            Cursor = Cursors.WaitCursor;
+            mainView.Controller.Guardar(_dto);
+            Cursor = Cursors.Default;
+            entregadoDateTimePicker.Value = _dto.Entregado;
+            estatusComboBox.SelectedItem = _dto.Estatus;
         }
     }
 }

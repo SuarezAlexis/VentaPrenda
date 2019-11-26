@@ -78,9 +78,10 @@
             // 
             // printerNameLayoutPanel
             // 
-            this.printerNameLayoutPanel.ColumnCount = 2;
+            this.printerNameLayoutPanel.ColumnCount = 3;
             this.printerNameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.printerNameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.printerNameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.printerNameLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.printerNameLayoutPanel.Controls.Add(this.printerNameLabel, 0, 0);
             this.printerNameLayoutPanel.Controls.Add(this.printerNameComboBox, 1, 0);
             this.printerNameLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -88,7 +89,6 @@
             this.printerNameLayoutPanel.Name = "printerNameLayoutPanel";
             this.printerNameLayoutPanel.RowCount = 1;
             this.printerNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.printerNameLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.printerNameLayoutPanel.Size = new System.Drawing.Size(490, 34);
             this.printerNameLayoutPanel.TabIndex = 0;
             // 
@@ -110,14 +110,15 @@
             this.printerNameComboBox.FormattingEnabled = true;
             this.printerNameComboBox.Location = new System.Drawing.Point(112, 6);
             this.printerNameComboBox.Name = "printerNameComboBox";
-            this.printerNameComboBox.Size = new System.Drawing.Size(200, 21);
+            this.printerNameComboBox.Size = new System.Drawing.Size(184, 21);
             this.printerNameComboBox.TabIndex = 1;
             // 
             // encabezadoLayoutPanel
             // 
-            this.encabezadoLayoutPanel.ColumnCount = 2;
+            this.encabezadoLayoutPanel.ColumnCount = 3;
             this.encabezadoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.encabezadoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.encabezadoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.encabezadoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.encabezadoLayoutPanel.Controls.Add(this.encabezadoLabel, 0, 0);
             this.encabezadoLayoutPanel.Controls.Add(this.encabezadoTextBox, 1, 0);
             this.encabezadoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -141,19 +142,20 @@
             // 
             // encabezadoTextBox
             // 
-            this.encabezadoTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.encabezadoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.encabezadoTextBox.Location = new System.Drawing.Point(112, 4);
             this.encabezadoTextBox.MaxLength = 1024;
             this.encabezadoTextBox.Multiline = true;
             this.encabezadoTextBox.Name = "encabezadoTextBox";
-            this.encabezadoTextBox.Size = new System.Drawing.Size(200, 60);
+            this.encabezadoTextBox.Size = new System.Drawing.Size(184, 60);
             this.encabezadoTextBox.TabIndex = 1;
             // 
             // pieLayoutPanel
             // 
-            this.pieLayoutPanel.ColumnCount = 2;
+            this.pieLayoutPanel.ColumnCount = 3;
             this.pieLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.pieLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pieLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pieLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pieLayoutPanel.Controls.Add(this.pieLabel, 0, 0);
             this.pieLayoutPanel.Controls.Add(this.pieTextBox, 1, 0);
             this.pieLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -177,11 +179,11 @@
             // 
             // pieTextBox
             // 
-            this.pieTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pieTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.pieTextBox.Location = new System.Drawing.Point(112, 4);
             this.pieTextBox.Multiline = true;
             this.pieTextBox.Name = "pieTextBox";
-            this.pieTextBox.Size = new System.Drawing.Size(200, 60);
+            this.pieTextBox.Size = new System.Drawing.Size(184, 60);
             this.pieTextBox.TabIndex = 1;
             // 
             // logoLayoutPanel
@@ -191,7 +193,7 @@
             this.logoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
             this.logoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
             this.logoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.logoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.logoLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.logoLayoutPanel.Controls.Add(this.logoLabel, 0, 0);
             this.logoLayoutPanel.Controls.Add(this.logoButton, 1, 0);
             this.logoLayoutPanel.Controls.Add(this.logoPictureBox, 1, 1);
