@@ -296,15 +296,80 @@ namespace VentaPrenda.View.Concrete
 
         private void SetEditButtonsEnabled(bool e)
         {
-            EliminarButton.Enabled = e;
-            EditarButton.Enabled = e;
-            NuevoButton.Enabled = e;
+            switch (Controller.Funcion)
+            {
+                case Funcion.NOTA:
+                    EliminarButton.Enabled = e && Controller.Usuario.Permisos.EliminarNota;
+                    EditarButton.Enabled = e && Controller.Usuario.Permisos.EditarNota;
+                    NuevoButton.Enabled = e && Controller.Usuario.Permisos.GenerarNota;
+                    break;
+                case Funcion.BALANCE:
+                    EliminarButton.Enabled = e && Controller.Usuario.Permisos.AdmonMovimientos;
+                    EditarButton.Enabled = e && Controller.Usuario.Permisos.AdmonMovimientos;
+                    NuevoButton.Enabled = e && Controller.Usuario.Permisos.GeneraMovimientos;
+                    break;
+                case Funcion.PERFILES:
+                    EliminarButton.Enabled = e && Controller.Usuario.Permisos.AdmonPerfiles;
+                    EditarButton.Enabled = e && Controller.Usuario.Permisos.AdmonPerfiles;
+                    NuevoButton.Enabled = e && Controller.Usuario.Permisos.AdmonPerfiles;
+                    break;
+                case Funcion.USUARIOS:
+                    EliminarButton.Enabled = e && Controller.Usuario.Permisos.AdmonUsuarios;
+                    EditarButton.Enabled = e && Controller.Usuario.Permisos.AdmonUsuarios;
+                    NuevoButton.Enabled = e && Controller.Usuario.Permisos.AdmonUsuarios;
+                    break;
+                case Funcion.CLIENTES:
+                    EliminarButton.Enabled = e && Controller.Usuario.Permisos.AdmonClientes;
+                    EditarButton.Enabled = e && Controller.Usuario.Permisos.AdmonClientes;
+                    NuevoButton.Enabled = e && Controller.Usuario.Permisos.AdmonClientes;
+                    break;
+                case Funcion.COLORES:
+                case Funcion.PRENDAS:
+                case Funcion.SERVICIOS:
+                case Funcion.TIPOS_PRENDA:
+                    EliminarButton.Enabled = e && Controller.Usuario.Permisos.AdmonCatalogos;
+                    EditarButton.Enabled = e && Controller.Usuario.Permisos.AdmonCatalogos;
+                    NuevoButton.Enabled = e && Controller.Usuario.Permisos.AdmonCatalogos;
+                    break;
+                default:
+                    EliminarButton.Enabled = e;
+                    EditarButton.Enabled = e;
+                    NuevoButton.Enabled = e;
+                    break;
+
+            }
         }
 
         private void SetSelectButtonsEnabled(bool e)
         {
-            GuardarButton.Enabled = e;
-            LimpiarButton.Enabled = e;
+            switch(Controller.Funcion)
+            {
+                case Funcion.NOTA:
+                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.GenerarNota;
+                    break;
+                case Funcion.BALANCE:
+                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.GeneraMovimientos;
+                    break;
+                case Funcion.CLIENTES:
+                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.AdmonClientes;
+                    break;
+                case Funcion.PERFILES:
+                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.AdmonPerfiles;
+                    break;
+                case Funcion.USUARIOS:
+                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.AdmonUsuarios;
+                    break;
+                case Funcion.COLORES:
+                case Funcion.PRENDAS:
+                case Funcion.SERVICIOS:
+                case Funcion.TIPOS_PRENDA:
+                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.AdmonCatalogos;
+                    break;
+                default:
+                    GuardarButton.Enabled = e;
+                    LimpiarButton.Enabled = e;
+                    break;
+            }
         }
 
         private void SetFiltroVisible(bool v)
@@ -354,7 +419,7 @@ namespace VentaPrenda.View.Concrete
                 case Funcion.DESCUENTOS:
                     return new DetalleDescuento(errorProvider);
                 case Funcion.NOTA:
-                    return new DetalleNota(errorProvider);
+                    return new DetalleNota(errorProvider, Controller.Usuario    );
                 case Funcion.CLIENTES:
                     return new DetalleCliente(errorProvider);
                 case Funcion.BALANCE:
@@ -434,13 +499,21 @@ namespace VentaPrenda.View.Concrete
         { Cursor = Cursors.WaitCursor; Controller.Ticket(); Cursor = Cursors.Default; }
 
         public void NotasButton_Click(object sender, EventArgs e)
-        { Cursor = Cursors.WaitCursor; Controller.Notas(); Cursor = Cursors.Default; }
+        { 
+            Cursor = Cursors.WaitCursor; 
+            Controller.Notas();
+            Cursor = Cursors.Default; 
+        }
 
         public void ClientesButton_Click(object sender, EventArgs e)
         { Cursor = Cursors.WaitCursor; Controller.Clientes(); Cursor = Cursors.Default; }
 
         public void BalanceButton_Click(object sender, EventArgs e)
-        { Cursor = Cursors.WaitCursor; Controller.Balance(); Cursor = Cursors.Default; }
+        { 
+            Cursor = Cursors.WaitCursor; 
+            Controller.Balance(); 
+            Cursor = Cursors.Default; 
+        }
 
         public void ReportesButton_Click(object sender, EventArgs e)
         { Cursor = Cursors.WaitCursor; Controller.Reportes(); Cursor = Cursors.Default; }
@@ -461,8 +534,16 @@ namespace VentaPrenda.View.Concrete
             {
                 Controller.FillDetalle(Convert.ToInt64(listGridView.SelectedRows[0].Cells[0].Value));
                 objetoLabel.Text = Detalle.Dto.ToString();
-                if (Controller.Funcion == Funcion.HISTORIAL)
-                    SetEditButtonsEnabled(false);
+                switch (Controller.Funcion)
+                {
+                    case Funcion.HISTORIAL:
+                        SetEditButtonsEnabled(false);
+                        break;
+                    case Funcion.NOTA:
+                        break;
+                    case Funcion.BALANCE:
+                        break;
+                }
             }
             Cursor = Cursors.Default;
         }

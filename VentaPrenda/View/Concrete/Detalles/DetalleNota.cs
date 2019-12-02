@@ -41,6 +41,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     _dto.Estatus != Estatus.Cancelado  &&
                     _dto.Estatus != Estatus.Cancelado &&
                     _dto.Estatus != Estatus.Entregado;
+                recibioComboBox.Enabled = !value;
             }
         }
 
@@ -55,6 +56,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 _dto.Entregado = entregadoDateTimePicker.Value;
                 _dto.Estatus = (Estatus)estatusComboBox.SelectedItem;
                 _dto.Observaciones = observacionesTextBox.Text.Replace("\n"," ");
+                _dto.Recibio = DtoMapper.Usuario((UsuarioDto)recibioComboBox.SelectedItem);
                 return _dto;
             }
             set
@@ -118,12 +120,15 @@ namespace VentaPrenda.View.Concrete.Detalles
             foreach(Estatus s in Enum.GetValues(typeof(Estatus)))
             { estatusComboBox.Items.Add(s); }
             estatusComboBox.SelectedIndex = 1;
+            foreach(UsuarioDto u in ServicioItemDto.Usuarios)
+            { recibioComboBox.Items.Add(u); }
             Visible = true;
         }
 
-        public DetalleNota(ErrorProvider e) : this()
+        public DetalleNota(ErrorProvider e, Usuario u) : this()
         {
             _errorProvider = e;
+            recibioComboBox.SelectedItem = new UsuarioDto(u);
         }
 
         /*******************************************************************/
@@ -145,7 +150,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             entregadoDateTimePicker.Value = DateTime.Now;
             estatusComboBox.SelectedIndex = 0;
             observacionesTextBox.Text = "";
-            recibioDataLabel.Text = "";
+            recibioComboBox.SelectedIndex = -1;
             ActualizarTotalLabel();
             ActualizarDescuentoLabels();
             ActualizarPagosLabels();
@@ -179,7 +184,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 entregadoDateTimePicker.Value = n.Entregado;
                 estatusComboBox.SelectedItem = n.Estatus;
                 observacionesTextBox.Text = n.Observaciones;
-                recibioDataLabel.Text = n.Recibio.Nombre;
+                recibioComboBox.SelectedItem = n.Recibio;
                 imprimirButton.Enabled = !String.IsNullOrEmpty(idDataLabel.Text);
                 Visible = true;
             } catch(Exception e)

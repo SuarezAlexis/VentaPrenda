@@ -25,5 +25,17 @@ namespace VentaPrenda.Model
         {
             return Username + " " + Nombre;
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) return false;
+            else
+            {
+                if (this == obj) return true;
+                Usuario d = (Usuario)obj;
+                return ID == d.ID;
+            }
+        }
+
     }
 }
