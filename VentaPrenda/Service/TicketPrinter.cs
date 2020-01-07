@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Text;
 using VentaPrenda.DAO;
 using VentaPrenda.DTO;
 using VentaPrenda.Model;
@@ -43,6 +44,7 @@ namespace VentaPrenda.Service
             float lineHeight = LineSpacing * Font.GetHeight(ev.Graphics);
             float yPos = topMargin;
             StringFormat format = new StringFormat();
+            StringBuilder sb = new StringBuilder();
 
             /*****************************************************************
              * Logo
