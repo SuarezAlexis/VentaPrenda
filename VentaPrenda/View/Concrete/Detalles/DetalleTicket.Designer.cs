@@ -69,10 +69,9 @@
             this.ticketLayoutPanel.Name = "ticketLayoutPanel";
             this.ticketLayoutPanel.RowCount = 4;
             this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ticketLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ticketLayoutPanel.Size = new System.Drawing.Size(500, 500);
             this.ticketLayoutPanel.TabIndex = 0;
             // 
@@ -126,7 +125,7 @@
             this.encabezadoLayoutPanel.Name = "encabezadoLayoutPanel";
             this.encabezadoLayoutPanel.RowCount = 1;
             this.encabezadoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.encabezadoLayoutPanel.Size = new System.Drawing.Size(490, 68);
+            this.encabezadoLayoutPanel.Size = new System.Drawing.Size(490, 94);
             this.encabezadoLayoutPanel.TabIndex = 1;
             // 
             // encabezadoLabel
@@ -135,20 +134,22 @@
             this.encabezadoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.encabezadoLabel.Location = new System.Drawing.Point(3, 0);
             this.encabezadoLabel.Name = "encabezadoLabel";
-            this.encabezadoLabel.Size = new System.Drawing.Size(103, 68);
+            this.encabezadoLabel.Size = new System.Drawing.Size(103, 94);
             this.encabezadoLabel.TabIndex = 0;
             this.encabezadoLabel.Text = "Encabezado";
             this.encabezadoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // encabezadoTextBox
             // 
-            this.encabezadoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.encabezadoTextBox.Location = new System.Drawing.Point(112, 4);
+            this.encabezadoTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.encabezadoTextBox.Location = new System.Drawing.Point(112, 3);
             this.encabezadoTextBox.MaxLength = 1024;
             this.encabezadoTextBox.Multiline = true;
             this.encabezadoTextBox.Name = "encabezadoTextBox";
-            this.encabezadoTextBox.Size = new System.Drawing.Size(184, 60);
+            this.encabezadoTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.encabezadoTextBox.Size = new System.Drawing.Size(184, 88);
             this.encabezadoTextBox.TabIndex = 1;
+            this.encabezadoTextBox.WordWrap = false;
             // 
             // pieLayoutPanel
             // 
@@ -159,11 +160,11 @@
             this.pieLayoutPanel.Controls.Add(this.pieLabel, 0, 0);
             this.pieLayoutPanel.Controls.Add(this.pieTextBox, 1, 0);
             this.pieLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pieLayoutPanel.Location = new System.Drawing.Point(5, 123);
+            this.pieLayoutPanel.Location = new System.Drawing.Point(5, 149);
             this.pieLayoutPanel.Name = "pieLayoutPanel";
             this.pieLayoutPanel.RowCount = 1;
             this.pieLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pieLayoutPanel.Size = new System.Drawing.Size(490, 68);
+            this.pieLayoutPanel.Size = new System.Drawing.Size(490, 94);
             this.pieLayoutPanel.TabIndex = 2;
             // 
             // pieLabel
@@ -172,19 +173,21 @@
             this.pieLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pieLabel.Location = new System.Drawing.Point(3, 0);
             this.pieLabel.Name = "pieLabel";
-            this.pieLabel.Size = new System.Drawing.Size(103, 68);
+            this.pieLabel.Size = new System.Drawing.Size(103, 94);
             this.pieLabel.TabIndex = 0;
             this.pieLabel.Text = "Pie";
             this.pieLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pieTextBox
             // 
-            this.pieTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pieTextBox.Location = new System.Drawing.Point(112, 4);
+            this.pieTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pieTextBox.Location = new System.Drawing.Point(112, 3);
             this.pieTextBox.Multiline = true;
             this.pieTextBox.Name = "pieTextBox";
-            this.pieTextBox.Size = new System.Drawing.Size(184, 60);
+            this.pieTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.pieTextBox.Size = new System.Drawing.Size(184, 88);
             this.pieTextBox.TabIndex = 1;
+            this.pieTextBox.WordWrap = false;
             // 
             // logoLayoutPanel
             // 
@@ -201,12 +204,12 @@
             this.logoLayoutPanel.Controls.Add(this.anchoLabel, 3, 0);
             this.logoLayoutPanel.Controls.Add(this.anchoNumUpDown, 4, 0);
             this.logoLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoLayoutPanel.Location = new System.Drawing.Point(5, 199);
+            this.logoLayoutPanel.Location = new System.Drawing.Point(5, 251);
             this.logoLayoutPanel.Name = "logoLayoutPanel";
             this.logoLayoutPanel.RowCount = 2;
             this.logoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.logoLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.logoLayoutPanel.Size = new System.Drawing.Size(490, 296);
+            this.logoLayoutPanel.Size = new System.Drawing.Size(490, 244);
             this.logoLayoutPanel.TabIndex = 3;
             // 
             // logoLabel
@@ -238,7 +241,7 @@
             this.logoLayoutPanel.SetColumnSpan(this.logoPictureBox, 4);
             this.logoPictureBox.Location = new System.Drawing.Point(112, 43);
             this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(200, 250);
+            this.logoPictureBox.Size = new System.Drawing.Size(200, 198);
             this.logoPictureBox.TabIndex = 4;
             this.logoPictureBox.TabStop = false;
             // 

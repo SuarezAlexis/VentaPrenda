@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Text;
 using VentaPrenda.DAO;
 using VentaPrenda.DTO;
 using VentaPrenda.Model;
@@ -10,28 +11,35 @@ namespace VentaPrenda.Service
 {
     public class TicketPrinter
     {
+
         public static Font Font = new Font(FontFamily.GenericMonospace.Name, 6);
         public static Font BoldFont = new Font(FontFamily.GenericMonospace.Name, 6, FontStyle.Bold);
         public static Brush Brush = Brushes.Black;
         public static Pen Pen = SystemPens.WindowText;
         public static float LineSpacing = 1.25f;
-        public static Margins Margins = new Margins(15, 15, 15, 15);
+        public static Margins Margins = new Margins(1, 1, 1, 1);
+        public static StringFormat Format = new StringFormat();
+        public static readonly int PAGE_WIDTH = 400;
+        public static readonly int AVAILABLE_WIDTH = 400;
+
         public static TicketConfigDto Config;
-        static private NotaDto Nota;
-        static private Usuario Usuario;
+        private static PrintDocument PrintDocument = new PrintDocument();
+
+        private static NotaDto Nota;
+        private static Usuario Usuario;
         
         public static void PrintTicket(NotaDto nota, Usuario usuario)
         {
             Nota = nota;
             Usuario = usuario;
             Config = DaoManager.TicketConfigDao.GetConfig();
-            PrintDocument pd = new PrintDocument();
-            pd.DefaultPageSettings.PaperSize = new PaperSize("Roll Paper 80mm x 297mm", 333, 1236);
-            pd.DefaultPageSettings.Margins = Margins;
+
+            PrintDocument.DefaultPageSettings.PaperSize = new PaperSize("Roll Paper 80mm x 297mm", PAGE_WIDTH, 1236);
+            PrintDocument.DefaultPageSettings.Margins = Margins;
             if( ! String.IsNullOrEmpty(Config.PrinterName))
-            { pd.PrinterSettings.PrinterName = Config.PrinterName; }
-            pd.PrintPage += pd_PrintPage;
-            pd.Print();
+            { PrintDocument.PrinterSettings.PrinterName = Config.PrinterName; }
+            PrintDocument.PrintPage += pd_PrintPage;
+            PrintDocument.Print();
         }
 
         private static void pd_PrintPage(object sender, PrintPageEventArgs ev)
@@ -39,42 +47,44 @@ namespace VentaPrenda.Service
             float leftMargin = ev.MarginBounds.Left;
             float rightMargin = ev.MarginBounds.Right;
             float topMargin = ev.MarginBounds.Top;
-            float center = ev.PageBounds.Width / 2;
+            float center = ev.PageBounds.Width / 2; 
             float lineHeight = LineSpacing * Font.GetHeight(ev.Graphics);
             float yPos = topMargin;
-            StringFormat format = new StringFormat();
+            StringBuilder sb = new StringBuilder();
 
             /*****************************************************************
              * Logo
              ****************************************************************/
             if (Config.Logo != null)
             {
-                ev.Graphics.DrawImage(Config.Logo, center - Config.Logo.Width / 2, yPos);
-                yPos += Config.Logo.Height + (float)1.5 * lineHeight;
+                ev.Graphics.DrawImage(Config.Logo, new RectangleF(
+                    new PointF(center - Config.Logo.Width/2, yPos), 
+                    new SizeF(Config.Logo.Width,Config.Logo.Height)
+                    ));
+                yPos += Config.Logo.Height + (float)0.5 * lineHeight;
             }
 
             /*****************************************************************
              * Encabezado
              ****************************************************************/
-            format.Alignment = StringAlignment.Center;
-            ev.Graphics.DrawString(Config.Encabezado, Font, Brush, center, yPos, format);
-            yPos += lineHeight * Config.Encabezado.Split(new char[] { '\n' }).Length;
-
+            
+            yPos += DrawString(Config.Encabezado, yPos, StringAlignment.Center, ev);
+            
             /*****************************************************************
              * Datos
              ****************************************************************/
-            format.Alignment = StringAlignment.Near;
-            format.LineAlignment = StringAlignment.Near;
-            ev.Graphics.DrawLine(Pen, leftMargin, yPos, rightMargin, yPos);
+
+            ev.Graphics.DrawLine(Pen, new PointF(leftMargin, yPos), new PointF(rightMargin, yPos));
             yPos += lineHeight / 2;
-            ev.Graphics.DrawString("Nota: " + Nota.ID, Font, Brush, leftMargin, yPos, format);
+
+            yPos += DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), yPos, StringAlignment.Center, ev);
+            yPos += DrawString("Nota: " + Nota.ID, yPos, StringAlignment.Near, ev);
+            yPos += DrawString("Cliente: " + Nota.Cliente.Nombre, yPos, StringAlignment.Near, ev);
+
+            ev.Graphics.DrawLine(Pen, new PointF(leftMargin, yPos), new PointF(rightMargin, yPos));
             yPos += lineHeight;
-            ev.Graphics.DrawString("Cliente: " + Nota.Cliente.Nombre, Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
-            ev.Graphics.DrawLine(Pen, leftMargin, yPos, rightMargin, yPos);
-            yPos += lineHeight;
-            ev.Graphics.DrawString("Cant. Item".PadRight(39) + "$/Unit  Desc. Subt.", Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
+
+            yPos += DrawString("Cant. Item".PadRight(20) + " $Unit   +/-   Subt.", yPos, StringAlignment.Near, ev);
 
             /*****************************************************************
              * Listado
@@ -83,70 +93,98 @@ namespace VentaPrenda.Service
             decimal descuentos = 0;
             foreach (PrendaItemDto p in Nota.Prendas)
             {
-                ev.Graphics.DrawString(p.Cantidad.ToString().PadLeft(3).PadRight(4) + p.Prenda.Nombre.ToUpper() + " " + p.Color.Nombre.ToUpper() + " " + (p.TipoPrenda != null ? p.TipoPrenda.Nombre.ToUpper() : ""), BoldFont, Brush, leftMargin, yPos, format);
-                yPos += lineHeight;
+                yPos += DrawString(p.Cantidad.ToString().PadLeft(2) + " " + p.Prenda.Nombre.ToUpper() + " " + p.Color.Nombre.ToUpper() + " " + (p.TipoPrenda != null ? p.TipoPrenda.Nombre.ToUpper() : ""), 
+                    yPos, StringAlignment.Near, ev);
                 foreach (ServicioItemDto s in p.Servicios)
                 {
                     total += p.Cantidad * s.Monto;
                     descuentos += s.Monto / s.Cantidad - s.Servicio.Costo;
-                    ev.Graphics.DrawString(s.Cantidad.ToString().PadLeft(3).PadRight(4)
-                        + s.Servicio.Nombre.Substring(0, Math.Min(s.Servicio.Nombre.Length, 32)).PadRight(33)
+                    yPos += DrawString(s.Cantidad.ToString().PadLeft(2) + " "
+                        + s.Servicio.Nombre.Substring(0, Math.Min(s.Servicio.Nombre.Length, 15)).PadRight(16)
                         + String.Format("{0:0.00}", s.Servicio.Costo).PadLeft(7)
                         + String.Format("{0:0.00}", s.Monto / s.Cantidad - s.Servicio.Costo).PadLeft(7)
                         + String.Format("{0:0.00}", s.Monto / s.Cantidad).PadLeft(7),
-                        Font, Brush, leftMargin, yPos, format);
-                    yPos += lineHeight;
+                        yPos, StringAlignment.Near, ev);
                 }
             }
             /*****************************************************************
              * Cuenta
              ****************************************************************/
-            ev.Graphics.DrawLine(Pen, leftMargin, yPos, rightMargin, yPos);
+            ev.Graphics.DrawLine(Pen, new PointF(leftMargin, yPos), new PointF(rightMargin, yPos));
             yPos += lineHeight / 2;
-            ev.Graphics.DrawString("Subtotal".PadRight(48) + "$ " + string.Format("{0:0.00}", total).PadLeft(8), Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
+            
+            yPos += DrawString("Subtotal".PadRight(31) + "$" + string.Format("{0:0.00}", total).PadLeft(8), 
+                yPos, StringAlignment.Near, ev);
             descuentos = Nota.Descuento != null ? total / Nota.Descuento.Porcentaje : 0M;
-            ev.Graphics.DrawString("Descuento adicional".PadRight(48) + "$ " + string.Format("{0:0.00}", descuentos).PadLeft(8), Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
+            yPos += DrawString("Descuento adicional".PadRight(31) + "$" + string.Format("{0:0.00}", descuentos).PadLeft(8), 
+                yPos, StringAlignment.Near, ev);
 
-            ev.Graphics.DrawLine(Pen, leftMargin, yPos, rightMargin, yPos);
+            ev.Graphics.DrawLine(Pen, new PointF(leftMargin, yPos), new PointF(rightMargin, yPos));
             yPos += lineHeight / 2;
-            total = total - descuentos;
-            ev.Graphics.DrawString("Total a pagar".PadRight(48) + "$ " + string.Format("{0:0.00}", total).PadLeft(8), Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
-            decimal aCuenta = Nota.Pagos.Sum((p) => p.Monto);
-            ev.Graphics.DrawString("A cuenta".PadRight(48) + "$ " + string.Format("{0:0.00}", aCuenta).PadLeft(8), Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
-            ev.Graphics.DrawString("Por pagar".PadRight(48) + "$ " + string.Format("{0:0.00}", total - aCuenta).PadLeft(8), Font, Brush, leftMargin, yPos, format);
-            yPos += 2 * lineHeight;
-            ev.Graphics.DrawString("Entrega: " + Nota.Entregado.ToLongDateString().PadLeft(49), Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
-            ev.Graphics.DrawString("Lo atendió: " + Usuario.Nombre.PadLeft(46), Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
 
-            string obs = Nota.Observaciones;
-            ev.Graphics.DrawString("Observaciones: "
-                + (String.IsNullOrEmpty(obs) ? "Ninguna" : obs.Substring(0, Math.Min(43, obs.Length))),
-                Font, Brush, leftMargin, yPos, format);
-            yPos += lineHeight;
-            obs = obs.Length > 43 ? obs.Substring(43).TrimStart(new char[] { ' ' }) : String.Empty;
-            while (obs.Length > 0)
-            {
-                ev.Graphics.DrawString(obs.Substring(0, Math.Min(58, obs.Length)), Font, Brush, leftMargin, yPos, format);
-                yPos += lineHeight;
-                obs = obs.Length > 58 ? obs.Substring(58).TrimStart(new char[] { ' ' }) : String.Empty;
-            }
-            ev.Graphics.DrawLine(Pen, leftMargin, yPos, rightMargin, yPos);
+            total = total - descuentos;
+            yPos += DrawString("Total a pagar".PadRight(31) + "$" + string.Format("{0:0.00}", total).PadLeft(8), 
+                yPos, StringAlignment.Near, ev);
+
+            decimal aCuenta = Nota.Pagos.Sum((p) => p.Monto);
+            yPos += DrawString("A cuenta".PadRight(31) + "$" + string.Format("{0:0.00}", aCuenta).PadLeft(8), 
+                yPos, StringAlignment.Near, ev);
+            yPos += DrawString("Por pagar".PadRight(31) + "$" + string.Format("{0:0.00}", total - aCuenta).PadLeft(8) + "\n", 
+                yPos, StringAlignment.Near, ev);
+            yPos += DrawString("Entrega: " + Nota.Entregado.ToLongDateString().PadLeft(31), 
+                yPos, StringAlignment.Near, ev);
+            yPos += DrawString("Lo atendio: " + Usuario.Nombre.PadLeft(28), 
+                yPos, StringAlignment.Near, ev);
+
+            yPos += DrawString("Observaciones: "
+                + (String.IsNullOrEmpty(Nota.Observaciones) ? "Ninguna" : Nota.Observaciones),
+                yPos, StringAlignment.Near, ev);
+
+            ev.Graphics.DrawLine(Pen, new PointF(leftMargin, yPos), new PointF(rightMargin, yPos));
             yPos += lineHeight;
 
             /*****************************************************************
              * Pie
              ****************************************************************/
-            format.Alignment = StringAlignment.Center;
-            ev.Graphics.DrawString(Config.Pie, Font, Brush, center, yPos, format);
 
-            //ev.Graphics.DrawLine(SystemPens.ControlDark, ev.MarginBounds.X + ev.MarginBounds.Width, topMargin, ev.MarginBounds.X + ev.MarginBounds.Width, ev.MarginBounds.Height);
-            ev.Graphics.DrawLine(Pen, ev.PageBounds.Width, topMargin, ev.PageBounds.Width, ev.MarginBounds.Height);
+            yPos += DrawString(Config.Pie, yPos, StringAlignment.Center, ev);
+            
+            /*****************************************************************
+             * Ajustar tamaño de página
+             * **************************************************************/
+            PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("Custom Roll Paper 80mm", PAGE_WIDTH, (int)(yPos + topMargin)/2);
+            PrintDocument.DefaultPageSettings.PaperSize = new PaperSize("Custom Roll Paper 80mm", PAGE_WIDTH, (int)(yPos + topMargin)/2);
+
+            //ev.Graphics.DrawLine(Pen, ev.PageBounds.Width, topMargin, ev.PageBounds.Width, (int)(yPos + topMargin));
+        }
+
+        private static float DrawString(string str, float yPos, StringAlignment align, PrintPageEventArgs ev)
+        {
+            Format.Alignment = StringAlignment.Near;
+            float dy = 0;
+            foreach (string line in str.Split(new char[] { '\n' }))
+            {
+                string remaining = line;
+                do
+                {
+                    int charsInLine = String.IsNullOrWhiteSpace(remaining) ? 0 : Math.Min(remaining[Math.Min(40, remaining.Length - 1)] == '\r' ? 41 : 40, remaining.Length);
+                    string s = remaining.Substring(0, charsInLine);
+                    if (align == StringAlignment.Center)
+                    {
+                        s = s.PadLeft((int)(20 + s.Length / 2));
+                    }
+                    s += "\n\n";
+                    SizeF stringSize = ev.Graphics.MeasureString(s, Font, new SizeF(AVAILABLE_WIDTH, 0), Format);
+                    RectangleF rectf = new RectangleF(new PointF(0, yPos + dy), new SizeF(AVAILABLE_WIDTH, stringSize.Height));
+                    ev.Graphics.DrawString(s, Font, Brush, rectf, Format);
+                    dy += stringSize.Height;
+                    remaining = remaining.Length > charsInLine? 
+                        remaining.Substring(charsInLine).TrimStart(new char[] { ' ' }) 
+                        : String.Empty;
+                } while (remaining.Length > 0);
+                
+            }
+            return dy;
         }
     }
 }

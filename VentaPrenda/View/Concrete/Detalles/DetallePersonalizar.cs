@@ -50,7 +50,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             ActualizarColores();
             _mainView.SetColors(_dto);
         }
-        public void Fill(object model)
+        public override void Fill(object model)
         {
             Dto = model;
             if (model == null || model.GetType() != typeof(ColoresGUIDto))
@@ -66,15 +66,15 @@ namespace VentaPrenda.View.Concrete.Detalles
 
         private void ActualizarColores()
         {
-            fondoVentanaButton.BackColor = _dto.FondoBoton;
+            fondoVentanaButton.BackColor = _dto.FondoVentana;
             fondoBotonButton.BackColor = _dto.FondoBoton;
-            fondoBotonActivoButton.BackColor = _dto.FondoBoton;
-            fondoListaButton.BackColor = _dto.FondoBoton;
-            canceladoButton.BackColor = _dto.FondoBoton;
-            pendienteButton.BackColor = _dto.FondoBoton;
-            terminadoButton.BackColor = _dto.FondoBoton;
-            entregadoButton.BackColor = _dto.FondoBoton;
-            caducadoButton.BackColor = _dto.FondoBoton;
+            fondoBotonActivoButton.BackColor = _dto.FondoBotonActivo;
+            canceladoButton.BackColor = _dto.Cancelado;
+            pendienteButton.BackColor = _dto.Pendiente;
+            entregadoButton.BackColor = _dto.Entregado;
+            terminadoButton.BackColor = _dto.Terminado;
+            caducadoButton.BackColor = _dto.Caducado;
+            fondoListaButton.BackColor = _dto.FondoLista;
         }
 
         private void FondoVentanaButton_Click(object sender, EventArgs e)
@@ -103,6 +103,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             if (result == DialogResult.OK)
             { _dto.FondoBotonActivo = colorDialog.Color; }
             _mainView.SetColors(_dto);
+            ActualizarColores();
         }
 
         private void CanceladoButton_Click(object sender, EventArgs e)
@@ -111,6 +112,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             DialogResult result = colorDialog.ShowDialog();
             if (result == DialogResult.OK)
             { _dto.Cancelado= colorDialog.Color; }
+            ActualizarColores();
         }
 
         private void PedienteButton_Click(object sender, EventArgs e)
@@ -119,6 +121,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             DialogResult result = colorDialog.ShowDialog();
             if (result == DialogResult.OK)
             { _dto.Pendiente = colorDialog.Color; }
+            ActualizarColores();
         }
 
         private void TerminadoButton_Click(object sender, EventArgs e)
@@ -127,6 +130,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             DialogResult result = colorDialog.ShowDialog();
             if (result == DialogResult.OK)
             { _dto.Terminado = colorDialog.Color; }
+            ActualizarColores();
         }
 
         private void EntregadoButton_Click(object sender, EventArgs e)
@@ -135,6 +139,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             DialogResult result = colorDialog.ShowDialog();
             if (result == DialogResult.OK)
             { _dto.Entregado = colorDialog.Color; }
+            ActualizarColores();
         }
 
         private void CaducadoButton_Click(object sender, EventArgs e)
@@ -143,6 +148,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             DialogResult result = colorDialog.ShowDialog();
             if (result == DialogResult.OK)
             { _dto.Caducado = colorDialog.Color; }
+            ActualizarColores();
         }
 
         private void DetallePersonalizar_ParentChanged(object sender, EventArgs e)
@@ -158,6 +164,7 @@ namespace VentaPrenda.View.Concrete.Detalles
             if (result == DialogResult.OK)
             { _dto.FondoLista = colorDialog.Color; }
             _mainView.SetColors(_dto);
+            ActualizarColores();
         }
     }
 }

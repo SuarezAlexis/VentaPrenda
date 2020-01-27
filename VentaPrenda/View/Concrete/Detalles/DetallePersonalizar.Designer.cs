@@ -133,7 +133,7 @@
             this.fondoVentanaButton.Name = "fondoVentanaButton";
             this.fondoVentanaButton.Size = new System.Drawing.Size(200, 23);
             this.fondoVentanaButton.TabIndex = 1;
-            this.fondoVentanaButton.Text = "Seleccionar";
+            this.fondoVentanaButton.Text = "Elegir color";
             this.fondoVentanaButton.UseVisualStyleBackColor = true;
             this.fondoVentanaButton.Click += new System.EventHandler(this.FondoVentanaButton_Click);
             // 
@@ -169,7 +169,7 @@
             this.fondoBotonButton.Name = "fondoBotonButton";
             this.fondoBotonButton.Size = new System.Drawing.Size(200, 23);
             this.fondoBotonButton.TabIndex = 1;
-            this.fondoBotonButton.Text = "Seleccionar";
+            this.fondoBotonButton.Text = "Elegir color";
             this.fondoBotonButton.UseVisualStyleBackColor = true;
             this.fondoBotonButton.Click += new System.EventHandler(this.FondoBotonButton_Click);
             // 
@@ -206,7 +206,7 @@
             this.fondoBotonActivoButton.Name = "fondoBotonActivoButton";
             this.fondoBotonActivoButton.Size = new System.Drawing.Size(200, 23);
             this.fondoBotonActivoButton.TabIndex = 1;
-            this.fondoBotonActivoButton.Text = "Seleccionar";
+            this.fondoBotonActivoButton.Text = "Elegir color";
             this.fondoBotonActivoButton.UseVisualStyleBackColor = true;
             this.fondoBotonActivoButton.Click += new System.EventHandler(this.FondoBotonActivoButton_Click);
             // 
@@ -243,7 +243,7 @@
             this.canceladoButton.Name = "canceladoButton";
             this.canceladoButton.Size = new System.Drawing.Size(200, 23);
             this.canceladoButton.TabIndex = 1;
-            this.canceladoButton.Text = "Seleccionar";
+            this.canceladoButton.Text = "Elegir color";
             this.canceladoButton.UseVisualStyleBackColor = true;
             this.canceladoButton.Click += new System.EventHandler(this.CanceladoButton_Click);
             // 
@@ -279,7 +279,7 @@
             this.pendienteButton.Name = "pendienteButton";
             this.pendienteButton.Size = new System.Drawing.Size(200, 23);
             this.pendienteButton.TabIndex = 1;
-            this.pendienteButton.Text = "Seleccionar";
+            this.pendienteButton.Text = "Elegir color";
             this.pendienteButton.UseVisualStyleBackColor = true;
             this.pendienteButton.Click += new System.EventHandler(this.PedienteButton_Click);
             // 
@@ -316,7 +316,7 @@
             this.terminadoButton.Name = "terminadoButton";
             this.terminadoButton.Size = new System.Drawing.Size(200, 23);
             this.terminadoButton.TabIndex = 1;
-            this.terminadoButton.Text = "Seleccionar";
+            this.terminadoButton.Text = "Elegir color";
             this.terminadoButton.UseVisualStyleBackColor = true;
             this.terminadoButton.Click += new System.EventHandler(this.TerminadoButton_Click);
             // 
@@ -353,7 +353,7 @@
             this.entregadoButton.Name = "entregadoButton";
             this.entregadoButton.Size = new System.Drawing.Size(200, 23);
             this.entregadoButton.TabIndex = 1;
-            this.entregadoButton.Text = "Seleccionar";
+            this.entregadoButton.Text = "Elegir color";
             this.entregadoButton.UseVisualStyleBackColor = true;
             this.entregadoButton.Click += new System.EventHandler(this.EntregadoButton_Click);
             // 
@@ -391,7 +391,7 @@
             this.caducadoButton.Name = "caducadoButton";
             this.caducadoButton.Size = new System.Drawing.Size(200, 23);
             this.caducadoButton.TabIndex = 1;
-            this.caducadoButton.Text = "Seleccionar";
+            this.caducadoButton.Text = "Elegir color";
             this.caducadoButton.UseVisualStyleBackColor = true;
             this.caducadoButton.Click += new System.EventHandler(this.CaducadoButton_Click);
             // 
@@ -428,7 +428,7 @@
             this.fondoListaButton.Name = "fondoListaButton";
             this.fondoListaButton.Size = new System.Drawing.Size(200, 23);
             this.fondoListaButton.TabIndex = 1;
-            this.fondoListaButton.Text = "Seleccionar";
+            this.fondoListaButton.Text = "Elegir color";
             this.fondoListaButton.UseVisualStyleBackColor = true;
             this.fondoListaButton.Click += new System.EventHandler(this.FondoListaButton_Click);
             // 
