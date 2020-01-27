@@ -25,8 +25,8 @@ namespace VentaPrenda.DAO.Concrete
                 dto = new TicketConfigDto
                 {
                     PrinterName = dr["Impresora"].GetType() == typeof(DBNull) ? null : dr["Impresora"].ToString(),
-                    Encabezado = dr["Encabezado"].GetType() == typeof(DBNull) ? null : dr["Encabezado"].ToString(),
-                    Pie = dr["Pie"].GetType() == typeof(DBNull) ? null : dr["Pie"].ToString(),
+                    Encabezado = dr["Encabezado"].GetType() == typeof(DBNull) ? String.Empty : dr["Encabezado"].ToString(),
+                    Pie = dr["Pie"].GetType() == typeof(DBNull) ? String.Empty : dr["Pie"].ToString(),
                     Logo = dr["Logo"].GetType() == typeof(DBNull) ? null : Image.FromStream(new MemoryStream((byte[])dr["Logo"])),
                     Ancho = Convert.ToInt32(dr["Ancho"])
                 };

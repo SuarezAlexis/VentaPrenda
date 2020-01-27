@@ -12,7 +12,7 @@ namespace VentaPrenda.DAO.Concrete
     public class HistorialDaoMySQL : IHistorialDao
     {
         private static readonly String SELECT_SQL = "SELECT H.ID, U.ID UID, U.Nombre, U.Username, U.Bloqueado, U.IntentosFallidos, U.UltimoIngreso, H.Concepto, H.Fecha, DH.ID DHID, DH.Operacion, DH.Tabla, DH.Columna, DH.Valor FROM Historial H JOIN Usuario U ON(U.ID = H.Usuario) JOIN DatosHistorial DH ON(DH.Historial = H.ID)";
-        private static readonly String SELECT_LIST_SQL = "SELECT H.ID, U.Username, U.Nombre, H.Concepto, H.Fecha FROM Historial H JOIN Usuario U ON(U.ID = H.Usuario)";
+        private static readonly String SELECT_LIST_SQL = "SELECT H.ID, U.Username, U.Nombre, H.Concepto, H.Fecha FROM Historial H JOIN Usuario U ON(U.ID = H.Usuario) ORDER BY H.Fecha DESC";
         private static readonly String INSERT_SQL = "INSERT INTO Historial (Usuario,Concepto,Fecha) VALUES(@Usuario,@Concepto,@Fecha); SELECT LAST_INSERT_ID();";
         private static readonly String INSERT_DATOS_SQL = "INSERT INTO DatosHistorial(Historial,Operacion,Tabla,Columna,Valor) VALUES";
 
