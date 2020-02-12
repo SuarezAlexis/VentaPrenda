@@ -124,6 +124,9 @@ namespace VentaPrenda.Controller
         public int ServiciosAcumulados(int clienteID, DateTime desde)
         { return Service.Reportes.ServiciosAcumulados(clienteID, desde); }
 
+        public int DescuentosAplicados(int clienteID, int descuentoID, DateTime desde) 
+        { return Service.Reportes.DescuentosAplicados(clienteID, descuentoID, desde); }
+
         public void ImprimirNota(NotaDto nota)
         { TicketPrinter.PrintTicket(nota,Usuario); }
 

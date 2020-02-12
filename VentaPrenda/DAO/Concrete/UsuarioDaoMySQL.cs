@@ -146,7 +146,7 @@ namespace VentaPrenda.DAO.Concrete
             {
                 perfiles += kvp.Value ? kvp.Key.ID + "," : "";
             }
-            perfiles = perfiles.Substring(0, perfiles.Length - 1);
+            perfiles = perfiles.Substring(0, Math.Max(0,perfiles.Length - 1));
             param.Add("@p_Perfiles", perfiles);
             MySqlDbContext.Call(UPDATE_PERFILES_SQL, param);
 

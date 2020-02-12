@@ -1,4 +1,4 @@
-/*****************************************************************************/
+﻿/*****************************************************************************/
 /* BASE DE DATOS															 */
 /*****************************************************************************/
 CREATE DATABASE `VentaPrenda` 
@@ -471,7 +471,7 @@ END$$
 DELIMITER ;
 
 /*****************************************************************************/
-/* VISTAS																	 */
+/* VISTAS								     */
 /*****************************************************************************/
 CREATE  OR REPLACE VIEW `ClienteStatsView` AS
 SELECT Servicios.Nota, Fecha, Monto, SUM(Prendas) Prendas, SUM(Servicios) Servicios, ID
@@ -499,8 +499,21 @@ LEFT JOIN DatosHistorial DH ON(DH.Valor = N.ID AND Columna = 'ID' AND DH.Tabla =
 LEFT JOIN Historial H ON(H.ID = DH.Historial) 
 WHERE EXISTS(SELECT * FROM DatosHistorial WHERE Historial = H.ID AND Tabla = 'Nota' AND Columna = 'Estatus' AND Valor = 'Entregado');
 
+CREATE OR REPLACE VIEW `ServiciosView` AS
+SELECT N.ID NotaID, N.Estatus, N.Cliente ClienteID, Recibido, N.Descuento DescuentoID, 
+PI.ID PrendaItemID, PI.Cantidad PrendaItemCantidad, 
+SI.ID ServicioItemID, SI.Cantidad ServicioItemCantidad, SI.Servicio ServicioID, S.Costo ServicioCosto, SI.Monto ServicioItemMonto, SI.Descuento ServicioItemDescuento 
+
+FROM Nota N 
+
+JOIN PrendaItem PI ON(PI.Nota = N.ID) 
+
+JOIN ServicioItem SI ON(SI.PrendaItem = PI.ID) 
+
+JOIN Servicio S ON(S.ID = SI.Servicio);
+
 /*****************************************************************************/
-/* DATOS 																	 */
+/* DATOS 								     */
 /*****************************************************************************/
 INSERT INTO Ticket(Impresora,Encabezado,Pie) VALUES(NULL,NULL,NULL);
 

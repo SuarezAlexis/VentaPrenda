@@ -170,8 +170,11 @@ namespace VentaPrenda.View.Concrete
                 aplicados = eventArgs.DescuentosNota;
                 if (!d.SoloNota)
                 {
-                    if(eventArgs.ClienteID >= 0)
+                    if (eventArgs.ClienteID >= 0)
+                    {
                         servicios += mainView.Controller.ServiciosAcumulados(eventArgs.ClienteID, d.VigenciaInicio);
+                        aplicados += mainView.Controller.DescuentosAplicados(eventArgs.ClienteID, d.ID, d.VigenciaInicio);
+                    }
                     else
                     {
                         if (eventArgs.ClienteID < -1)

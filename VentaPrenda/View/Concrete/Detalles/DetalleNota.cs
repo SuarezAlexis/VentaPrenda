@@ -36,7 +36,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                 entregadoDateTimePicker.Enabled = !value;
                 estatusComboBox.Enabled = !value && !string.IsNullOrEmpty(idDataLabel.Text);
                 observacionesTextBox.ReadOnly = value;
-                imprimirButton.Enabled = value;
+                //imprimirButton.Enabled = value;
                 entregarButton.Enabled = value &&
                     _dto.Estatus != Estatus.Cancelado  &&
                     _dto.Estatus != Estatus.Cancelado &&
@@ -101,6 +101,8 @@ namespace VentaPrenda.View.Concrete.Detalles
                 return total;
             }
         }
+
+        public event EventHandler GuardarNota;
 
         /*******************************************************************/
         /* CONSTRUCTORES                                                   */
@@ -549,6 +551,9 @@ namespace VentaPrenda.View.Concrete.Detalles
 
         private void ImprimirButton_Click(object sender, EventArgs e)
         {
+            GuardarNota?.Invoke(this, null);
+            if (_dto.ID < 0)
+                return;
             IMainView mainView = (IMainView)ParentForm;
             try { mainView.Controller.ImprimirNota((NotaDto)Dto); }
             catch(Exception ex)

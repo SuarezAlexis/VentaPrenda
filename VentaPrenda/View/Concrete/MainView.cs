@@ -345,10 +345,10 @@ namespace VentaPrenda.View.Concrete
             switch(Controller.Funcion)
             {
                 case Funcion.NOTA:
-                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.GenerarNota;
+                    GuardarButton.Enabled = e && (Controller.Usuario.Permisos.GenerarNota || Controller.Modo == Modo.EDICION);
                     break;
                 case Funcion.BALANCE:
-                    GuardarButton.Enabled = e && Controller.Usuario.Permisos.GeneraMovimientos;
+                    GuardarButton.Enabled = e && (Controller.Usuario.Permisos.GeneraMovimientos || Controller.Modo == Modo.EDICION);
                     break;
                 case Funcion.CLIENTES:
                     GuardarButton.Enabled = e && Controller.Usuario.Permisos.AdmonClientes;
@@ -502,6 +502,7 @@ namespace VentaPrenda.View.Concrete
         { 
             Cursor = Cursors.WaitCursor; 
             Controller.Notas();
+            ((DetalleNota)Detalle).GuardarNota += GuardarButton_Click;
             Cursor = Cursors.Default; 
         }
 
@@ -578,7 +579,13 @@ namespace VentaPrenda.View.Concrete
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            if(Detalle.ValidateChildren())
+            bool permisoNota = Controller.Funcion == Funcion.NOTA
+                && ( 
+                    ((NotaDto)Detalle.Dto).ID < 0 && Controller.Usuario.Permisos.GenerarNota
+                    || 
+                    Controller.Usuario.Permisos.EditarNota
+                    );
+            if (Detalle.ValidateChildren())
             {
                 if (Controller.Funcion == Funcion.NOTA && ((NotaDto)Detalle.Dto).Prendas.Count == 0)
                 {
@@ -600,6 +607,12 @@ namespace VentaPrenda.View.Concrete
                     }
                     Cursor = Cursors.Default;
                 }
+            } else
+            {
+                MessageBox.Show("No fue posible guardar los datos, hace falta información o es incorrecta.",
+                        "No se guardó la nota",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
             }
         }
 

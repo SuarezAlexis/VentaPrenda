@@ -74,7 +74,7 @@ namespace VentaPrenda.View.Concrete.Detalles
                     AdmonClientes = permisosChecklistBox.GetItemChecked(++i),
                     AdmonCatalogos = permisosChecklistBox.GetItemChecked(++i),
                     AdmonUsuarios = permisosChecklistBox.GetItemChecked(++i),
-                    AdmonPerfiles = permisosChecklistBox.GetItemChecked(i),
+                    AdmonPerfiles = permisosChecklistBox.GetItemChecked(++i),
                 };
                 return _dto;
             }

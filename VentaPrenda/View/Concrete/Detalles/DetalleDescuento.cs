@@ -41,12 +41,12 @@ namespace VentaPrenda.View.Concrete.Detalles
                 nombreTextBox.ReadOnly = value;
                 inicioVigenciaDateTimePicker.Enabled = !value;
                 finVigenciaDateTimePicker.Enabled = !value;
-                consMinNumUpDown.ReadOnly = value;
-                consMinDomainUpDown.ReadOnly = value;
+                consMinNumUpDown.Enabled = !value;
+                consMinDomainUpDown.Enabled = !value;
                 vigenciaRadioButton.Enabled = !value;
                 soloNotaRadioButton.Enabled = !value;
-                descuentoNumUpDown.ReadOnly = value;
-                descuentoDomainUpDown.ReadOnly = value;
+                descuentoNumUpDown.Enabled = !value;
+                descuentoDomainUpDown.Enabled = !value;
                 habilitadoCheckBox.Enabled = !value;
             }
         }

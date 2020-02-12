@@ -14,6 +14,7 @@ namespace VentaPrenda.Service
         private static readonly string CLIENTES_SQL = "SELECT C.ID, C.Nombre, SUM(Monto) Monto, SUM(Prendas) Prendas, SUM(Servicios) Servicios, C.Domicilio, C.Colonia, C.CP, C.Email, C.Habilitado FROM ClienteStatsView CSV JOIN Cliente C ON(C.ID = CSV.ID) WHERE Fecha BETWEEN  @Inicio AND @Fin GROUP BY ID";
         private static readonly string CLIENTE_STATS_SQL = "SELECT SUM(Monto) Monto, SUM(Prendas) Prendas, SUM(Servicios) Servicios FROM ClienteStatsView WHERE ID = @ID AND Fecha >= TIMESTAMP(@Fecha)";
         private static readonly string PRODUCCION_SQL = "SELECT ROW_NUMBER() OVER (ORDER BY N.Entregado) '#', N.Entregado, N.ID Nota, P.Nombre Prenda, C.Nombre Color, PI.Cantidad * SI.Cantidad Cantidad, S.Nombre Servicio, U.Nombre 'Elaboró', SI.Monto * PI.Cantidad Precio FROM Nota N LEFT JOIN PrendaItem PI ON(PI.Nota = N.ID) LEFT JOIN Prenda P ON(P.ID = PI.Prenda) LEFT JOIN Color C ON(C.ID = PI.Color) LEFT JOIN ServicioItem SI ON(SI.PrendaItem = PI.ID) LEFT JOIN Servicio S ON(S.ID = SI.Servicio) LEFT JOIN Usuario U ON(U.ID = SI.Encargado) WHERE N.Entregado BETWEEN @Inicio AND @Fin";
+        private static readonly string SERVICIOS_VIEW_SQL = "SELECT * FROM ServiciosView";
 
         public static DataTable Ingresos(DateTime desde, DateTime hasta)
         {
@@ -68,7 +69,20 @@ namespace VentaPrenda.Service
             }
             else
             { return 0; }
-            
+        }
+
+        public static int DescuentosAplicados(int clienteID, int descuentoId, DateTime desde)
+        {
+            if (clienteID >= 0)
+            {
+                Dictionary<string, object> param = new Dictionary<string, object>();
+                param.Add("@ClienteID", clienteID);
+                param.Add("@DescuentoID", descuentoId);
+                param.Add("@Desde", desde);
+                DataTable dt = MySqlDbContext.Query(SERVICIOS_VIEW_SQL + " WHERE Estatus > 0 AND Recibido >= TIMESTAMP(@Desde) AND ClienteID = @ClienteID AND ServicioItemDescuento = @DescuentoID", param);
+                return dt.Rows.Count;
+            }
+            else { return 0; }
         }
     }
 }
