@@ -782,6 +782,7 @@
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VentaPrenda";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.MainLayoutPanel.ResumeLayout(false);
             this.MainLayoutPanel.PerformLayout();
             this.functionsLayoutPanel.ResumeLayout(false);
