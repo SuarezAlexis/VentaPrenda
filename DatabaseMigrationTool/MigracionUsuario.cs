@@ -294,7 +294,7 @@ namespace DatabaseMigrationTool
             return true;
         }
 
-        public static bool Notas()
+        public static bool Notas(long desde)
         {
             DataTable clientes = DaoManager.ClienteDao.GetClientes();
             DataTable colores = DaoManager.CatalogoDao.GetColores();
@@ -303,7 +303,7 @@ namespace DatabaseMigrationTool
             DataTable servicios = DaoManager.ServicioDao.GetServicios();
             DataTable usuarios = DaoManager.UsuarioDao.GetUsuarios();
 
-            DataTable dt = Database.Query("SELECT N.ID, N.FechaEntrada, N.FechaSalida, N.EstatusID, E.Nombre AS EstatusNombre, N.ClienteID, C.Nombre AS ClienteNombre, C.Telefono AS ClienteTelefono, N.DescuentoID, D.Nombre AS DescuentoNombre FROM Nota N JOIN Estatus_Nota E ON E.ID = N.EstatusID JOIN Cliente C ON C.ID = N.ClienteID LEFT JOIN Descuento D ON D.ID = N.DescuentoID");
+            DataTable dt = Database.Query("SELECT N.ID, N.FechaEntrada, N.FechaSalida, N.EstatusID, E.Nombre AS EstatusNombre, N.ClienteID, C.Nombre AS ClienteNombre, C.Telefono AS ClienteTelefono, N.DescuentoID, D.Nombre AS DescuentoNombre FROM Nota N JOIN Estatus_Nota E ON E.ID = N.EstatusID JOIN Cliente C ON C.ID = N.ClienteID LEFT JOIN Descuento D ON D.ID = N.DescuentoID" + (desde >= 0 ? " WHERE N.ID >= " + desde + " " : "") + "ORDER BY N.ID ASC");
             Console.WriteLine("Se encontraron " + dt.Rows.Count + " notas.");
             int i = 0;
             foreach(DataRow dr in dt.Rows)
